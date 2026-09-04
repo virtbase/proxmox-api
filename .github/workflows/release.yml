@@ -3,6 +3,16 @@ name: Release
 on:
   push:
     branches: [main, master]
+  # Escape hatch for a release whose tag exists but whose publish never ran -
+  # a manually recovered release, or a run that failed after tagging. It
+  # publishes whatever the default branch currently says, so only run it on a
+  # commit that is already tagged.
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish the current version to npm, skipping release-please
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -19,8 +29,10 @@ jobs:
   prepare:
     runs-on: ubuntu-latest
     outputs:
-      released: ${{ steps.release.outputs.release_created }}
-      tag: ${{ steps.release.outputs.tag_name }}
+      # `releases_created`, plural. In manifest mode the action reports one
+      # result per configured package, and the singular `release_created` is
+      # never set - reading it silently skips every publish.
+      released: ${{ steps.release.outputs.releases_created }}
     steps:
       - uses: googleapis/release-please-action@v5
         id: release
@@ -30,7 +42,9 @@ jobs:
 
   publish:
     needs: prepare
-    if: needs.prepare.outputs.released == 'true'
+    if: >-
+      needs.prepare.outputs.released == 'true' ||
+      inputs.publish == true
     runs-on: ubuntu-latest
     permissions:
       contents: read
