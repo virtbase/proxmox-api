@@ -28,6 +28,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "engines": {
+    "node": ">=18"
+  },
+  "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -38,20 +42,24 @@
   "types": "./dist/index.d.ts",
   "files": [
     "dist",
-    "src"
+    "src",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "tsc",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
     "dev": "tsc --watch",
+    "lint:package": "publint --strict && attw --pack . --ignore-rules cjs-resolves-to-esm",
     "prepack": "bun run build",
     "test": "bun test",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.2",
     "@biomejs/biome": "catalog:",
     "@types/bun": "catalog:",
     "@virtbase/tsconfig": "workspace:*",
+    "publint": "^0.3.12",
     "typescript": "catalog:"
   }
 }

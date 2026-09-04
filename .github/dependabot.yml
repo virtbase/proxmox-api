@@ -1,0 +1,38 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    # Conventional commits drive the release; without this prefix the bump
+    # would be rejected by commitlint and would not reach the changelog.
+    commit-message:
+      prefix: "deps"
+      prefix-development: "chore"
+    groups:
+      # One pull request per concern, so a failing update is obvious rather
+      # than buried among a dozen unrelated bumps.
+      dev-tooling:
+        patterns:
+          - "@biomejs/*"
+          - "@commitlint/*"
+          - husky
+          - lint-staged
+          - turbo
+          - typescript
+          - "@types/*"
+      docs:
+        patterns:
+          - vitepress
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: "ci"
+    groups:
+      actions:
+        patterns: ["*"]

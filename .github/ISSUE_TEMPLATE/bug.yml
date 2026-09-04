@@ -1,0 +1,54 @@
+name: Bug report
+description: Something in the client behaves incorrectly.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        If a *type* is wrong — a missing endpoint, a parameter typed too
+        narrowly — say so here too. The model is generated, so those are
+        usually fixed in the generator rather than by hand.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you expected, and what you got instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: >-
+        The smallest snippet that shows it. Replace hosts, tokens and
+        passwords with placeholders — do not paste real credentials.
+      render: ts
+    validations:
+      required: true
+
+  - type: input
+    id: package-version
+    attributes:
+      label: Package version
+      placeholder: 2.0.0
+    validations:
+      required: true
+
+  - type: input
+    id: pve-version
+    attributes:
+      label: Proxmox VE version
+      description: The `version` field from `GET /version`.
+      placeholder: 9.0.3
+    validations:
+      required: true
+
+  - type: input
+    id: runtime
+    attributes:
+      label: Runtime
+      placeholder: Node 24.15.0 / Bun 1.4.1 / Deno 2.5
+    validations:
+      required: true

@@ -1,0 +1,10 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Proxmox VE API behaviour
+    url: https://forum.proxmox.com/
+    about: >-
+      How an endpoint behaves, what a parameter means, or why the cluster
+      rejected a request are Proxmox questions, not client questions.
+  - name: Security vulnerability
+    url: https://github.com/virtbase/proxmox-api/security/advisories/new
+    about: Report privately. Please do not open a public issue.

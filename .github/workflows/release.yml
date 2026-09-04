@@ -1,0 +1,66 @@
+name: Release
+
+on:
+  push:
+    branches: [main, master]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  # Maintains a rolling release pull request: the version bump and the
+  # changelog entry, both derived from the conventional commits since the last
+  # release. Merging it tags and creates the GitHub release.
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      released: ${{ steps.release.outputs.release_created }}
+      tag: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+  publish:
+    needs: prepare
+    if: needs.prepare.outputs.released == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # Required for npm provenance, which signs the package with a verifiable
+      # link back to this workflow run.
+      id-token: write
+    environment:
+      name: npm
+      url: https://www.npmjs.com/package/@virtbase/proxmox-api
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.tag }}
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: package.json
+      # npm rather than bun for the publish itself: provenance attestation is
+      # an npm CLI feature and bun does not emit it.
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          registry-url: https://registry.npmjs.org
+
+      - run: bun install --frozen-lockfile
+      - run: bun run test
+      - run: bun run build
+      - run: bun run lint:package
+
+      - name: Publish to npm
+        run: npm publish --provenance --access public
+        working-directory: packages/api
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

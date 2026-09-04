@@ -15,163 +15,181 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Generic type for Api parameters
+ * Parameters for one API call.
+ *
+ * Values are whatever the endpoint declares in `model.ts`; the engine encodes
+ * them on the way out.
  */
-export type ApiParamType = { [key: string]: any };
+export type ApiParamType = Record<string, unknown>;
 
 /**
- * Common interface used to call API engine
+ * The transport the proxy calls into.
+ *
+ * Implement it to send requests somewhere other than a live cluster - a
+ * recorded fixture, a queue, a per-tenant router - and hand the result to
+ * {@link buildApiProxy} or `proxmoxApi()`.
  */
 export interface ApiRequestable {
   /**
-   * Execute a request on the API with promise
+   * Execute one request.
    *
-   * @param httpMethod: The HTTP method GET POST PUT DELETE
-   * @param path: The request final path
-   * @param pathTemplate: The request path with \{pathParams\}
-   * @param params: The request parameters (passed as query string or body params)
+   * @param httpMethod GET, POST, PUT or DELETE.
+   * @param path The concrete path, placeholders already substituted.
+   * @param pathTemplate The same path with `*` in place of each substituted
+   *   value, which makes calls to one endpoint groupable for logging or
+   *   metrics regardless of the ids involved.
+   * @param params Query or body parameters.
    */
   doRequest(
     httpMethod: string,
     path: string,
     pathTemplate: string,
-    params?: { [key: string]: any },
-  ): Promise<any>;
+    params?: ApiParamType,
+  ): Promise<unknown>;
 }
 
 /**
- * Common Getter part fot handlers
- * - $()
- * - $getv/$put()/$post()/$delete()
- * - path navigation
- */
-const commonGet = (key: string, target: ProxyApi) => {
-  if (key.startsWith("$")) {
-    // give parameter in path
-    if (key === "$") {
-      return (id: string | number) => {
-        // escape '/' char
-        const idStr = String(id).replace(/\//g, "%2F");
-        const child = new ProxyApi(
-          target._engine,
-          `${target._path}/${idStr}`,
-          `${target._model}/*`,
-        );
-        return new Proxy(child, handlerChild);
-      };
-    }
-    // $get $post $delete $put
-    const fnc = (params: any) => {
-      const mtd = key.substring(1);
-      return target._engine.doRequest(mtd, target._path, target._model, params);
-    };
-    return fnc.bind(target._engine);
-  }
-  if (key.startsWith("_")) key = key.substring(1);
-  const child = new ProxyApi(
-    target._engine,
-    `${target._path}/${key}`,
-    `${target._model}/${key}`,
-  );
-  return new Proxy(child, handlerChild);
-};
-
-/**
- * handler for all proxy level except the root one
- * handle:
- * - Object Field
- * - $()
- * - $getv/$put()/$post()/$delete()
- * - path navigation
- */
-const handlerChild = <ProxyHandler<ProxyApi>>{
-  construct(target: ProxyApi, argArray: any, newTarget?: any) {
-    return target;
-  },
-  get(target: ProxyApi, p: PropertyKey, receiver: any) {
-    if (typeof p === "symbol") return (<any>target)[p];
-    const key = p.toString();
-    switch (key) {
-      case "toString":
-      case "valueOf":
-      case "toLocaleString":
-        return (<any>target)[p];
-    }
-    return commonGet(key, target);
-  },
-};
-/**
- * handler for the first level of the proxy
- * handle:
- * - Object Field
- * - EventEmitter Field
- * - $()
- * - $get()/$put()/$post()/$delete()
- * - path navigation
- */
-const handlerRoot = <ProxyHandler<ProxyApi>>{
-  construct(target: ProxyApi, argArray: any, newTarget?: any) {
-    return target;
-  },
-  get(target: ProxyApi, p: PropertyKey, receiver: any) {
-    if (typeof p === "symbol") return (target as any)[p];
-    const key = p.toString();
-    switch (key) {
-      // object
-      case "toString":
-      case "valueOf":
-      case "toLocaleString":
-        // hasOwnProperty
-        // isPrototypeOf
-        // propertyIsEnumerable
-        // constructor
-        return (target as any)[p];
-      // EventEmitter
-      case "addListener":
-      case "on":
-      case "once":
-      case "prependListener":
-      case "prependOnceListener":
-      case "removeListener":
-      case "off":
-      case "removeAllListeners":
-      case "setMaxListeners":
-      case "getMaxListeners":
-      case "listeners":
-      case "rawListeners":
-      case "emit":
-      case "eventNames":
-      case "listenerCount":
-        return (target as any)[p];
-    }
-    return commonGet(key, target);
-  },
-};
-
-/**
- * Data cloned on each Proxy node call
- * maintains full PATH for each calls
- */
-class ProxyApi {
-  public _model: string;
-
-  constructor(
-    public _engine: ApiRequestable,
-    public _path: string,
-    model?: string,
-  ) {
-    this._model = model || this._path;
-  }
-  toString(): string {
-    return `ProxyApi{path:${this._path}}`;
-  }
-}
-/**
- * Build API API Proxy
+ * Keys that resolve on the node instead of extending the path.
  *
- * @param engine Api logic code
- * @param path base prefix for url
+ * Without these, `String(proxmox)` or a debugger inspecting the object would
+ * silently build `/toString` and hand back another proxy.
  */
-export function buildApiProxy(engine: ApiRequestable, path: string): any {
-  return new Proxy(new ProxyApi(engine, path), handlerRoot) as any;
+const OBJECT_KEYS: ReadonlySet<string> = new Set([
+  "toString",
+  "valueOf",
+  "toLocaleString",
+]);
+
+/**
+ * Reserved at the root only.
+ *
+ * A root proxy is the value most likely to be handed to code that sniffs for
+ * an EventEmitter - a logger, a test harness - and every one of those probes
+ * would otherwise mint a path segment. Deeper nodes are not exposed that way,
+ * so they keep these names usable as real segments.
+ */
+const EVENT_EMITTER_KEYS: ReadonlySet<string> = new Set([
+  "addListener",
+  "emit",
+  "eventNames",
+  "getMaxListeners",
+  "listenerCount",
+  "listeners",
+  "off",
+  "on",
+  "once",
+  "prependListener",
+  "prependOnceListener",
+  "rawListeners",
+  "removeAllListeners",
+  "removeListener",
+  "setMaxListeners",
+]);
+
+const ROOT_KEYS: ReadonlySet<string> = new Set([
+  ...OBJECT_KEYS,
+  ...EVENT_EMITTER_KEYS,
+]);
+
+/**
+ * Characters that would change the shape of the URL rather than sit inside a
+ * path segment. A `/` would invent a path level; `?` and `#` would start a
+ * query or fragment and drop the rest of the path.
+ */
+const UNSAFE_IN_SEGMENT = /[/?#]/g;
+
+function escapeSegment(value: string | number): string {
+  return String(value).replace(UNSAFE_IN_SEGMENT, (char) =>
+    encodeURIComponent(char),
+  );
+}
+
+/**
+ * One node of the path being built.
+ *
+ * Nodes are immutable: navigating produces a new node, so a partially walked
+ * path can be held onto and reused.
+ */
+class ApiNode {
+  constructor(
+    readonly engine: ApiRequestable,
+    readonly path: string,
+    readonly model: string,
+  ) {}
+
+  toString(): string {
+    return `ProxyApi{path:${this.path}}`;
+  }
+}
+
+/**
+ * Resolve one property access into either a request function or the next node.
+ */
+function navigate(node: ApiNode, key: string): unknown {
+  if (key === "$") {
+    return (id: string | number) =>
+      descend(node, escapeSegment(id), "*", childHandler);
+  }
+
+  if (key.startsWith("$")) {
+    const httpMethod = key.slice(1);
+    return (params?: ApiParamType) =>
+      node.engine.doRequest(httpMethod, node.path, node.model, params);
+  }
+
+  // A leading underscore is the escape hatch for segments that collide with a
+  // reserved name: `_on` requests `/on`.
+  const segment = key.startsWith("_") ? key.slice(1) : key;
+  return descend(node, segment, segment, childHandler);
+}
+
+function descend(
+  node: ApiNode,
+  pathSegment: string,
+  modelSegment: string,
+  handler: ProxyHandler<ApiNode>,
+): unknown {
+  return new Proxy(
+    new ApiNode(
+      node.engine,
+      `${node.path}/${pathSegment}`,
+      `${node.model}/${modelSegment}`,
+    ),
+    handler,
+  );
+}
+
+function createHandler(reserved: ReadonlySet<string>): ProxyHandler<ApiNode> {
+  return {
+    // `new proxmox.nodes()` yields the node rather than throwing, which keeps
+    // the proxy inert in code that probes values by constructing them.
+    construct: (target) => target,
+    get(target, property) {
+      if (typeof property === "symbol" || reserved.has(property)) {
+        const value = Reflect.get(target, property);
+        // Bound to the node, not the proxy. Called on the proxy, `toString`
+        // would read `this.path` back through this trap, get another proxy,
+        // stringify that, and recurse until the stack ran out.
+        return typeof value === "function" ? value.bind(target) : value;
+      }
+      return navigate(target, property);
+    },
+  };
+}
+
+const childHandler = createHandler(OBJECT_KEYS);
+const rootHandler = createHandler(ROOT_KEYS);
+
+/**
+ * Build the proxy that turns property access into API paths.
+ *
+ * Nothing is requested while the path is walked - each step returns a new
+ * proxy. The call happens when a `$`-prefixed method is invoked.
+ *
+ * @param engine Transport to send requests through.
+ * @param path Prefix every path is built on, normally `/api2/json`.
+ * @typeParam T The generated API shape to present, e.g. `Proxmox.Api`.
+ */
+export function buildApiProxy<T>(engine: ApiRequestable, path: string): T {
+  return new Proxy(new ApiNode(engine, path, path), rootHandler) as T;
 }

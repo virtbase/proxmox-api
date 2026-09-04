@@ -15,6 +15,10 @@
       "persistent": false
     },
     "//#check": {},
+    "lint:package": {
+      "dependsOn": ["build"],
+      "outputs": []
+    },
     "test": {
       "dependsOn": ["^topo", "^build"],
       "outputs": [],

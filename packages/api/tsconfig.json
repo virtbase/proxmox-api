@@ -1,12 +1,7 @@
 {
   "extends": "@virtbase/tsconfig/library.json",
   "compilerOptions": {
-    "rootDir": "src",
-    // TODO(fork): re-enable. Inherited upstream code reads regex-match groups
-    // positionally (`m[4]` from an optional group in QmMonitor) and indexes
-    // arrays without a bounds check, which the house default rejects. Turning
-    // it on means changing that logic, which is a separate pass from this one.
-    "noUncheckedIndexedAccess": false
+    "rootDir": "src"
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist", "src/__tests__"]

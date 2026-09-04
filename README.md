@@ -36,6 +36,7 @@ bun run test
 | `bun run check:write` | Apply Biome's safe fixes. |
 | `bun run check:unsafe` | Apply Biome's unsafe fixes too. |
 | `bun run codegen` | Regenerate the API model and the endpoint reference. |
+| `bun run lint:package` | Validate the published package shape (publint, attw). |
 | `bun run codegen:check` | CI: fail if either is stale. |
 | `bun run docs:dev` | Serve the docs site locally. |
 | `bun run docs:build` | Build the docs site. |
@@ -69,6 +70,23 @@ The site in [`docs/`](docs) is VitePress: hand-written guides, a reference for
 the client surface, and the generated endpoint reference. `bun run docs:dev`
 serves it; the `Docs` workflow builds it on every push and deploys to GitHub
 Pages, failing first if the generated pages are stale.
+
+## Automation
+
+| Workflow | Trigger | What it does |
+| --- | --- | --- |
+| `CI` | push, pull request | Lint, typecheck, test, build, and validate the published package shape. |
+| `Docs` | push, pull request | Builds the site; deploys to Pages on the default branch. |
+| `Schema drift` | weekly, manual | Regenerates against the current Proxmox schema and opens a pull request if anything moved. |
+| `Release` | push to default branch | Maintains a release pull request; on merge, tags, releases, and publishes to npm with provenance. |
+
+Releases are driven by [release-please](https://github.com/googleapis/release-please):
+the version bump and the changelog entry both come from the conventional
+commits since the last release, so the only thing to get right is the commit
+message. `feat!` or a `BREAKING CHANGE:` footer produces a major.
+
+Publishing needs an `NPM_TOKEN` secret and an `npm` environment; Pages
+deployment needs Pages enabled with GitHub Actions as the source.
 
 ## Conventions
 

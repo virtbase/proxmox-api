@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import type { ApiRequestable } from "./proxy.js";
+import type { ApiParamType, ApiRequestable } from "./proxy.js";
 
 const USER_AGENT = "proxmox-api (https://github.com/UrielCh/proxmox-api)";
 
@@ -96,10 +96,16 @@ export type ProxmoxEngineOptions = (
   | ProxmoxEngineOptionsPass
 ) & { fetch?: FetchInterface };
 
-/** The `{ data, errors }` envelope every PVE endpoint replies with. */
+/**
+ * The `{ data, errors }` envelope every PVE endpoint replies with.
+ *
+ * Untyped here on purpose: the shape of `data` is decided by the endpoint, and
+ * `model.ts` types it at the call site. `errors` is a free-form map of
+ * per-parameter messages.
+ */
 interface ProxmoxResponse {
-  data: any;
-  errors?: any;
+  data: unknown;
+  errors?: unknown;
 }
 
 /**
@@ -108,9 +114,7 @@ interface ProxmoxResponse {
  * PVE rejects empty values, and callers routinely pass optional fields
  * through as undefined, so they are dropped rather than serialised.
  */
-function definedEntries(params?: {
-  [key: string]: any;
-}): Array<[string, unknown]> {
+function definedEntries(params?: ApiParamType): Array<[string, unknown]> {
   if (!params) return [];
   return Object.entries(params).filter(
     ([, value]) => value !== null && value !== undefined,
@@ -214,9 +218,9 @@ export class ProxmoxEngine implements ApiRequestable {
     method: string,
     path: string,
     pathTemplate: string,
-    params?: { [key: string]: any },
+    params?: ApiParamType,
     retries = 0,
-  ): Promise<any> {
+  ): Promise<unknown> {
     const { CSRFPreventionToken, ticket } = await this.getTicket();
     // ensure that method is uppercased
     const httpMethod = method.toUpperCase();
@@ -429,7 +433,7 @@ export class ProxmoxEngine implements ApiRequestable {
       }
       const respObj = JSON.parse(text) as {
         data: {
-          cap: any;
+          cap: unknown;
           ticket: string;
           CSRFPreventionToken: string;
           username: string;

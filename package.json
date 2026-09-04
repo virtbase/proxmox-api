@@ -30,6 +30,7 @@
     "docs:build": "turbo -F @virtbase/proxmox-api-docs build",
     "docs:dev": "turbo -F @virtbase/proxmox-api-docs dev",
     "docs:preview": "turbo -F @virtbase/proxmox-api-docs preview",
+    "lint:package": "turbo run lint:package",
     "prepare": "husky",
     "test": "turbo run test",
     "test:coverage": "turbo run test --force -- --coverage --coverage-reporter=text --coverage-reporter=lcov",
@@ -41,12 +42,14 @@
     "typescript": "^7.0.2"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.2",
     "@biomejs/biome": "catalog:",
     "@commitlint/cli": "^21.2.2",
     "@commitlint/config-conventional": "^21.2.2",
     "@types/bun": "catalog:",
     "husky": "^9.1.7",
     "lint-staged": "^17.4.1",
+    "publint": "^0.3.14",
     "turbo": "^2.10.12"
   },
   "peerDependencies": {
