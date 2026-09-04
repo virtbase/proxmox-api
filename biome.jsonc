@@ -1,0 +1,83 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "root": true,
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 80,
+    "attributePosition": "auto"
+  },
+  "files": {
+    "includes": ["**", "!**/*.svg", "!docs"]
+  },
+  "assist": { "actions": { "source": { "organizeImports": "on" } } },
+  "overrides": [
+    {
+      // tsconfig files are JSONC in practice - the compiler has always
+      // accepted comments in them - but only `tsconfig.json` is recognised as
+      // such by extension. The shared configs in tooling/typescript are
+      // `extends` targets with arbitrary names, so name them here.
+      "includes": ["**/tsconfig.json", "tooling/typescript/*.json"],
+      "json": {
+        "parser": { "allowComments": true, "allowTrailingCommas": true }
+      }
+    }
+  ],
+  "linter": {
+    "enabled": true,
+    // Named explicitly because auto-detection reads a version out of the
+    // nearest package.json and cannot parse bun's `catalog:` protocol, and
+    // because `test` is detected from jest/mocha/ava/vitest - this repo runs
+    // `bun:test`, which it would never see.
+    "domains": {
+      "turborepo": "recommended",
+      "test": "recommended"
+    },
+    "rules": {
+      "preset": "recommended",
+      "style": {
+        "useImportType": {
+          "level": "error",
+          "options": {
+            "style": "separatedType"
+          }
+        },
+        "useNodejsImportProtocol": "error",
+        "useConst": "error",
+        "noRestrictedTypes": "off",
+        "noRestrictedGlobals": "off"
+      },
+      "suspicious": {
+        "noImportCycles": "warn",
+        "noImplicitAnyLet": "warn",
+        "noDuplicateObjectKeys": "warn",
+        "noTsIgnore": "error",
+        "noDebugger": "error"
+      },
+      "performance": {
+        "noDelete": "error"
+      },
+      "complexity": {
+        "useDateNow": "error",
+        "noUselessSwitchCase": "warn",
+        "noUselessTypeConstraint": "warn"
+      },
+      "correctness": {
+        "noUnusedImports": "warn",
+        "noUnusedVariables": "warn"
+      },
+      "nursery": {
+        "noMisusedPromises": "error",
+        "noFloatingPromises": "error"
+      }
+    }
+  }
+}

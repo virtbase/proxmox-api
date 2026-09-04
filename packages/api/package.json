@@ -1,0 +1,60 @@
+{
+  "name": "@virtbase/proxmox-api",
+  "version": "1.1.1",
+  "type": "module",
+  "description": "Cutting edge javascript / TypeScript / ESM Proxmox API",
+  "keywords": [
+    "proxmox",
+    "client",
+    "typing",
+    "api",
+    "typescript",
+    "async",
+    "promise"
+  ],
+  "author": "Uriel Chemouni <uchemouni@gmail.com> (https://uriel.ovh/)",
+  "contributors": [
+    "Janic Bellmann <contact@janic.dev>"
+  ],
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/virtbase/proxmox-api.git",
+    "directory": "packages/api"
+  },
+  "bugs": {
+    "url": "https://github.com/virtbase/proxmox-api/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "tsc --watch",
+    "prepack": "bun run build",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "dependencies": {
+    "undici": "catalog:"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "catalog:",
+    "@types/bun": "catalog:",
+    "@virtbase/tsconfig": "workspace:*",
+    "typescript": "catalog:"
+  }
+}

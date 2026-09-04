@@ -1,105 +1,22 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "test",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "cwd": "${workspaceFolder}/generator",
-            // "runtimeArgs": ["-r", "ts-node/register"],
-            "runtimeExecutable": "tsx",
-            "console": "integratedTerminal",
-            "args": ["${workspaceFolder}/api/src/main.test.ts"]
-        },
-
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Generate APi",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "cwd": "${workspaceFolder}/generator",
-            // "runtimeArgs": ["-r", "ts-node/register"],
-            "runtimeExecutable": "tsx",
-            "console": "integratedTerminal",
-            "args": ["${workspaceFolder}/generator/src/gen.ts"]
-        },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "run sample",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "cwd": "${workspaceFolder}/sample",
-            // "runtimeArgs": ["-r", "ts-node/register"],
-            "runtimeExecutable": "tsx",
-            "console": "integratedTerminal",
-            "args": ["${workspaceFolder}/sample/src/sample.ts"]
-        },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "run sample2",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "cwd": "${workspaceFolder}/sample",
-            // "runtimeArgs": ["-r", "ts-node/register"],
-            "runtimeExecutable": "tsx",
-            "console": "integratedTerminal",
-            "args": ["${workspaceFolder}/sample/src/sample2.ts"]
-        },
-
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "run sample-connect-kvm",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "cwd": "${workspaceFolder}/sample",
-            // "runtimeArgs": ["-r", "ts-node/register"],
-            "runtimeExecutable": "tsx",
-            "console": "integratedTerminal",
-            "args": ["${workspaceFolder}/sample/src/sample-connect-kvm.ts"]
-        },
-
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "proxmox-usb-hotplug --help",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "cwd": "${workspaceFolder}/proxmox-usb-hotplug",
-            // "runtimeArgs": ["-r", "ts-node/register"],
-            "runtimeExecutable": "tsx",
-            "console": "integratedTerminal",
-            "args": ["${workspaceFolder}/proxmox-usb-hotplug/src/proxmox-usb-hotplug.ts", "--help"],
-            // "args": ["${workspaceFolder}/proxmox-usb-hotplug/src/index.ts", "-c", "../../auth.conf", "byVendor"],
-        },
-
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "proxmox-usb-hotplug",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "cwd": "${workspaceFolder}/proxmox-usb-hotplug",
-            // "runtimeArgs": ["-r", "ts-node/register"],
-            "runtimeExecutable": "tsx",
-            "console": "integratedTerminal",
-            "args": ["${workspaceFolder}/proxmox-usb-hotplug/src/proxmox-usb-hotplug.ts", "-c", "/etc/usb-hotplug.conf"],
-        }
-
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "bun",
+      "request": "launch",
+      "name": "Test: api",
+      "cwd": "${workspaceFolder}/packages/api",
+      "runtime": "bun",
+      "program": "${workspaceFolder}/packages/api/src/__tests__/proxmox-api.test.ts",
+      "runtimeArgs": ["test"]
+    },
+    {
+      "type": "bun",
+      "request": "launch",
+      "name": "Generate API model",
+      "cwd": "${workspaceFolder}/packages/generator",
+      "runtime": "bun",
+      "program": "${workspaceFolder}/packages/generator/src/gen.ts"
+    }
+  ]
 }

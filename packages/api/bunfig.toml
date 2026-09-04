@@ -1,0 +1,4 @@
+[test]
+
+# The generated PVE model - types only, no runtime behaviour to cover.
+coveragePathIgnorePatterns = ["src/model.ts"]

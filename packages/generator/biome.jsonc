@@ -1,0 +1,27 @@
+{
+  "root": false,
+  "extends": "//",
+  "files": {
+    // The raw upstream PVE API dump - 3 MB of machine-produced JSON literals,
+    // replaced wholesale whenever it is refreshed from proxmox.
+    "includes": ["**", "!src/pveapi8.ts"]
+  },
+  // Inherited from upstream, downgraded so the house config can land without a
+  // source rewrite in the same pass. Each is a real TODO(fork), not a
+  // permanent exemption - re-raise a rule once its sites are cleaned up.
+  "linter": {
+    "rules": {
+      "performance": {
+        // Eight `delete` calls that strip keys off the parsed PVE descriptors
+        // before emitting. The autofix rewrites them to `= undefined`, which
+        // changes `in`/`Object.keys` results and so changes generated output -
+        // needs verifying against a regenerated model.ts, not a blind fix.
+        "noDelete": "warn"
+      },
+      "suspicious": {
+        "noDoubleEquals": "warn",
+        "noExplicitAny": "off"
+      }
+    }
+  }
+}

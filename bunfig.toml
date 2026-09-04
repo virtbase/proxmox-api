@@ -1,0 +1,6 @@
+[test]
+
+# Nothing here is read by `bun run test`. Turbo runs each package's `test`
+# script with cwd set to that package, and bun reads `./bunfig.toml` from cwd
+# without walking up - so the settings that shape a run live in the package's
+# own `bunfig.toml`, next to the code they apply to.

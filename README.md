@@ -1,117 +1,67 @@
-# Proxmox Api
+# proxmox-api
 
-[![NPM Version](https://img.shields.io/npm/v/proxmox-api.svg?style=flat)](https://www.npmjs.org/package/proxmox-api) Typescript Api to manage proxmox servers.
+A fork of [UrielCh/proxmox-api](https://github.com/UrielCh/proxmox-api), maintained
+for [virtbase](https://virtbase.com).
 
-* [API Viewer](https://pve.proxmox.com/pve-docs/api-viewer/) 
-* [API Docs](https://pve.proxmox.com/wiki/Proxmox_VE_API)
+Bun workspaces + Turborepo. Everything is ESM.
 
-Mapping 100% of available calls, contains all api documentation in typing file.
-code size < 10Ko including docs
+## Packages
 
-## Usage
+| Package | Description |
+| --- | --- |
+| [`packages/api`](packages/api) | `@virtbase/proxmox-api` — the published client. |
+| [`packages/generator`](packages/generator) | Generates `packages/api/src/model.ts` from the upstream PVE API dump. |
+| [`tooling/typescript`](tooling/typescript) | `@virtbase/tsconfig` — the shared TypeScript configs. |
 
-![intellisense](https://github.com/UrielCh/proxmox-api/blob/master/sample/usage.gif?raw=true "preview")
+Usage docs live in [`packages/api/README.md`](packages/api/README.md).
 
-### Overview
-
-to use this API take the Path you want to call, and replace:
-- the `/` by `.`
-- the `${variable}` by `.(variable)`
-- append the http method you want to call with a $ at the end (`.$get()`, `.$post()`, `.$put()` or `.$delete()`)
-
-that it.
-
-### Example
-
-To call `GET /cluster/acme/account/{name}` you will call `proxmox.cluster.acme.account.$(name).$get()`
-
-To call `GET /api2/json/cluster/backup/{id}/included_volumes` you will call `proxmox.cluster.backup.{id}.included_volumes.$get()`
-
-To call `GET /api2/json/nodes` you will call `proxmox.nodes.$get()`
-
-The provided typing will assist you within intelisense, so you do not need to read any external doc.
-
-## Code sample
-
-
-* [![NPM Version](https://img.shields.io/npm/v/proxmox-usb-hotplug.svg?style=flat)](https://www.npmjs.org/package/proxmox-usb-hotplug) an hotplug usb service based on this API.
+## Getting started
 
 ```bash
-npm install proxmox-api
+bun install
+bun run build
+bun run test
 ```
 
-```typescript
-import proxmoxApi from "proxmox-api";
+## Scripts
 
-// authorize self signed cert if you do not use a valid SSL certificat
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+| Script | Description |
+| --- | --- |
+| `bun run build` | Compile every package. |
+| `bun run typecheck` | Type-check without emitting. |
+| `bun run test` | Run every package's tests. |
+| `bun run test:coverage` | Same, with coverage reporters. |
+| `bun run check` | Biome lint + format check. |
+| `bun run check:write` | Apply Biome's safe fixes. |
+| `bun run check:unsafe` | Apply Biome's unsafe fixes too. |
+| `bun run codegen` | Regenerate `packages/api/src/model.ts`. |
+| `bun run clean` | Drop `node_modules` via `git clean`. |
+| `bun run clean:workspaces` | Run each package's `clean`. |
 
-async function test() {
-    // connect to proxmox
-    const proxmox = proxmoxApi({host: '127.0.0.1', password: 'password', username: 'user1@pam'});
-    // list nodes
-    const nodes = await proxmox.nodes.$get();
-    // iterate cluster nodes
-    for (const node of nodes) {
-        const theNode = proxmox.nodes.$(node.node);
-        // list Qemu VMS
-        const qemus = await theNode.qemu.$get({full:true});
-        // iterate Qemu VMS
-        for (const qemu of qemus) {
-            // do some suff.
-            const config = await theNode.qemu.$(qemu.vmid).config.$get();
-            console.log(`vm: ${config.name}, memory: ${config.memory}`);
-            // const vnc = await theNode.qemu.$(qemu.vmid).vncproxy.$post();
-            // console.log('vnc:', vnc);
-            // const spice = await theNode.qemu.$(qemu.vmid).spiceproxy.$post();
-            // console.log('spice:', spice);
-        }
-    }    
-}
+## Regenerating the API model
 
-test().catch(console.error);
+`packages/api/src/model.ts` is generated from `packages/generator/src/pveapi8.ts`,
+the PVE API dump scraped from the [API viewer](https://pve.proxmox.com/pve-docs/api-viewer/).
+Refresh the dump, then:
+
+```bash
+bun run codegen
 ```
 
-### Initialisation alternatives:
+Upstream hand-edited the generated file twice (a commented-out `ReadableStream`
+import and a `TODO` on `nodes.*.storage.*.file-restore.download`), so a bare
+regeneration currently drops those two lines. Fold them into the generator
+before treating `codegen` output as authoritative.
 
-- keeping access to ProxmoxEngine object (that can be use to share a ticket, or to access it)
+## Conventions
 
-```typescript
-import proxmoxApi, { ProxmoxEngine } from "proxmox-api";
+- **Commits** follow [Conventional Commits](https://www.conventionalcommits.org/);
+  `commitlint` enforces this in a `commit-msg` hook.
+- **Formatting and linting** are Biome's. A `pre-commit` hook runs `lint-staged`
+  over staged files and then the test suite.
+- Rules relaxed for code inherited from upstream are marked `TODO(fork)` in the
+  package's `biome.jsonc` or `tsconfig.json`.
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+## License
 
-async function test() {
-    // connect to proxmox
-    const engine = new ProxmoxEngine({host: '127.0.0.1', password: 'password', username: 'user1@pam'});
-    const proxmox = proxmoxApi(engine);
-}
-```
-
-- Using Api token
-
-
-```typescript
-import proxmoxApi from "proxmox-api";
-
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-
-async function test() {
-    // connect to proxmox
-    const proxmox = proxmoxApi({host: '127.0.0.1', tokenID: 'USER@REALM!TOKENID', tokenSecret: '12345678-1234-1234-1234-1234567890ab'});
-}
-```
-
-## Notes
-
-- if the call path contains a hyphen, you will need to use the `['field']` syntax ex:
-
-```typescript
-await theNode.qemu.$(vmid).agent['get-fsinfo'].$get()
-```
-
-## Changelog
-
-### V0.1.3
- - add authTimeout option, to limit authentification time.
- - add queryTimeout option to limit non auth request timeout.
+GPL-3.0. See [LICENSE](LICENSE).

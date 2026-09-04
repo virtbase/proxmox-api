@@ -1,0 +1,19 @@
+{
+  "name": "@virtbase/proxmox-api-generator",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "description": "Generates packages/api/src/model.ts from the upstream PVE API dump",
+  "license": "GPL-3.0",
+  "scripts": {
+    "clean": "git clean -xdf .cache .turbo node_modules",
+    "codegen": "bun src/gen.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "catalog:",
+    "@types/bun": "catalog:",
+    "@virtbase/tsconfig": "workspace:*",
+    "typescript": "catalog:"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "js/ts.tsdk.path": "./node_modules/typescript/lib",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports.biome": "explicit",
+    "source.fixAll.biome": "explicit",
+    "source.removeUnusedImports": "explicit"
+  },
+  "biome.configurationPath": "./biome.jsonc",
+  "copyrighter.author": "Janic Bellmann",
+  "copyrighter.license": "GPL3",
+  "copyrighter.newFilesOnly": false,
+  "explorer.excludeGitIgnore": true,
+  // The generated PVE model and the raw upstream API dump. Both are hundreds
+  // of thousands of lines; opening one stalls the editor and every search
+  // drowns in them.
+  "files.watcherExclude": {
+    "**/packages/api/src/model.ts": true,
+    "**/packages/generator/src/pveapi8.ts": true
+  },
+  "search.exclude": {
+    "docs": true,
+    "packages/api/src/model.ts": true,
+    "packages/generator/src/pveapi8.ts": true
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  }
+}
