@@ -14,12 +14,14 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import { URL } from "node:url";
-import type { RequestInit, Response } from "undici";
-import { fetch } from "undici";
 import type { ApiRequestable } from "./proxy.js";
 
 const USER_AGENT = "proxmox-api (https://github.com/UrielCh/proxmox-api)";
+
+const BASE_HEADERS: Readonly<Record<string, string>> = {
+  Accept: "*/*",
+  "User-Agent": USER_AGENT,
+};
 
 /**
  * Common Proxmox authentification properties
@@ -74,7 +76,13 @@ export interface ProxmoxEngineOptionsToken extends ProxmoxEngineOptionsCommon {
   tokenSecret: string;
 }
 
-// type FetchInterface = typeof fetch;
+/**
+ * Shape of a `fetch` implementation accepted by {@link ProxmoxEngine}.
+ *
+ * Structurally satisfied by the platform `fetch`, so any WHATWG-compatible
+ * replacement - a mock, an instrumented wrapper, an agent-bound fetch - can be
+ * passed straight through.
+ */
 export type FetchInterface = (
   url: string | URL,
   options?: RequestInit,
@@ -88,10 +96,46 @@ export type ProxmoxEngineOptions = (
   | ProxmoxEngineOptionsPass
 ) & { fetch?: FetchInterface };
 
-const baseHeader: { [key: string]: string } = {
-  Accept: "*/*",
-  "User-Agent": USER_AGENT,
-};
+/** The `{ data, errors }` envelope every PVE endpoint replies with. */
+interface ProxmoxResponse {
+  data: any;
+  errors?: any;
+}
+
+/**
+ * Own enumerable entries of `params`, minus the null and undefined ones.
+ *
+ * PVE rejects empty values, and callers routinely pass optional fields
+ * through as undefined, so they are dropped rather than serialised.
+ */
+function definedEntries(params?: {
+  [key: string]: any;
+}): Array<[string, unknown]> {
+  if (!params) return [];
+  return Object.entries(params).filter(
+    ([, value]) => value !== null && value !== undefined,
+  );
+}
+
+/**
+ * Encode one parameter the way the PVE API expects: booleans as 1/0, arrays as
+ * the key repeated once per element.
+ */
+function appendParam(
+  target: URLSearchParams,
+  key: string,
+  value: unknown,
+): void {
+  if (value === true) {
+    target.set(key, "1");
+  } else if (value === false) {
+    target.set(key, "0");
+  } else if (Array.isArray(value)) {
+    for (const element of value) target.append(key, `${element}`);
+  } else {
+    target.set(key, `${value}`);
+  }
+}
 
 /**
  * Default Proxmox doRequest provider, this Class will be used if you provide Proxmox authentification options to the Proxy generator
@@ -110,10 +154,10 @@ export class ProxmoxEngine implements ApiRequestable {
   private fetch: FetchInterface;
 
   constructor(options: ProxmoxEngineOptions) {
-    //if ((options as ProxmoxEngineOptionsToken).tokenID) {
-    this.fetch = options.fetch || fetch;
+    // Bound to globalThis: some runtimes reject the platform `fetch` when it
+    // is invoked as a method of another object.
+    this.fetch = options.fetch ?? globalThis.fetch.bind(globalThis);
     if ("tokenID" in options && options.tokenSecret) {
-      //const optToken = options as ProxmoxEngineOptionsToken;
       this.username = "";
       this.password = "";
       if (!options.tokenID.match(/.*@.+!.+/)) {
@@ -175,18 +219,9 @@ export class ProxmoxEngine implements ApiRequestable {
   ): Promise<any> {
     const { CSRFPreventionToken, ticket } = await this.getTicket();
     // ensure that method is uppercased
-    method = method.toUpperCase();
-    // Remove null / undefined values once
-    if (!retries && params)
-      for (const k in params) {
-        if (
-          Object.hasOwn(params, k) &&
-          (params[k] === null || params[k] === undefined)
-        ) {
-          delete params[k];
-        }
-      }
-    const headers = { ...baseHeader };
+    const httpMethod = method.toUpperCase();
+
+    const headers: Record<string, string> = { ...BASE_HEADERS };
     // auth
     if (!this.username) {
       headers.Authorization = ticket; // PVEAPIToken=USER@REALM!TOKENID=UUID
@@ -194,116 +229,67 @@ export class ProxmoxEngine implements ApiRequestable {
       headers.cookie = `PVEAuthCookie=${ticket}`;
       headers.CSRFPreventionToken = CSRFPreventionToken;
     }
-    // parameters
-    let body: any | undefined;
 
     // proxmox base url
     const requestUrl = new URL(`${this.schema}://${this.host}${path}`);
+    let body: string | undefined;
 
-    if (typeof params === "object" && Object.keys(params).length > 0) {
-      let searchParams: URLSearchParams;
-      if (method === "PUT" || method === "POST") {
-        searchParams = new URLSearchParams();
-      } else {
-        searchParams = requestUrl.searchParams;
-      }
-      for (const k of Object.keys(params)) {
-        const v = params[k];
-        if (v === true) searchParams.set(k, "1");
-        else if (v === false) searchParams.set(k, "0");
-        else if (Array.isArray(v))
-          for (const e of v) searchParams.append(k, `${e}`);
-        else searchParams.set(k, `${v}`);
-      }
-      if (method === "PUT" || method === "POST") {
+    const entries = definedEntries(params);
+    if (entries.length > 0) {
+      const sendsBody = httpMethod === "PUT" || httpMethod === "POST";
+      const searchParams = sendsBody
+        ? new URLSearchParams()
+        : requestUrl.searchParams;
+      for (const [key, value] of entries) appendParam(searchParams, key, value);
+      if (sendsBody) {
         body = searchParams.toString();
         headers["Content-Type"] = "application/x-www-form-urlencoded";
-        headers["Content-Length"] = body.length.toString();
+        // `Content-Length` is deliberately left to fetch, which derives it
+        // from the body. Upstream set it by hand from `body.length`; that
+        // happens to agree here - `URLSearchParams.toString()` percent-encodes
+        // to ASCII - but it is a second source of truth for the same fact, and
+        // one that silently disagrees the moment the body is transformed.
       }
     }
-    let res: Response | null = null;
-    const fetchInit: RequestInit = { method, body, headers };
 
+    const fetchInit: RequestInit = {
+      method: httpMethod,
+      body,
+      headers,
+      // Self-clearing, unlike a setTimeout/clearTimeout pair - which leaked a
+      // pending timer on every request that threw.
+      signal: AbortSignal.timeout(this.queryTimeout),
+    };
+
+    let res: Response;
     try {
-      const controller = new AbortController();
-      const id = setTimeout(() => controller.abort(), this.queryTimeout);
-      fetchInit.signal = controller.signal;
       res = await this.fetch(requestUrl, fetchInit);
-      clearTimeout(id);
     } catch (e) {
-      // console.log(error.name === 'AbortError');
-      // debug as CURL
-      if (this.debug) {
-        if (this.debug === "curl") {
-          let auth = "";
-          if (headers.cookie) {
-            auth = `-H "CSRFPreventionToken: ${CSRFPreventionToken}" --cookie ${JSON.stringify(headers.cookie)}`;
-          } else {
-            auth = `-H "Authorization: ${ticket}" --cookie ${JSON.stringify(headers.cookie)}`;
-          }
-          let data = "";
-          if (body) data = `--data ${JSON.stringify(body)}`;
-          if (method === "POST") {
-            console.log(`curl -v --insecure  ${auth} ${data} ${requestUrl}`);
-          } else if (method === "GET") {
-            console.log(`curl -v --insecure ${auth} ${requestUrl}`);
-          } else {
-            console.log(`curl -v -X ${method} ${auth} ${data} ${requestUrl}`);
-          }
-        } else if (this.debug === "fetch") {
-          // debug as fetch
-          console.log(`fetch("${requestUrl}", ${JSON.stringify(fetchInit)})`);
-        }
+      this.logRequest(httpMethod, requestUrl, fetchInit, headers, {
+        ticket,
+        CSRFPreventionToken,
+      });
+      const attempt = retries + 1;
+      if (attempt < 2) {
+        return this.doRequest(httpMethod, path, pathTemplate, params, attempt);
       }
-      retries++;
-      if (retries < 2) {
-        return this.doRequest(method, path, pathTemplate, params, retries);
-      }
-
       // throw Error
-      let errMsg = `FaILED to call ${method} ${requestUrl}`;
-      const err = e as any;
-      if (err.cause && err.cause.message)
-        errMsg += ` cause by:${err.cause.message}`;
-      const error = Error(errMsg);
-      (error as any).cause = e;
-      throw error;
+      let errMsg = `FaILED to call ${httpMethod} ${requestUrl}`;
+      const err = e as { cause?: { message?: string } };
+      if (err.cause?.message) errMsg += ` cause by:${err.cause.message}`;
+      throw new Error(errMsg, { cause: e });
     }
-    if (res === null) {
-      throw Error(`Failed to fetch ${method} ${requestUrl} return null`);
-    }
-    const contentType = res.headers.get("content-type");
-    let data: { data: any; errors?: any } = { data: null };
-    if (contentType === "application/json;charset=UTF-8") {
-      try {
-        data = (await res.json()) as { data: any; errors?: any };
-      } catch (e) {
-        data.errors = "Failed to parse response json";
-      }
-    } else if (contentType === "application/octet-stream") {
-      data.data = res.body;
-    } else if (!contentType) {
-      data.errors = "";
-      try {
-        data.errors = await res.text(); // await req.text();
-      } catch (e) {
-        // ignore reading error;
-      }
-    } else {
-      // should never append
-      throw Error(
-        `${method} ${requestUrl} unexpected contentType "${contentType}" status Line:${res.status} ${res.text}`,
-      );
-      // data.data = req.text();
-    }
+
+    const data = await this.readBody(res, httpMethod, requestUrl);
+
     switch (res.status) {
       case 400:
         throw Error(
-          `${method} ${requestUrl} return Error ${res.status} ${res.statusText}: ${JSON.stringify(data)}`,
+          `${httpMethod} ${requestUrl} return Error ${res.status} ${res.statusText}: ${JSON.stringify(data)}`,
         );
       case 500:
         throw Error(
-          `${method} ${requestUrl} return Error ${res.status} ${res.statusText}: ${JSON.stringify(data)}`,
+          `${httpMethod} ${requestUrl} return Error ${res.status} ${res.statusText}: ${JSON.stringify(data)}`,
         );
       case 401:
         if (
@@ -311,20 +297,95 @@ export class ProxmoxEngine implements ApiRequestable {
           res.statusText === "permission denied - invalid PVE ticket"
         ) {
           this.ticket = undefined;
-          if (!this.username) retries = 10;
-          retries++;
-          if (retries < 2)
-            return this.doRequest(method, path, pathTemplate, params, retries);
+          // A token is not renewable, so do not spend the retry on it.
+          let attempt = this.username ? retries : 10;
+          attempt++;
+          if (attempt < 2)
+            return this.doRequest(
+              httpMethod,
+              path,
+              pathTemplate,
+              params,
+              attempt,
+            );
         }
         throw Error(
-          `${method} ${requestUrl} return Error ${res.status} ${res.statusText}: ${JSON.stringify(data)}`,
+          `${httpMethod} ${requestUrl} return Error ${res.status} ${res.statusText}: ${JSON.stringify(data)}`,
         );
       case 200:
         return data.data;
       default:
         throw Error(
-          `${method} ${requestUrl} connection failed with ${res.status} ${res.statusText} return: ${JSON.stringify(data)}`,
+          `${httpMethod} ${requestUrl} connection failed with ${res.status} ${res.statusText} return: ${JSON.stringify(data)}`,
         );
+    }
+  }
+
+  /**
+   * Decode a response into the PVE `{ data, errors }` envelope.
+   */
+  private async readBody(
+    res: Response,
+    method: string,
+    requestUrl: URL,
+  ): Promise<ProxmoxResponse> {
+    const contentType = res.headers.get("content-type");
+    const data: ProxmoxResponse = { data: null };
+
+    // PVE answers `application/json;charset=UTF-8`, but match on the media
+    // type alone so a proxy that respaces the parameter is still understood.
+    if (contentType?.startsWith("application/json")) {
+      try {
+        return (await res.json()) as ProxmoxResponse;
+      } catch {
+        data.errors = "Failed to parse response json";
+      }
+    } else if (contentType === "application/octet-stream") {
+      data.data = res.body;
+    } else if (!contentType) {
+      data.errors = "";
+      try {
+        data.errors = await res.text();
+      } catch {
+        // ignore reading error;
+      }
+    } else {
+      // should never append
+      throw Error(
+        `${method} ${requestUrl} unexpected contentType "${contentType}" status Line:${res.status} ${res.statusText}`,
+      );
+    }
+    return data;
+  }
+
+  /**
+   * Echo the request that just failed, as a runnable `curl` line or as the
+   * `fetch` call that produced it. Only fires when `debug` is set.
+   */
+  private logRequest(
+    method: string,
+    requestUrl: URL,
+    fetchInit: RequestInit,
+    headers: Record<string, string>,
+    auth: { ticket: string; CSRFPreventionToken: string },
+  ): void {
+    if (!this.debug) return;
+    if (this.debug === "fetch") {
+      console.log(`fetch("${requestUrl}", ${JSON.stringify(fetchInit)})`);
+      return;
+    }
+    const credentials = headers.cookie
+      ? `-H "CSRFPreventionToken: ${auth.CSRFPreventionToken}" --cookie ${JSON.stringify(headers.cookie)}`
+      : `-H "Authorization: ${auth.ticket}"`;
+    const data = fetchInit.body
+      ? `--data ${JSON.stringify(fetchInit.body)}`
+      : "";
+    if (method === "POST") {
+      console.log(`curl -v --insecure  ${credentials} ${data} ${requestUrl}`);
+    } else if (method === "GET") {
+      console.log(`curl -v --insecure ${credentials} ${requestUrl}`);
+    } else {
+      console.log(`curl -v -X ${method} ${credentials} ${data} ${requestUrl}`);
     }
   }
 
@@ -353,16 +414,15 @@ export class ProxmoxEngine implements ApiRequestable {
       const { password, username } = this;
       const body = new URLSearchParams({ username, password }).toString();
       const headers = {
-        ...baseHeader,
+        ...BASE_HEADERS,
         "Content-Type": "application/x-www-form-urlencoded",
-        "Content-Length": body.length.toString(),
       };
-      const controller = new AbortController();
-      const id = setTimeout(() => controller.abort(), this.authTimeout);
-      const method = "POST";
-      const { signal } = controller;
-      const r = await this.fetch(requestUrl, { method, headers, signal, body });
-      clearTimeout(id);
+      const r = await this.fetch(requestUrl, {
+        method: "POST",
+        headers,
+        signal: AbortSignal.timeout(this.authTimeout),
+        body,
+      });
       const text = await r.text();
       if (r.status !== 200) {
         throw Error(`login failed with ${r.status}: ${r.statusText} ${text}`);
@@ -380,9 +440,7 @@ export class ProxmoxEngine implements ApiRequestable {
       this.ticket = ticket;
       return { ticket, CSRFPreventionToken };
     } catch (e) {
-      const error = Error(`Auth ${requestUrl} Failed!`);
-      (error as any).cause = e;
-      throw error;
+      throw new Error(`Auth ${requestUrl} Failed!`, { cause: e });
     }
   }
 }

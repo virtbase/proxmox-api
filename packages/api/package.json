@@ -48,9 +48,6 @@
     "test": "bun test",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
-  "dependencies": {
-    "undici": "catalog:"
-  },
   "devDependencies": {
     "@biomejs/biome": "catalog:",
     "@types/bun": "catalog:",
