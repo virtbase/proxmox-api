@@ -1,6 +1,6 @@
 {
   "name": "@virtbase/proxmox-api",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "type": "module",
   "description": "Cutting edge javascript / TypeScript / ESM Proxmox API",
   "keywords": [
