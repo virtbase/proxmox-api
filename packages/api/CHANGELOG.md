@@ -68,6 +68,25 @@ and republished as `@virtbase/proxmox-api`.
   the types. Replaces 63 MB of committed typedoc HTML that documented the PVE 8
   surface.
 
+## [2.0.0](https://github.com/virtbase/proxmox-api/compare/1.1.1...2.0.0) (2026-09-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* ESM only, renamed from proxmox-api, API model regenerated for Proxmox VE 9, and undici replaced by the platform fetch.
+
+### Features
+
+* fork as @virtbase/proxmox-api targeting Proxmox VE 9 ([#3](https://github.com/virtbase/proxmox-api/issues/3)) ([efe8b74](https://github.com/virtbase/proxmox-api/commit/efe8b744e6effcc9daf1c71b930ae94ff8654288))
+
+
+### Refactoring
+
+* clean up ProxmoxEngine ([80728e4](https://github.com/virtbase/proxmox-api/commit/80728e4469a26168e7e54e0e1f3269cbc7650fb0))
+* setup turborepo with bun ([39e1290](https://github.com/virtbase/proxmox-api/commit/39e12907cf3c749a6109e6270b963b4f26ca3e62))
+* update docs generator with vitepress ([a16a74e](https://github.com/virtbase/proxmox-api/commit/a16a74e955577983b48f5c157dbc89c44403a1b1))
+* update generator and drop legacy model ([c2e745d](https://github.com/virtbase/proxmox-api/commit/c2e745d652715c898742f570b76f48f680f17c34))
+
 ## [1.1.1](https://github.com/virtbase/proxmox-api/compare/1.1.0...1.1.1) (2024-09-11)
 
 ### Bug fixes
@@ -479,4 +498,3 @@ and republished as `@virtbase/proxmox-api`.
 * improve naming ([e72d23c](https://github.com/virtbase/proxmox-api/commit/e72d23c07acab8524995ff097c13f6458104a3fb))
 * cleanup ([14c089a](https://github.com/virtbase/proxmox-api/commit/14c089afb1c3b0a089ea96005f4b5d52b2ada254))
 * more clean ([371e0a6](https://github.com/virtbase/proxmox-api/commit/371e0a6fb5fbef52e9fd19a2047a2440d72d45e4))
-
