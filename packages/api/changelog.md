@@ -8,6 +8,23 @@ and republished as `@virtbase/proxmox-api`.
 * **Breaking:** ESM only. The CommonJS build (`cjs/`, `tsconfig-cjs.json`) and the
   `require` condition in `exports` are gone; output moved from `esm/` to `dist/`.
 * **Breaking:** renamed to `@virtbase/proxmox-api`.
+* **Breaking:** the API model now targets **Proxmox VE 9** (was PVE 8): 678
+  operations, +98 added and -3 removed. New surface includes SDN fabrics, HA
+  rules, `cluster/bulk-action`, `cluster/qemu` custom CPU models, SDN
+  prefix-lists and route-maps, webhook notification endpoints, and
+  `cluster/metrics/export`. Gone: `nodes/{node}/hardware/pci/{pciid}`,
+  `.../{pciid}/mdev` and `nodes/{node}/scan/glusterfs`.
+* **Breaking:** returned objects no longer carry a blanket
+  `[key: string]: any`. It was applied to every response regardless of the
+  schema, which defeated type checking on all of them; it is now emitted only
+  where the schema permits extra keys.
+* Indexed parameters (`net[n]`, `scsi[n]`, `mp[n]`, ...) accept every index the
+  API does. They were previously expanded to a hand-picked `net0`..`net3`.
+* Enumerations are emitted as unions and named PVE formats as string aliases,
+  both deduplicated across the whole model.
+* **Breaking:** `undici` is no longer a dependency - the client uses the
+  platform `fetch`. The package now has no runtime dependencies and no `node:`
+  imports.
 * Import via `node:` protocol in `ProxmoxEngine`.
 
 ## v1.1.0

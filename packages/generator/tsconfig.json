@@ -1,11 +1,5 @@
 {
   "extends": "@virtbase/tsconfig/base.json",
-  "compilerOptions": {
-    // TODO(fork): re-enable. Same as packages/api - the inherited generator
-    // walks the PVE dump with unchecked index access throughout. Tightening it
-    // is a source pass, not a tooling one.
-    "noUncheckedIndexedAccess": false
-  },
   "include": ["src"],
   "exclude": ["node_modules"]
 }

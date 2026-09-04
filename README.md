@@ -10,7 +10,7 @@ Bun workspaces + Turborepo. Everything is ESM.
 | Package | Description |
 | --- | --- |
 | [`packages/api`](packages/api) | `@virtbase/proxmox-api` — the published client. |
-| [`packages/generator`](packages/generator) | Generates `packages/api/src/model.ts` from the upstream PVE API dump. |
+| [`packages/generator`](packages/generator) | Generates `packages/api/src/model.ts` from the published PVE API schema. |
 | [`tooling/typescript`](tooling/typescript) | `@virtbase/tsconfig` — the shared TypeScript configs. |
 
 Usage docs live in [`packages/api/README.md`](packages/api/README.md).
@@ -40,18 +40,20 @@ bun run test
 
 ## Regenerating the API model
 
-`packages/api/src/model.ts` is generated from `packages/generator/src/pveapi8.ts`,
-the PVE API dump scraped from the [API viewer](https://pve.proxmox.com/pve-docs/api-viewer/).
-Refresh the dump, then:
+`packages/api/src/model.ts` is generated from the schema Proxmox publishes with
+its [API viewer](https://pve.proxmox.com/pve-docs/api-viewer/):
 
 ```bash
-bun run codegen
+bun run codegen           # fetch the current schema and regenerate
+bun run codegen:check     # CI: fail if model.ts is stale
 ```
 
-Upstream hand-edited the generated file twice (a commented-out `ReadableStream`
-import and a `TODO` on `nodes.*.storage.*.file-restore.download`), so a bare
-regeneration currently drops those two lines. Fold them into the generator
-before treating `codegen` output as authoritative.
+The generator downloads the viewer bundle, caches it under
+`packages/generator/.cache/`, and records the source URL and a SHA-256 of the
+input in the generated header. Output is deterministic, so regenerating from an
+unchanged schema produces no diff. See
+[`packages/generator/README.md`](packages/generator/README.md) for the options
+and for how the schema maps onto TypeScript.
 
 ## Conventions
 
