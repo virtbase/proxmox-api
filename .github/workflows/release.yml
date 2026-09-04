@@ -22,7 +22,7 @@ jobs:
       released: ${{ steps.release.outputs.release_created }}
       tag: ${{ steps.release.outputs.tag_name }}
     steps:
-      - uses: googleapis/release-please-action@v4
+      - uses: googleapis/release-please-action@v5
         id: release
         with:
           config-file: release-please-config.json
@@ -41,7 +41,7 @@ jobs:
       name: npm
       url: https://www.npmjs.com/package/@virtbase/proxmox-api
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ needs.prepare.outputs.tag }}
       - uses: oven-sh/setup-bun@v2
@@ -49,7 +49,7 @@ jobs:
           bun-version-file: package.json
       # npm rather than bun for the publish itself: provenance attestation is
       # an npm CLI feature and bun does not emit it.
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
           registry-url: https://registry.npmjs.org
