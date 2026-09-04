@@ -7,7 +7,7 @@
     },
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".cache/tsbuildinfo.json", "dist/**"]
+      "outputs": [".cache/tsbuildinfo.json", "dist/**", ".vitepress/dist/**"]
     },
     "dev": {
       "dependsOn": ["^dev"],
@@ -32,7 +32,14 @@
     },
     "codegen": {
       "cache": false,
-      "outputs": ["../api/src/model.ts"]
+      "outputs": ["../api/src/model.ts", "../../docs/reference/endpoints/**"]
+    },
+    "codegen:check": {
+      "cache": false
+    },
+    "preview": {
+      "cache": false,
+      "persistent": true
     },
     "clean": {
       "cache": false

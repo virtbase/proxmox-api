@@ -1,0 +1,10 @@
+{
+  "root": false,
+  "extends": "//",
+  "files": {
+    // Written by `bun run codegen`. Formatting these would rewrite the
+    // sidebar the generator emits, and `codegen:check` would then report the
+    // committed copy as stale on every run.
+    "includes": ["**", "!reference/endpoints/**"]
+  }
+}

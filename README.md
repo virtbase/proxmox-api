@@ -12,6 +12,7 @@ Bun workspaces + Turborepo. Everything is ESM.
 | [`packages/api`](packages/api) | `@virtbase/proxmox-api` — the published client. |
 | [`packages/generator`](packages/generator) | Generates `packages/api/src/model.ts` from the published PVE API schema. |
 | [`tooling/typescript`](tooling/typescript) | `@virtbase/tsconfig` — the shared TypeScript configs. |
+| [`docs`](docs) | The documentation site (VitePress). |
 
 Usage docs live in [`packages/api/README.md`](packages/api/README.md).
 
@@ -34,7 +35,10 @@ bun run test
 | `bun run check` | Biome lint + format check. |
 | `bun run check:write` | Apply Biome's safe fixes. |
 | `bun run check:unsafe` | Apply Biome's unsafe fixes too. |
-| `bun run codegen` | Regenerate `packages/api/src/model.ts`. |
+| `bun run codegen` | Regenerate the API model and the endpoint reference. |
+| `bun run codegen:check` | CI: fail if either is stale. |
+| `bun run docs:dev` | Serve the docs site locally. |
+| `bun run docs:build` | Build the docs site. |
 | `bun run clean` | Drop `node_modules` via `git clean`. |
 | `bun run clean:workspaces` | Run each package's `clean`. |
 
@@ -45,8 +49,12 @@ its [API viewer](https://pve.proxmox.com/pve-docs/api-viewer/):
 
 ```bash
 bun run codegen           # fetch the current schema and regenerate
-bun run codegen:check     # CI: fail if model.ts is stale
+bun run codegen:check     # CI: fail if the generated output is stale
 ```
+
+One command produces two things: `packages/api/src/model.ts`, and the endpoint
+reference under `docs/reference/endpoints/`. Both come from the same parse, so
+the docs cannot describe a surface the types do not have.
 
 The generator downloads the viewer bundle, caches it under
 `packages/generator/.cache/`, and records the source URL and a SHA-256 of the
@@ -54,6 +62,13 @@ input in the generated header. Output is deterministic, so regenerating from an
 unchanged schema produces no diff. See
 [`packages/generator/README.md`](packages/generator/README.md) for the options
 and for how the schema maps onto TypeScript.
+
+## Documentation
+
+The site in [`docs/`](docs) is VitePress: hand-written guides, a reference for
+the client surface, and the generated endpoint reference. `bun run docs:dev`
+serves it; the `Docs` workflow builds it on every push and deploys to GitHub
+Pages, failing first if the generated pages are stale.
 
 ## Conventions
 

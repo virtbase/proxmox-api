@@ -13,6 +13,7 @@
   },
   "packageManager": "bun@1.4.1",
   "workspaces": [
+    "docs",
     "packages/*",
     "tooling/*"
   ],
@@ -23,8 +24,12 @@
     "check:write": "biome check --write .",
     "clean": "git clean -xdf node_modules",
     "clean:workspaces": "turbo run clean",
-    "dev": "turbo watch dev --continue",
     "codegen": "turbo run codegen",
+    "codegen:check": "turbo run codegen:check",
+    "dev": "turbo watch dev --continue",
+    "docs:build": "turbo -F @virtbase/proxmox-api-docs build",
+    "docs:dev": "turbo -F @virtbase/proxmox-api-docs dev",
+    "docs:preview": "turbo -F @virtbase/proxmox-api-docs preview",
     "prepare": "husky",
     "test": "turbo run test",
     "test:coverage": "turbo run test --force -- --coverage --coverage-reporter=text --coverage-reporter=lcov",

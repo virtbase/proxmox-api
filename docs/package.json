@@ -1,0 +1,16 @@
+{
+  "name": "@virtbase/proxmox-api-docs",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "description": "Documentation site for @virtbase/proxmox-api",
+  "scripts": {
+    "build": "vitepress build",
+    "clean": "git clean -xdf .turbo .vitepress/cache .vitepress/dist node_modules",
+    "dev": "vitepress dev",
+    "preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  }
+}

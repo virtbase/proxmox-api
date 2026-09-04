@@ -18,14 +18,22 @@ and republished as `@virtbase/proxmox-api`.
   `[key: string]: any`. It was applied to every response regardless of the
   schema, which defeated type checking on all of them; it is now emitted only
   where the schema permits extra keys.
-* Indexed parameters (`net[n]`, `scsi[n]`, `mp[n]`, ...) accept every index the
-  API does. They were previously expanded to a hand-picked `net0`..`net3`.
+* Indexed parameters (`net[n]`, `scsi[n]`, `mp[n]`, ...) are expanded to the
+  slots the API actually accepts - `scsi0`..`scsi30`, `ide0`..`ide3`,
+  `net0`..`net31`, `usb0`..`usb13`, `mp0`..`mp255`, and so on - taken from the
+  constants that generate them in qemu-server, pve-container, pve-cluster and
+  pve-manager. Upstream capped them at a hand-picked `net0`..`net3`, which
+  rejected valid configurations.
 * Enumerations are emitted as unions and named PVE formats as string aliases,
   both deduplicated across the whole model.
 * **Breaking:** `undici` is no longer a dependency - the client uses the
   platform `fetch`. The package now has no runtime dependencies and no `node:`
   imports.
 * Import via `node:` protocol in `ProxmoxEngine`.
+* Documentation moved to a VitePress site: hand-written guides, a client
+  reference, and an endpoint reference generated from the same schema parse as
+  the types. Replaces 63 MB of committed typedoc HTML that documented the PVE 8
+  surface.
 
 ## v1.1.0
 * update ESM compatibility

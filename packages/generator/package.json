@@ -9,7 +9,7 @@
     "clean": "git clean -xdf .cache .turbo node_modules",
     "codegen": "bun src/cli.ts",
     "typecheck": "tsc --noEmit",
-    "codegen:check": "bun src/cli.ts --check --offline"
+    "codegen:check": "bun src/cli.ts --check"
   },
   "devDependencies": {
     "@biomejs/biome": "catalog:",

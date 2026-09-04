@@ -1,6 +1,8 @@
+import { indexedPrefix, lastIndex } from "./index-bounds.js";
 import {
   quoteProperty,
   toCamelCase,
+  toPascalCase,
   toTypeName,
   UniqueNames,
 } from "./naming.js";
@@ -86,6 +88,8 @@ export class ModelEmitter {
   private readonly returnDecls = new Map<string, string[]>();
   private readonly api: string[] = [];
   private callCount = 0;
+  /** Indexed prefixes with no catalogued bound, reported after the run. */
+  readonly unboundedPrefixes = new Set<string>();
 
   constructor(
     private readonly nodes: PveNode[],
@@ -330,15 +334,16 @@ export class ModelEmitter {
     const p = pad(inner);
 
     for (const [name, schema] of Object.entries(properties)) {
-      lines.push(...docBlock(this.describe(schema, name), inner));
-      const type = this.typeExpr(schema, inner, name);
-      const indexed = name.endsWith("[n]") ? name.slice(0, -3) : undefined;
+      const indexed = indexedPrefix(name);
       if (indexed) {
-        lines.push(`${p}[key: \`${indexed}\${number}\`]: ${type};`);
-      } else {
-        const optional = isOptional(schema) ? "?" : "";
-        lines.push(`${p}${quoteProperty(name)}${optional}: ${type};`);
+        lines.push(...this.indexedSlots(indexed, schema, inner));
+        continue;
       }
+      lines.push(...docBlock(this.describe(schema, name), inner));
+      const optional = isOptional(schema) ? "?" : "";
+      lines.push(
+        `${p}${quoteProperty(name)}${optional}: ${this.typeExpr(schema, inner, name)};`,
+      );
     }
 
     if (additional && typeof additional === "object") {
@@ -353,6 +358,69 @@ export class ModelEmitter {
 
     if (lines.length === 0) return "Record<string, any>";
     return ["{", ...lines, `${pad(depth)}}`].join("\n");
+  }
+
+  /**
+   * Expand an indexed property into the slots PVE actually accepts.
+   *
+   * `scsi[n]` becomes `scsi0?` through `scsi30?` rather than an unbounded
+   * `` [key: `scsi${number}`] ``, which would have accepted `scsi99`. The
+   * documentation is hoisted onto a named alias so each of the 31 keys shows
+   * it on hover without repeating it 31 times in the file.
+   */
+  private indexedSlots(
+    prefix: string,
+    schema: PveSchema,
+    depth: number,
+  ): string[] {
+    const p = pad(depth);
+    const doc = this.describe(schema, `${prefix}[n]`);
+    const bound = lastIndex(prefix);
+
+    if (bound === undefined) {
+      // Unknown prefix: stay permissive rather than inventing a limit.
+      this.unboundedPrefixes.add(prefix);
+      return [
+        ...docBlock(doc, depth),
+        `${p}[key: \`${prefix}\${number}\`]: ${this.typeExpr(schema, depth, prefix)};`,
+      ];
+    }
+
+    const type = this.slotAlias(prefix, schema, doc, depth);
+    const lines: string[] = [];
+    for (let index = 0; index <= bound; index++) {
+      lines.push(`${p}${prefix}${index}?: ${type};`);
+    }
+    return lines;
+  }
+
+  /**
+   * The value type for one indexed property, as a documented alias when the
+   * type would otherwise be a bare primitive.
+   */
+  private slotAlias(
+    prefix: string,
+    schema: PveSchema,
+    doc: string[],
+    depth: number,
+  ): string {
+    const rendered = this.typeExpr(schema, depth, prefix);
+    // Anything already named or structural carries its own documentation.
+    if (!["string", "number", "boolean", "any"].includes(rendered)) {
+      return rendered;
+    }
+
+    const key = `slot:${rendered}:${JSON.stringify(schema)}`;
+    const existing = this.aliasByKey.get(key);
+    if (existing) return existing;
+
+    const name = this.names.claim(toPascalCase(prefix) || "Slot");
+    this.aliasByKey.set(key, name);
+    this.aliasDecls.set(name, [
+      ...docBlock(doc, 1),
+      `${pad(1)}export type ${name} = ${rendered};`,
+    ]);
+    return name;
   }
 
   /** The JSDoc lines for one property: prose first, then constraints. */
@@ -444,6 +512,17 @@ export class ModelEmitter {
   }
 }
 
-export function emitModel(nodes: PveNode[], meta: ModelMeta): string {
-  return new ModelEmitter(nodes, meta).build();
+export interface EmitResult {
+  code: string;
+  /**
+   * Indexed prefixes emitted without a bound. Non-empty means Proxmox has
+   * added an indexed property that `INDEX_BOUNDS` does not know about.
+   */
+  unboundedPrefixes: string[];
+}
+
+export function emitModel(nodes: PveNode[], meta: ModelMeta): EmitResult {
+  const emitter = new ModelEmitter(nodes, meta);
+  const code = emitter.build();
+  return { code, unboundedPrefixes: [...emitter.unboundedPrefixes].sort() };
 }

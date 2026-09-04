@@ -22,6 +22,19 @@
 
 export namespace Proxmox {
   export type Accel = "kvm" | "tcg";
+  /**
+   * ACME domain and validation plugin
+   * Indexed property: `acmedomain0`, `acmedomain1`, ...
+   * @propertyString alias=<string>, domain=<string>, plugin=<string>
+   */
+  export type Acmedomain = string;
+  /**
+   * ACME domain and validation plugin
+   * Indexed property: `acmedomain0`, `acmedomain1`, ...
+   * @propertyString alias=<string>, domain=<string>, plugin=<string>
+   * @typetext [domain=]<domain> [,alias=<domain>] [,plugin=<name of the plugin configuration>]
+   */
+  export type Acmedomain_2 = string;
   export type Action = "permit" | "deny";
   export type Action_2 = "start" | "stop";
   export type Action_3 = "stop" | "destroy";
@@ -292,6 +305,19 @@ export namespace Proxmox {
   export type Delete_7 = "entries";
   export type Delete_8 = "le" | "ge" | "seq";
   export type Delete_9 = "set" | "match" | "call" | "exit-action";
+  /**
+   * Device to pass through to the container
+   * Indexed property: `dev0`, `dev1`, ...
+   * @propertyString deny-write=<boolean>, gid=<integer>, mode=<string>, path=<string>, uid=<integer>
+   * @typetext [[path=]<Path>] [,deny-write=<1|0>] [,gid=<integer>] [,mode=<Octal access mode>] [,uid=<integer>]
+   */
+  export type Dev = string;
+  /**
+   * Device to pass through to the container
+   * Indexed property: `dev0`, `dev1`, ...
+   * @propertyString deny-write=<boolean>, gid=<integer>, mode=<string>, path=<string>, uid=<integer>
+   */
+  export type Dev_2 = string;
   export type Device = "block" | "db" | "wal";
   export type Dhcp = "dnsmasq";
   export type Disk =
@@ -955,6 +981,19 @@ export namespace Proxmox {
   export type IPorCIDR = string;
   /** PVE format `IPorCIDRorAlias`. */
   export type IPorCIDRorAlias = string;
+  /**
+   * Use volume as IDE hard disk or CD-ROM (n is 0 to 3). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. Use STORAGE_ID:0 and the 'import-from' parameter to import from an existing volume.
+   * Indexed property: `ide0`, `ide1`, ...
+   * @propertyString aio=<string>, backup=<boolean>, bps=<integer>, bps_max_length=<integer>, bps_rd=<integer>, bps_rd_length=<string>, bps_rd_max_length=<integer>, bps_wr=<integer>, bps_wr_length=<string>, bps_wr_max_length=<integer>, cache=<string>, detect_zeroes=<boolean>, discard=<string>, file=<string>, format=<string>, import-from=<string>, iops=<integer>, iops_max=<integer>, iops_max_length=<integer>, iops_rd=<integer>, iops_rd_length=<string>, iops_rd_max=<integer>, iops_rd_max_length=<integer>, iops_wr=<integer>, iops_wr_length=<string>, iops_wr_max=<integer>, iops_wr_max_length=<integer>, mbps=<number>, mbps_max=<number>, mbps_rd=<number>, mbps_rd_max=<number>, mbps_wr=<number>, mbps_wr_max=<number>, media=<string>, model=<string>, replicate=<boolean>, rerror=<string>, serial=<string>, shared=<boolean>, size=<string>, snapshot=<boolean>, ssd=<boolean>, volume=<string>, werror=<string>, wwn=<string>
+   * @typetext [file=]<volume> [,aio=<native|threads|io_uring>] [,backup=<1|0>] [,bps=<bps>] [,bps_max_length=<seconds>] [,bps_rd=<bps>] [,bps_rd_max_length=<seconds>] [,bps_wr=<bps>] [,bps_wr_max_length=<seconds>] [,cache=<enum>] [,detect_zeroes=<1|0>] [,discard=<ignore|on>] [,format=<enum>] [,import-from=<source volume>] [,iops=<iops>] [,iops_max=<iops>] [,iops_max_length=<seconds>] [,iops_rd=<iops>] [,iops_rd_max=<iops>] [,iops_rd_max_length=<seconds>] [,iops_wr=<iops>] [,iops_wr_max=<iops>] [,iops_wr_max_length=<seconds>] [,mbps=<mbps>] [,mbps_max=<mbps>] [,mbps_rd=<mbps>] [,mbps_rd_max=<mbps>] [,mbps_wr=<mbps>] [,mbps_wr_max=<mbps>] [,media=<cdrom|disk>] [,model=<model>] [,replicate=<1|0>] [,rerror=<ignore|report|stop>] [,serial=<serial>] [,shared=<1|0>] [,size=<DiskSize>] [,snapshot=<1|0>] [,ssd=<1|0>] [,werror=<enum>] [,wwn=<wwn>]
+   */
+  export type Ide = string;
+  /**
+   * Use volume as IDE hard disk or CD-ROM (n is 0 to 3).
+   * Indexed property: `ide0`, `ide1`, ...
+   * @propertyString aio=<string>, backup=<boolean>, bps=<integer>, bps_max_length=<integer>, bps_rd=<integer>, bps_rd_length=<string>, bps_rd_max_length=<integer>, bps_wr=<integer>, bps_wr_length=<string>, bps_wr_max_length=<integer>, cache=<string>, detect_zeroes=<boolean>, discard=<string>, file=<string>, format=<string>, iops=<integer>, iops_max=<integer>, iops_max_length=<integer>, iops_rd=<integer>, iops_rd_length=<string>, iops_rd_max=<integer>, iops_rd_max_length=<integer>, iops_wr=<integer>, iops_wr_length=<string>, iops_wr_max=<integer>, iops_wr_max_length=<integer>, mbps=<number>, mbps_max=<number>, mbps_rd=<number>, mbps_rd_max=<number>, mbps_wr=<number>, mbps_wr_max=<number>, media=<string>, model=<string>, replicate=<boolean>, rerror=<string>, serial=<string>, shared=<boolean>, size=<string>, snapshot=<boolean>, ssd=<boolean>, volume=<string>, werror=<string>, wwn=<string>
+   */
+  export type Ide_2 = string;
   export type Influxdbproto = "udp" | "http" | "https";
   /** PVE format `ip`. */
   export type Ip = string;
@@ -1025,6 +1064,13 @@ export namespace Proxmox {
   /** PVE format `ldap-simple-attr-list`. */
   export type LdapSimpleAttrList = string;
   export type Level = "basic" | "advanced" | "dev";
+  /**
+   * Address and priority information of a single corosync link. (up to 8 links supported; link0..link7)
+   * Indexed property: `link0`, `link1`, ...
+   * @propertyString address=<string>, priority=<integer>
+   * @typetext [address=]<IP> [,priority=<integer>]
+   */
+  export type Link = string;
   export type Lock =
     | "backup"
     | "clone"
@@ -1072,6 +1118,19 @@ export namespace Proxmox {
   export type Mode_3 = "snapshot" | "suspend" | "stop";
   export type Mode_4 = "efi" | "legacy-bios";
   export type Mode_5 = "ldap" | "ldaps" | "ldap+starttls";
+  /**
+   * Use volume as container mount point. Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume.
+   * Indexed property: `mp0`, `mp1`, ...
+   * @propertyString acl=<boolean>, backup=<boolean>, idmap=<string>, keepattrs=<boolean>, mountoptions=<string>, mp=<string>, quota=<boolean>, replicate=<boolean>, ro=<boolean>, shared=<boolean>, size=<string>, volume=<string>
+   * @typetext [volume=]<volume> ,mp=<Path> [,acl=<1|0>] [,backup=<1|0>] [,idmap=<type:container:disk:range-size[;type:container:disk:range-size;...]>] [,keepattrs=<1|0>] [,mountoptions=<opt[;opt...]>] [,quota=<1|0>] [,replicate=<1|0>] [,ro=<1|0>] [,shared=<1|0>] [,size=<DiskSize>]
+   */
+  export type Mp = string;
+  /**
+   * Use volume as container mount point. Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume.
+   * Indexed property: `mp0`, `mp1`, ...
+   * @propertyString acl=<boolean>, backup=<boolean>, idmap=<string>, keepattrs=<boolean>, mountoptions=<string>, mp=<string>, quota=<boolean>, replicate=<boolean>, ro=<boolean>, shared=<boolean>, size=<string>, volume=<string>
+   */
+  export type Mp_2 = string;
   export type Name =
     | "nobackfill"
     | "nodeep-scrub"
@@ -1084,8 +1143,47 @@ export namespace Proxmox {
     | "notieragent"
     | "noup"
     | "pause";
+  /**
+   * Specify network devices.
+   * Indexed property: `net0`, `net1`, ...
+   * @propertyString bridge=<string>, e1000=<string>, e1000-82540em=<string>, e1000-82544gc=<string>, e1000-82545em=<string>, e1000e=<string>, firewall=<boolean>, host-tunnel=<boolean>, i82551=<string>, i82557b=<string>, i82559er=<string>, link_down=<boolean>, macaddr=<string>, model=<string>, mtu=<integer>, ne2k_isa=<string>, ne2k_pci=<string>, pcnet=<string>, queues=<integer>, rate=<number>, rtl8139=<string>, tag=<integer>, trunks=<string>, virtio=<string>, vmxnet3=<string>
+   * @typetext [model=]<enum> [,bridge=<bridge>] [,firewall=<1|0>] [,host-tunnel=<1|0>] [,link_down=<1|0>] [,macaddr=<XX:XX:XX:XX:XX:XX>] [,mtu=<integer>] [,queues=<integer>] [,rate=<number>] [,tag=<integer>] [,trunks=<vlanid[;vlanid...]>] [,<model>=<macaddr>]
+   */
+  export type Net = string;
+  /**
+   * Specify network devices.
+   * Indexed property: `net0`, `net1`, ...
+   * @propertyString bridge=<string>, e1000=<string>, e1000-82540em=<string>, e1000-82544gc=<string>, e1000-82545em=<string>, e1000e=<string>, firewall=<boolean>, host-tunnel=<boolean>, i82551=<string>, i82557b=<string>, i82559er=<string>, link_down=<boolean>, macaddr=<string>, model=<string>, mtu=<integer>, ne2k_isa=<string>, ne2k_pci=<string>, pcnet=<string>, queues=<integer>, rate=<number>, rtl8139=<string>, tag=<integer>, trunks=<string>, virtio=<string>, vmxnet3=<string>
+   */
+  export type Net_2 = string;
+  /**
+   * Specifies network interfaces for the container.
+   * Indexed property: `net0`, `net1`, ...
+   * @propertyString bridge=<string>, firewall=<boolean>, gw=<string>, gw6=<string>, host-managed=<boolean>, hwaddr=<string>, ip=<string>, ip6=<string>, link_down=<boolean>, mtu=<integer>, name=<string>, rate=<number>, tag=<integer>, trunks=<string>, type=<string>
+   * @typetext name=<string> [,bridge=<bridge>] [,firewall=<1|0>] [,gw=<GatewayIPv4>] [,gw6=<GatewayIPv6>] [,host-managed=<1|0>] [,hwaddr=<XX:XX:XX:XX:XX:XX>] [,ip=<(IPv4/CIDR|dhcp|manual)>] [,ip6=<(IPv6/CIDR|auto|dhcp|manual)>] [,link_down=<1|0>] [,mtu=<integer>] [,rate=<mbps>] [,tag=<integer>] [,trunks=<vlanid[;vlanid...]>] [,type=<veth>]
+   */
+  export type Net_3 = string;
+  /**
+   * Specifies network interfaces for the container.
+   * Indexed property: `net0`, `net1`, ...
+   * @propertyString bridge=<string>, firewall=<boolean>, gw=<string>, gw6=<string>, host-managed=<boolean>, hwaddr=<string>, ip=<string>, ip6=<string>, link_down=<boolean>, mtu=<integer>, name=<string>, rate=<number>, tag=<integer>, trunks=<string>, type=<string>
+   */
+  export type Net_4 = string;
   export type NetworkType = "fabric" | "zone";
   export type NotificationMode = "auto" | "legacy-sendmail" | "notification-system";
+  /**
+   * NUMA topology.
+   * Indexed property: `numa0`, `numa1`, ...
+   * @propertyString cpus=<string>, hostnodes=<string>, memory=<number>, policy=<string>
+   * @typetext cpus=<id[-id];...> [,hostnodes=<id[-id];...>] [,memory=<number>] [,policy=<preferred|bind|interleave>]
+   */
+  export type Numa = string;
+  /**
+   * NUMA topology.
+   * Indexed property: `numa0`, `numa1`, ...
+   * @propertyString cpus=<string>, hostnodes=<string>, memory=<number>, policy=<string>
+   */
+  export type Numa_2 = string;
   export type Origin = "user-created" | "builtin" | "modified-builtin";
   export type Ostype =
     | "other"
@@ -1115,6 +1213,15 @@ export namespace Proxmox {
     | "unmanaged";
   export type OtelCompression = "none" | "gzip";
   export type OtelProtocol = "http" | "https";
+  /**
+   * Map host parallel devices (n is 0 to 2).
+   * NOTE: This option allows direct access to host hardware. So it is no longer possible to migrate such
+   * machines - use with special care.
+   * CAUTION: Experimental! User reported problems with this option.
+   * Indexed property: `parallel0`, `parallel1`, ...
+   * @pattern /dev/parport\d+|/dev/usb/lp\d+
+   */
+  export type Parallel = string;
   export type PbsChangeDetectionMode = "legacy" | "data" | "metadata";
   /** PVE format `pem-certificate`. */
   export type PemCertificate = string;
@@ -1421,8 +1528,34 @@ export namespace Proxmox {
     | "Westmere-IBRS";
   export type ResourceMode = "freeze" | "ignore";
   export type Role = "internal" | "external";
+  /**
+   * Use volume as SATA hard disk or CD-ROM (n is 0 to 5). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. Use STORAGE_ID:0 and the 'import-from' parameter to import from an existing volume.
+   * Indexed property: `sata0`, `sata1`, ...
+   * @propertyString aio=<string>, backup=<boolean>, bps=<integer>, bps_max_length=<integer>, bps_rd=<integer>, bps_rd_length=<string>, bps_rd_max_length=<integer>, bps_wr=<integer>, bps_wr_length=<string>, bps_wr_max_length=<integer>, cache=<string>, detect_zeroes=<boolean>, discard=<string>, file=<string>, format=<string>, import-from=<string>, iops=<integer>, iops_max=<integer>, iops_max_length=<integer>, iops_rd=<integer>, iops_rd_length=<string>, iops_rd_max=<integer>, iops_rd_max_length=<integer>, iops_wr=<integer>, iops_wr_length=<string>, iops_wr_max=<integer>, iops_wr_max_length=<integer>, mbps=<number>, mbps_max=<number>, mbps_rd=<number>, mbps_rd_max=<number>, mbps_wr=<number>, mbps_wr_max=<number>, media=<string>, replicate=<boolean>, rerror=<string>, serial=<string>, shared=<boolean>, size=<string>, snapshot=<boolean>, ssd=<boolean>, volume=<string>, werror=<string>, wwn=<string>
+   * @typetext [file=]<volume> [,aio=<native|threads|io_uring>] [,backup=<1|0>] [,bps=<bps>] [,bps_max_length=<seconds>] [,bps_rd=<bps>] [,bps_rd_max_length=<seconds>] [,bps_wr=<bps>] [,bps_wr_max_length=<seconds>] [,cache=<enum>] [,detect_zeroes=<1|0>] [,discard=<ignore|on>] [,format=<enum>] [,import-from=<source volume>] [,iops=<iops>] [,iops_max=<iops>] [,iops_max_length=<seconds>] [,iops_rd=<iops>] [,iops_rd_max=<iops>] [,iops_rd_max_length=<seconds>] [,iops_wr=<iops>] [,iops_wr_max=<iops>] [,iops_wr_max_length=<seconds>] [,mbps=<mbps>] [,mbps_max=<mbps>] [,mbps_rd=<mbps>] [,mbps_rd_max=<mbps>] [,mbps_wr=<mbps>] [,mbps_wr_max=<mbps>] [,media=<cdrom|disk>] [,replicate=<1|0>] [,rerror=<ignore|report|stop>] [,serial=<serial>] [,shared=<1|0>] [,size=<DiskSize>] [,snapshot=<1|0>] [,ssd=<1|0>] [,werror=<enum>] [,wwn=<wwn>]
+   */
+  export type Sata = string;
+  /**
+   * Use volume as SATA hard disk or CD-ROM (n is 0 to 5).
+   * Indexed property: `sata0`, `sata1`, ...
+   * @propertyString aio=<string>, backup=<boolean>, bps=<integer>, bps_max_length=<integer>, bps_rd=<integer>, bps_rd_length=<string>, bps_rd_max_length=<integer>, bps_wr=<integer>, bps_wr_length=<string>, bps_wr_max_length=<integer>, cache=<string>, detect_zeroes=<boolean>, discard=<string>, file=<string>, format=<string>, iops=<integer>, iops_max=<integer>, iops_max_length=<integer>, iops_rd=<integer>, iops_rd_length=<string>, iops_rd_max=<integer>, iops_rd_max_length=<integer>, iops_wr=<integer>, iops_wr_length=<string>, iops_wr_max=<integer>, iops_wr_max_length=<integer>, mbps=<number>, mbps_max=<number>, mbps_rd=<number>, mbps_rd_max=<number>, mbps_wr=<number>, mbps_wr_max=<number>, media=<string>, replicate=<boolean>, rerror=<string>, serial=<string>, shared=<boolean>, size=<string>, snapshot=<boolean>, ssd=<boolean>, volume=<string>, werror=<string>, wwn=<string>
+   */
+  export type Sata_2 = string;
   export type Scope = "all" | "versions";
   export type Scope_2 = "users" | "groups" | "both";
+  /**
+   * Use volume as SCSI hard disk or CD-ROM (n is 0 to 30). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. Use STORAGE_ID:0 and the 'import-from' parameter to import from an existing volume.
+   * Indexed property: `scsi0`, `scsi1`, ...
+   * @propertyString aio=<string>, backup=<boolean>, bps=<integer>, bps_max_length=<integer>, bps_rd=<integer>, bps_rd_length=<string>, bps_rd_max_length=<integer>, bps_wr=<integer>, bps_wr_length=<string>, bps_wr_max_length=<integer>, cache=<string>, detect_zeroes=<boolean>, discard=<string>, file=<string>, format=<string>, import-from=<string>, iops=<integer>, iops_max=<integer>, iops_max_length=<integer>, iops_rd=<integer>, iops_rd_length=<string>, iops_rd_max=<integer>, iops_rd_max_length=<integer>, iops_wr=<integer>, iops_wr_length=<string>, iops_wr_max=<integer>, iops_wr_max_length=<integer>, iothread=<boolean>, mbps=<number>, mbps_max=<number>, mbps_rd=<number>, mbps_rd_max=<number>, mbps_wr=<number>, mbps_wr_max=<number>, media=<string>, product=<string>, queues=<integer>, replicate=<boolean>, rerror=<string>, ro=<boolean>, scsiblock=<boolean>, serial=<string>, shared=<boolean>, size=<string>, snapshot=<boolean>, ssd=<boolean>, vendor=<string>, volume=<string>, werror=<string>, wwn=<string>
+   * @typetext [file=]<volume> [,aio=<native|threads|io_uring>] [,backup=<1|0>] [,bps=<bps>] [,bps_max_length=<seconds>] [,bps_rd=<bps>] [,bps_rd_max_length=<seconds>] [,bps_wr=<bps>] [,bps_wr_max_length=<seconds>] [,cache=<enum>] [,detect_zeroes=<1|0>] [,discard=<ignore|on>] [,format=<enum>] [,import-from=<source volume>] [,iops=<iops>] [,iops_max=<iops>] [,iops_max_length=<seconds>] [,iops_rd=<iops>] [,iops_rd_max=<iops>] [,iops_rd_max_length=<seconds>] [,iops_wr=<iops>] [,iops_wr_max=<iops>] [,iops_wr_max_length=<seconds>] [,iothread=<1|0>] [,mbps=<mbps>] [,mbps_max=<mbps>] [,mbps_rd=<mbps>] [,mbps_rd_max=<mbps>] [,mbps_wr=<mbps>] [,mbps_wr_max=<mbps>] [,media=<cdrom|disk>] [,product=<product>] [,queues=<integer>] [,replicate=<1|0>] [,rerror=<ignore|report|stop>] [,ro=<1|0>] [,scsiblock=<1|0>] [,serial=<serial>] [,shared=<1|0>] [,size=<DiskSize>] [,snapshot=<1|0>] [,ssd=<1|0>] [,vendor=<vendor>] [,werror=<enum>] [,wwn=<wwn>]
+   */
+  export type Scsi = string;
+  /**
+   * Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
+   * Indexed property: `scsi0`, `scsi1`, ...
+   * @propertyString aio=<string>, backup=<boolean>, bps=<integer>, bps_max_length=<integer>, bps_rd=<integer>, bps_rd_length=<string>, bps_rd_max_length=<integer>, bps_wr=<integer>, bps_wr_length=<string>, bps_wr_max_length=<integer>, cache=<string>, detect_zeroes=<boolean>, discard=<string>, file=<string>, format=<string>, iops=<integer>, iops_max=<integer>, iops_max_length=<integer>, iops_rd=<integer>, iops_rd_length=<string>, iops_rd_max=<integer>, iops_rd_max_length=<integer>, iops_wr=<integer>, iops_wr_length=<string>, iops_wr_max=<integer>, iops_wr_max_length=<integer>, iothread=<boolean>, mbps=<number>, mbps_max=<number>, mbps_rd=<number>, mbps_rd_max=<number>, mbps_wr=<number>, mbps_wr_max=<number>, media=<string>, product=<string>, queues=<integer>, replicate=<boolean>, rerror=<string>, ro=<boolean>, scsiblock=<boolean>, serial=<string>, shared=<boolean>, size=<string>, snapshot=<boolean>, ssd=<boolean>, vendor=<string>, volume=<string>, werror=<string>, wwn=<string>
+   */
+  export type Scsi_2 = string;
   export type Scsihw =
     | "lsi"
     | "lsi53c810"
@@ -1430,7 +1563,18 @@ export namespace Proxmox {
     | "virtio-scsi-single"
     | "megasas"
     | "pvscsi";
-  export type Serial = "serial0" | "serial1" | "serial2" | "serial3";
+  /**
+   * Create a serial device inside the VM (n is 0 to 3), and pass through a
+   * host serial device (i.e. /dev/ttyS0), or create a unix socket on the
+   * host side (use 'qm terminal' to open a terminal connection).
+   * NOTE: If you pass through a host serial device, it is no longer possible to migrate such machines -
+   * use with special care.
+   * CAUTION: Experimental! User reported problems with this option.
+   * Indexed property: `serial0`, `serial1`, ...
+   * @pattern (/dev/[^,]+|socket)
+   */
+  export type Serial = string;
+  export type Serial_2 = "serial0" | "serial1" | "serial2" | "serial3";
   export type Service = "osd" | "mon" | "mds";
   export type ServiceType = "mon" | "mgr" | "mds" | "osd";
   export type ServiceType_2 = "osd";
@@ -2093,9 +2237,74 @@ export namespace Proxmox {
     | "bad"
     | "not-found"
     | "unknown";
+  /**
+   * Reference to unused volumes. This is used internally, and should not be modified manually.
+   * Indexed property: `unused0`, `unused1`, ...
+   * @propertyString file=<string>, volume=<string>
+   * @typetext [file=]<volume>
+   */
+  export type Unused = string;
+  /**
+   * Reference to unused volumes. This is used internally, and should not be modified manually.
+   * Indexed property: `unused0`, `unused1`, ...
+   * @propertyString file=<string>, volume=<string>
+   */
+  export type Unused_2 = string;
+  /**
+   * Reference to unused volumes. This is used internally, and should not be modified manually.
+   * Indexed property: `unused0`, `unused1`, ...
+   * @propertyString volume=<string>
+   * @typetext [volume=]<volume>
+   */
+  export type Unused_3 = string;
+  /**
+   * Reference to unused volumes. This is used internally, and should not be modified manually.
+   * Indexed property: `unused0`, `unused1`, ...
+   * @propertyString volume=<string>
+   */
+  export type Unused_4 = string;
   /** PVE format `urlencoded`. */
   export type Urlencoded = string;
+  /**
+   * Configure an USB device (n is 0 to 4, for machine version >= 7.1 and ostype l26 or windows > 7, n can be up to 14).
+   * Indexed property: `usb0`, `usb1`, ...
+   * @propertyString host=<string>, mapping=<string>, usb3=<boolean>
+   * @typetext [[host=]<HOSTUSBDEVICE|spice>] [,mapping=<mapping-id>] [,usb3=<1|0>]
+   */
+  export type Usb = string;
+  /**
+   * Configure an USB device (n is 0 to 4, for machine version >= 7.1 and ostype l26 or windows > 7, n can be up to 14).
+   * Indexed property: `usb0`, `usb1`, ...
+   * @propertyString host=<string>, mapping=<string>, usb3=<boolean>
+   */
+  export type Usb_2 = string;
   export type User = "oath" | "u2f";
+  /**
+   * Use volume as VIRTIO hard disk (n is 0 to 15). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. Use STORAGE_ID:0 and the 'import-from' parameter to import from an existing volume.
+   * Indexed property: `virtio0`, `virtio1`, ...
+   * @propertyString aio=<string>, backup=<boolean>, bps=<integer>, bps_max_length=<integer>, bps_rd=<integer>, bps_rd_length=<string>, bps_rd_max_length=<integer>, bps_wr=<integer>, bps_wr_length=<string>, bps_wr_max_length=<integer>, cache=<string>, detect_zeroes=<boolean>, discard=<string>, file=<string>, format=<string>, import-from=<string>, iops=<integer>, iops_max=<integer>, iops_max_length=<integer>, iops_rd=<integer>, iops_rd_length=<string>, iops_rd_max=<integer>, iops_rd_max_length=<integer>, iops_wr=<integer>, iops_wr_length=<string>, iops_wr_max=<integer>, iops_wr_max_length=<integer>, iothread=<boolean>, mbps=<number>, mbps_max=<number>, mbps_rd=<number>, mbps_rd_max=<number>, mbps_wr=<number>, mbps_wr_max=<number>, media=<string>, replicate=<boolean>, rerror=<string>, ro=<boolean>, serial=<string>, shared=<boolean>, size=<string>, snapshot=<boolean>, volume=<string>, werror=<string>
+   * @typetext [file=]<volume> [,aio=<native|threads|io_uring>] [,backup=<1|0>] [,bps=<bps>] [,bps_max_length=<seconds>] [,bps_rd=<bps>] [,bps_rd_max_length=<seconds>] [,bps_wr=<bps>] [,bps_wr_max_length=<seconds>] [,cache=<enum>] [,detect_zeroes=<1|0>] [,discard=<ignore|on>] [,format=<enum>] [,import-from=<source volume>] [,iops=<iops>] [,iops_max=<iops>] [,iops_max_length=<seconds>] [,iops_rd=<iops>] [,iops_rd_max=<iops>] [,iops_rd_max_length=<seconds>] [,iops_wr=<iops>] [,iops_wr_max=<iops>] [,iops_wr_max_length=<seconds>] [,iothread=<1|0>] [,mbps=<mbps>] [,mbps_max=<mbps>] [,mbps_rd=<mbps>] [,mbps_rd_max=<mbps>] [,mbps_wr=<mbps>] [,mbps_wr_max=<mbps>] [,media=<cdrom|disk>] [,replicate=<1|0>] [,rerror=<ignore|report|stop>] [,ro=<1|0>] [,serial=<serial>] [,shared=<1|0>] [,size=<DiskSize>] [,snapshot=<1|0>] [,werror=<enum>]
+   */
+  export type Virtio = string;
+  /**
+   * Use volume as VIRTIO hard disk (n is 0 to 15).
+   * Indexed property: `virtio0`, `virtio1`, ...
+   * @propertyString aio=<string>, backup=<boolean>, bps=<integer>, bps_max_length=<integer>, bps_rd=<integer>, bps_rd_length=<string>, bps_rd_max_length=<integer>, bps_wr=<integer>, bps_wr_length=<string>, bps_wr_max_length=<integer>, cache=<string>, detect_zeroes=<boolean>, discard=<string>, file=<string>, format=<string>, iops=<integer>, iops_max=<integer>, iops_max_length=<integer>, iops_rd=<integer>, iops_rd_length=<string>, iops_rd_max=<integer>, iops_rd_max_length=<integer>, iops_wr=<integer>, iops_wr_length=<string>, iops_wr_max=<integer>, iops_wr_max_length=<integer>, iothread=<boolean>, mbps=<number>, mbps_max=<number>, mbps_rd=<number>, mbps_rd_max=<number>, mbps_wr=<number>, mbps_wr_max=<number>, media=<string>, replicate=<boolean>, rerror=<string>, ro=<boolean>, serial=<string>, shared=<boolean>, size=<string>, snapshot=<boolean>, volume=<string>, werror=<string>
+   */
+  export type Virtio_2 = string;
+  /**
+   * Configuration for sharing a directory between host and guest using Virtio-fs.
+   * Indexed property: `virtiofs0`, `virtiofs1`, ...
+   * @propertyString cache=<string>, direct-io=<boolean>, dirid=<string>, expose-acl=<boolean>, expose-xattr=<boolean>
+   * @typetext [dirid=]<mapping-id> [,cache=<enum>] [,direct-io=<1|0>] [,expose-acl=<1|0>] [,expose-xattr=<1|0>]
+   */
+  export type Virtiofs = string;
+  /**
+   * Configuration for sharing a directory between host and guest using Virtio-fs.
+   * Indexed property: `virtiofs0`, `virtiofs1`, ...
+   * @propertyString cache=<string>, direct-io=<boolean>, dirid=<string>, expose-acl=<boolean>, expose-xattr=<boolean>
+   */
+  export type Virtiofs_2 = string;
   export type VlanProtocol = "802.1q" | "802.1ad";
   /** Returned by GET /access/acl */
   export interface accessAclReadAcl {
@@ -6348,12 +6557,12 @@ export namespace Proxmox {
      * @propertyString account=<string>, domains=<string>
      */
     acme?: string;
-    /**
-     * ACME domain and validation plugin
-     * Indexed property: `acmedomain0`, `acmedomain1`, ...
-     * @propertyString alias=<string>, domain=<string>, plugin=<string>
-     */
-    [key: `acmedomain${number}`]: string;
+    acmedomain0?: Acmedomain;
+    acmedomain1?: Acmedomain;
+    acmedomain2?: Acmedomain;
+    acmedomain3?: Acmedomain;
+    acmedomain4?: Acmedomain;
+    acmedomain5?: Acmedomain;
     /**
      * RAM usage target for ballooning (in percent of total memory)
      * @minimum 0
@@ -6810,12 +7019,262 @@ export namespace Proxmox {
      * @maxLength 8192
      */
     description?: string;
-    /**
-     * Device to pass through to the container
-     * Indexed property: `dev0`, `dev1`, ...
-     * @propertyString deny-write=<boolean>, gid=<integer>, mode=<string>, path=<string>, uid=<integer>
-     */
-    [key: `dev${number}`]: string;
+    dev0?: Dev_2;
+    dev1?: Dev_2;
+    dev2?: Dev_2;
+    dev3?: Dev_2;
+    dev4?: Dev_2;
+    dev5?: Dev_2;
+    dev6?: Dev_2;
+    dev7?: Dev_2;
+    dev8?: Dev_2;
+    dev9?: Dev_2;
+    dev10?: Dev_2;
+    dev11?: Dev_2;
+    dev12?: Dev_2;
+    dev13?: Dev_2;
+    dev14?: Dev_2;
+    dev15?: Dev_2;
+    dev16?: Dev_2;
+    dev17?: Dev_2;
+    dev18?: Dev_2;
+    dev19?: Dev_2;
+    dev20?: Dev_2;
+    dev21?: Dev_2;
+    dev22?: Dev_2;
+    dev23?: Dev_2;
+    dev24?: Dev_2;
+    dev25?: Dev_2;
+    dev26?: Dev_2;
+    dev27?: Dev_2;
+    dev28?: Dev_2;
+    dev29?: Dev_2;
+    dev30?: Dev_2;
+    dev31?: Dev_2;
+    dev32?: Dev_2;
+    dev33?: Dev_2;
+    dev34?: Dev_2;
+    dev35?: Dev_2;
+    dev36?: Dev_2;
+    dev37?: Dev_2;
+    dev38?: Dev_2;
+    dev39?: Dev_2;
+    dev40?: Dev_2;
+    dev41?: Dev_2;
+    dev42?: Dev_2;
+    dev43?: Dev_2;
+    dev44?: Dev_2;
+    dev45?: Dev_2;
+    dev46?: Dev_2;
+    dev47?: Dev_2;
+    dev48?: Dev_2;
+    dev49?: Dev_2;
+    dev50?: Dev_2;
+    dev51?: Dev_2;
+    dev52?: Dev_2;
+    dev53?: Dev_2;
+    dev54?: Dev_2;
+    dev55?: Dev_2;
+    dev56?: Dev_2;
+    dev57?: Dev_2;
+    dev58?: Dev_2;
+    dev59?: Dev_2;
+    dev60?: Dev_2;
+    dev61?: Dev_2;
+    dev62?: Dev_2;
+    dev63?: Dev_2;
+    dev64?: Dev_2;
+    dev65?: Dev_2;
+    dev66?: Dev_2;
+    dev67?: Dev_2;
+    dev68?: Dev_2;
+    dev69?: Dev_2;
+    dev70?: Dev_2;
+    dev71?: Dev_2;
+    dev72?: Dev_2;
+    dev73?: Dev_2;
+    dev74?: Dev_2;
+    dev75?: Dev_2;
+    dev76?: Dev_2;
+    dev77?: Dev_2;
+    dev78?: Dev_2;
+    dev79?: Dev_2;
+    dev80?: Dev_2;
+    dev81?: Dev_2;
+    dev82?: Dev_2;
+    dev83?: Dev_2;
+    dev84?: Dev_2;
+    dev85?: Dev_2;
+    dev86?: Dev_2;
+    dev87?: Dev_2;
+    dev88?: Dev_2;
+    dev89?: Dev_2;
+    dev90?: Dev_2;
+    dev91?: Dev_2;
+    dev92?: Dev_2;
+    dev93?: Dev_2;
+    dev94?: Dev_2;
+    dev95?: Dev_2;
+    dev96?: Dev_2;
+    dev97?: Dev_2;
+    dev98?: Dev_2;
+    dev99?: Dev_2;
+    dev100?: Dev_2;
+    dev101?: Dev_2;
+    dev102?: Dev_2;
+    dev103?: Dev_2;
+    dev104?: Dev_2;
+    dev105?: Dev_2;
+    dev106?: Dev_2;
+    dev107?: Dev_2;
+    dev108?: Dev_2;
+    dev109?: Dev_2;
+    dev110?: Dev_2;
+    dev111?: Dev_2;
+    dev112?: Dev_2;
+    dev113?: Dev_2;
+    dev114?: Dev_2;
+    dev115?: Dev_2;
+    dev116?: Dev_2;
+    dev117?: Dev_2;
+    dev118?: Dev_2;
+    dev119?: Dev_2;
+    dev120?: Dev_2;
+    dev121?: Dev_2;
+    dev122?: Dev_2;
+    dev123?: Dev_2;
+    dev124?: Dev_2;
+    dev125?: Dev_2;
+    dev126?: Dev_2;
+    dev127?: Dev_2;
+    dev128?: Dev_2;
+    dev129?: Dev_2;
+    dev130?: Dev_2;
+    dev131?: Dev_2;
+    dev132?: Dev_2;
+    dev133?: Dev_2;
+    dev134?: Dev_2;
+    dev135?: Dev_2;
+    dev136?: Dev_2;
+    dev137?: Dev_2;
+    dev138?: Dev_2;
+    dev139?: Dev_2;
+    dev140?: Dev_2;
+    dev141?: Dev_2;
+    dev142?: Dev_2;
+    dev143?: Dev_2;
+    dev144?: Dev_2;
+    dev145?: Dev_2;
+    dev146?: Dev_2;
+    dev147?: Dev_2;
+    dev148?: Dev_2;
+    dev149?: Dev_2;
+    dev150?: Dev_2;
+    dev151?: Dev_2;
+    dev152?: Dev_2;
+    dev153?: Dev_2;
+    dev154?: Dev_2;
+    dev155?: Dev_2;
+    dev156?: Dev_2;
+    dev157?: Dev_2;
+    dev158?: Dev_2;
+    dev159?: Dev_2;
+    dev160?: Dev_2;
+    dev161?: Dev_2;
+    dev162?: Dev_2;
+    dev163?: Dev_2;
+    dev164?: Dev_2;
+    dev165?: Dev_2;
+    dev166?: Dev_2;
+    dev167?: Dev_2;
+    dev168?: Dev_2;
+    dev169?: Dev_2;
+    dev170?: Dev_2;
+    dev171?: Dev_2;
+    dev172?: Dev_2;
+    dev173?: Dev_2;
+    dev174?: Dev_2;
+    dev175?: Dev_2;
+    dev176?: Dev_2;
+    dev177?: Dev_2;
+    dev178?: Dev_2;
+    dev179?: Dev_2;
+    dev180?: Dev_2;
+    dev181?: Dev_2;
+    dev182?: Dev_2;
+    dev183?: Dev_2;
+    dev184?: Dev_2;
+    dev185?: Dev_2;
+    dev186?: Dev_2;
+    dev187?: Dev_2;
+    dev188?: Dev_2;
+    dev189?: Dev_2;
+    dev190?: Dev_2;
+    dev191?: Dev_2;
+    dev192?: Dev_2;
+    dev193?: Dev_2;
+    dev194?: Dev_2;
+    dev195?: Dev_2;
+    dev196?: Dev_2;
+    dev197?: Dev_2;
+    dev198?: Dev_2;
+    dev199?: Dev_2;
+    dev200?: Dev_2;
+    dev201?: Dev_2;
+    dev202?: Dev_2;
+    dev203?: Dev_2;
+    dev204?: Dev_2;
+    dev205?: Dev_2;
+    dev206?: Dev_2;
+    dev207?: Dev_2;
+    dev208?: Dev_2;
+    dev209?: Dev_2;
+    dev210?: Dev_2;
+    dev211?: Dev_2;
+    dev212?: Dev_2;
+    dev213?: Dev_2;
+    dev214?: Dev_2;
+    dev215?: Dev_2;
+    dev216?: Dev_2;
+    dev217?: Dev_2;
+    dev218?: Dev_2;
+    dev219?: Dev_2;
+    dev220?: Dev_2;
+    dev221?: Dev_2;
+    dev222?: Dev_2;
+    dev223?: Dev_2;
+    dev224?: Dev_2;
+    dev225?: Dev_2;
+    dev226?: Dev_2;
+    dev227?: Dev_2;
+    dev228?: Dev_2;
+    dev229?: Dev_2;
+    dev230?: Dev_2;
+    dev231?: Dev_2;
+    dev232?: Dev_2;
+    dev233?: Dev_2;
+    dev234?: Dev_2;
+    dev235?: Dev_2;
+    dev236?: Dev_2;
+    dev237?: Dev_2;
+    dev238?: Dev_2;
+    dev239?: Dev_2;
+    dev240?: Dev_2;
+    dev241?: Dev_2;
+    dev242?: Dev_2;
+    dev243?: Dev_2;
+    dev244?: Dev_2;
+    dev245?: Dev_2;
+    dev246?: Dev_2;
+    dev247?: Dev_2;
+    dev248?: Dev_2;
+    dev249?: Dev_2;
+    dev250?: Dev_2;
+    dev251?: Dev_2;
+    dev252?: Dev_2;
+    dev253?: Dev_2;
+    dev254?: Dev_2;
+    dev255?: Dev_2;
     /** SHA1 digest of configuration file. This can be used to prevent concurrent modifications. */
     digest: string;
     /**
@@ -6855,23 +7314,299 @@ export namespace Proxmox {
      * @default 512
      */
     memory?: number;
-    /**
-     * Use volume as container mount point. Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume.
-     * Indexed property: `mp0`, `mp1`, ...
-     * @propertyString acl=<boolean>, backup=<boolean>, idmap=<string>, keepattrs=<boolean>, mountoptions=<string>, mp=<string>, quota=<boolean>, replicate=<boolean>, ro=<boolean>, shared=<boolean>, size=<string>, volume=<string>
-     */
-    [key: `mp${number}`]: string;
+    mp0?: Mp_2;
+    mp1?: Mp_2;
+    mp2?: Mp_2;
+    mp3?: Mp_2;
+    mp4?: Mp_2;
+    mp5?: Mp_2;
+    mp6?: Mp_2;
+    mp7?: Mp_2;
+    mp8?: Mp_2;
+    mp9?: Mp_2;
+    mp10?: Mp_2;
+    mp11?: Mp_2;
+    mp12?: Mp_2;
+    mp13?: Mp_2;
+    mp14?: Mp_2;
+    mp15?: Mp_2;
+    mp16?: Mp_2;
+    mp17?: Mp_2;
+    mp18?: Mp_2;
+    mp19?: Mp_2;
+    mp20?: Mp_2;
+    mp21?: Mp_2;
+    mp22?: Mp_2;
+    mp23?: Mp_2;
+    mp24?: Mp_2;
+    mp25?: Mp_2;
+    mp26?: Mp_2;
+    mp27?: Mp_2;
+    mp28?: Mp_2;
+    mp29?: Mp_2;
+    mp30?: Mp_2;
+    mp31?: Mp_2;
+    mp32?: Mp_2;
+    mp33?: Mp_2;
+    mp34?: Mp_2;
+    mp35?: Mp_2;
+    mp36?: Mp_2;
+    mp37?: Mp_2;
+    mp38?: Mp_2;
+    mp39?: Mp_2;
+    mp40?: Mp_2;
+    mp41?: Mp_2;
+    mp42?: Mp_2;
+    mp43?: Mp_2;
+    mp44?: Mp_2;
+    mp45?: Mp_2;
+    mp46?: Mp_2;
+    mp47?: Mp_2;
+    mp48?: Mp_2;
+    mp49?: Mp_2;
+    mp50?: Mp_2;
+    mp51?: Mp_2;
+    mp52?: Mp_2;
+    mp53?: Mp_2;
+    mp54?: Mp_2;
+    mp55?: Mp_2;
+    mp56?: Mp_2;
+    mp57?: Mp_2;
+    mp58?: Mp_2;
+    mp59?: Mp_2;
+    mp60?: Mp_2;
+    mp61?: Mp_2;
+    mp62?: Mp_2;
+    mp63?: Mp_2;
+    mp64?: Mp_2;
+    mp65?: Mp_2;
+    mp66?: Mp_2;
+    mp67?: Mp_2;
+    mp68?: Mp_2;
+    mp69?: Mp_2;
+    mp70?: Mp_2;
+    mp71?: Mp_2;
+    mp72?: Mp_2;
+    mp73?: Mp_2;
+    mp74?: Mp_2;
+    mp75?: Mp_2;
+    mp76?: Mp_2;
+    mp77?: Mp_2;
+    mp78?: Mp_2;
+    mp79?: Mp_2;
+    mp80?: Mp_2;
+    mp81?: Mp_2;
+    mp82?: Mp_2;
+    mp83?: Mp_2;
+    mp84?: Mp_2;
+    mp85?: Mp_2;
+    mp86?: Mp_2;
+    mp87?: Mp_2;
+    mp88?: Mp_2;
+    mp89?: Mp_2;
+    mp90?: Mp_2;
+    mp91?: Mp_2;
+    mp92?: Mp_2;
+    mp93?: Mp_2;
+    mp94?: Mp_2;
+    mp95?: Mp_2;
+    mp96?: Mp_2;
+    mp97?: Mp_2;
+    mp98?: Mp_2;
+    mp99?: Mp_2;
+    mp100?: Mp_2;
+    mp101?: Mp_2;
+    mp102?: Mp_2;
+    mp103?: Mp_2;
+    mp104?: Mp_2;
+    mp105?: Mp_2;
+    mp106?: Mp_2;
+    mp107?: Mp_2;
+    mp108?: Mp_2;
+    mp109?: Mp_2;
+    mp110?: Mp_2;
+    mp111?: Mp_2;
+    mp112?: Mp_2;
+    mp113?: Mp_2;
+    mp114?: Mp_2;
+    mp115?: Mp_2;
+    mp116?: Mp_2;
+    mp117?: Mp_2;
+    mp118?: Mp_2;
+    mp119?: Mp_2;
+    mp120?: Mp_2;
+    mp121?: Mp_2;
+    mp122?: Mp_2;
+    mp123?: Mp_2;
+    mp124?: Mp_2;
+    mp125?: Mp_2;
+    mp126?: Mp_2;
+    mp127?: Mp_2;
+    mp128?: Mp_2;
+    mp129?: Mp_2;
+    mp130?: Mp_2;
+    mp131?: Mp_2;
+    mp132?: Mp_2;
+    mp133?: Mp_2;
+    mp134?: Mp_2;
+    mp135?: Mp_2;
+    mp136?: Mp_2;
+    mp137?: Mp_2;
+    mp138?: Mp_2;
+    mp139?: Mp_2;
+    mp140?: Mp_2;
+    mp141?: Mp_2;
+    mp142?: Mp_2;
+    mp143?: Mp_2;
+    mp144?: Mp_2;
+    mp145?: Mp_2;
+    mp146?: Mp_2;
+    mp147?: Mp_2;
+    mp148?: Mp_2;
+    mp149?: Mp_2;
+    mp150?: Mp_2;
+    mp151?: Mp_2;
+    mp152?: Mp_2;
+    mp153?: Mp_2;
+    mp154?: Mp_2;
+    mp155?: Mp_2;
+    mp156?: Mp_2;
+    mp157?: Mp_2;
+    mp158?: Mp_2;
+    mp159?: Mp_2;
+    mp160?: Mp_2;
+    mp161?: Mp_2;
+    mp162?: Mp_2;
+    mp163?: Mp_2;
+    mp164?: Mp_2;
+    mp165?: Mp_2;
+    mp166?: Mp_2;
+    mp167?: Mp_2;
+    mp168?: Mp_2;
+    mp169?: Mp_2;
+    mp170?: Mp_2;
+    mp171?: Mp_2;
+    mp172?: Mp_2;
+    mp173?: Mp_2;
+    mp174?: Mp_2;
+    mp175?: Mp_2;
+    mp176?: Mp_2;
+    mp177?: Mp_2;
+    mp178?: Mp_2;
+    mp179?: Mp_2;
+    mp180?: Mp_2;
+    mp181?: Mp_2;
+    mp182?: Mp_2;
+    mp183?: Mp_2;
+    mp184?: Mp_2;
+    mp185?: Mp_2;
+    mp186?: Mp_2;
+    mp187?: Mp_2;
+    mp188?: Mp_2;
+    mp189?: Mp_2;
+    mp190?: Mp_2;
+    mp191?: Mp_2;
+    mp192?: Mp_2;
+    mp193?: Mp_2;
+    mp194?: Mp_2;
+    mp195?: Mp_2;
+    mp196?: Mp_2;
+    mp197?: Mp_2;
+    mp198?: Mp_2;
+    mp199?: Mp_2;
+    mp200?: Mp_2;
+    mp201?: Mp_2;
+    mp202?: Mp_2;
+    mp203?: Mp_2;
+    mp204?: Mp_2;
+    mp205?: Mp_2;
+    mp206?: Mp_2;
+    mp207?: Mp_2;
+    mp208?: Mp_2;
+    mp209?: Mp_2;
+    mp210?: Mp_2;
+    mp211?: Mp_2;
+    mp212?: Mp_2;
+    mp213?: Mp_2;
+    mp214?: Mp_2;
+    mp215?: Mp_2;
+    mp216?: Mp_2;
+    mp217?: Mp_2;
+    mp218?: Mp_2;
+    mp219?: Mp_2;
+    mp220?: Mp_2;
+    mp221?: Mp_2;
+    mp222?: Mp_2;
+    mp223?: Mp_2;
+    mp224?: Mp_2;
+    mp225?: Mp_2;
+    mp226?: Mp_2;
+    mp227?: Mp_2;
+    mp228?: Mp_2;
+    mp229?: Mp_2;
+    mp230?: Mp_2;
+    mp231?: Mp_2;
+    mp232?: Mp_2;
+    mp233?: Mp_2;
+    mp234?: Mp_2;
+    mp235?: Mp_2;
+    mp236?: Mp_2;
+    mp237?: Mp_2;
+    mp238?: Mp_2;
+    mp239?: Mp_2;
+    mp240?: Mp_2;
+    mp241?: Mp_2;
+    mp242?: Mp_2;
+    mp243?: Mp_2;
+    mp244?: Mp_2;
+    mp245?: Mp_2;
+    mp246?: Mp_2;
+    mp247?: Mp_2;
+    mp248?: Mp_2;
+    mp249?: Mp_2;
+    mp250?: Mp_2;
+    mp251?: Mp_2;
+    mp252?: Mp_2;
+    mp253?: Mp_2;
+    mp254?: Mp_2;
+    mp255?: Mp_2;
     /**
      * Sets DNS server IP address for a container. Create will automatically use the setting from the host if you neither set searchdomain nor nameserver.
      * @format lxc-ip-with-ll-iface-list
      */
     nameserver?: LxcIpWithLlIfaceList;
-    /**
-     * Specifies network interfaces for the container.
-     * Indexed property: `net0`, `net1`, ...
-     * @propertyString bridge=<string>, firewall=<boolean>, gw=<string>, gw6=<string>, host-managed=<boolean>, hwaddr=<string>, ip=<string>, ip6=<string>, link_down=<boolean>, mtu=<integer>, name=<string>, rate=<number>, tag=<integer>, trunks=<string>, type=<string>
-     */
-    [key: `net${number}`]: string;
+    net0?: Net_4;
+    net1?: Net_4;
+    net2?: Net_4;
+    net3?: Net_4;
+    net4?: Net_4;
+    net5?: Net_4;
+    net6?: Net_4;
+    net7?: Net_4;
+    net8?: Net_4;
+    net9?: Net_4;
+    net10?: Net_4;
+    net11?: Net_4;
+    net12?: Net_4;
+    net13?: Net_4;
+    net14?: Net_4;
+    net15?: Net_4;
+    net16?: Net_4;
+    net17?: Net_4;
+    net18?: Net_4;
+    net19?: Net_4;
+    net20?: Net_4;
+    net21?: Net_4;
+    net22?: Net_4;
+    net23?: Net_4;
+    net24?: Net_4;
+    net25?: Net_4;
+    net26?: Net_4;
+    net27?: Net_4;
+    net28?: Net_4;
+    net29?: Net_4;
+    net30?: Net_4;
+    net31?: Net_4;
     /**
      * Specifies whether a container will be started during system bootup.
      * @default 0
@@ -6933,12 +7668,262 @@ export namespace Proxmox {
      * @default 0
      */
     unprivileged?: boolean;
-    /**
-     * Reference to unused volumes. This is used internally, and should not be modified manually.
-     * Indexed property: `unused0`, `unused1`, ...
-     * @propertyString volume=<string>
-     */
-    [key: `unused${number}`]: string;
+    unused0?: Unused_4;
+    unused1?: Unused_4;
+    unused2?: Unused_4;
+    unused3?: Unused_4;
+    unused4?: Unused_4;
+    unused5?: Unused_4;
+    unused6?: Unused_4;
+    unused7?: Unused_4;
+    unused8?: Unused_4;
+    unused9?: Unused_4;
+    unused10?: Unused_4;
+    unused11?: Unused_4;
+    unused12?: Unused_4;
+    unused13?: Unused_4;
+    unused14?: Unused_4;
+    unused15?: Unused_4;
+    unused16?: Unused_4;
+    unused17?: Unused_4;
+    unused18?: Unused_4;
+    unused19?: Unused_4;
+    unused20?: Unused_4;
+    unused21?: Unused_4;
+    unused22?: Unused_4;
+    unused23?: Unused_4;
+    unused24?: Unused_4;
+    unused25?: Unused_4;
+    unused26?: Unused_4;
+    unused27?: Unused_4;
+    unused28?: Unused_4;
+    unused29?: Unused_4;
+    unused30?: Unused_4;
+    unused31?: Unused_4;
+    unused32?: Unused_4;
+    unused33?: Unused_4;
+    unused34?: Unused_4;
+    unused35?: Unused_4;
+    unused36?: Unused_4;
+    unused37?: Unused_4;
+    unused38?: Unused_4;
+    unused39?: Unused_4;
+    unused40?: Unused_4;
+    unused41?: Unused_4;
+    unused42?: Unused_4;
+    unused43?: Unused_4;
+    unused44?: Unused_4;
+    unused45?: Unused_4;
+    unused46?: Unused_4;
+    unused47?: Unused_4;
+    unused48?: Unused_4;
+    unused49?: Unused_4;
+    unused50?: Unused_4;
+    unused51?: Unused_4;
+    unused52?: Unused_4;
+    unused53?: Unused_4;
+    unused54?: Unused_4;
+    unused55?: Unused_4;
+    unused56?: Unused_4;
+    unused57?: Unused_4;
+    unused58?: Unused_4;
+    unused59?: Unused_4;
+    unused60?: Unused_4;
+    unused61?: Unused_4;
+    unused62?: Unused_4;
+    unused63?: Unused_4;
+    unused64?: Unused_4;
+    unused65?: Unused_4;
+    unused66?: Unused_4;
+    unused67?: Unused_4;
+    unused68?: Unused_4;
+    unused69?: Unused_4;
+    unused70?: Unused_4;
+    unused71?: Unused_4;
+    unused72?: Unused_4;
+    unused73?: Unused_4;
+    unused74?: Unused_4;
+    unused75?: Unused_4;
+    unused76?: Unused_4;
+    unused77?: Unused_4;
+    unused78?: Unused_4;
+    unused79?: Unused_4;
+    unused80?: Unused_4;
+    unused81?: Unused_4;
+    unused82?: Unused_4;
+    unused83?: Unused_4;
+    unused84?: Unused_4;
+    unused85?: Unused_4;
+    unused86?: Unused_4;
+    unused87?: Unused_4;
+    unused88?: Unused_4;
+    unused89?: Unused_4;
+    unused90?: Unused_4;
+    unused91?: Unused_4;
+    unused92?: Unused_4;
+    unused93?: Unused_4;
+    unused94?: Unused_4;
+    unused95?: Unused_4;
+    unused96?: Unused_4;
+    unused97?: Unused_4;
+    unused98?: Unused_4;
+    unused99?: Unused_4;
+    unused100?: Unused_4;
+    unused101?: Unused_4;
+    unused102?: Unused_4;
+    unused103?: Unused_4;
+    unused104?: Unused_4;
+    unused105?: Unused_4;
+    unused106?: Unused_4;
+    unused107?: Unused_4;
+    unused108?: Unused_4;
+    unused109?: Unused_4;
+    unused110?: Unused_4;
+    unused111?: Unused_4;
+    unused112?: Unused_4;
+    unused113?: Unused_4;
+    unused114?: Unused_4;
+    unused115?: Unused_4;
+    unused116?: Unused_4;
+    unused117?: Unused_4;
+    unused118?: Unused_4;
+    unused119?: Unused_4;
+    unused120?: Unused_4;
+    unused121?: Unused_4;
+    unused122?: Unused_4;
+    unused123?: Unused_4;
+    unused124?: Unused_4;
+    unused125?: Unused_4;
+    unused126?: Unused_4;
+    unused127?: Unused_4;
+    unused128?: Unused_4;
+    unused129?: Unused_4;
+    unused130?: Unused_4;
+    unused131?: Unused_4;
+    unused132?: Unused_4;
+    unused133?: Unused_4;
+    unused134?: Unused_4;
+    unused135?: Unused_4;
+    unused136?: Unused_4;
+    unused137?: Unused_4;
+    unused138?: Unused_4;
+    unused139?: Unused_4;
+    unused140?: Unused_4;
+    unused141?: Unused_4;
+    unused142?: Unused_4;
+    unused143?: Unused_4;
+    unused144?: Unused_4;
+    unused145?: Unused_4;
+    unused146?: Unused_4;
+    unused147?: Unused_4;
+    unused148?: Unused_4;
+    unused149?: Unused_4;
+    unused150?: Unused_4;
+    unused151?: Unused_4;
+    unused152?: Unused_4;
+    unused153?: Unused_4;
+    unused154?: Unused_4;
+    unused155?: Unused_4;
+    unused156?: Unused_4;
+    unused157?: Unused_4;
+    unused158?: Unused_4;
+    unused159?: Unused_4;
+    unused160?: Unused_4;
+    unused161?: Unused_4;
+    unused162?: Unused_4;
+    unused163?: Unused_4;
+    unused164?: Unused_4;
+    unused165?: Unused_4;
+    unused166?: Unused_4;
+    unused167?: Unused_4;
+    unused168?: Unused_4;
+    unused169?: Unused_4;
+    unused170?: Unused_4;
+    unused171?: Unused_4;
+    unused172?: Unused_4;
+    unused173?: Unused_4;
+    unused174?: Unused_4;
+    unused175?: Unused_4;
+    unused176?: Unused_4;
+    unused177?: Unused_4;
+    unused178?: Unused_4;
+    unused179?: Unused_4;
+    unused180?: Unused_4;
+    unused181?: Unused_4;
+    unused182?: Unused_4;
+    unused183?: Unused_4;
+    unused184?: Unused_4;
+    unused185?: Unused_4;
+    unused186?: Unused_4;
+    unused187?: Unused_4;
+    unused188?: Unused_4;
+    unused189?: Unused_4;
+    unused190?: Unused_4;
+    unused191?: Unused_4;
+    unused192?: Unused_4;
+    unused193?: Unused_4;
+    unused194?: Unused_4;
+    unused195?: Unused_4;
+    unused196?: Unused_4;
+    unused197?: Unused_4;
+    unused198?: Unused_4;
+    unused199?: Unused_4;
+    unused200?: Unused_4;
+    unused201?: Unused_4;
+    unused202?: Unused_4;
+    unused203?: Unused_4;
+    unused204?: Unused_4;
+    unused205?: Unused_4;
+    unused206?: Unused_4;
+    unused207?: Unused_4;
+    unused208?: Unused_4;
+    unused209?: Unused_4;
+    unused210?: Unused_4;
+    unused211?: Unused_4;
+    unused212?: Unused_4;
+    unused213?: Unused_4;
+    unused214?: Unused_4;
+    unused215?: Unused_4;
+    unused216?: Unused_4;
+    unused217?: Unused_4;
+    unused218?: Unused_4;
+    unused219?: Unused_4;
+    unused220?: Unused_4;
+    unused221?: Unused_4;
+    unused222?: Unused_4;
+    unused223?: Unused_4;
+    unused224?: Unused_4;
+    unused225?: Unused_4;
+    unused226?: Unused_4;
+    unused227?: Unused_4;
+    unused228?: Unused_4;
+    unused229?: Unused_4;
+    unused230?: Unused_4;
+    unused231?: Unused_4;
+    unused232?: Unused_4;
+    unused233?: Unused_4;
+    unused234?: Unused_4;
+    unused235?: Unused_4;
+    unused236?: Unused_4;
+    unused237?: Unused_4;
+    unused238?: Unused_4;
+    unused239?: Unused_4;
+    unused240?: Unused_4;
+    unused241?: Unused_4;
+    unused242?: Unused_4;
+    unused243?: Unused_4;
+    unused244?: Unused_4;
+    unused245?: Unused_4;
+    unused246?: Unused_4;
+    unused247?: Unused_4;
+    unused248?: Unused_4;
+    unused249?: Unused_4;
+    unused250?: Unused_4;
+    unused251?: Unused_4;
+    unused252?: Unused_4;
+    unused253?: Unused_4;
+    unused254?: Unused_4;
+    unused255?: Unused_4;
   }
   /** Returned by GET /nodes/\{node\}/lxc/\{vmid\}/feature */
   export interface nodesLxcFeatureVmFeature {
@@ -7695,15 +8680,22 @@ export namespace Proxmox {
      * @format pve-volume-id
      */
     hookscript?: PveVolumeId;
-    /**
-     * Map host PCI devices into guest.
-     * NOTE: This option allows direct access to host hardware. So it is no longer
-     * possible to migrate such machines - use with special care.
-     * CAUTION: Experimental! User reported problems with this option.
-     * Indexed property: `hostpci0`, `hostpci1`, ...
-     * @format pve-qm-hostpci
-     */
-    [key: `hostpci${number}`]: PveQmHostpci;
+    hostpci0?: PveQmHostpci;
+    hostpci1?: PveQmHostpci;
+    hostpci2?: PveQmHostpci;
+    hostpci3?: PveQmHostpci;
+    hostpci4?: PveQmHostpci;
+    hostpci5?: PveQmHostpci;
+    hostpci6?: PveQmHostpci;
+    hostpci7?: PveQmHostpci;
+    hostpci8?: PveQmHostpci;
+    hostpci9?: PveQmHostpci;
+    hostpci10?: PveQmHostpci;
+    hostpci11?: PveQmHostpci;
+    hostpci12?: PveQmHostpci;
+    hostpci13?: PveQmHostpci;
+    hostpci14?: PveQmHostpci;
+    hostpci15?: PveQmHostpci;
     /**
      * Selectively enable hotplug features. This is a comma separated list of hotplug features: 'network', 'disk', 'cpu', 'memory', 'usb' and 'cloudinit'. Use '0' to disable hotplug completely. Using '1' as value is an alias for the default `network,disk,usb`. USB hotplugging is possible for guests with machine version >= 7.1 and ostype l26 or windows > 7.
      * @default network,disk,usb
@@ -7715,30 +8707,47 @@ export namespace Proxmox {
      * Sets the size of hugepages in MiB. If the value is set to 'any' then 1 GiB hugepages will be used if possible, otherwise the size will fall back to 2 MiB.
      */
     hugepages?: Hugepages;
-    /**
-     * Use volume as IDE hard disk or CD-ROM (n is 0 to 3).
-     * Indexed property: `ide0`, `ide1`, ...
-     * @propertyString aio=<string>, backup=<boolean>, bps=<integer>, bps_max_length=<integer>, bps_rd=<integer>, bps_rd_length=<string>, bps_rd_max_length=<integer>, bps_wr=<integer>, bps_wr_length=<string>, bps_wr_max_length=<integer>, cache=<string>, detect_zeroes=<boolean>, discard=<string>, file=<string>, format=<string>, iops=<integer>, iops_max=<integer>, iops_max_length=<integer>, iops_rd=<integer>, iops_rd_length=<string>, iops_rd_max=<integer>, iops_rd_max_length=<integer>, iops_wr=<integer>, iops_wr_length=<string>, iops_wr_max=<integer>, iops_wr_max_length=<integer>, mbps=<number>, mbps_max=<number>, mbps_rd=<number>, mbps_rd_max=<number>, mbps_wr=<number>, mbps_wr_max=<number>, media=<string>, model=<string>, replicate=<boolean>, rerror=<string>, serial=<string>, shared=<boolean>, size=<string>, snapshot=<boolean>, ssd=<boolean>, volume=<string>, werror=<string>, wwn=<string>
-     */
-    [key: `ide${number}`]: string;
+    ide0?: Ide_2;
+    ide1?: Ide_2;
+    ide2?: Ide_2;
+    ide3?: Ide_2;
     /**
      * Trusted Domain Extension (TDX) features by Intel CPUs
      * @format pve-qemu-tdx-fmt
      */
     "intel-tdx"?: PveQemuTdxFmt;
-    /**
-     * cloud-init: Specify IP addresses and gateways for the corresponding interface.
-     * IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.
-     * The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit
-     * gateway should be provided.
-     * For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires
-     * cloud-init 19.4 or newer.
-     * If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using
-     * dhcp on IPv4.
-     * Indexed property: `ipconfig0`, `ipconfig1`, ...
-     * @format pve-qm-ipconfig
-     */
-    [key: `ipconfig${number}`]: PveQmIpconfig;
+    ipconfig0?: PveQmIpconfig;
+    ipconfig1?: PveQmIpconfig;
+    ipconfig2?: PveQmIpconfig;
+    ipconfig3?: PveQmIpconfig;
+    ipconfig4?: PveQmIpconfig;
+    ipconfig5?: PveQmIpconfig;
+    ipconfig6?: PveQmIpconfig;
+    ipconfig7?: PveQmIpconfig;
+    ipconfig8?: PveQmIpconfig;
+    ipconfig9?: PveQmIpconfig;
+    ipconfig10?: PveQmIpconfig;
+    ipconfig11?: PveQmIpconfig;
+    ipconfig12?: PveQmIpconfig;
+    ipconfig13?: PveQmIpconfig;
+    ipconfig14?: PveQmIpconfig;
+    ipconfig15?: PveQmIpconfig;
+    ipconfig16?: PveQmIpconfig;
+    ipconfig17?: PveQmIpconfig;
+    ipconfig18?: PveQmIpconfig;
+    ipconfig19?: PveQmIpconfig;
+    ipconfig20?: PveQmIpconfig;
+    ipconfig21?: PveQmIpconfig;
+    ipconfig22?: PveQmIpconfig;
+    ipconfig23?: PveQmIpconfig;
+    ipconfig24?: PveQmIpconfig;
+    ipconfig25?: PveQmIpconfig;
+    ipconfig26?: PveQmIpconfig;
+    ipconfig27?: PveQmIpconfig;
+    ipconfig28?: PveQmIpconfig;
+    ipconfig29?: PveQmIpconfig;
+    ipconfig30?: PveQmIpconfig;
+    ipconfig31?: PveQmIpconfig;
     /**
      * Inter-VM shared memory. Useful for direct communication between VMs, or to the host.
      * @propertyString name=<string>, size=<integer>
@@ -7800,23 +8809,51 @@ export namespace Proxmox {
      * @format address-list
      */
     nameserver?: AddressList;
-    /**
-     * Specify network devices.
-     * Indexed property: `net0`, `net1`, ...
-     * @propertyString bridge=<string>, e1000=<string>, e1000-82540em=<string>, e1000-82544gc=<string>, e1000-82545em=<string>, e1000e=<string>, firewall=<boolean>, host-tunnel=<boolean>, i82551=<string>, i82557b=<string>, i82559er=<string>, link_down=<boolean>, macaddr=<string>, model=<string>, mtu=<integer>, ne2k_isa=<string>, ne2k_pci=<string>, pcnet=<string>, queues=<integer>, rate=<number>, rtl8139=<string>, tag=<integer>, trunks=<string>, virtio=<string>, vmxnet3=<string>
-     */
-    [key: `net${number}`]: string;
+    net0?: Net_2;
+    net1?: Net_2;
+    net2?: Net_2;
+    net3?: Net_2;
+    net4?: Net_2;
+    net5?: Net_2;
+    net6?: Net_2;
+    net7?: Net_2;
+    net8?: Net_2;
+    net9?: Net_2;
+    net10?: Net_2;
+    net11?: Net_2;
+    net12?: Net_2;
+    net13?: Net_2;
+    net14?: Net_2;
+    net15?: Net_2;
+    net16?: Net_2;
+    net17?: Net_2;
+    net18?: Net_2;
+    net19?: Net_2;
+    net20?: Net_2;
+    net21?: Net_2;
+    net22?: Net_2;
+    net23?: Net_2;
+    net24?: Net_2;
+    net25?: Net_2;
+    net26?: Net_2;
+    net27?: Net_2;
+    net28?: Net_2;
+    net29?: Net_2;
+    net30?: Net_2;
+    net31?: Net_2;
     /**
      * Enable/disable NUMA.
      * @default 0
      */
     numa?: boolean;
-    /**
-     * NUMA topology.
-     * Indexed property: `numa0`, `numa1`, ...
-     * @propertyString cpus=<string>, hostnodes=<string>, memory=<number>, policy=<string>
-     */
-    [key: `numa${number}`]: string;
+    numa0?: Numa_2;
+    numa1?: Numa_2;
+    numa2?: Numa_2;
+    numa3?: Numa_2;
+    numa4?: Numa_2;
+    numa5?: Numa_2;
+    numa6?: Numa_2;
+    numa7?: Numa_2;
     /**
      * Specifies whether a VM will be started during system bootup.
      * @default 0
@@ -7842,15 +8879,9 @@ export namespace Proxmox {
      * @default other
      */
     ostype?: Ostype;
-    /**
-     * Map host parallel devices (n is 0 to 2).
-     * NOTE: This option allows direct access to host hardware. So it is no longer possible to migrate such
-     * machines - use with special care.
-     * CAUTION: Experimental! User reported problems with this option.
-     * Indexed property: `parallel0`, `parallel1`, ...
-     * @pattern /dev/parport\d+|/dev/usb/lp\d+
-     */
-    [key: `parallel${number}`]: string;
+    parallel0?: Parallel;
+    parallel1?: Parallel;
+    parallel2?: Parallel;
     /**
      * Parent snapshot name. This is used internally, and should not be modified.
      * @maxLength 40
@@ -7888,18 +8919,43 @@ export namespace Proxmox {
      * @propertyString aw-bits=<number>, enable-s3=<boolean>, enable-s4=<boolean>, type=<string>, viommu=<string>
      */
     runningmachine?: string;
-    /**
-     * Use volume as SATA hard disk or CD-ROM (n is 0 to 5).
-     * Indexed property: `sata0`, `sata1`, ...
-     * @propertyString aio=<string>, backup=<boolean>, bps=<integer>, bps_max_length=<integer>, bps_rd=<integer>, bps_rd_length=<string>, bps_rd_max_length=<integer>, bps_wr=<integer>, bps_wr_length=<string>, bps_wr_max_length=<integer>, cache=<string>, detect_zeroes=<boolean>, discard=<string>, file=<string>, format=<string>, iops=<integer>, iops_max=<integer>, iops_max_length=<integer>, iops_rd=<integer>, iops_rd_length=<string>, iops_rd_max=<integer>, iops_rd_max_length=<integer>, iops_wr=<integer>, iops_wr_length=<string>, iops_wr_max=<integer>, iops_wr_max_length=<integer>, mbps=<number>, mbps_max=<number>, mbps_rd=<number>, mbps_rd_max=<number>, mbps_wr=<number>, mbps_wr_max=<number>, media=<string>, replicate=<boolean>, rerror=<string>, serial=<string>, shared=<boolean>, size=<string>, snapshot=<boolean>, ssd=<boolean>, volume=<string>, werror=<string>, wwn=<string>
-     */
-    [key: `sata${number}`]: string;
-    /**
-     * Use volume as SCSI hard disk or CD-ROM (n is 0 to 30).
-     * Indexed property: `scsi0`, `scsi1`, ...
-     * @propertyString aio=<string>, backup=<boolean>, bps=<integer>, bps_max_length=<integer>, bps_rd=<integer>, bps_rd_length=<string>, bps_rd_max_length=<integer>, bps_wr=<integer>, bps_wr_length=<string>, bps_wr_max_length=<integer>, cache=<string>, detect_zeroes=<boolean>, discard=<string>, file=<string>, format=<string>, iops=<integer>, iops_max=<integer>, iops_max_length=<integer>, iops_rd=<integer>, iops_rd_length=<string>, iops_rd_max=<integer>, iops_rd_max_length=<integer>, iops_wr=<integer>, iops_wr_length=<string>, iops_wr_max=<integer>, iops_wr_max_length=<integer>, iothread=<boolean>, mbps=<number>, mbps_max=<number>, mbps_rd=<number>, mbps_rd_max=<number>, mbps_wr=<number>, mbps_wr_max=<number>, media=<string>, product=<string>, queues=<integer>, replicate=<boolean>, rerror=<string>, ro=<boolean>, scsiblock=<boolean>, serial=<string>, shared=<boolean>, size=<string>, snapshot=<boolean>, ssd=<boolean>, vendor=<string>, volume=<string>, werror=<string>, wwn=<string>
-     */
-    [key: `scsi${number}`]: string;
+    sata0?: Sata_2;
+    sata1?: Sata_2;
+    sata2?: Sata_2;
+    sata3?: Sata_2;
+    sata4?: Sata_2;
+    sata5?: Sata_2;
+    scsi0?: Scsi_2;
+    scsi1?: Scsi_2;
+    scsi2?: Scsi_2;
+    scsi3?: Scsi_2;
+    scsi4?: Scsi_2;
+    scsi5?: Scsi_2;
+    scsi6?: Scsi_2;
+    scsi7?: Scsi_2;
+    scsi8?: Scsi_2;
+    scsi9?: Scsi_2;
+    scsi10?: Scsi_2;
+    scsi11?: Scsi_2;
+    scsi12?: Scsi_2;
+    scsi13?: Scsi_2;
+    scsi14?: Scsi_2;
+    scsi15?: Scsi_2;
+    scsi16?: Scsi_2;
+    scsi17?: Scsi_2;
+    scsi18?: Scsi_2;
+    scsi19?: Scsi_2;
+    scsi20?: Scsi_2;
+    scsi21?: Scsi_2;
+    scsi22?: Scsi_2;
+    scsi23?: Scsi_2;
+    scsi24?: Scsi_2;
+    scsi25?: Scsi_2;
+    scsi26?: Scsi_2;
+    scsi27?: Scsi_2;
+    scsi28?: Scsi_2;
+    scsi29?: Scsi_2;
+    scsi30?: Scsi_2;
     /**
      * SCSI controller model
      * @default lsi
@@ -7907,17 +8963,10 @@ export namespace Proxmox {
     scsihw?: Scsihw;
     /** cloud-init: Sets DNS search domains for a container. Create will automatically use the setting from the host if neither searchdomain nor nameserver are set. */
     searchdomain?: string;
-    /**
-     * Create a serial device inside the VM (n is 0 to 3), and pass through a
-     * host serial device (i.e. /dev/ttyS0), or create a unix socket on the
-     * host side (use 'qm terminal' to open a terminal connection).
-     * NOTE: If you pass through a host serial device, it is no longer possible to migrate such machines -
-     * use with special care.
-     * CAUTION: Experimental! User reported problems with this option.
-     * Indexed property: `serial0`, `serial1`, ...
-     * @pattern (/dev/[^,]+|socket)
-     */
-    [key: `serial${number}`]: string;
+    serial0?: Serial;
+    serial1?: Serial;
+    serial2?: Serial;
+    serial3?: Serial;
     /**
      * Amount of memory shares for auto-ballooning. The larger the number is, the more memory this VM gets. Number is relative to weights of all other running VMs. Using zero disables auto-ballooning. Auto-ballooning is done by pvestatd.
      * @minimum 0
@@ -7996,18 +9045,276 @@ export namespace Proxmox {
      * @propertyString file=<string>, format=<string>, size=<string>, version=<string>, volume=<string>
      */
     tpmstate0?: string;
-    /**
-     * Reference to unused volumes. This is used internally, and should not be modified manually.
-     * Indexed property: `unused0`, `unused1`, ...
-     * @propertyString file=<string>, volume=<string>
-     */
-    [key: `unused${number}`]: string;
-    /**
-     * Configure an USB device (n is 0 to 4, for machine version >= 7.1 and ostype l26 or windows > 7, n can be up to 14).
-     * Indexed property: `usb0`, `usb1`, ...
-     * @propertyString host=<string>, mapping=<string>, usb3=<boolean>
-     */
-    [key: `usb${number}`]: string;
+    unused0?: Unused_2;
+    unused1?: Unused_2;
+    unused2?: Unused_2;
+    unused3?: Unused_2;
+    unused4?: Unused_2;
+    unused5?: Unused_2;
+    unused6?: Unused_2;
+    unused7?: Unused_2;
+    unused8?: Unused_2;
+    unused9?: Unused_2;
+    unused10?: Unused_2;
+    unused11?: Unused_2;
+    unused12?: Unused_2;
+    unused13?: Unused_2;
+    unused14?: Unused_2;
+    unused15?: Unused_2;
+    unused16?: Unused_2;
+    unused17?: Unused_2;
+    unused18?: Unused_2;
+    unused19?: Unused_2;
+    unused20?: Unused_2;
+    unused21?: Unused_2;
+    unused22?: Unused_2;
+    unused23?: Unused_2;
+    unused24?: Unused_2;
+    unused25?: Unused_2;
+    unused26?: Unused_2;
+    unused27?: Unused_2;
+    unused28?: Unused_2;
+    unused29?: Unused_2;
+    unused30?: Unused_2;
+    unused31?: Unused_2;
+    unused32?: Unused_2;
+    unused33?: Unused_2;
+    unused34?: Unused_2;
+    unused35?: Unused_2;
+    unused36?: Unused_2;
+    unused37?: Unused_2;
+    unused38?: Unused_2;
+    unused39?: Unused_2;
+    unused40?: Unused_2;
+    unused41?: Unused_2;
+    unused42?: Unused_2;
+    unused43?: Unused_2;
+    unused44?: Unused_2;
+    unused45?: Unused_2;
+    unused46?: Unused_2;
+    unused47?: Unused_2;
+    unused48?: Unused_2;
+    unused49?: Unused_2;
+    unused50?: Unused_2;
+    unused51?: Unused_2;
+    unused52?: Unused_2;
+    unused53?: Unused_2;
+    unused54?: Unused_2;
+    unused55?: Unused_2;
+    unused56?: Unused_2;
+    unused57?: Unused_2;
+    unused58?: Unused_2;
+    unused59?: Unused_2;
+    unused60?: Unused_2;
+    unused61?: Unused_2;
+    unused62?: Unused_2;
+    unused63?: Unused_2;
+    unused64?: Unused_2;
+    unused65?: Unused_2;
+    unused66?: Unused_2;
+    unused67?: Unused_2;
+    unused68?: Unused_2;
+    unused69?: Unused_2;
+    unused70?: Unused_2;
+    unused71?: Unused_2;
+    unused72?: Unused_2;
+    unused73?: Unused_2;
+    unused74?: Unused_2;
+    unused75?: Unused_2;
+    unused76?: Unused_2;
+    unused77?: Unused_2;
+    unused78?: Unused_2;
+    unused79?: Unused_2;
+    unused80?: Unused_2;
+    unused81?: Unused_2;
+    unused82?: Unused_2;
+    unused83?: Unused_2;
+    unused84?: Unused_2;
+    unused85?: Unused_2;
+    unused86?: Unused_2;
+    unused87?: Unused_2;
+    unused88?: Unused_2;
+    unused89?: Unused_2;
+    unused90?: Unused_2;
+    unused91?: Unused_2;
+    unused92?: Unused_2;
+    unused93?: Unused_2;
+    unused94?: Unused_2;
+    unused95?: Unused_2;
+    unused96?: Unused_2;
+    unused97?: Unused_2;
+    unused98?: Unused_2;
+    unused99?: Unused_2;
+    unused100?: Unused_2;
+    unused101?: Unused_2;
+    unused102?: Unused_2;
+    unused103?: Unused_2;
+    unused104?: Unused_2;
+    unused105?: Unused_2;
+    unused106?: Unused_2;
+    unused107?: Unused_2;
+    unused108?: Unused_2;
+    unused109?: Unused_2;
+    unused110?: Unused_2;
+    unused111?: Unused_2;
+    unused112?: Unused_2;
+    unused113?: Unused_2;
+    unused114?: Unused_2;
+    unused115?: Unused_2;
+    unused116?: Unused_2;
+    unused117?: Unused_2;
+    unused118?: Unused_2;
+    unused119?: Unused_2;
+    unused120?: Unused_2;
+    unused121?: Unused_2;
+    unused122?: Unused_2;
+    unused123?: Unused_2;
+    unused124?: Unused_2;
+    unused125?: Unused_2;
+    unused126?: Unused_2;
+    unused127?: Unused_2;
+    unused128?: Unused_2;
+    unused129?: Unused_2;
+    unused130?: Unused_2;
+    unused131?: Unused_2;
+    unused132?: Unused_2;
+    unused133?: Unused_2;
+    unused134?: Unused_2;
+    unused135?: Unused_2;
+    unused136?: Unused_2;
+    unused137?: Unused_2;
+    unused138?: Unused_2;
+    unused139?: Unused_2;
+    unused140?: Unused_2;
+    unused141?: Unused_2;
+    unused142?: Unused_2;
+    unused143?: Unused_2;
+    unused144?: Unused_2;
+    unused145?: Unused_2;
+    unused146?: Unused_2;
+    unused147?: Unused_2;
+    unused148?: Unused_2;
+    unused149?: Unused_2;
+    unused150?: Unused_2;
+    unused151?: Unused_2;
+    unused152?: Unused_2;
+    unused153?: Unused_2;
+    unused154?: Unused_2;
+    unused155?: Unused_2;
+    unused156?: Unused_2;
+    unused157?: Unused_2;
+    unused158?: Unused_2;
+    unused159?: Unused_2;
+    unused160?: Unused_2;
+    unused161?: Unused_2;
+    unused162?: Unused_2;
+    unused163?: Unused_2;
+    unused164?: Unused_2;
+    unused165?: Unused_2;
+    unused166?: Unused_2;
+    unused167?: Unused_2;
+    unused168?: Unused_2;
+    unused169?: Unused_2;
+    unused170?: Unused_2;
+    unused171?: Unused_2;
+    unused172?: Unused_2;
+    unused173?: Unused_2;
+    unused174?: Unused_2;
+    unused175?: Unused_2;
+    unused176?: Unused_2;
+    unused177?: Unused_2;
+    unused178?: Unused_2;
+    unused179?: Unused_2;
+    unused180?: Unused_2;
+    unused181?: Unused_2;
+    unused182?: Unused_2;
+    unused183?: Unused_2;
+    unused184?: Unused_2;
+    unused185?: Unused_2;
+    unused186?: Unused_2;
+    unused187?: Unused_2;
+    unused188?: Unused_2;
+    unused189?: Unused_2;
+    unused190?: Unused_2;
+    unused191?: Unused_2;
+    unused192?: Unused_2;
+    unused193?: Unused_2;
+    unused194?: Unused_2;
+    unused195?: Unused_2;
+    unused196?: Unused_2;
+    unused197?: Unused_2;
+    unused198?: Unused_2;
+    unused199?: Unused_2;
+    unused200?: Unused_2;
+    unused201?: Unused_2;
+    unused202?: Unused_2;
+    unused203?: Unused_2;
+    unused204?: Unused_2;
+    unused205?: Unused_2;
+    unused206?: Unused_2;
+    unused207?: Unused_2;
+    unused208?: Unused_2;
+    unused209?: Unused_2;
+    unused210?: Unused_2;
+    unused211?: Unused_2;
+    unused212?: Unused_2;
+    unused213?: Unused_2;
+    unused214?: Unused_2;
+    unused215?: Unused_2;
+    unused216?: Unused_2;
+    unused217?: Unused_2;
+    unused218?: Unused_2;
+    unused219?: Unused_2;
+    unused220?: Unused_2;
+    unused221?: Unused_2;
+    unused222?: Unused_2;
+    unused223?: Unused_2;
+    unused224?: Unused_2;
+    unused225?: Unused_2;
+    unused226?: Unused_2;
+    unused227?: Unused_2;
+    unused228?: Unused_2;
+    unused229?: Unused_2;
+    unused230?: Unused_2;
+    unused231?: Unused_2;
+    unused232?: Unused_2;
+    unused233?: Unused_2;
+    unused234?: Unused_2;
+    unused235?: Unused_2;
+    unused236?: Unused_2;
+    unused237?: Unused_2;
+    unused238?: Unused_2;
+    unused239?: Unused_2;
+    unused240?: Unused_2;
+    unused241?: Unused_2;
+    unused242?: Unused_2;
+    unused243?: Unused_2;
+    unused244?: Unused_2;
+    unused245?: Unused_2;
+    unused246?: Unused_2;
+    unused247?: Unused_2;
+    unused248?: Unused_2;
+    unused249?: Unused_2;
+    unused250?: Unused_2;
+    unused251?: Unused_2;
+    unused252?: Unused_2;
+    unused253?: Unused_2;
+    unused254?: Unused_2;
+    unused255?: Unused_2;
+    usb0?: Usb_2;
+    usb1?: Usb_2;
+    usb2?: Usb_2;
+    usb3?: Usb_2;
+    usb4?: Usb_2;
+    usb5?: Usb_2;
+    usb6?: Usb_2;
+    usb7?: Usb_2;
+    usb8?: Usb_2;
+    usb9?: Usb_2;
+    usb10?: Usb_2;
+    usb11?: Usb_2;
+    usb12?: Usb_2;
+    usb13?: Usb_2;
     /**
      * Number of hotplugged vcpus.
      * @minimum 1
@@ -8020,18 +9327,32 @@ export namespace Proxmox {
      * @propertyString clipboard=<string>, memory=<integer>, type=<string>
      */
     vga?: string;
-    /**
-     * Use volume as VIRTIO hard disk (n is 0 to 15).
-     * Indexed property: `virtio0`, `virtio1`, ...
-     * @propertyString aio=<string>, backup=<boolean>, bps=<integer>, bps_max_length=<integer>, bps_rd=<integer>, bps_rd_length=<string>, bps_rd_max_length=<integer>, bps_wr=<integer>, bps_wr_length=<string>, bps_wr_max_length=<integer>, cache=<string>, detect_zeroes=<boolean>, discard=<string>, file=<string>, format=<string>, iops=<integer>, iops_max=<integer>, iops_max_length=<integer>, iops_rd=<integer>, iops_rd_length=<string>, iops_rd_max=<integer>, iops_rd_max_length=<integer>, iops_wr=<integer>, iops_wr_length=<string>, iops_wr_max=<integer>, iops_wr_max_length=<integer>, iothread=<boolean>, mbps=<number>, mbps_max=<number>, mbps_rd=<number>, mbps_rd_max=<number>, mbps_wr=<number>, mbps_wr_max=<number>, media=<string>, replicate=<boolean>, rerror=<string>, ro=<boolean>, serial=<string>, shared=<boolean>, size=<string>, snapshot=<boolean>, volume=<string>, werror=<string>
-     */
-    [key: `virtio${number}`]: string;
-    /**
-     * Configuration for sharing a directory between host and guest using Virtio-fs.
-     * Indexed property: `virtiofs0`, `virtiofs1`, ...
-     * @propertyString cache=<string>, direct-io=<boolean>, dirid=<string>, expose-acl=<boolean>, expose-xattr=<boolean>
-     */
-    [key: `virtiofs${number}`]: string;
+    virtio0?: Virtio_2;
+    virtio1?: Virtio_2;
+    virtio2?: Virtio_2;
+    virtio3?: Virtio_2;
+    virtio4?: Virtio_2;
+    virtio5?: Virtio_2;
+    virtio6?: Virtio_2;
+    virtio7?: Virtio_2;
+    virtio8?: Virtio_2;
+    virtio9?: Virtio_2;
+    virtio10?: Virtio_2;
+    virtio11?: Virtio_2;
+    virtio12?: Virtio_2;
+    virtio13?: Virtio_2;
+    virtio14?: Virtio_2;
+    virtio15?: Virtio_2;
+    virtiofs0?: Virtiofs_2;
+    virtiofs1?: Virtiofs_2;
+    virtiofs2?: Virtiofs_2;
+    virtiofs3?: Virtiofs_2;
+    virtiofs4?: Virtiofs_2;
+    virtiofs5?: Virtiofs_2;
+    virtiofs6?: Virtiofs_2;
+    virtiofs7?: Virtiofs_2;
+    virtiofs8?: Virtiofs_2;
+    virtiofs9?: Virtiofs_2;
     /**
      * The VM generation ID (vmgenid) device exposes a 128-bit integer value identifier to the guest OS. This allows to notify the guest operating system when the virtual machine is executed with a different configuration (e.g. snapshot execution or creation from a template). The guest operating system notices the change, and is then able to react as appropriate by marking its copies of distributed databases as dirty, re-initializing its random number generator, etc.
      * Note that auto-creation only works when done through API/CLI create or update methods, but not when manually editing the config file.
@@ -10697,13 +12018,14 @@ export namespace Proxmox {
            * @typetext <string>
            */
           clustername: PveNode;
-          /**
-           * Address and priority information of a single corosync link. (up to 8 links supported; link0..link7)
-           * Indexed property: `link0`, `link1`, ...
-           * @propertyString address=<string>, priority=<integer>
-           * @typetext [address=]<IP> [,priority=<integer>]
-           */
-          [key: `link${number}`]: string;
+          link0?: Link;
+          link1?: Link;
+          link2?: Link;
+          link3?: Link;
+          link4?: Link;
+          link5?: Link;
+          link6?: Link;
+          link7?: Link;
           /**
            * Node id for this node.
            * @minimum 1
@@ -10758,13 +12080,14 @@ export namespace Proxmox {
                * @typetext <boolean>
                */
               force?: boolean;
-              /**
-               * Address and priority information of a single corosync link. (up to 8 links supported; link0..link7)
-               * Indexed property: `link0`, `link1`, ...
-               * @propertyString address=<string>, priority=<integer>
-               * @typetext [address=]<IP> [,priority=<integer>]
-               */
-              [key: `link${number}`]: string;
+              link0?: Link;
+              link1?: Link;
+              link2?: Link;
+              link3?: Link;
+              link4?: Link;
+              link5?: Link;
+              link6?: Link;
+              link7?: Link;
               /**
                * IP Address of node to add. Used as fallback if no links are given.
                * @format ip
@@ -10829,13 +12152,14 @@ export namespace Proxmox {
              * @typetext <string>
              */
             hostname: string;
-            /**
-             * Address and priority information of a single corosync link. (up to 8 links supported; link0..link7)
-             * Indexed property: `link0`, `link1`, ...
-             * @propertyString address=<string>, priority=<integer>
-             * @typetext [address=]<IP> [,priority=<integer>]
-             */
-            [key: `link${number}`]: string;
+            link0?: Link;
+            link1?: Link;
+            link2?: Link;
+            link3?: Link;
+            link4?: Link;
+            link5?: Link;
+            link6?: Link;
+            link7?: Link;
             /**
              * Node id for this node.
              * @minimum 1
@@ -16641,16 +17965,22 @@ export namespace Proxmox {
              * @typetext <string>
              */
             hookscript?: PveVolumeId;
-            /**
-             * Map host PCI devices into guest.
-             * NOTE: This option allows direct access to host hardware. So it is no longer
-             * possible to migrate such machines - use with special care.
-             * CAUTION: Experimental! User reported problems with this option.
-             * Indexed property: `hostpci0`, `hostpci1`, ...
-             * @format pve-qm-hostpci
-             * @typetext [[host=]<HOSTPCIID[;HOSTPCIID2...]>] [,device-id=<hex id>] [,driver=<vfio|keep>] [,legacy-igd=<1|0>] [,mapping=<mapping-id>] [,mdev=<string>] [,pcie=<1|0>] [,rombar=<1|0>] [,romfile=<string>] [,sub-device-id=<hex id>] [,sub-vendor-id=<hex id>] [,vendor-id=<hex id>] [,x-vga=<1|0>]
-             */
-            [key: `hostpci${number}`]: PveQmHostpci;
+            hostpci0?: PveQmHostpci;
+            hostpci1?: PveQmHostpci;
+            hostpci2?: PveQmHostpci;
+            hostpci3?: PveQmHostpci;
+            hostpci4?: PveQmHostpci;
+            hostpci5?: PveQmHostpci;
+            hostpci6?: PveQmHostpci;
+            hostpci7?: PveQmHostpci;
+            hostpci8?: PveQmHostpci;
+            hostpci9?: PveQmHostpci;
+            hostpci10?: PveQmHostpci;
+            hostpci11?: PveQmHostpci;
+            hostpci12?: PveQmHostpci;
+            hostpci13?: PveQmHostpci;
+            hostpci14?: PveQmHostpci;
+            hostpci15?: PveQmHostpci;
             /**
              * Selectively enable hotplug features. This is a comma separated list of hotplug features: 'network', 'disk', 'cpu', 'memory', 'usb' and 'cloudinit'. Use '0' to disable hotplug completely. Using '1' as value is an alias for the default `network,disk,usb`. USB hotplugging is possible for guests with machine version >= 7.1 and ostype l26 or windows > 7.
              * @default network,disk,usb
@@ -16663,13 +17993,10 @@ export namespace Proxmox {
              * Sets the size of hugepages in MiB. If the value is set to 'any' then 1 GiB hugepages will be used if possible, otherwise the size will fall back to 2 MiB.
              */
             hugepages?: Hugepages;
-            /**
-             * Use volume as IDE hard disk or CD-ROM (n is 0 to 3). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. Use STORAGE_ID:0 and the 'import-from' parameter to import from an existing volume.
-             * Indexed property: `ide0`, `ide1`, ...
-             * @propertyString aio=<string>, backup=<boolean>, bps=<integer>, bps_max_length=<integer>, bps_rd=<integer>, bps_rd_length=<string>, bps_rd_max_length=<integer>, bps_wr=<integer>, bps_wr_length=<string>, bps_wr_max_length=<integer>, cache=<string>, detect_zeroes=<boolean>, discard=<string>, file=<string>, format=<string>, import-from=<string>, iops=<integer>, iops_max=<integer>, iops_max_length=<integer>, iops_rd=<integer>, iops_rd_length=<string>, iops_rd_max=<integer>, iops_rd_max_length=<integer>, iops_wr=<integer>, iops_wr_length=<string>, iops_wr_max=<integer>, iops_wr_max_length=<integer>, mbps=<number>, mbps_max=<number>, mbps_rd=<number>, mbps_rd_max=<number>, mbps_wr=<number>, mbps_wr_max=<number>, media=<string>, model=<string>, replicate=<boolean>, rerror=<string>, serial=<string>, shared=<boolean>, size=<string>, snapshot=<boolean>, ssd=<boolean>, volume=<string>, werror=<string>, wwn=<string>
-             * @typetext [file=]<volume> [,aio=<native|threads|io_uring>] [,backup=<1|0>] [,bps=<bps>] [,bps_max_length=<seconds>] [,bps_rd=<bps>] [,bps_rd_max_length=<seconds>] [,bps_wr=<bps>] [,bps_wr_max_length=<seconds>] [,cache=<enum>] [,detect_zeroes=<1|0>] [,discard=<ignore|on>] [,format=<enum>] [,import-from=<source volume>] [,iops=<iops>] [,iops_max=<iops>] [,iops_max_length=<seconds>] [,iops_rd=<iops>] [,iops_rd_max=<iops>] [,iops_rd_max_length=<seconds>] [,iops_wr=<iops>] [,iops_wr_max=<iops>] [,iops_wr_max_length=<seconds>] [,mbps=<mbps>] [,mbps_max=<mbps>] [,mbps_rd=<mbps>] [,mbps_rd_max=<mbps>] [,mbps_wr=<mbps>] [,mbps_wr_max=<mbps>] [,media=<cdrom|disk>] [,model=<model>] [,replicate=<1|0>] [,rerror=<ignore|report|stop>] [,serial=<serial>] [,shared=<1|0>] [,size=<DiskSize>] [,snapshot=<1|0>] [,ssd=<1|0>] [,werror=<enum>] [,wwn=<wwn>]
-             */
-            [key: `ide${number}`]: string;
+            ide0?: Ide;
+            ide1?: Ide;
+            ide2?: Ide;
+            ide3?: Ide;
             /**
              * A file-based storage with 'images' content-type enabled, which is used as an intermediary extraction storage during import. Defaults to the source storage.
              * @format_description storage ID
@@ -16683,20 +18010,38 @@ export namespace Proxmox {
              * @typetext [type=]<tdx-type> ,attestation=<1|0> [,vsock-cid=<integer>] [,vsock-port=<integer>]
              */
             "intel-tdx"?: PveQemuTdxFmt;
-            /**
-             * cloud-init: Specify IP addresses and gateways for the corresponding interface.
-             * IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.
-             * The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit
-             * gateway should be provided.
-             * For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires
-             * cloud-init 19.4 or newer.
-             * If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using
-             * dhcp on IPv4.
-             * Indexed property: `ipconfig0`, `ipconfig1`, ...
-             * @format pve-qm-ipconfig
-             * @typetext [gw=<GatewayIPv4>] [,gw6=<GatewayIPv6>] [,ip=<IPv4Format/CIDR>] [,ip6=<IPv6Format/CIDR>]
-             */
-            [key: `ipconfig${number}`]: PveQmIpconfig;
+            ipconfig0?: PveQmIpconfig;
+            ipconfig1?: PveQmIpconfig;
+            ipconfig2?: PveQmIpconfig;
+            ipconfig3?: PveQmIpconfig;
+            ipconfig4?: PveQmIpconfig;
+            ipconfig5?: PveQmIpconfig;
+            ipconfig6?: PveQmIpconfig;
+            ipconfig7?: PveQmIpconfig;
+            ipconfig8?: PveQmIpconfig;
+            ipconfig9?: PveQmIpconfig;
+            ipconfig10?: PveQmIpconfig;
+            ipconfig11?: PveQmIpconfig;
+            ipconfig12?: PveQmIpconfig;
+            ipconfig13?: PveQmIpconfig;
+            ipconfig14?: PveQmIpconfig;
+            ipconfig15?: PveQmIpconfig;
+            ipconfig16?: PveQmIpconfig;
+            ipconfig17?: PveQmIpconfig;
+            ipconfig18?: PveQmIpconfig;
+            ipconfig19?: PveQmIpconfig;
+            ipconfig20?: PveQmIpconfig;
+            ipconfig21?: PveQmIpconfig;
+            ipconfig22?: PveQmIpconfig;
+            ipconfig23?: PveQmIpconfig;
+            ipconfig24?: PveQmIpconfig;
+            ipconfig25?: PveQmIpconfig;
+            ipconfig26?: PveQmIpconfig;
+            ipconfig27?: PveQmIpconfig;
+            ipconfig28?: PveQmIpconfig;
+            ipconfig29?: PveQmIpconfig;
+            ipconfig30?: PveQmIpconfig;
+            ipconfig31?: PveQmIpconfig;
             /**
              * Inter-VM shared memory. Useful for direct communication between VMs, or to the host.
              * @propertyString name=<string>, size=<integer>
@@ -16770,26 +18115,52 @@ export namespace Proxmox {
              * @typetext <string>
              */
             nameserver?: AddressList;
-            /**
-             * Specify network devices.
-             * Indexed property: `net0`, `net1`, ...
-             * @propertyString bridge=<string>, e1000=<string>, e1000-82540em=<string>, e1000-82544gc=<string>, e1000-82545em=<string>, e1000e=<string>, firewall=<boolean>, host-tunnel=<boolean>, i82551=<string>, i82557b=<string>, i82559er=<string>, link_down=<boolean>, macaddr=<string>, model=<string>, mtu=<integer>, ne2k_isa=<string>, ne2k_pci=<string>, pcnet=<string>, queues=<integer>, rate=<number>, rtl8139=<string>, tag=<integer>, trunks=<string>, virtio=<string>, vmxnet3=<string>
-             * @typetext [model=]<enum> [,bridge=<bridge>] [,firewall=<1|0>] [,host-tunnel=<1|0>] [,link_down=<1|0>] [,macaddr=<XX:XX:XX:XX:XX:XX>] [,mtu=<integer>] [,queues=<integer>] [,rate=<number>] [,tag=<integer>] [,trunks=<vlanid[;vlanid...]>] [,<model>=<macaddr>]
-             */
-            [key: `net${number}`]: string;
+            net0?: Net;
+            net1?: Net;
+            net2?: Net;
+            net3?: Net;
+            net4?: Net;
+            net5?: Net;
+            net6?: Net;
+            net7?: Net;
+            net8?: Net;
+            net9?: Net;
+            net10?: Net;
+            net11?: Net;
+            net12?: Net;
+            net13?: Net;
+            net14?: Net;
+            net15?: Net;
+            net16?: Net;
+            net17?: Net;
+            net18?: Net;
+            net19?: Net;
+            net20?: Net;
+            net21?: Net;
+            net22?: Net;
+            net23?: Net;
+            net24?: Net;
+            net25?: Net;
+            net26?: Net;
+            net27?: Net;
+            net28?: Net;
+            net29?: Net;
+            net30?: Net;
+            net31?: Net;
             /**
              * Enable/disable NUMA.
              * @default 0
              * @typetext <boolean>
              */
             numa?: boolean;
-            /**
-             * NUMA topology.
-             * Indexed property: `numa0`, `numa1`, ...
-             * @propertyString cpus=<string>, hostnodes=<string>, memory=<number>, policy=<string>
-             * @typetext cpus=<id[-id];...> [,hostnodes=<id[-id];...>] [,memory=<number>] [,policy=<preferred|bind|interleave>]
-             */
-            [key: `numa${number}`]: string;
+            numa0?: Numa;
+            numa1?: Numa;
+            numa2?: Numa;
+            numa3?: Numa;
+            numa4?: Numa;
+            numa5?: Numa;
+            numa6?: Numa;
+            numa7?: Numa;
             /**
              * Specifies whether a VM will be started during system bootup.
              * @default 0
@@ -16816,15 +18187,9 @@ export namespace Proxmox {
              * @default other
              */
             ostype?: Ostype;
-            /**
-             * Map host parallel devices (n is 0 to 2).
-             * NOTE: This option allows direct access to host hardware. So it is no longer possible to migrate such
-             * machines - use with special care.
-             * CAUTION: Experimental! User reported problems with this option.
-             * Indexed property: `parallel0`, `parallel1`, ...
-             * @pattern /dev/parport\d+|/dev/usb/lp\d+
-             */
-            [key: `parallel${number}`]: string;
+            parallel0?: Parallel;
+            parallel1?: Parallel;
+            parallel2?: Parallel;
             /**
              * Add the VM to the specified pool.
              * @format pve-poolid
@@ -16849,20 +18214,43 @@ export namespace Proxmox {
              * @typetext [source=]</dev/urandom|/dev/random|/dev/hwrng> [,max_bytes=<integer>] [,period=<integer>]
              */
             rng0?: PveQmRng;
-            /**
-             * Use volume as SATA hard disk or CD-ROM (n is 0 to 5). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. Use STORAGE_ID:0 and the 'import-from' parameter to import from an existing volume.
-             * Indexed property: `sata0`, `sata1`, ...
-             * @propertyString aio=<string>, backup=<boolean>, bps=<integer>, bps_max_length=<integer>, bps_rd=<integer>, bps_rd_length=<string>, bps_rd_max_length=<integer>, bps_wr=<integer>, bps_wr_length=<string>, bps_wr_max_length=<integer>, cache=<string>, detect_zeroes=<boolean>, discard=<string>, file=<string>, format=<string>, import-from=<string>, iops=<integer>, iops_max=<integer>, iops_max_length=<integer>, iops_rd=<integer>, iops_rd_length=<string>, iops_rd_max=<integer>, iops_rd_max_length=<integer>, iops_wr=<integer>, iops_wr_length=<string>, iops_wr_max=<integer>, iops_wr_max_length=<integer>, mbps=<number>, mbps_max=<number>, mbps_rd=<number>, mbps_rd_max=<number>, mbps_wr=<number>, mbps_wr_max=<number>, media=<string>, replicate=<boolean>, rerror=<string>, serial=<string>, shared=<boolean>, size=<string>, snapshot=<boolean>, ssd=<boolean>, volume=<string>, werror=<string>, wwn=<string>
-             * @typetext [file=]<volume> [,aio=<native|threads|io_uring>] [,backup=<1|0>] [,bps=<bps>] [,bps_max_length=<seconds>] [,bps_rd=<bps>] [,bps_rd_max_length=<seconds>] [,bps_wr=<bps>] [,bps_wr_max_length=<seconds>] [,cache=<enum>] [,detect_zeroes=<1|0>] [,discard=<ignore|on>] [,format=<enum>] [,import-from=<source volume>] [,iops=<iops>] [,iops_max=<iops>] [,iops_max_length=<seconds>] [,iops_rd=<iops>] [,iops_rd_max=<iops>] [,iops_rd_max_length=<seconds>] [,iops_wr=<iops>] [,iops_wr_max=<iops>] [,iops_wr_max_length=<seconds>] [,mbps=<mbps>] [,mbps_max=<mbps>] [,mbps_rd=<mbps>] [,mbps_rd_max=<mbps>] [,mbps_wr=<mbps>] [,mbps_wr_max=<mbps>] [,media=<cdrom|disk>] [,replicate=<1|0>] [,rerror=<ignore|report|stop>] [,serial=<serial>] [,shared=<1|0>] [,size=<DiskSize>] [,snapshot=<1|0>] [,ssd=<1|0>] [,werror=<enum>] [,wwn=<wwn>]
-             */
-            [key: `sata${number}`]: string;
-            /**
-             * Use volume as SCSI hard disk or CD-ROM (n is 0 to 30). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. Use STORAGE_ID:0 and the 'import-from' parameter to import from an existing volume.
-             * Indexed property: `scsi0`, `scsi1`, ...
-             * @propertyString aio=<string>, backup=<boolean>, bps=<integer>, bps_max_length=<integer>, bps_rd=<integer>, bps_rd_length=<string>, bps_rd_max_length=<integer>, bps_wr=<integer>, bps_wr_length=<string>, bps_wr_max_length=<integer>, cache=<string>, detect_zeroes=<boolean>, discard=<string>, file=<string>, format=<string>, import-from=<string>, iops=<integer>, iops_max=<integer>, iops_max_length=<integer>, iops_rd=<integer>, iops_rd_length=<string>, iops_rd_max=<integer>, iops_rd_max_length=<integer>, iops_wr=<integer>, iops_wr_length=<string>, iops_wr_max=<integer>, iops_wr_max_length=<integer>, iothread=<boolean>, mbps=<number>, mbps_max=<number>, mbps_rd=<number>, mbps_rd_max=<number>, mbps_wr=<number>, mbps_wr_max=<number>, media=<string>, product=<string>, queues=<integer>, replicate=<boolean>, rerror=<string>, ro=<boolean>, scsiblock=<boolean>, serial=<string>, shared=<boolean>, size=<string>, snapshot=<boolean>, ssd=<boolean>, vendor=<string>, volume=<string>, werror=<string>, wwn=<string>
-             * @typetext [file=]<volume> [,aio=<native|threads|io_uring>] [,backup=<1|0>] [,bps=<bps>] [,bps_max_length=<seconds>] [,bps_rd=<bps>] [,bps_rd_max_length=<seconds>] [,bps_wr=<bps>] [,bps_wr_max_length=<seconds>] [,cache=<enum>] [,detect_zeroes=<1|0>] [,discard=<ignore|on>] [,format=<enum>] [,import-from=<source volume>] [,iops=<iops>] [,iops_max=<iops>] [,iops_max_length=<seconds>] [,iops_rd=<iops>] [,iops_rd_max=<iops>] [,iops_rd_max_length=<seconds>] [,iops_wr=<iops>] [,iops_wr_max=<iops>] [,iops_wr_max_length=<seconds>] [,iothread=<1|0>] [,mbps=<mbps>] [,mbps_max=<mbps>] [,mbps_rd=<mbps>] [,mbps_rd_max=<mbps>] [,mbps_wr=<mbps>] [,mbps_wr_max=<mbps>] [,media=<cdrom|disk>] [,product=<product>] [,queues=<integer>] [,replicate=<1|0>] [,rerror=<ignore|report|stop>] [,ro=<1|0>] [,scsiblock=<1|0>] [,serial=<serial>] [,shared=<1|0>] [,size=<DiskSize>] [,snapshot=<1|0>] [,ssd=<1|0>] [,vendor=<vendor>] [,werror=<enum>] [,wwn=<wwn>]
-             */
-            [key: `scsi${number}`]: string;
+            sata0?: Sata;
+            sata1?: Sata;
+            sata2?: Sata;
+            sata3?: Sata;
+            sata4?: Sata;
+            sata5?: Sata;
+            scsi0?: Scsi;
+            scsi1?: Scsi;
+            scsi2?: Scsi;
+            scsi3?: Scsi;
+            scsi4?: Scsi;
+            scsi5?: Scsi;
+            scsi6?: Scsi;
+            scsi7?: Scsi;
+            scsi8?: Scsi;
+            scsi9?: Scsi;
+            scsi10?: Scsi;
+            scsi11?: Scsi;
+            scsi12?: Scsi;
+            scsi13?: Scsi;
+            scsi14?: Scsi;
+            scsi15?: Scsi;
+            scsi16?: Scsi;
+            scsi17?: Scsi;
+            scsi18?: Scsi;
+            scsi19?: Scsi;
+            scsi20?: Scsi;
+            scsi21?: Scsi;
+            scsi22?: Scsi;
+            scsi23?: Scsi;
+            scsi24?: Scsi;
+            scsi25?: Scsi;
+            scsi26?: Scsi;
+            scsi27?: Scsi;
+            scsi28?: Scsi;
+            scsi29?: Scsi;
+            scsi30?: Scsi;
             /**
              * SCSI controller model
              * @default lsi
@@ -16873,17 +18261,10 @@ export namespace Proxmox {
              * @typetext <string>
              */
             searchdomain?: string;
-            /**
-             * Create a serial device inside the VM (n is 0 to 3), and pass through a
-             * host serial device (i.e. /dev/ttyS0), or create a unix socket on the
-             * host side (use 'qm terminal' to open a terminal connection).
-             * NOTE: If you pass through a host serial device, it is no longer possible to migrate such machines -
-             * use with special care.
-             * CAUTION: Experimental! User reported problems with this option.
-             * Indexed property: `serial0`, `serial1`, ...
-             * @pattern (/dev/[^,]+|socket)
-             */
-            [key: `serial${number}`]: string;
+            serial0?: Serial;
+            serial1?: Serial;
+            serial2?: Serial;
+            serial3?: Serial;
             /**
              * Amount of memory shares for auto-ballooning. The larger the number is, the more memory this VM gets. Number is relative to weights of all other running VMs. Using zero disables auto-ballooning. Auto-ballooning is done by pvestatd.
              * @minimum 0
@@ -16987,20 +18368,276 @@ export namespace Proxmox {
              * @requires archive
              */
             unique?: boolean;
-            /**
-             * Reference to unused volumes. This is used internally, and should not be modified manually.
-             * Indexed property: `unused0`, `unused1`, ...
-             * @propertyString file=<string>, volume=<string>
-             * @typetext [file=]<volume>
-             */
-            [key: `unused${number}`]: string;
-            /**
-             * Configure an USB device (n is 0 to 4, for machine version >= 7.1 and ostype l26 or windows > 7, n can be up to 14).
-             * Indexed property: `usb0`, `usb1`, ...
-             * @propertyString host=<string>, mapping=<string>, usb3=<boolean>
-             * @typetext [[host=]<HOSTUSBDEVICE|spice>] [,mapping=<mapping-id>] [,usb3=<1|0>]
-             */
-            [key: `usb${number}`]: string;
+            unused0?: Unused;
+            unused1?: Unused;
+            unused2?: Unused;
+            unused3?: Unused;
+            unused4?: Unused;
+            unused5?: Unused;
+            unused6?: Unused;
+            unused7?: Unused;
+            unused8?: Unused;
+            unused9?: Unused;
+            unused10?: Unused;
+            unused11?: Unused;
+            unused12?: Unused;
+            unused13?: Unused;
+            unused14?: Unused;
+            unused15?: Unused;
+            unused16?: Unused;
+            unused17?: Unused;
+            unused18?: Unused;
+            unused19?: Unused;
+            unused20?: Unused;
+            unused21?: Unused;
+            unused22?: Unused;
+            unused23?: Unused;
+            unused24?: Unused;
+            unused25?: Unused;
+            unused26?: Unused;
+            unused27?: Unused;
+            unused28?: Unused;
+            unused29?: Unused;
+            unused30?: Unused;
+            unused31?: Unused;
+            unused32?: Unused;
+            unused33?: Unused;
+            unused34?: Unused;
+            unused35?: Unused;
+            unused36?: Unused;
+            unused37?: Unused;
+            unused38?: Unused;
+            unused39?: Unused;
+            unused40?: Unused;
+            unused41?: Unused;
+            unused42?: Unused;
+            unused43?: Unused;
+            unused44?: Unused;
+            unused45?: Unused;
+            unused46?: Unused;
+            unused47?: Unused;
+            unused48?: Unused;
+            unused49?: Unused;
+            unused50?: Unused;
+            unused51?: Unused;
+            unused52?: Unused;
+            unused53?: Unused;
+            unused54?: Unused;
+            unused55?: Unused;
+            unused56?: Unused;
+            unused57?: Unused;
+            unused58?: Unused;
+            unused59?: Unused;
+            unused60?: Unused;
+            unused61?: Unused;
+            unused62?: Unused;
+            unused63?: Unused;
+            unused64?: Unused;
+            unused65?: Unused;
+            unused66?: Unused;
+            unused67?: Unused;
+            unused68?: Unused;
+            unused69?: Unused;
+            unused70?: Unused;
+            unused71?: Unused;
+            unused72?: Unused;
+            unused73?: Unused;
+            unused74?: Unused;
+            unused75?: Unused;
+            unused76?: Unused;
+            unused77?: Unused;
+            unused78?: Unused;
+            unused79?: Unused;
+            unused80?: Unused;
+            unused81?: Unused;
+            unused82?: Unused;
+            unused83?: Unused;
+            unused84?: Unused;
+            unused85?: Unused;
+            unused86?: Unused;
+            unused87?: Unused;
+            unused88?: Unused;
+            unused89?: Unused;
+            unused90?: Unused;
+            unused91?: Unused;
+            unused92?: Unused;
+            unused93?: Unused;
+            unused94?: Unused;
+            unused95?: Unused;
+            unused96?: Unused;
+            unused97?: Unused;
+            unused98?: Unused;
+            unused99?: Unused;
+            unused100?: Unused;
+            unused101?: Unused;
+            unused102?: Unused;
+            unused103?: Unused;
+            unused104?: Unused;
+            unused105?: Unused;
+            unused106?: Unused;
+            unused107?: Unused;
+            unused108?: Unused;
+            unused109?: Unused;
+            unused110?: Unused;
+            unused111?: Unused;
+            unused112?: Unused;
+            unused113?: Unused;
+            unused114?: Unused;
+            unused115?: Unused;
+            unused116?: Unused;
+            unused117?: Unused;
+            unused118?: Unused;
+            unused119?: Unused;
+            unused120?: Unused;
+            unused121?: Unused;
+            unused122?: Unused;
+            unused123?: Unused;
+            unused124?: Unused;
+            unused125?: Unused;
+            unused126?: Unused;
+            unused127?: Unused;
+            unused128?: Unused;
+            unused129?: Unused;
+            unused130?: Unused;
+            unused131?: Unused;
+            unused132?: Unused;
+            unused133?: Unused;
+            unused134?: Unused;
+            unused135?: Unused;
+            unused136?: Unused;
+            unused137?: Unused;
+            unused138?: Unused;
+            unused139?: Unused;
+            unused140?: Unused;
+            unused141?: Unused;
+            unused142?: Unused;
+            unused143?: Unused;
+            unused144?: Unused;
+            unused145?: Unused;
+            unused146?: Unused;
+            unused147?: Unused;
+            unused148?: Unused;
+            unused149?: Unused;
+            unused150?: Unused;
+            unused151?: Unused;
+            unused152?: Unused;
+            unused153?: Unused;
+            unused154?: Unused;
+            unused155?: Unused;
+            unused156?: Unused;
+            unused157?: Unused;
+            unused158?: Unused;
+            unused159?: Unused;
+            unused160?: Unused;
+            unused161?: Unused;
+            unused162?: Unused;
+            unused163?: Unused;
+            unused164?: Unused;
+            unused165?: Unused;
+            unused166?: Unused;
+            unused167?: Unused;
+            unused168?: Unused;
+            unused169?: Unused;
+            unused170?: Unused;
+            unused171?: Unused;
+            unused172?: Unused;
+            unused173?: Unused;
+            unused174?: Unused;
+            unused175?: Unused;
+            unused176?: Unused;
+            unused177?: Unused;
+            unused178?: Unused;
+            unused179?: Unused;
+            unused180?: Unused;
+            unused181?: Unused;
+            unused182?: Unused;
+            unused183?: Unused;
+            unused184?: Unused;
+            unused185?: Unused;
+            unused186?: Unused;
+            unused187?: Unused;
+            unused188?: Unused;
+            unused189?: Unused;
+            unused190?: Unused;
+            unused191?: Unused;
+            unused192?: Unused;
+            unused193?: Unused;
+            unused194?: Unused;
+            unused195?: Unused;
+            unused196?: Unused;
+            unused197?: Unused;
+            unused198?: Unused;
+            unused199?: Unused;
+            unused200?: Unused;
+            unused201?: Unused;
+            unused202?: Unused;
+            unused203?: Unused;
+            unused204?: Unused;
+            unused205?: Unused;
+            unused206?: Unused;
+            unused207?: Unused;
+            unused208?: Unused;
+            unused209?: Unused;
+            unused210?: Unused;
+            unused211?: Unused;
+            unused212?: Unused;
+            unused213?: Unused;
+            unused214?: Unused;
+            unused215?: Unused;
+            unused216?: Unused;
+            unused217?: Unused;
+            unused218?: Unused;
+            unused219?: Unused;
+            unused220?: Unused;
+            unused221?: Unused;
+            unused222?: Unused;
+            unused223?: Unused;
+            unused224?: Unused;
+            unused225?: Unused;
+            unused226?: Unused;
+            unused227?: Unused;
+            unused228?: Unused;
+            unused229?: Unused;
+            unused230?: Unused;
+            unused231?: Unused;
+            unused232?: Unused;
+            unused233?: Unused;
+            unused234?: Unused;
+            unused235?: Unused;
+            unused236?: Unused;
+            unused237?: Unused;
+            unused238?: Unused;
+            unused239?: Unused;
+            unused240?: Unused;
+            unused241?: Unused;
+            unused242?: Unused;
+            unused243?: Unused;
+            unused244?: Unused;
+            unused245?: Unused;
+            unused246?: Unused;
+            unused247?: Unused;
+            unused248?: Unused;
+            unused249?: Unused;
+            unused250?: Unused;
+            unused251?: Unused;
+            unused252?: Unused;
+            unused253?: Unused;
+            unused254?: Unused;
+            unused255?: Unused;
+            usb0?: Usb;
+            usb1?: Usb;
+            usb2?: Usb;
+            usb3?: Usb;
+            usb4?: Usb;
+            usb5?: Usb;
+            usb6?: Usb;
+            usb7?: Usb;
+            usb8?: Usb;
+            usb9?: Usb;
+            usb10?: Usb;
+            usb11?: Usb;
+            usb12?: Usb;
+            usb13?: Usb;
             /**
              * Number of hotplugged vcpus.
              * @minimum 1
@@ -17015,20 +18652,32 @@ export namespace Proxmox {
              * @typetext [[type=]<enum>] [,clipboard=<vnc>] [,memory=<integer>]
              */
             vga?: string;
-            /**
-             * Use volume as VIRTIO hard disk (n is 0 to 15). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. Use STORAGE_ID:0 and the 'import-from' parameter to import from an existing volume.
-             * Indexed property: `virtio0`, `virtio1`, ...
-             * @propertyString aio=<string>, backup=<boolean>, bps=<integer>, bps_max_length=<integer>, bps_rd=<integer>, bps_rd_length=<string>, bps_rd_max_length=<integer>, bps_wr=<integer>, bps_wr_length=<string>, bps_wr_max_length=<integer>, cache=<string>, detect_zeroes=<boolean>, discard=<string>, file=<string>, format=<string>, import-from=<string>, iops=<integer>, iops_max=<integer>, iops_max_length=<integer>, iops_rd=<integer>, iops_rd_length=<string>, iops_rd_max=<integer>, iops_rd_max_length=<integer>, iops_wr=<integer>, iops_wr_length=<string>, iops_wr_max=<integer>, iops_wr_max_length=<integer>, iothread=<boolean>, mbps=<number>, mbps_max=<number>, mbps_rd=<number>, mbps_rd_max=<number>, mbps_wr=<number>, mbps_wr_max=<number>, media=<string>, replicate=<boolean>, rerror=<string>, ro=<boolean>, serial=<string>, shared=<boolean>, size=<string>, snapshot=<boolean>, volume=<string>, werror=<string>
-             * @typetext [file=]<volume> [,aio=<native|threads|io_uring>] [,backup=<1|0>] [,bps=<bps>] [,bps_max_length=<seconds>] [,bps_rd=<bps>] [,bps_rd_max_length=<seconds>] [,bps_wr=<bps>] [,bps_wr_max_length=<seconds>] [,cache=<enum>] [,detect_zeroes=<1|0>] [,discard=<ignore|on>] [,format=<enum>] [,import-from=<source volume>] [,iops=<iops>] [,iops_max=<iops>] [,iops_max_length=<seconds>] [,iops_rd=<iops>] [,iops_rd_max=<iops>] [,iops_rd_max_length=<seconds>] [,iops_wr=<iops>] [,iops_wr_max=<iops>] [,iops_wr_max_length=<seconds>] [,iothread=<1|0>] [,mbps=<mbps>] [,mbps_max=<mbps>] [,mbps_rd=<mbps>] [,mbps_rd_max=<mbps>] [,mbps_wr=<mbps>] [,mbps_wr_max=<mbps>] [,media=<cdrom|disk>] [,replicate=<1|0>] [,rerror=<ignore|report|stop>] [,ro=<1|0>] [,serial=<serial>] [,shared=<1|0>] [,size=<DiskSize>] [,snapshot=<1|0>] [,werror=<enum>]
-             */
-            [key: `virtio${number}`]: string;
-            /**
-             * Configuration for sharing a directory between host and guest using Virtio-fs.
-             * Indexed property: `virtiofs0`, `virtiofs1`, ...
-             * @propertyString cache=<string>, direct-io=<boolean>, dirid=<string>, expose-acl=<boolean>, expose-xattr=<boolean>
-             * @typetext [dirid=]<mapping-id> [,cache=<enum>] [,direct-io=<1|0>] [,expose-acl=<1|0>] [,expose-xattr=<1|0>]
-             */
-            [key: `virtiofs${number}`]: string;
+            virtio0?: Virtio;
+            virtio1?: Virtio;
+            virtio2?: Virtio;
+            virtio3?: Virtio;
+            virtio4?: Virtio;
+            virtio5?: Virtio;
+            virtio6?: Virtio;
+            virtio7?: Virtio;
+            virtio8?: Virtio;
+            virtio9?: Virtio;
+            virtio10?: Virtio;
+            virtio11?: Virtio;
+            virtio12?: Virtio;
+            virtio13?: Virtio;
+            virtio14?: Virtio;
+            virtio15?: Virtio;
+            virtiofs0?: Virtiofs;
+            virtiofs1?: Virtiofs;
+            virtiofs2?: Virtiofs;
+            virtiofs3?: Virtiofs;
+            virtiofs4?: Virtiofs;
+            virtiofs5?: Virtiofs;
+            virtiofs6?: Virtiofs;
+            virtiofs7?: Virtiofs;
+            virtiofs8?: Virtiofs;
+            virtiofs9?: Virtiofs;
             /**
              * The VM generation ID (vmgenid) device exposes a 128-bit integer value identifier to the guest OS. This allows to notify the guest operating system when the virtual machine is executed with a different configuration (e.g. snapshot execution or creation from a template). The guest operating system notices the change, and is then able to react as appropriate by marking its copies of distributed databases as dirty, re-initializing its random number generator, etc.
              * Note that auto-creation only works when done through API/CLI create or update methods, but not when manually editing the config file.
@@ -18233,16 +19882,22 @@ export namespace Proxmox {
                  * @typetext <string>
                  */
                 hookscript?: PveVolumeId;
-                /**
-                 * Map host PCI devices into guest.
-                 * NOTE: This option allows direct access to host hardware. So it is no longer
-                 * possible to migrate such machines - use with special care.
-                 * CAUTION: Experimental! User reported problems with this option.
-                 * Indexed property: `hostpci0`, `hostpci1`, ...
-                 * @format pve-qm-hostpci
-                 * @typetext [[host=]<HOSTPCIID[;HOSTPCIID2...]>] [,device-id=<hex id>] [,driver=<vfio|keep>] [,legacy-igd=<1|0>] [,mapping=<mapping-id>] [,mdev=<string>] [,pcie=<1|0>] [,rombar=<1|0>] [,romfile=<string>] [,sub-device-id=<hex id>] [,sub-vendor-id=<hex id>] [,vendor-id=<hex id>] [,x-vga=<1|0>]
-                 */
-                [key: `hostpci${number}`]: PveQmHostpci;
+                hostpci0?: PveQmHostpci;
+                hostpci1?: PveQmHostpci;
+                hostpci2?: PveQmHostpci;
+                hostpci3?: PveQmHostpci;
+                hostpci4?: PveQmHostpci;
+                hostpci5?: PveQmHostpci;
+                hostpci6?: PveQmHostpci;
+                hostpci7?: PveQmHostpci;
+                hostpci8?: PveQmHostpci;
+                hostpci9?: PveQmHostpci;
+                hostpci10?: PveQmHostpci;
+                hostpci11?: PveQmHostpci;
+                hostpci12?: PveQmHostpci;
+                hostpci13?: PveQmHostpci;
+                hostpci14?: PveQmHostpci;
+                hostpci15?: PveQmHostpci;
                 /**
                  * Selectively enable hotplug features. This is a comma separated list of hotplug features: 'network', 'disk', 'cpu', 'memory', 'usb' and 'cloudinit'. Use '0' to disable hotplug completely. Using '1' as value is an alias for the default `network,disk,usb`. USB hotplugging is possible for guests with machine version >= 7.1 and ostype l26 or windows > 7.
                  * @default network,disk,usb
@@ -18255,13 +19910,10 @@ export namespace Proxmox {
                  * Sets the size of hugepages in MiB. If the value is set to 'any' then 1 GiB hugepages will be used if possible, otherwise the size will fall back to 2 MiB.
                  */
                 hugepages?: Hugepages;
-                /**
-                 * Use volume as IDE hard disk or CD-ROM (n is 0 to 3). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. Use STORAGE_ID:0 and the 'import-from' parameter to import from an existing volume.
-                 * Indexed property: `ide0`, `ide1`, ...
-                 * @propertyString aio=<string>, backup=<boolean>, bps=<integer>, bps_max_length=<integer>, bps_rd=<integer>, bps_rd_length=<string>, bps_rd_max_length=<integer>, bps_wr=<integer>, bps_wr_length=<string>, bps_wr_max_length=<integer>, cache=<string>, detect_zeroes=<boolean>, discard=<string>, file=<string>, format=<string>, import-from=<string>, iops=<integer>, iops_max=<integer>, iops_max_length=<integer>, iops_rd=<integer>, iops_rd_length=<string>, iops_rd_max=<integer>, iops_rd_max_length=<integer>, iops_wr=<integer>, iops_wr_length=<string>, iops_wr_max=<integer>, iops_wr_max_length=<integer>, mbps=<number>, mbps_max=<number>, mbps_rd=<number>, mbps_rd_max=<number>, mbps_wr=<number>, mbps_wr_max=<number>, media=<string>, model=<string>, replicate=<boolean>, rerror=<string>, serial=<string>, shared=<boolean>, size=<string>, snapshot=<boolean>, ssd=<boolean>, volume=<string>, werror=<string>, wwn=<string>
-                 * @typetext [file=]<volume> [,aio=<native|threads|io_uring>] [,backup=<1|0>] [,bps=<bps>] [,bps_max_length=<seconds>] [,bps_rd=<bps>] [,bps_rd_max_length=<seconds>] [,bps_wr=<bps>] [,bps_wr_max_length=<seconds>] [,cache=<enum>] [,detect_zeroes=<1|0>] [,discard=<ignore|on>] [,format=<enum>] [,import-from=<source volume>] [,iops=<iops>] [,iops_max=<iops>] [,iops_max_length=<seconds>] [,iops_rd=<iops>] [,iops_rd_max=<iops>] [,iops_rd_max_length=<seconds>] [,iops_wr=<iops>] [,iops_wr_max=<iops>] [,iops_wr_max_length=<seconds>] [,mbps=<mbps>] [,mbps_max=<mbps>] [,mbps_rd=<mbps>] [,mbps_rd_max=<mbps>] [,mbps_wr=<mbps>] [,mbps_wr_max=<mbps>] [,media=<cdrom|disk>] [,model=<model>] [,replicate=<1|0>] [,rerror=<ignore|report|stop>] [,serial=<serial>] [,shared=<1|0>] [,size=<DiskSize>] [,snapshot=<1|0>] [,ssd=<1|0>] [,werror=<enum>] [,wwn=<wwn>]
-                 */
-                [key: `ide${number}`]: string;
+                ide0?: Ide;
+                ide1?: Ide;
+                ide2?: Ide;
+                ide3?: Ide;
                 /**
                  * A file-based storage with 'images' content-type enabled, which is used as an intermediary extraction storage during import. Defaults to the source storage.
                  * @format_description storage ID
@@ -18275,20 +19927,38 @@ export namespace Proxmox {
                  * @typetext [type=]<tdx-type> ,attestation=<1|0> [,vsock-cid=<integer>] [,vsock-port=<integer>]
                  */
                 "intel-tdx"?: PveQemuTdxFmt;
-                /**
-                 * cloud-init: Specify IP addresses and gateways for the corresponding interface.
-                 * IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.
-                 * The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit
-                 * gateway should be provided.
-                 * For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires
-                 * cloud-init 19.4 or newer.
-                 * If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using
-                 * dhcp on IPv4.
-                 * Indexed property: `ipconfig0`, `ipconfig1`, ...
-                 * @format pve-qm-ipconfig
-                 * @typetext [gw=<GatewayIPv4>] [,gw6=<GatewayIPv6>] [,ip=<IPv4Format/CIDR>] [,ip6=<IPv6Format/CIDR>]
-                 */
-                [key: `ipconfig${number}`]: PveQmIpconfig;
+                ipconfig0?: PveQmIpconfig;
+                ipconfig1?: PveQmIpconfig;
+                ipconfig2?: PveQmIpconfig;
+                ipconfig3?: PveQmIpconfig;
+                ipconfig4?: PveQmIpconfig;
+                ipconfig5?: PveQmIpconfig;
+                ipconfig6?: PveQmIpconfig;
+                ipconfig7?: PveQmIpconfig;
+                ipconfig8?: PveQmIpconfig;
+                ipconfig9?: PveQmIpconfig;
+                ipconfig10?: PveQmIpconfig;
+                ipconfig11?: PveQmIpconfig;
+                ipconfig12?: PveQmIpconfig;
+                ipconfig13?: PveQmIpconfig;
+                ipconfig14?: PveQmIpconfig;
+                ipconfig15?: PveQmIpconfig;
+                ipconfig16?: PveQmIpconfig;
+                ipconfig17?: PveQmIpconfig;
+                ipconfig18?: PveQmIpconfig;
+                ipconfig19?: PveQmIpconfig;
+                ipconfig20?: PveQmIpconfig;
+                ipconfig21?: PveQmIpconfig;
+                ipconfig22?: PveQmIpconfig;
+                ipconfig23?: PveQmIpconfig;
+                ipconfig24?: PveQmIpconfig;
+                ipconfig25?: PveQmIpconfig;
+                ipconfig26?: PveQmIpconfig;
+                ipconfig27?: PveQmIpconfig;
+                ipconfig28?: PveQmIpconfig;
+                ipconfig29?: PveQmIpconfig;
+                ipconfig30?: PveQmIpconfig;
+                ipconfig31?: PveQmIpconfig;
                 /**
                  * Inter-VM shared memory. Useful for direct communication between VMs, or to the host.
                  * @propertyString name=<string>, size=<integer>
@@ -18357,26 +20027,52 @@ export namespace Proxmox {
                  * @typetext <string>
                  */
                 nameserver?: AddressList;
-                /**
-                 * Specify network devices.
-                 * Indexed property: `net0`, `net1`, ...
-                 * @propertyString bridge=<string>, e1000=<string>, e1000-82540em=<string>, e1000-82544gc=<string>, e1000-82545em=<string>, e1000e=<string>, firewall=<boolean>, host-tunnel=<boolean>, i82551=<string>, i82557b=<string>, i82559er=<string>, link_down=<boolean>, macaddr=<string>, model=<string>, mtu=<integer>, ne2k_isa=<string>, ne2k_pci=<string>, pcnet=<string>, queues=<integer>, rate=<number>, rtl8139=<string>, tag=<integer>, trunks=<string>, virtio=<string>, vmxnet3=<string>
-                 * @typetext [model=]<enum> [,bridge=<bridge>] [,firewall=<1|0>] [,host-tunnel=<1|0>] [,link_down=<1|0>] [,macaddr=<XX:XX:XX:XX:XX:XX>] [,mtu=<integer>] [,queues=<integer>] [,rate=<number>] [,tag=<integer>] [,trunks=<vlanid[;vlanid...]>] [,<model>=<macaddr>]
-                 */
-                [key: `net${number}`]: string;
+                net0?: Net;
+                net1?: Net;
+                net2?: Net;
+                net3?: Net;
+                net4?: Net;
+                net5?: Net;
+                net6?: Net;
+                net7?: Net;
+                net8?: Net;
+                net9?: Net;
+                net10?: Net;
+                net11?: Net;
+                net12?: Net;
+                net13?: Net;
+                net14?: Net;
+                net15?: Net;
+                net16?: Net;
+                net17?: Net;
+                net18?: Net;
+                net19?: Net;
+                net20?: Net;
+                net21?: Net;
+                net22?: Net;
+                net23?: Net;
+                net24?: Net;
+                net25?: Net;
+                net26?: Net;
+                net27?: Net;
+                net28?: Net;
+                net29?: Net;
+                net30?: Net;
+                net31?: Net;
                 /**
                  * Enable/disable NUMA.
                  * @default 0
                  * @typetext <boolean>
                  */
                 numa?: boolean;
-                /**
-                 * NUMA topology.
-                 * Indexed property: `numa0`, `numa1`, ...
-                 * @propertyString cpus=<string>, hostnodes=<string>, memory=<number>, policy=<string>
-                 * @typetext cpus=<id[-id];...> [,hostnodes=<id[-id];...>] [,memory=<number>] [,policy=<preferred|bind|interleave>]
-                 */
-                [key: `numa${number}`]: string;
+                numa0?: Numa;
+                numa1?: Numa;
+                numa2?: Numa;
+                numa3?: Numa;
+                numa4?: Numa;
+                numa5?: Numa;
+                numa6?: Numa;
+                numa7?: Numa;
                 /**
                  * Specifies whether a VM will be started during system bootup.
                  * @default 0
@@ -18403,15 +20099,9 @@ export namespace Proxmox {
                  * @default other
                  */
                 ostype?: Ostype;
-                /**
-                 * Map host parallel devices (n is 0 to 2).
-                 * NOTE: This option allows direct access to host hardware. So it is no longer possible to migrate such
-                 * machines - use with special care.
-                 * CAUTION: Experimental! User reported problems with this option.
-                 * Indexed property: `parallel0`, `parallel1`, ...
-                 * @pattern /dev/parport\d+|/dev/usb/lp\d+
-                 */
-                [key: `parallel${number}`]: string;
+                parallel0?: Parallel;
+                parallel1?: Parallel;
+                parallel2?: Parallel;
                 /**
                  * Sets the protection flag of the VM. This will disable the remove VM and remove disk operations.
                  * @default 0
@@ -18436,20 +20126,43 @@ export namespace Proxmox {
                  * @typetext [source=]</dev/urandom|/dev/random|/dev/hwrng> [,max_bytes=<integer>] [,period=<integer>]
                  */
                 rng0?: PveQmRng;
-                /**
-                 * Use volume as SATA hard disk or CD-ROM (n is 0 to 5). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. Use STORAGE_ID:0 and the 'import-from' parameter to import from an existing volume.
-                 * Indexed property: `sata0`, `sata1`, ...
-                 * @propertyString aio=<string>, backup=<boolean>, bps=<integer>, bps_max_length=<integer>, bps_rd=<integer>, bps_rd_length=<string>, bps_rd_max_length=<integer>, bps_wr=<integer>, bps_wr_length=<string>, bps_wr_max_length=<integer>, cache=<string>, detect_zeroes=<boolean>, discard=<string>, file=<string>, format=<string>, import-from=<string>, iops=<integer>, iops_max=<integer>, iops_max_length=<integer>, iops_rd=<integer>, iops_rd_length=<string>, iops_rd_max=<integer>, iops_rd_max_length=<integer>, iops_wr=<integer>, iops_wr_length=<string>, iops_wr_max=<integer>, iops_wr_max_length=<integer>, mbps=<number>, mbps_max=<number>, mbps_rd=<number>, mbps_rd_max=<number>, mbps_wr=<number>, mbps_wr_max=<number>, media=<string>, replicate=<boolean>, rerror=<string>, serial=<string>, shared=<boolean>, size=<string>, snapshot=<boolean>, ssd=<boolean>, volume=<string>, werror=<string>, wwn=<string>
-                 * @typetext [file=]<volume> [,aio=<native|threads|io_uring>] [,backup=<1|0>] [,bps=<bps>] [,bps_max_length=<seconds>] [,bps_rd=<bps>] [,bps_rd_max_length=<seconds>] [,bps_wr=<bps>] [,bps_wr_max_length=<seconds>] [,cache=<enum>] [,detect_zeroes=<1|0>] [,discard=<ignore|on>] [,format=<enum>] [,import-from=<source volume>] [,iops=<iops>] [,iops_max=<iops>] [,iops_max_length=<seconds>] [,iops_rd=<iops>] [,iops_rd_max=<iops>] [,iops_rd_max_length=<seconds>] [,iops_wr=<iops>] [,iops_wr_max=<iops>] [,iops_wr_max_length=<seconds>] [,mbps=<mbps>] [,mbps_max=<mbps>] [,mbps_rd=<mbps>] [,mbps_rd_max=<mbps>] [,mbps_wr=<mbps>] [,mbps_wr_max=<mbps>] [,media=<cdrom|disk>] [,replicate=<1|0>] [,rerror=<ignore|report|stop>] [,serial=<serial>] [,shared=<1|0>] [,size=<DiskSize>] [,snapshot=<1|0>] [,ssd=<1|0>] [,werror=<enum>] [,wwn=<wwn>]
-                 */
-                [key: `sata${number}`]: string;
-                /**
-                 * Use volume as SCSI hard disk or CD-ROM (n is 0 to 30). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. Use STORAGE_ID:0 and the 'import-from' parameter to import from an existing volume.
-                 * Indexed property: `scsi0`, `scsi1`, ...
-                 * @propertyString aio=<string>, backup=<boolean>, bps=<integer>, bps_max_length=<integer>, bps_rd=<integer>, bps_rd_length=<string>, bps_rd_max_length=<integer>, bps_wr=<integer>, bps_wr_length=<string>, bps_wr_max_length=<integer>, cache=<string>, detect_zeroes=<boolean>, discard=<string>, file=<string>, format=<string>, import-from=<string>, iops=<integer>, iops_max=<integer>, iops_max_length=<integer>, iops_rd=<integer>, iops_rd_length=<string>, iops_rd_max=<integer>, iops_rd_max_length=<integer>, iops_wr=<integer>, iops_wr_length=<string>, iops_wr_max=<integer>, iops_wr_max_length=<integer>, iothread=<boolean>, mbps=<number>, mbps_max=<number>, mbps_rd=<number>, mbps_rd_max=<number>, mbps_wr=<number>, mbps_wr_max=<number>, media=<string>, product=<string>, queues=<integer>, replicate=<boolean>, rerror=<string>, ro=<boolean>, scsiblock=<boolean>, serial=<string>, shared=<boolean>, size=<string>, snapshot=<boolean>, ssd=<boolean>, vendor=<string>, volume=<string>, werror=<string>, wwn=<string>
-                 * @typetext [file=]<volume> [,aio=<native|threads|io_uring>] [,backup=<1|0>] [,bps=<bps>] [,bps_max_length=<seconds>] [,bps_rd=<bps>] [,bps_rd_max_length=<seconds>] [,bps_wr=<bps>] [,bps_wr_max_length=<seconds>] [,cache=<enum>] [,detect_zeroes=<1|0>] [,discard=<ignore|on>] [,format=<enum>] [,import-from=<source volume>] [,iops=<iops>] [,iops_max=<iops>] [,iops_max_length=<seconds>] [,iops_rd=<iops>] [,iops_rd_max=<iops>] [,iops_rd_max_length=<seconds>] [,iops_wr=<iops>] [,iops_wr_max=<iops>] [,iops_wr_max_length=<seconds>] [,iothread=<1|0>] [,mbps=<mbps>] [,mbps_max=<mbps>] [,mbps_rd=<mbps>] [,mbps_rd_max=<mbps>] [,mbps_wr=<mbps>] [,mbps_wr_max=<mbps>] [,media=<cdrom|disk>] [,product=<product>] [,queues=<integer>] [,replicate=<1|0>] [,rerror=<ignore|report|stop>] [,ro=<1|0>] [,scsiblock=<1|0>] [,serial=<serial>] [,shared=<1|0>] [,size=<DiskSize>] [,snapshot=<1|0>] [,ssd=<1|0>] [,vendor=<vendor>] [,werror=<enum>] [,wwn=<wwn>]
-                 */
-                [key: `scsi${number}`]: string;
+                sata0?: Sata;
+                sata1?: Sata;
+                sata2?: Sata;
+                sata3?: Sata;
+                sata4?: Sata;
+                sata5?: Sata;
+                scsi0?: Scsi;
+                scsi1?: Scsi;
+                scsi2?: Scsi;
+                scsi3?: Scsi;
+                scsi4?: Scsi;
+                scsi5?: Scsi;
+                scsi6?: Scsi;
+                scsi7?: Scsi;
+                scsi8?: Scsi;
+                scsi9?: Scsi;
+                scsi10?: Scsi;
+                scsi11?: Scsi;
+                scsi12?: Scsi;
+                scsi13?: Scsi;
+                scsi14?: Scsi;
+                scsi15?: Scsi;
+                scsi16?: Scsi;
+                scsi17?: Scsi;
+                scsi18?: Scsi;
+                scsi19?: Scsi;
+                scsi20?: Scsi;
+                scsi21?: Scsi;
+                scsi22?: Scsi;
+                scsi23?: Scsi;
+                scsi24?: Scsi;
+                scsi25?: Scsi;
+                scsi26?: Scsi;
+                scsi27?: Scsi;
+                scsi28?: Scsi;
+                scsi29?: Scsi;
+                scsi30?: Scsi;
                 /**
                  * SCSI controller model
                  * @default lsi
@@ -18460,17 +20173,10 @@ export namespace Proxmox {
                  * @typetext <string>
                  */
                 searchdomain?: string;
-                /**
-                 * Create a serial device inside the VM (n is 0 to 3), and pass through a
-                 * host serial device (i.e. /dev/ttyS0), or create a unix socket on the
-                 * host side (use 'qm terminal' to open a terminal connection).
-                 * NOTE: If you pass through a host serial device, it is no longer possible to migrate such machines -
-                 * use with special care.
-                 * CAUTION: Experimental! User reported problems with this option.
-                 * Indexed property: `serial0`, `serial1`, ...
-                 * @pattern (/dev/[^,]+|socket)
-                 */
-                [key: `serial${number}`]: string;
+                serial0?: Serial;
+                serial1?: Serial;
+                serial2?: Serial;
+                serial3?: Serial;
                 /**
                  * Amount of memory shares for auto-ballooning. The larger the number is, the more memory this VM gets. Number is relative to weights of all other running VMs. Using zero disables auto-ballooning. Auto-ballooning is done by pvestatd.
                  * @minimum 0
@@ -18560,20 +20266,276 @@ export namespace Proxmox {
                  * @typetext [file=]<volume> [,format=<raw|qcow2|vmdk>] [,import-from=<source volume>] [,size=<DiskSize>] [,version=<v1.2|v2.0>]
                  */
                 tpmstate0?: string;
-                /**
-                 * Reference to unused volumes. This is used internally, and should not be modified manually.
-                 * Indexed property: `unused0`, `unused1`, ...
-                 * @propertyString file=<string>, volume=<string>
-                 * @typetext [file=]<volume>
-                 */
-                [key: `unused${number}`]: string;
-                /**
-                 * Configure an USB device (n is 0 to 4, for machine version >= 7.1 and ostype l26 or windows > 7, n can be up to 14).
-                 * Indexed property: `usb0`, `usb1`, ...
-                 * @propertyString host=<string>, mapping=<string>, usb3=<boolean>
-                 * @typetext [[host=]<HOSTUSBDEVICE|spice>] [,mapping=<mapping-id>] [,usb3=<1|0>]
-                 */
-                [key: `usb${number}`]: string;
+                unused0?: Unused;
+                unused1?: Unused;
+                unused2?: Unused;
+                unused3?: Unused;
+                unused4?: Unused;
+                unused5?: Unused;
+                unused6?: Unused;
+                unused7?: Unused;
+                unused8?: Unused;
+                unused9?: Unused;
+                unused10?: Unused;
+                unused11?: Unused;
+                unused12?: Unused;
+                unused13?: Unused;
+                unused14?: Unused;
+                unused15?: Unused;
+                unused16?: Unused;
+                unused17?: Unused;
+                unused18?: Unused;
+                unused19?: Unused;
+                unused20?: Unused;
+                unused21?: Unused;
+                unused22?: Unused;
+                unused23?: Unused;
+                unused24?: Unused;
+                unused25?: Unused;
+                unused26?: Unused;
+                unused27?: Unused;
+                unused28?: Unused;
+                unused29?: Unused;
+                unused30?: Unused;
+                unused31?: Unused;
+                unused32?: Unused;
+                unused33?: Unused;
+                unused34?: Unused;
+                unused35?: Unused;
+                unused36?: Unused;
+                unused37?: Unused;
+                unused38?: Unused;
+                unused39?: Unused;
+                unused40?: Unused;
+                unused41?: Unused;
+                unused42?: Unused;
+                unused43?: Unused;
+                unused44?: Unused;
+                unused45?: Unused;
+                unused46?: Unused;
+                unused47?: Unused;
+                unused48?: Unused;
+                unused49?: Unused;
+                unused50?: Unused;
+                unused51?: Unused;
+                unused52?: Unused;
+                unused53?: Unused;
+                unused54?: Unused;
+                unused55?: Unused;
+                unused56?: Unused;
+                unused57?: Unused;
+                unused58?: Unused;
+                unused59?: Unused;
+                unused60?: Unused;
+                unused61?: Unused;
+                unused62?: Unused;
+                unused63?: Unused;
+                unused64?: Unused;
+                unused65?: Unused;
+                unused66?: Unused;
+                unused67?: Unused;
+                unused68?: Unused;
+                unused69?: Unused;
+                unused70?: Unused;
+                unused71?: Unused;
+                unused72?: Unused;
+                unused73?: Unused;
+                unused74?: Unused;
+                unused75?: Unused;
+                unused76?: Unused;
+                unused77?: Unused;
+                unused78?: Unused;
+                unused79?: Unused;
+                unused80?: Unused;
+                unused81?: Unused;
+                unused82?: Unused;
+                unused83?: Unused;
+                unused84?: Unused;
+                unused85?: Unused;
+                unused86?: Unused;
+                unused87?: Unused;
+                unused88?: Unused;
+                unused89?: Unused;
+                unused90?: Unused;
+                unused91?: Unused;
+                unused92?: Unused;
+                unused93?: Unused;
+                unused94?: Unused;
+                unused95?: Unused;
+                unused96?: Unused;
+                unused97?: Unused;
+                unused98?: Unused;
+                unused99?: Unused;
+                unused100?: Unused;
+                unused101?: Unused;
+                unused102?: Unused;
+                unused103?: Unused;
+                unused104?: Unused;
+                unused105?: Unused;
+                unused106?: Unused;
+                unused107?: Unused;
+                unused108?: Unused;
+                unused109?: Unused;
+                unused110?: Unused;
+                unused111?: Unused;
+                unused112?: Unused;
+                unused113?: Unused;
+                unused114?: Unused;
+                unused115?: Unused;
+                unused116?: Unused;
+                unused117?: Unused;
+                unused118?: Unused;
+                unused119?: Unused;
+                unused120?: Unused;
+                unused121?: Unused;
+                unused122?: Unused;
+                unused123?: Unused;
+                unused124?: Unused;
+                unused125?: Unused;
+                unused126?: Unused;
+                unused127?: Unused;
+                unused128?: Unused;
+                unused129?: Unused;
+                unused130?: Unused;
+                unused131?: Unused;
+                unused132?: Unused;
+                unused133?: Unused;
+                unused134?: Unused;
+                unused135?: Unused;
+                unused136?: Unused;
+                unused137?: Unused;
+                unused138?: Unused;
+                unused139?: Unused;
+                unused140?: Unused;
+                unused141?: Unused;
+                unused142?: Unused;
+                unused143?: Unused;
+                unused144?: Unused;
+                unused145?: Unused;
+                unused146?: Unused;
+                unused147?: Unused;
+                unused148?: Unused;
+                unused149?: Unused;
+                unused150?: Unused;
+                unused151?: Unused;
+                unused152?: Unused;
+                unused153?: Unused;
+                unused154?: Unused;
+                unused155?: Unused;
+                unused156?: Unused;
+                unused157?: Unused;
+                unused158?: Unused;
+                unused159?: Unused;
+                unused160?: Unused;
+                unused161?: Unused;
+                unused162?: Unused;
+                unused163?: Unused;
+                unused164?: Unused;
+                unused165?: Unused;
+                unused166?: Unused;
+                unused167?: Unused;
+                unused168?: Unused;
+                unused169?: Unused;
+                unused170?: Unused;
+                unused171?: Unused;
+                unused172?: Unused;
+                unused173?: Unused;
+                unused174?: Unused;
+                unused175?: Unused;
+                unused176?: Unused;
+                unused177?: Unused;
+                unused178?: Unused;
+                unused179?: Unused;
+                unused180?: Unused;
+                unused181?: Unused;
+                unused182?: Unused;
+                unused183?: Unused;
+                unused184?: Unused;
+                unused185?: Unused;
+                unused186?: Unused;
+                unused187?: Unused;
+                unused188?: Unused;
+                unused189?: Unused;
+                unused190?: Unused;
+                unused191?: Unused;
+                unused192?: Unused;
+                unused193?: Unused;
+                unused194?: Unused;
+                unused195?: Unused;
+                unused196?: Unused;
+                unused197?: Unused;
+                unused198?: Unused;
+                unused199?: Unused;
+                unused200?: Unused;
+                unused201?: Unused;
+                unused202?: Unused;
+                unused203?: Unused;
+                unused204?: Unused;
+                unused205?: Unused;
+                unused206?: Unused;
+                unused207?: Unused;
+                unused208?: Unused;
+                unused209?: Unused;
+                unused210?: Unused;
+                unused211?: Unused;
+                unused212?: Unused;
+                unused213?: Unused;
+                unused214?: Unused;
+                unused215?: Unused;
+                unused216?: Unused;
+                unused217?: Unused;
+                unused218?: Unused;
+                unused219?: Unused;
+                unused220?: Unused;
+                unused221?: Unused;
+                unused222?: Unused;
+                unused223?: Unused;
+                unused224?: Unused;
+                unused225?: Unused;
+                unused226?: Unused;
+                unused227?: Unused;
+                unused228?: Unused;
+                unused229?: Unused;
+                unused230?: Unused;
+                unused231?: Unused;
+                unused232?: Unused;
+                unused233?: Unused;
+                unused234?: Unused;
+                unused235?: Unused;
+                unused236?: Unused;
+                unused237?: Unused;
+                unused238?: Unused;
+                unused239?: Unused;
+                unused240?: Unused;
+                unused241?: Unused;
+                unused242?: Unused;
+                unused243?: Unused;
+                unused244?: Unused;
+                unused245?: Unused;
+                unused246?: Unused;
+                unused247?: Unused;
+                unused248?: Unused;
+                unused249?: Unused;
+                unused250?: Unused;
+                unused251?: Unused;
+                unused252?: Unused;
+                unused253?: Unused;
+                unused254?: Unused;
+                unused255?: Unused;
+                usb0?: Usb;
+                usb1?: Usb;
+                usb2?: Usb;
+                usb3?: Usb;
+                usb4?: Usb;
+                usb5?: Usb;
+                usb6?: Usb;
+                usb7?: Usb;
+                usb8?: Usb;
+                usb9?: Usb;
+                usb10?: Usb;
+                usb11?: Usb;
+                usb12?: Usb;
+                usb13?: Usb;
                 /**
                  * Number of hotplugged vcpus.
                  * @minimum 1
@@ -18588,20 +20550,32 @@ export namespace Proxmox {
                  * @typetext [[type=]<enum>] [,clipboard=<vnc>] [,memory=<integer>]
                  */
                 vga?: string;
-                /**
-                 * Use volume as VIRTIO hard disk (n is 0 to 15). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. Use STORAGE_ID:0 and the 'import-from' parameter to import from an existing volume.
-                 * Indexed property: `virtio0`, `virtio1`, ...
-                 * @propertyString aio=<string>, backup=<boolean>, bps=<integer>, bps_max_length=<integer>, bps_rd=<integer>, bps_rd_length=<string>, bps_rd_max_length=<integer>, bps_wr=<integer>, bps_wr_length=<string>, bps_wr_max_length=<integer>, cache=<string>, detect_zeroes=<boolean>, discard=<string>, file=<string>, format=<string>, import-from=<string>, iops=<integer>, iops_max=<integer>, iops_max_length=<integer>, iops_rd=<integer>, iops_rd_length=<string>, iops_rd_max=<integer>, iops_rd_max_length=<integer>, iops_wr=<integer>, iops_wr_length=<string>, iops_wr_max=<integer>, iops_wr_max_length=<integer>, iothread=<boolean>, mbps=<number>, mbps_max=<number>, mbps_rd=<number>, mbps_rd_max=<number>, mbps_wr=<number>, mbps_wr_max=<number>, media=<string>, replicate=<boolean>, rerror=<string>, ro=<boolean>, serial=<string>, shared=<boolean>, size=<string>, snapshot=<boolean>, volume=<string>, werror=<string>
-                 * @typetext [file=]<volume> [,aio=<native|threads|io_uring>] [,backup=<1|0>] [,bps=<bps>] [,bps_max_length=<seconds>] [,bps_rd=<bps>] [,bps_rd_max_length=<seconds>] [,bps_wr=<bps>] [,bps_wr_max_length=<seconds>] [,cache=<enum>] [,detect_zeroes=<1|0>] [,discard=<ignore|on>] [,format=<enum>] [,import-from=<source volume>] [,iops=<iops>] [,iops_max=<iops>] [,iops_max_length=<seconds>] [,iops_rd=<iops>] [,iops_rd_max=<iops>] [,iops_rd_max_length=<seconds>] [,iops_wr=<iops>] [,iops_wr_max=<iops>] [,iops_wr_max_length=<seconds>] [,iothread=<1|0>] [,mbps=<mbps>] [,mbps_max=<mbps>] [,mbps_rd=<mbps>] [,mbps_rd_max=<mbps>] [,mbps_wr=<mbps>] [,mbps_wr_max=<mbps>] [,media=<cdrom|disk>] [,replicate=<1|0>] [,rerror=<ignore|report|stop>] [,ro=<1|0>] [,serial=<serial>] [,shared=<1|0>] [,size=<DiskSize>] [,snapshot=<1|0>] [,werror=<enum>]
-                 */
-                [key: `virtio${number}`]: string;
-                /**
-                 * Configuration for sharing a directory between host and guest using Virtio-fs.
-                 * Indexed property: `virtiofs0`, `virtiofs1`, ...
-                 * @propertyString cache=<string>, direct-io=<boolean>, dirid=<string>, expose-acl=<boolean>, expose-xattr=<boolean>
-                 * @typetext [dirid=]<mapping-id> [,cache=<enum>] [,direct-io=<1|0>] [,expose-acl=<1|0>] [,expose-xattr=<1|0>]
-                 */
-                [key: `virtiofs${number}`]: string;
+                virtio0?: Virtio;
+                virtio1?: Virtio;
+                virtio2?: Virtio;
+                virtio3?: Virtio;
+                virtio4?: Virtio;
+                virtio5?: Virtio;
+                virtio6?: Virtio;
+                virtio7?: Virtio;
+                virtio8?: Virtio;
+                virtio9?: Virtio;
+                virtio10?: Virtio;
+                virtio11?: Virtio;
+                virtio12?: Virtio;
+                virtio13?: Virtio;
+                virtio14?: Virtio;
+                virtio15?: Virtio;
+                virtiofs0?: Virtiofs;
+                virtiofs1?: Virtiofs;
+                virtiofs2?: Virtiofs;
+                virtiofs3?: Virtiofs;
+                virtiofs4?: Virtiofs;
+                virtiofs5?: Virtiofs;
+                virtiofs6?: Virtiofs;
+                virtiofs7?: Virtiofs;
+                virtiofs8?: Virtiofs;
+                virtiofs9?: Virtiofs;
                 /**
                  * The VM generation ID (vmgenid) device exposes a 128-bit integer value identifier to the guest OS. This allows to notify the guest operating system when the virtual machine is executed with a different configuration (e.g. snapshot execution or creation from a template). The guest operating system notices the change, and is then able to react as appropriate by marking its copies of distributed databases as dirty, re-initializing its random number generator, etc.
                  * Note that auto-creation only works when done through API/CLI create or update methods, but not when manually editing the config file.
@@ -18806,16 +20780,22 @@ export namespace Proxmox {
                  * @typetext <string>
                  */
                 hookscript?: PveVolumeId;
-                /**
-                 * Map host PCI devices into guest.
-                 * NOTE: This option allows direct access to host hardware. So it is no longer
-                 * possible to migrate such machines - use with special care.
-                 * CAUTION: Experimental! User reported problems with this option.
-                 * Indexed property: `hostpci0`, `hostpci1`, ...
-                 * @format pve-qm-hostpci
-                 * @typetext [[host=]<HOSTPCIID[;HOSTPCIID2...]>] [,device-id=<hex id>] [,driver=<vfio|keep>] [,legacy-igd=<1|0>] [,mapping=<mapping-id>] [,mdev=<string>] [,pcie=<1|0>] [,rombar=<1|0>] [,romfile=<string>] [,sub-device-id=<hex id>] [,sub-vendor-id=<hex id>] [,vendor-id=<hex id>] [,x-vga=<1|0>]
-                 */
-                [key: `hostpci${number}`]: PveQmHostpci;
+                hostpci0?: PveQmHostpci;
+                hostpci1?: PveQmHostpci;
+                hostpci2?: PveQmHostpci;
+                hostpci3?: PveQmHostpci;
+                hostpci4?: PveQmHostpci;
+                hostpci5?: PveQmHostpci;
+                hostpci6?: PveQmHostpci;
+                hostpci7?: PveQmHostpci;
+                hostpci8?: PveQmHostpci;
+                hostpci9?: PveQmHostpci;
+                hostpci10?: PveQmHostpci;
+                hostpci11?: PveQmHostpci;
+                hostpci12?: PveQmHostpci;
+                hostpci13?: PveQmHostpci;
+                hostpci14?: PveQmHostpci;
+                hostpci15?: PveQmHostpci;
                 /**
                  * Selectively enable hotplug features. This is a comma separated list of hotplug features: 'network', 'disk', 'cpu', 'memory', 'usb' and 'cloudinit'. Use '0' to disable hotplug completely. Using '1' as value is an alias for the default `network,disk,usb`. USB hotplugging is possible for guests with machine version >= 7.1 and ostype l26 or windows > 7.
                  * @default network,disk,usb
@@ -18828,33 +20808,48 @@ export namespace Proxmox {
                  * Sets the size of hugepages in MiB. If the value is set to 'any' then 1 GiB hugepages will be used if possible, otherwise the size will fall back to 2 MiB.
                  */
                 hugepages?: Hugepages;
-                /**
-                 * Use volume as IDE hard disk or CD-ROM (n is 0 to 3). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. Use STORAGE_ID:0 and the 'import-from' parameter to import from an existing volume.
-                 * Indexed property: `ide0`, `ide1`, ...
-                 * @propertyString aio=<string>, backup=<boolean>, bps=<integer>, bps_max_length=<integer>, bps_rd=<integer>, bps_rd_length=<string>, bps_rd_max_length=<integer>, bps_wr=<integer>, bps_wr_length=<string>, bps_wr_max_length=<integer>, cache=<string>, detect_zeroes=<boolean>, discard=<string>, file=<string>, format=<string>, import-from=<string>, iops=<integer>, iops_max=<integer>, iops_max_length=<integer>, iops_rd=<integer>, iops_rd_length=<string>, iops_rd_max=<integer>, iops_rd_max_length=<integer>, iops_wr=<integer>, iops_wr_length=<string>, iops_wr_max=<integer>, iops_wr_max_length=<integer>, mbps=<number>, mbps_max=<number>, mbps_rd=<number>, mbps_rd_max=<number>, mbps_wr=<number>, mbps_wr_max=<number>, media=<string>, model=<string>, replicate=<boolean>, rerror=<string>, serial=<string>, shared=<boolean>, size=<string>, snapshot=<boolean>, ssd=<boolean>, volume=<string>, werror=<string>, wwn=<string>
-                 * @typetext [file=]<volume> [,aio=<native|threads|io_uring>] [,backup=<1|0>] [,bps=<bps>] [,bps_max_length=<seconds>] [,bps_rd=<bps>] [,bps_rd_max_length=<seconds>] [,bps_wr=<bps>] [,bps_wr_max_length=<seconds>] [,cache=<enum>] [,detect_zeroes=<1|0>] [,discard=<ignore|on>] [,format=<enum>] [,import-from=<source volume>] [,iops=<iops>] [,iops_max=<iops>] [,iops_max_length=<seconds>] [,iops_rd=<iops>] [,iops_rd_max=<iops>] [,iops_rd_max_length=<seconds>] [,iops_wr=<iops>] [,iops_wr_max=<iops>] [,iops_wr_max_length=<seconds>] [,mbps=<mbps>] [,mbps_max=<mbps>] [,mbps_rd=<mbps>] [,mbps_rd_max=<mbps>] [,mbps_wr=<mbps>] [,mbps_wr_max=<mbps>] [,media=<cdrom|disk>] [,model=<model>] [,replicate=<1|0>] [,rerror=<ignore|report|stop>] [,serial=<serial>] [,shared=<1|0>] [,size=<DiskSize>] [,snapshot=<1|0>] [,ssd=<1|0>] [,werror=<enum>] [,wwn=<wwn>]
-                 */
-                [key: `ide${number}`]: string;
+                ide0?: Ide;
+                ide1?: Ide;
+                ide2?: Ide;
+                ide3?: Ide;
                 /**
                  * Trusted Domain Extension (TDX) features by Intel CPUs
                  * @format pve-qemu-tdx-fmt
                  * @typetext [type=]<tdx-type> ,attestation=<1|0> [,vsock-cid=<integer>] [,vsock-port=<integer>]
                  */
                 "intel-tdx"?: PveQemuTdxFmt;
-                /**
-                 * cloud-init: Specify IP addresses and gateways for the corresponding interface.
-                 * IP addresses use CIDR notation, gateways are optional but need an IP of the same type specified.
-                 * The special string 'dhcp' can be used for IP addresses to use DHCP, in which case no explicit
-                 * gateway should be provided.
-                 * For IPv6 the special string 'auto' can be used to use stateless autoconfiguration. This requires
-                 * cloud-init 19.4 or newer.
-                 * If cloud-init is enabled and neither an IPv4 nor an IPv6 address is specified, it defaults to using
-                 * dhcp on IPv4.
-                 * Indexed property: `ipconfig0`, `ipconfig1`, ...
-                 * @format pve-qm-ipconfig
-                 * @typetext [gw=<GatewayIPv4>] [,gw6=<GatewayIPv6>] [,ip=<IPv4Format/CIDR>] [,ip6=<IPv6Format/CIDR>]
-                 */
-                [key: `ipconfig${number}`]: PveQmIpconfig;
+                ipconfig0?: PveQmIpconfig;
+                ipconfig1?: PveQmIpconfig;
+                ipconfig2?: PveQmIpconfig;
+                ipconfig3?: PveQmIpconfig;
+                ipconfig4?: PveQmIpconfig;
+                ipconfig5?: PveQmIpconfig;
+                ipconfig6?: PveQmIpconfig;
+                ipconfig7?: PveQmIpconfig;
+                ipconfig8?: PveQmIpconfig;
+                ipconfig9?: PveQmIpconfig;
+                ipconfig10?: PveQmIpconfig;
+                ipconfig11?: PveQmIpconfig;
+                ipconfig12?: PveQmIpconfig;
+                ipconfig13?: PveQmIpconfig;
+                ipconfig14?: PveQmIpconfig;
+                ipconfig15?: PveQmIpconfig;
+                ipconfig16?: PveQmIpconfig;
+                ipconfig17?: PveQmIpconfig;
+                ipconfig18?: PveQmIpconfig;
+                ipconfig19?: PveQmIpconfig;
+                ipconfig20?: PveQmIpconfig;
+                ipconfig21?: PveQmIpconfig;
+                ipconfig22?: PveQmIpconfig;
+                ipconfig23?: PveQmIpconfig;
+                ipconfig24?: PveQmIpconfig;
+                ipconfig25?: PveQmIpconfig;
+                ipconfig26?: PveQmIpconfig;
+                ipconfig27?: PveQmIpconfig;
+                ipconfig28?: PveQmIpconfig;
+                ipconfig29?: PveQmIpconfig;
+                ipconfig30?: PveQmIpconfig;
+                ipconfig31?: PveQmIpconfig;
                 /**
                  * Inter-VM shared memory. Useful for direct communication between VMs, or to the host.
                  * @propertyString name=<string>, size=<integer>
@@ -18923,26 +20918,52 @@ export namespace Proxmox {
                  * @typetext <string>
                  */
                 nameserver?: AddressList;
-                /**
-                 * Specify network devices.
-                 * Indexed property: `net0`, `net1`, ...
-                 * @propertyString bridge=<string>, e1000=<string>, e1000-82540em=<string>, e1000-82544gc=<string>, e1000-82545em=<string>, e1000e=<string>, firewall=<boolean>, host-tunnel=<boolean>, i82551=<string>, i82557b=<string>, i82559er=<string>, link_down=<boolean>, macaddr=<string>, model=<string>, mtu=<integer>, ne2k_isa=<string>, ne2k_pci=<string>, pcnet=<string>, queues=<integer>, rate=<number>, rtl8139=<string>, tag=<integer>, trunks=<string>, virtio=<string>, vmxnet3=<string>
-                 * @typetext [model=]<enum> [,bridge=<bridge>] [,firewall=<1|0>] [,host-tunnel=<1|0>] [,link_down=<1|0>] [,macaddr=<XX:XX:XX:XX:XX:XX>] [,mtu=<integer>] [,queues=<integer>] [,rate=<number>] [,tag=<integer>] [,trunks=<vlanid[;vlanid...]>] [,<model>=<macaddr>]
-                 */
-                [key: `net${number}`]: string;
+                net0?: Net;
+                net1?: Net;
+                net2?: Net;
+                net3?: Net;
+                net4?: Net;
+                net5?: Net;
+                net6?: Net;
+                net7?: Net;
+                net8?: Net;
+                net9?: Net;
+                net10?: Net;
+                net11?: Net;
+                net12?: Net;
+                net13?: Net;
+                net14?: Net;
+                net15?: Net;
+                net16?: Net;
+                net17?: Net;
+                net18?: Net;
+                net19?: Net;
+                net20?: Net;
+                net21?: Net;
+                net22?: Net;
+                net23?: Net;
+                net24?: Net;
+                net25?: Net;
+                net26?: Net;
+                net27?: Net;
+                net28?: Net;
+                net29?: Net;
+                net30?: Net;
+                net31?: Net;
                 /**
                  * Enable/disable NUMA.
                  * @default 0
                  * @typetext <boolean>
                  */
                 numa?: boolean;
-                /**
-                 * NUMA topology.
-                 * Indexed property: `numa0`, `numa1`, ...
-                 * @propertyString cpus=<string>, hostnodes=<string>, memory=<number>, policy=<string>
-                 * @typetext cpus=<id[-id];...> [,hostnodes=<id[-id];...>] [,memory=<number>] [,policy=<preferred|bind|interleave>]
-                 */
-                [key: `numa${number}`]: string;
+                numa0?: Numa;
+                numa1?: Numa;
+                numa2?: Numa;
+                numa3?: Numa;
+                numa4?: Numa;
+                numa5?: Numa;
+                numa6?: Numa;
+                numa7?: Numa;
                 /**
                  * Specifies whether a VM will be started during system bootup.
                  * @default 0
@@ -18969,15 +20990,9 @@ export namespace Proxmox {
                  * @default other
                  */
                 ostype?: Ostype;
-                /**
-                 * Map host parallel devices (n is 0 to 2).
-                 * NOTE: This option allows direct access to host hardware. So it is no longer possible to migrate such
-                 * machines - use with special care.
-                 * CAUTION: Experimental! User reported problems with this option.
-                 * Indexed property: `parallel0`, `parallel1`, ...
-                 * @pattern /dev/parport\d+|/dev/usb/lp\d+
-                 */
-                [key: `parallel${number}`]: string;
+                parallel0?: Parallel;
+                parallel1?: Parallel;
+                parallel2?: Parallel;
                 /**
                  * Sets the protection flag of the VM. This will disable the remove VM and remove disk operations.
                  * @default 0
@@ -19002,20 +21017,43 @@ export namespace Proxmox {
                  * @typetext [source=]</dev/urandom|/dev/random|/dev/hwrng> [,max_bytes=<integer>] [,period=<integer>]
                  */
                 rng0?: PveQmRng;
-                /**
-                 * Use volume as SATA hard disk or CD-ROM (n is 0 to 5). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. Use STORAGE_ID:0 and the 'import-from' parameter to import from an existing volume.
-                 * Indexed property: `sata0`, `sata1`, ...
-                 * @propertyString aio=<string>, backup=<boolean>, bps=<integer>, bps_max_length=<integer>, bps_rd=<integer>, bps_rd_length=<string>, bps_rd_max_length=<integer>, bps_wr=<integer>, bps_wr_length=<string>, bps_wr_max_length=<integer>, cache=<string>, detect_zeroes=<boolean>, discard=<string>, file=<string>, format=<string>, import-from=<string>, iops=<integer>, iops_max=<integer>, iops_max_length=<integer>, iops_rd=<integer>, iops_rd_length=<string>, iops_rd_max=<integer>, iops_rd_max_length=<integer>, iops_wr=<integer>, iops_wr_length=<string>, iops_wr_max=<integer>, iops_wr_max_length=<integer>, mbps=<number>, mbps_max=<number>, mbps_rd=<number>, mbps_rd_max=<number>, mbps_wr=<number>, mbps_wr_max=<number>, media=<string>, replicate=<boolean>, rerror=<string>, serial=<string>, shared=<boolean>, size=<string>, snapshot=<boolean>, ssd=<boolean>, volume=<string>, werror=<string>, wwn=<string>
-                 * @typetext [file=]<volume> [,aio=<native|threads|io_uring>] [,backup=<1|0>] [,bps=<bps>] [,bps_max_length=<seconds>] [,bps_rd=<bps>] [,bps_rd_max_length=<seconds>] [,bps_wr=<bps>] [,bps_wr_max_length=<seconds>] [,cache=<enum>] [,detect_zeroes=<1|0>] [,discard=<ignore|on>] [,format=<enum>] [,import-from=<source volume>] [,iops=<iops>] [,iops_max=<iops>] [,iops_max_length=<seconds>] [,iops_rd=<iops>] [,iops_rd_max=<iops>] [,iops_rd_max_length=<seconds>] [,iops_wr=<iops>] [,iops_wr_max=<iops>] [,iops_wr_max_length=<seconds>] [,mbps=<mbps>] [,mbps_max=<mbps>] [,mbps_rd=<mbps>] [,mbps_rd_max=<mbps>] [,mbps_wr=<mbps>] [,mbps_wr_max=<mbps>] [,media=<cdrom|disk>] [,replicate=<1|0>] [,rerror=<ignore|report|stop>] [,serial=<serial>] [,shared=<1|0>] [,size=<DiskSize>] [,snapshot=<1|0>] [,ssd=<1|0>] [,werror=<enum>] [,wwn=<wwn>]
-                 */
-                [key: `sata${number}`]: string;
-                /**
-                 * Use volume as SCSI hard disk or CD-ROM (n is 0 to 30). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. Use STORAGE_ID:0 and the 'import-from' parameter to import from an existing volume.
-                 * Indexed property: `scsi0`, `scsi1`, ...
-                 * @propertyString aio=<string>, backup=<boolean>, bps=<integer>, bps_max_length=<integer>, bps_rd=<integer>, bps_rd_length=<string>, bps_rd_max_length=<integer>, bps_wr=<integer>, bps_wr_length=<string>, bps_wr_max_length=<integer>, cache=<string>, detect_zeroes=<boolean>, discard=<string>, file=<string>, format=<string>, import-from=<string>, iops=<integer>, iops_max=<integer>, iops_max_length=<integer>, iops_rd=<integer>, iops_rd_length=<string>, iops_rd_max=<integer>, iops_rd_max_length=<integer>, iops_wr=<integer>, iops_wr_length=<string>, iops_wr_max=<integer>, iops_wr_max_length=<integer>, iothread=<boolean>, mbps=<number>, mbps_max=<number>, mbps_rd=<number>, mbps_rd_max=<number>, mbps_wr=<number>, mbps_wr_max=<number>, media=<string>, product=<string>, queues=<integer>, replicate=<boolean>, rerror=<string>, ro=<boolean>, scsiblock=<boolean>, serial=<string>, shared=<boolean>, size=<string>, snapshot=<boolean>, ssd=<boolean>, vendor=<string>, volume=<string>, werror=<string>, wwn=<string>
-                 * @typetext [file=]<volume> [,aio=<native|threads|io_uring>] [,backup=<1|0>] [,bps=<bps>] [,bps_max_length=<seconds>] [,bps_rd=<bps>] [,bps_rd_max_length=<seconds>] [,bps_wr=<bps>] [,bps_wr_max_length=<seconds>] [,cache=<enum>] [,detect_zeroes=<1|0>] [,discard=<ignore|on>] [,format=<enum>] [,import-from=<source volume>] [,iops=<iops>] [,iops_max=<iops>] [,iops_max_length=<seconds>] [,iops_rd=<iops>] [,iops_rd_max=<iops>] [,iops_rd_max_length=<seconds>] [,iops_wr=<iops>] [,iops_wr_max=<iops>] [,iops_wr_max_length=<seconds>] [,iothread=<1|0>] [,mbps=<mbps>] [,mbps_max=<mbps>] [,mbps_rd=<mbps>] [,mbps_rd_max=<mbps>] [,mbps_wr=<mbps>] [,mbps_wr_max=<mbps>] [,media=<cdrom|disk>] [,product=<product>] [,queues=<integer>] [,replicate=<1|0>] [,rerror=<ignore|report|stop>] [,ro=<1|0>] [,scsiblock=<1|0>] [,serial=<serial>] [,shared=<1|0>] [,size=<DiskSize>] [,snapshot=<1|0>] [,ssd=<1|0>] [,vendor=<vendor>] [,werror=<enum>] [,wwn=<wwn>]
-                 */
-                [key: `scsi${number}`]: string;
+                sata0?: Sata;
+                sata1?: Sata;
+                sata2?: Sata;
+                sata3?: Sata;
+                sata4?: Sata;
+                sata5?: Sata;
+                scsi0?: Scsi;
+                scsi1?: Scsi;
+                scsi2?: Scsi;
+                scsi3?: Scsi;
+                scsi4?: Scsi;
+                scsi5?: Scsi;
+                scsi6?: Scsi;
+                scsi7?: Scsi;
+                scsi8?: Scsi;
+                scsi9?: Scsi;
+                scsi10?: Scsi;
+                scsi11?: Scsi;
+                scsi12?: Scsi;
+                scsi13?: Scsi;
+                scsi14?: Scsi;
+                scsi15?: Scsi;
+                scsi16?: Scsi;
+                scsi17?: Scsi;
+                scsi18?: Scsi;
+                scsi19?: Scsi;
+                scsi20?: Scsi;
+                scsi21?: Scsi;
+                scsi22?: Scsi;
+                scsi23?: Scsi;
+                scsi24?: Scsi;
+                scsi25?: Scsi;
+                scsi26?: Scsi;
+                scsi27?: Scsi;
+                scsi28?: Scsi;
+                scsi29?: Scsi;
+                scsi30?: Scsi;
                 /**
                  * SCSI controller model
                  * @default lsi
@@ -19026,17 +21064,10 @@ export namespace Proxmox {
                  * @typetext <string>
                  */
                 searchdomain?: string;
-                /**
-                 * Create a serial device inside the VM (n is 0 to 3), and pass through a
-                 * host serial device (i.e. /dev/ttyS0), or create a unix socket on the
-                 * host side (use 'qm terminal' to open a terminal connection).
-                 * NOTE: If you pass through a host serial device, it is no longer possible to migrate such machines -
-                 * use with special care.
-                 * CAUTION: Experimental! User reported problems with this option.
-                 * Indexed property: `serial0`, `serial1`, ...
-                 * @pattern (/dev/[^,]+|socket)
-                 */
-                [key: `serial${number}`]: string;
+                serial0?: Serial;
+                serial1?: Serial;
+                serial2?: Serial;
+                serial3?: Serial;
                 /**
                  * Amount of memory shares for auto-ballooning. The larger the number is, the more memory this VM gets. Number is relative to weights of all other running VMs. Using zero disables auto-ballooning. Auto-ballooning is done by pvestatd.
                  * @minimum 0
@@ -19126,20 +21157,276 @@ export namespace Proxmox {
                  * @typetext [file=]<volume> [,format=<raw|qcow2|vmdk>] [,import-from=<source volume>] [,size=<DiskSize>] [,version=<v1.2|v2.0>]
                  */
                 tpmstate0?: string;
-                /**
-                 * Reference to unused volumes. This is used internally, and should not be modified manually.
-                 * Indexed property: `unused0`, `unused1`, ...
-                 * @propertyString file=<string>, volume=<string>
-                 * @typetext [file=]<volume>
-                 */
-                [key: `unused${number}`]: string;
-                /**
-                 * Configure an USB device (n is 0 to 4, for machine version >= 7.1 and ostype l26 or windows > 7, n can be up to 14).
-                 * Indexed property: `usb0`, `usb1`, ...
-                 * @propertyString host=<string>, mapping=<string>, usb3=<boolean>
-                 * @typetext [[host=]<HOSTUSBDEVICE|spice>] [,mapping=<mapping-id>] [,usb3=<1|0>]
-                 */
-                [key: `usb${number}`]: string;
+                unused0?: Unused;
+                unused1?: Unused;
+                unused2?: Unused;
+                unused3?: Unused;
+                unused4?: Unused;
+                unused5?: Unused;
+                unused6?: Unused;
+                unused7?: Unused;
+                unused8?: Unused;
+                unused9?: Unused;
+                unused10?: Unused;
+                unused11?: Unused;
+                unused12?: Unused;
+                unused13?: Unused;
+                unused14?: Unused;
+                unused15?: Unused;
+                unused16?: Unused;
+                unused17?: Unused;
+                unused18?: Unused;
+                unused19?: Unused;
+                unused20?: Unused;
+                unused21?: Unused;
+                unused22?: Unused;
+                unused23?: Unused;
+                unused24?: Unused;
+                unused25?: Unused;
+                unused26?: Unused;
+                unused27?: Unused;
+                unused28?: Unused;
+                unused29?: Unused;
+                unused30?: Unused;
+                unused31?: Unused;
+                unused32?: Unused;
+                unused33?: Unused;
+                unused34?: Unused;
+                unused35?: Unused;
+                unused36?: Unused;
+                unused37?: Unused;
+                unused38?: Unused;
+                unused39?: Unused;
+                unused40?: Unused;
+                unused41?: Unused;
+                unused42?: Unused;
+                unused43?: Unused;
+                unused44?: Unused;
+                unused45?: Unused;
+                unused46?: Unused;
+                unused47?: Unused;
+                unused48?: Unused;
+                unused49?: Unused;
+                unused50?: Unused;
+                unused51?: Unused;
+                unused52?: Unused;
+                unused53?: Unused;
+                unused54?: Unused;
+                unused55?: Unused;
+                unused56?: Unused;
+                unused57?: Unused;
+                unused58?: Unused;
+                unused59?: Unused;
+                unused60?: Unused;
+                unused61?: Unused;
+                unused62?: Unused;
+                unused63?: Unused;
+                unused64?: Unused;
+                unused65?: Unused;
+                unused66?: Unused;
+                unused67?: Unused;
+                unused68?: Unused;
+                unused69?: Unused;
+                unused70?: Unused;
+                unused71?: Unused;
+                unused72?: Unused;
+                unused73?: Unused;
+                unused74?: Unused;
+                unused75?: Unused;
+                unused76?: Unused;
+                unused77?: Unused;
+                unused78?: Unused;
+                unused79?: Unused;
+                unused80?: Unused;
+                unused81?: Unused;
+                unused82?: Unused;
+                unused83?: Unused;
+                unused84?: Unused;
+                unused85?: Unused;
+                unused86?: Unused;
+                unused87?: Unused;
+                unused88?: Unused;
+                unused89?: Unused;
+                unused90?: Unused;
+                unused91?: Unused;
+                unused92?: Unused;
+                unused93?: Unused;
+                unused94?: Unused;
+                unused95?: Unused;
+                unused96?: Unused;
+                unused97?: Unused;
+                unused98?: Unused;
+                unused99?: Unused;
+                unused100?: Unused;
+                unused101?: Unused;
+                unused102?: Unused;
+                unused103?: Unused;
+                unused104?: Unused;
+                unused105?: Unused;
+                unused106?: Unused;
+                unused107?: Unused;
+                unused108?: Unused;
+                unused109?: Unused;
+                unused110?: Unused;
+                unused111?: Unused;
+                unused112?: Unused;
+                unused113?: Unused;
+                unused114?: Unused;
+                unused115?: Unused;
+                unused116?: Unused;
+                unused117?: Unused;
+                unused118?: Unused;
+                unused119?: Unused;
+                unused120?: Unused;
+                unused121?: Unused;
+                unused122?: Unused;
+                unused123?: Unused;
+                unused124?: Unused;
+                unused125?: Unused;
+                unused126?: Unused;
+                unused127?: Unused;
+                unused128?: Unused;
+                unused129?: Unused;
+                unused130?: Unused;
+                unused131?: Unused;
+                unused132?: Unused;
+                unused133?: Unused;
+                unused134?: Unused;
+                unused135?: Unused;
+                unused136?: Unused;
+                unused137?: Unused;
+                unused138?: Unused;
+                unused139?: Unused;
+                unused140?: Unused;
+                unused141?: Unused;
+                unused142?: Unused;
+                unused143?: Unused;
+                unused144?: Unused;
+                unused145?: Unused;
+                unused146?: Unused;
+                unused147?: Unused;
+                unused148?: Unused;
+                unused149?: Unused;
+                unused150?: Unused;
+                unused151?: Unused;
+                unused152?: Unused;
+                unused153?: Unused;
+                unused154?: Unused;
+                unused155?: Unused;
+                unused156?: Unused;
+                unused157?: Unused;
+                unused158?: Unused;
+                unused159?: Unused;
+                unused160?: Unused;
+                unused161?: Unused;
+                unused162?: Unused;
+                unused163?: Unused;
+                unused164?: Unused;
+                unused165?: Unused;
+                unused166?: Unused;
+                unused167?: Unused;
+                unused168?: Unused;
+                unused169?: Unused;
+                unused170?: Unused;
+                unused171?: Unused;
+                unused172?: Unused;
+                unused173?: Unused;
+                unused174?: Unused;
+                unused175?: Unused;
+                unused176?: Unused;
+                unused177?: Unused;
+                unused178?: Unused;
+                unused179?: Unused;
+                unused180?: Unused;
+                unused181?: Unused;
+                unused182?: Unused;
+                unused183?: Unused;
+                unused184?: Unused;
+                unused185?: Unused;
+                unused186?: Unused;
+                unused187?: Unused;
+                unused188?: Unused;
+                unused189?: Unused;
+                unused190?: Unused;
+                unused191?: Unused;
+                unused192?: Unused;
+                unused193?: Unused;
+                unused194?: Unused;
+                unused195?: Unused;
+                unused196?: Unused;
+                unused197?: Unused;
+                unused198?: Unused;
+                unused199?: Unused;
+                unused200?: Unused;
+                unused201?: Unused;
+                unused202?: Unused;
+                unused203?: Unused;
+                unused204?: Unused;
+                unused205?: Unused;
+                unused206?: Unused;
+                unused207?: Unused;
+                unused208?: Unused;
+                unused209?: Unused;
+                unused210?: Unused;
+                unused211?: Unused;
+                unused212?: Unused;
+                unused213?: Unused;
+                unused214?: Unused;
+                unused215?: Unused;
+                unused216?: Unused;
+                unused217?: Unused;
+                unused218?: Unused;
+                unused219?: Unused;
+                unused220?: Unused;
+                unused221?: Unused;
+                unused222?: Unused;
+                unused223?: Unused;
+                unused224?: Unused;
+                unused225?: Unused;
+                unused226?: Unused;
+                unused227?: Unused;
+                unused228?: Unused;
+                unused229?: Unused;
+                unused230?: Unused;
+                unused231?: Unused;
+                unused232?: Unused;
+                unused233?: Unused;
+                unused234?: Unused;
+                unused235?: Unused;
+                unused236?: Unused;
+                unused237?: Unused;
+                unused238?: Unused;
+                unused239?: Unused;
+                unused240?: Unused;
+                unused241?: Unused;
+                unused242?: Unused;
+                unused243?: Unused;
+                unused244?: Unused;
+                unused245?: Unused;
+                unused246?: Unused;
+                unused247?: Unused;
+                unused248?: Unused;
+                unused249?: Unused;
+                unused250?: Unused;
+                unused251?: Unused;
+                unused252?: Unused;
+                unused253?: Unused;
+                unused254?: Unused;
+                unused255?: Unused;
+                usb0?: Usb;
+                usb1?: Usb;
+                usb2?: Usb;
+                usb3?: Usb;
+                usb4?: Usb;
+                usb5?: Usb;
+                usb6?: Usb;
+                usb7?: Usb;
+                usb8?: Usb;
+                usb9?: Usb;
+                usb10?: Usb;
+                usb11?: Usb;
+                usb12?: Usb;
+                usb13?: Usb;
                 /**
                  * Number of hotplugged vcpus.
                  * @minimum 1
@@ -19154,20 +21441,32 @@ export namespace Proxmox {
                  * @typetext [[type=]<enum>] [,clipboard=<vnc>] [,memory=<integer>]
                  */
                 vga?: string;
-                /**
-                 * Use volume as VIRTIO hard disk (n is 0 to 15). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. Use STORAGE_ID:0 and the 'import-from' parameter to import from an existing volume.
-                 * Indexed property: `virtio0`, `virtio1`, ...
-                 * @propertyString aio=<string>, backup=<boolean>, bps=<integer>, bps_max_length=<integer>, bps_rd=<integer>, bps_rd_length=<string>, bps_rd_max_length=<integer>, bps_wr=<integer>, bps_wr_length=<string>, bps_wr_max_length=<integer>, cache=<string>, detect_zeroes=<boolean>, discard=<string>, file=<string>, format=<string>, import-from=<string>, iops=<integer>, iops_max=<integer>, iops_max_length=<integer>, iops_rd=<integer>, iops_rd_length=<string>, iops_rd_max=<integer>, iops_rd_max_length=<integer>, iops_wr=<integer>, iops_wr_length=<string>, iops_wr_max=<integer>, iops_wr_max_length=<integer>, iothread=<boolean>, mbps=<number>, mbps_max=<number>, mbps_rd=<number>, mbps_rd_max=<number>, mbps_wr=<number>, mbps_wr_max=<number>, media=<string>, replicate=<boolean>, rerror=<string>, ro=<boolean>, serial=<string>, shared=<boolean>, size=<string>, snapshot=<boolean>, volume=<string>, werror=<string>
-                 * @typetext [file=]<volume> [,aio=<native|threads|io_uring>] [,backup=<1|0>] [,bps=<bps>] [,bps_max_length=<seconds>] [,bps_rd=<bps>] [,bps_rd_max_length=<seconds>] [,bps_wr=<bps>] [,bps_wr_max_length=<seconds>] [,cache=<enum>] [,detect_zeroes=<1|0>] [,discard=<ignore|on>] [,format=<enum>] [,import-from=<source volume>] [,iops=<iops>] [,iops_max=<iops>] [,iops_max_length=<seconds>] [,iops_rd=<iops>] [,iops_rd_max=<iops>] [,iops_rd_max_length=<seconds>] [,iops_wr=<iops>] [,iops_wr_max=<iops>] [,iops_wr_max_length=<seconds>] [,iothread=<1|0>] [,mbps=<mbps>] [,mbps_max=<mbps>] [,mbps_rd=<mbps>] [,mbps_rd_max=<mbps>] [,mbps_wr=<mbps>] [,mbps_wr_max=<mbps>] [,media=<cdrom|disk>] [,replicate=<1|0>] [,rerror=<ignore|report|stop>] [,ro=<1|0>] [,serial=<serial>] [,shared=<1|0>] [,size=<DiskSize>] [,snapshot=<1|0>] [,werror=<enum>]
-                 */
-                [key: `virtio${number}`]: string;
-                /**
-                 * Configuration for sharing a directory between host and guest using Virtio-fs.
-                 * Indexed property: `virtiofs0`, `virtiofs1`, ...
-                 * @propertyString cache=<string>, direct-io=<boolean>, dirid=<string>, expose-acl=<boolean>, expose-xattr=<boolean>
-                 * @typetext [dirid=]<mapping-id> [,cache=<enum>] [,direct-io=<1|0>] [,expose-acl=<1|0>] [,expose-xattr=<1|0>]
-                 */
-                [key: `virtiofs${number}`]: string;
+                virtio0?: Virtio;
+                virtio1?: Virtio;
+                virtio2?: Virtio;
+                virtio3?: Virtio;
+                virtio4?: Virtio;
+                virtio5?: Virtio;
+                virtio6?: Virtio;
+                virtio7?: Virtio;
+                virtio8?: Virtio;
+                virtio9?: Virtio;
+                virtio10?: Virtio;
+                virtio11?: Virtio;
+                virtio12?: Virtio;
+                virtio13?: Virtio;
+                virtio14?: Virtio;
+                virtio15?: Virtio;
+                virtiofs0?: Virtiofs;
+                virtiofs1?: Virtiofs;
+                virtiofs2?: Virtiofs;
+                virtiofs3?: Virtiofs;
+                virtiofs4?: Virtiofs;
+                virtiofs5?: Virtiofs;
+                virtiofs6?: Virtiofs;
+                virtiofs7?: Virtiofs;
+                virtiofs8?: Virtiofs;
+                virtiofs9?: Virtiofs;
                 /**
                  * The VM generation ID (vmgenid) device exposes a 128-bit integer value identifier to the guest OS. This allows to notify the guest operating system when the virtual machine is executed with a different configuration (e.g. snapshot execution or creation from a template). The guest operating system notices the change, and is then able to react as appropriate by marking its copies of distributed databases as dirty, re-initializing its random number generator, etc.
                  * Note that auto-creation only works when done through API/CLI create or update methods, but not when manually editing the config file.
@@ -19279,7 +21578,7 @@ export namespace Proxmox {
                */
               $post(param?: {
                 /** opens a serial terminal (defaults to display) */
-                serial?: Serial;
+                serial?: Serial_2;
               }): Promise<nodesQemuTermproxyTermproxy>;
             };
             vncwebsocket: {
@@ -20129,13 +22428,262 @@ export namespace Proxmox {
              * @typetext <string>
              */
             description?: string;
-            /**
-             * Device to pass through to the container
-             * Indexed property: `dev0`, `dev1`, ...
-             * @propertyString deny-write=<boolean>, gid=<integer>, mode=<string>, path=<string>, uid=<integer>
-             * @typetext [[path=]<Path>] [,deny-write=<1|0>] [,gid=<integer>] [,mode=<Octal access mode>] [,uid=<integer>]
-             */
-            [key: `dev${number}`]: string;
+            dev0?: Dev;
+            dev1?: Dev;
+            dev2?: Dev;
+            dev3?: Dev;
+            dev4?: Dev;
+            dev5?: Dev;
+            dev6?: Dev;
+            dev7?: Dev;
+            dev8?: Dev;
+            dev9?: Dev;
+            dev10?: Dev;
+            dev11?: Dev;
+            dev12?: Dev;
+            dev13?: Dev;
+            dev14?: Dev;
+            dev15?: Dev;
+            dev16?: Dev;
+            dev17?: Dev;
+            dev18?: Dev;
+            dev19?: Dev;
+            dev20?: Dev;
+            dev21?: Dev;
+            dev22?: Dev;
+            dev23?: Dev;
+            dev24?: Dev;
+            dev25?: Dev;
+            dev26?: Dev;
+            dev27?: Dev;
+            dev28?: Dev;
+            dev29?: Dev;
+            dev30?: Dev;
+            dev31?: Dev;
+            dev32?: Dev;
+            dev33?: Dev;
+            dev34?: Dev;
+            dev35?: Dev;
+            dev36?: Dev;
+            dev37?: Dev;
+            dev38?: Dev;
+            dev39?: Dev;
+            dev40?: Dev;
+            dev41?: Dev;
+            dev42?: Dev;
+            dev43?: Dev;
+            dev44?: Dev;
+            dev45?: Dev;
+            dev46?: Dev;
+            dev47?: Dev;
+            dev48?: Dev;
+            dev49?: Dev;
+            dev50?: Dev;
+            dev51?: Dev;
+            dev52?: Dev;
+            dev53?: Dev;
+            dev54?: Dev;
+            dev55?: Dev;
+            dev56?: Dev;
+            dev57?: Dev;
+            dev58?: Dev;
+            dev59?: Dev;
+            dev60?: Dev;
+            dev61?: Dev;
+            dev62?: Dev;
+            dev63?: Dev;
+            dev64?: Dev;
+            dev65?: Dev;
+            dev66?: Dev;
+            dev67?: Dev;
+            dev68?: Dev;
+            dev69?: Dev;
+            dev70?: Dev;
+            dev71?: Dev;
+            dev72?: Dev;
+            dev73?: Dev;
+            dev74?: Dev;
+            dev75?: Dev;
+            dev76?: Dev;
+            dev77?: Dev;
+            dev78?: Dev;
+            dev79?: Dev;
+            dev80?: Dev;
+            dev81?: Dev;
+            dev82?: Dev;
+            dev83?: Dev;
+            dev84?: Dev;
+            dev85?: Dev;
+            dev86?: Dev;
+            dev87?: Dev;
+            dev88?: Dev;
+            dev89?: Dev;
+            dev90?: Dev;
+            dev91?: Dev;
+            dev92?: Dev;
+            dev93?: Dev;
+            dev94?: Dev;
+            dev95?: Dev;
+            dev96?: Dev;
+            dev97?: Dev;
+            dev98?: Dev;
+            dev99?: Dev;
+            dev100?: Dev;
+            dev101?: Dev;
+            dev102?: Dev;
+            dev103?: Dev;
+            dev104?: Dev;
+            dev105?: Dev;
+            dev106?: Dev;
+            dev107?: Dev;
+            dev108?: Dev;
+            dev109?: Dev;
+            dev110?: Dev;
+            dev111?: Dev;
+            dev112?: Dev;
+            dev113?: Dev;
+            dev114?: Dev;
+            dev115?: Dev;
+            dev116?: Dev;
+            dev117?: Dev;
+            dev118?: Dev;
+            dev119?: Dev;
+            dev120?: Dev;
+            dev121?: Dev;
+            dev122?: Dev;
+            dev123?: Dev;
+            dev124?: Dev;
+            dev125?: Dev;
+            dev126?: Dev;
+            dev127?: Dev;
+            dev128?: Dev;
+            dev129?: Dev;
+            dev130?: Dev;
+            dev131?: Dev;
+            dev132?: Dev;
+            dev133?: Dev;
+            dev134?: Dev;
+            dev135?: Dev;
+            dev136?: Dev;
+            dev137?: Dev;
+            dev138?: Dev;
+            dev139?: Dev;
+            dev140?: Dev;
+            dev141?: Dev;
+            dev142?: Dev;
+            dev143?: Dev;
+            dev144?: Dev;
+            dev145?: Dev;
+            dev146?: Dev;
+            dev147?: Dev;
+            dev148?: Dev;
+            dev149?: Dev;
+            dev150?: Dev;
+            dev151?: Dev;
+            dev152?: Dev;
+            dev153?: Dev;
+            dev154?: Dev;
+            dev155?: Dev;
+            dev156?: Dev;
+            dev157?: Dev;
+            dev158?: Dev;
+            dev159?: Dev;
+            dev160?: Dev;
+            dev161?: Dev;
+            dev162?: Dev;
+            dev163?: Dev;
+            dev164?: Dev;
+            dev165?: Dev;
+            dev166?: Dev;
+            dev167?: Dev;
+            dev168?: Dev;
+            dev169?: Dev;
+            dev170?: Dev;
+            dev171?: Dev;
+            dev172?: Dev;
+            dev173?: Dev;
+            dev174?: Dev;
+            dev175?: Dev;
+            dev176?: Dev;
+            dev177?: Dev;
+            dev178?: Dev;
+            dev179?: Dev;
+            dev180?: Dev;
+            dev181?: Dev;
+            dev182?: Dev;
+            dev183?: Dev;
+            dev184?: Dev;
+            dev185?: Dev;
+            dev186?: Dev;
+            dev187?: Dev;
+            dev188?: Dev;
+            dev189?: Dev;
+            dev190?: Dev;
+            dev191?: Dev;
+            dev192?: Dev;
+            dev193?: Dev;
+            dev194?: Dev;
+            dev195?: Dev;
+            dev196?: Dev;
+            dev197?: Dev;
+            dev198?: Dev;
+            dev199?: Dev;
+            dev200?: Dev;
+            dev201?: Dev;
+            dev202?: Dev;
+            dev203?: Dev;
+            dev204?: Dev;
+            dev205?: Dev;
+            dev206?: Dev;
+            dev207?: Dev;
+            dev208?: Dev;
+            dev209?: Dev;
+            dev210?: Dev;
+            dev211?: Dev;
+            dev212?: Dev;
+            dev213?: Dev;
+            dev214?: Dev;
+            dev215?: Dev;
+            dev216?: Dev;
+            dev217?: Dev;
+            dev218?: Dev;
+            dev219?: Dev;
+            dev220?: Dev;
+            dev221?: Dev;
+            dev222?: Dev;
+            dev223?: Dev;
+            dev224?: Dev;
+            dev225?: Dev;
+            dev226?: Dev;
+            dev227?: Dev;
+            dev228?: Dev;
+            dev229?: Dev;
+            dev230?: Dev;
+            dev231?: Dev;
+            dev232?: Dev;
+            dev233?: Dev;
+            dev234?: Dev;
+            dev235?: Dev;
+            dev236?: Dev;
+            dev237?: Dev;
+            dev238?: Dev;
+            dev239?: Dev;
+            dev240?: Dev;
+            dev241?: Dev;
+            dev242?: Dev;
+            dev243?: Dev;
+            dev244?: Dev;
+            dev245?: Dev;
+            dev246?: Dev;
+            dev247?: Dev;
+            dev248?: Dev;
+            dev249?: Dev;
+            dev250?: Dev;
+            dev251?: Dev;
+            dev252?: Dev;
+            dev253?: Dev;
+            dev254?: Dev;
+            dev255?: Dev;
             /**
              * Command to run as init, optionally with arguments; may start with an absolute path, relative path, or a binary in $PATH.
              * @pattern (?^:[^\x00-\x08\x0a-\x1F\x7F]+)
@@ -20191,26 +22739,300 @@ export namespace Proxmox {
              * @typetext <integer> (16 - N)
              */
             memory?: number;
-            /**
-             * Use volume as container mount point. Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume.
-             * Indexed property: `mp0`, `mp1`, ...
-             * @propertyString acl=<boolean>, backup=<boolean>, idmap=<string>, keepattrs=<boolean>, mountoptions=<string>, mp=<string>, quota=<boolean>, replicate=<boolean>, ro=<boolean>, shared=<boolean>, size=<string>, volume=<string>
-             * @typetext [volume=]<volume> ,mp=<Path> [,acl=<1|0>] [,backup=<1|0>] [,idmap=<type:container:disk:range-size[;type:container:disk:range-size;...]>] [,keepattrs=<1|0>] [,mountoptions=<opt[;opt...]>] [,quota=<1|0>] [,replicate=<1|0>] [,ro=<1|0>] [,shared=<1|0>] [,size=<DiskSize>]
-             */
-            [key: `mp${number}`]: string;
+            mp0?: Mp;
+            mp1?: Mp;
+            mp2?: Mp;
+            mp3?: Mp;
+            mp4?: Mp;
+            mp5?: Mp;
+            mp6?: Mp;
+            mp7?: Mp;
+            mp8?: Mp;
+            mp9?: Mp;
+            mp10?: Mp;
+            mp11?: Mp;
+            mp12?: Mp;
+            mp13?: Mp;
+            mp14?: Mp;
+            mp15?: Mp;
+            mp16?: Mp;
+            mp17?: Mp;
+            mp18?: Mp;
+            mp19?: Mp;
+            mp20?: Mp;
+            mp21?: Mp;
+            mp22?: Mp;
+            mp23?: Mp;
+            mp24?: Mp;
+            mp25?: Mp;
+            mp26?: Mp;
+            mp27?: Mp;
+            mp28?: Mp;
+            mp29?: Mp;
+            mp30?: Mp;
+            mp31?: Mp;
+            mp32?: Mp;
+            mp33?: Mp;
+            mp34?: Mp;
+            mp35?: Mp;
+            mp36?: Mp;
+            mp37?: Mp;
+            mp38?: Mp;
+            mp39?: Mp;
+            mp40?: Mp;
+            mp41?: Mp;
+            mp42?: Mp;
+            mp43?: Mp;
+            mp44?: Mp;
+            mp45?: Mp;
+            mp46?: Mp;
+            mp47?: Mp;
+            mp48?: Mp;
+            mp49?: Mp;
+            mp50?: Mp;
+            mp51?: Mp;
+            mp52?: Mp;
+            mp53?: Mp;
+            mp54?: Mp;
+            mp55?: Mp;
+            mp56?: Mp;
+            mp57?: Mp;
+            mp58?: Mp;
+            mp59?: Mp;
+            mp60?: Mp;
+            mp61?: Mp;
+            mp62?: Mp;
+            mp63?: Mp;
+            mp64?: Mp;
+            mp65?: Mp;
+            mp66?: Mp;
+            mp67?: Mp;
+            mp68?: Mp;
+            mp69?: Mp;
+            mp70?: Mp;
+            mp71?: Mp;
+            mp72?: Mp;
+            mp73?: Mp;
+            mp74?: Mp;
+            mp75?: Mp;
+            mp76?: Mp;
+            mp77?: Mp;
+            mp78?: Mp;
+            mp79?: Mp;
+            mp80?: Mp;
+            mp81?: Mp;
+            mp82?: Mp;
+            mp83?: Mp;
+            mp84?: Mp;
+            mp85?: Mp;
+            mp86?: Mp;
+            mp87?: Mp;
+            mp88?: Mp;
+            mp89?: Mp;
+            mp90?: Mp;
+            mp91?: Mp;
+            mp92?: Mp;
+            mp93?: Mp;
+            mp94?: Mp;
+            mp95?: Mp;
+            mp96?: Mp;
+            mp97?: Mp;
+            mp98?: Mp;
+            mp99?: Mp;
+            mp100?: Mp;
+            mp101?: Mp;
+            mp102?: Mp;
+            mp103?: Mp;
+            mp104?: Mp;
+            mp105?: Mp;
+            mp106?: Mp;
+            mp107?: Mp;
+            mp108?: Mp;
+            mp109?: Mp;
+            mp110?: Mp;
+            mp111?: Mp;
+            mp112?: Mp;
+            mp113?: Mp;
+            mp114?: Mp;
+            mp115?: Mp;
+            mp116?: Mp;
+            mp117?: Mp;
+            mp118?: Mp;
+            mp119?: Mp;
+            mp120?: Mp;
+            mp121?: Mp;
+            mp122?: Mp;
+            mp123?: Mp;
+            mp124?: Mp;
+            mp125?: Mp;
+            mp126?: Mp;
+            mp127?: Mp;
+            mp128?: Mp;
+            mp129?: Mp;
+            mp130?: Mp;
+            mp131?: Mp;
+            mp132?: Mp;
+            mp133?: Mp;
+            mp134?: Mp;
+            mp135?: Mp;
+            mp136?: Mp;
+            mp137?: Mp;
+            mp138?: Mp;
+            mp139?: Mp;
+            mp140?: Mp;
+            mp141?: Mp;
+            mp142?: Mp;
+            mp143?: Mp;
+            mp144?: Mp;
+            mp145?: Mp;
+            mp146?: Mp;
+            mp147?: Mp;
+            mp148?: Mp;
+            mp149?: Mp;
+            mp150?: Mp;
+            mp151?: Mp;
+            mp152?: Mp;
+            mp153?: Mp;
+            mp154?: Mp;
+            mp155?: Mp;
+            mp156?: Mp;
+            mp157?: Mp;
+            mp158?: Mp;
+            mp159?: Mp;
+            mp160?: Mp;
+            mp161?: Mp;
+            mp162?: Mp;
+            mp163?: Mp;
+            mp164?: Mp;
+            mp165?: Mp;
+            mp166?: Mp;
+            mp167?: Mp;
+            mp168?: Mp;
+            mp169?: Mp;
+            mp170?: Mp;
+            mp171?: Mp;
+            mp172?: Mp;
+            mp173?: Mp;
+            mp174?: Mp;
+            mp175?: Mp;
+            mp176?: Mp;
+            mp177?: Mp;
+            mp178?: Mp;
+            mp179?: Mp;
+            mp180?: Mp;
+            mp181?: Mp;
+            mp182?: Mp;
+            mp183?: Mp;
+            mp184?: Mp;
+            mp185?: Mp;
+            mp186?: Mp;
+            mp187?: Mp;
+            mp188?: Mp;
+            mp189?: Mp;
+            mp190?: Mp;
+            mp191?: Mp;
+            mp192?: Mp;
+            mp193?: Mp;
+            mp194?: Mp;
+            mp195?: Mp;
+            mp196?: Mp;
+            mp197?: Mp;
+            mp198?: Mp;
+            mp199?: Mp;
+            mp200?: Mp;
+            mp201?: Mp;
+            mp202?: Mp;
+            mp203?: Mp;
+            mp204?: Mp;
+            mp205?: Mp;
+            mp206?: Mp;
+            mp207?: Mp;
+            mp208?: Mp;
+            mp209?: Mp;
+            mp210?: Mp;
+            mp211?: Mp;
+            mp212?: Mp;
+            mp213?: Mp;
+            mp214?: Mp;
+            mp215?: Mp;
+            mp216?: Mp;
+            mp217?: Mp;
+            mp218?: Mp;
+            mp219?: Mp;
+            mp220?: Mp;
+            mp221?: Mp;
+            mp222?: Mp;
+            mp223?: Mp;
+            mp224?: Mp;
+            mp225?: Mp;
+            mp226?: Mp;
+            mp227?: Mp;
+            mp228?: Mp;
+            mp229?: Mp;
+            mp230?: Mp;
+            mp231?: Mp;
+            mp232?: Mp;
+            mp233?: Mp;
+            mp234?: Mp;
+            mp235?: Mp;
+            mp236?: Mp;
+            mp237?: Mp;
+            mp238?: Mp;
+            mp239?: Mp;
+            mp240?: Mp;
+            mp241?: Mp;
+            mp242?: Mp;
+            mp243?: Mp;
+            mp244?: Mp;
+            mp245?: Mp;
+            mp246?: Mp;
+            mp247?: Mp;
+            mp248?: Mp;
+            mp249?: Mp;
+            mp250?: Mp;
+            mp251?: Mp;
+            mp252?: Mp;
+            mp253?: Mp;
+            mp254?: Mp;
+            mp255?: Mp;
             /**
              * Sets DNS server IP address for a container. Create will automatically use the setting from the host if you neither set searchdomain nor nameserver.
              * @format lxc-ip-with-ll-iface-list
              * @typetext <string>
              */
             nameserver?: LxcIpWithLlIfaceList;
-            /**
-             * Specifies network interfaces for the container.
-             * Indexed property: `net0`, `net1`, ...
-             * @propertyString bridge=<string>, firewall=<boolean>, gw=<string>, gw6=<string>, host-managed=<boolean>, hwaddr=<string>, ip=<string>, ip6=<string>, link_down=<boolean>, mtu=<integer>, name=<string>, rate=<number>, tag=<integer>, trunks=<string>, type=<string>
-             * @typetext name=<string> [,bridge=<bridge>] [,firewall=<1|0>] [,gw=<GatewayIPv4>] [,gw6=<GatewayIPv6>] [,host-managed=<1|0>] [,hwaddr=<XX:XX:XX:XX:XX:XX>] [,ip=<(IPv4/CIDR|dhcp|manual)>] [,ip6=<(IPv6/CIDR|auto|dhcp|manual)>] [,link_down=<1|0>] [,mtu=<integer>] [,rate=<mbps>] [,tag=<integer>] [,trunks=<vlanid[;vlanid...]>] [,type=<veth>]
-             */
-            [key: `net${number}`]: string;
+            net0?: Net_3;
+            net1?: Net_3;
+            net2?: Net_3;
+            net3?: Net_3;
+            net4?: Net_3;
+            net5?: Net_3;
+            net6?: Net_3;
+            net7?: Net_3;
+            net8?: Net_3;
+            net9?: Net_3;
+            net10?: Net_3;
+            net11?: Net_3;
+            net12?: Net_3;
+            net13?: Net_3;
+            net14?: Net_3;
+            net15?: Net_3;
+            net16?: Net_3;
+            net17?: Net_3;
+            net18?: Net_3;
+            net19?: Net_3;
+            net20?: Net_3;
+            net21?: Net_3;
+            net22?: Net_3;
+            net23?: Net_3;
+            net24?: Net_3;
+            net25?: Net_3;
+            net26?: Net_3;
+            net27?: Net_3;
+            net28?: Net_3;
+            net29?: Net_3;
+            net30?: Net_3;
+            net31?: Net_3;
             /**
              * Specifies whether a container will be started during system bootup.
              * @default 0
@@ -20330,13 +23152,262 @@ export namespace Proxmox {
              * @typetext <boolean>
              */
             unprivileged?: boolean;
-            /**
-             * Reference to unused volumes. This is used internally, and should not be modified manually.
-             * Indexed property: `unused0`, `unused1`, ...
-             * @propertyString volume=<string>
-             * @typetext [volume=]<volume>
-             */
-            [key: `unused${number}`]: string;
+            unused0?: Unused_3;
+            unused1?: Unused_3;
+            unused2?: Unused_3;
+            unused3?: Unused_3;
+            unused4?: Unused_3;
+            unused5?: Unused_3;
+            unused6?: Unused_3;
+            unused7?: Unused_3;
+            unused8?: Unused_3;
+            unused9?: Unused_3;
+            unused10?: Unused_3;
+            unused11?: Unused_3;
+            unused12?: Unused_3;
+            unused13?: Unused_3;
+            unused14?: Unused_3;
+            unused15?: Unused_3;
+            unused16?: Unused_3;
+            unused17?: Unused_3;
+            unused18?: Unused_3;
+            unused19?: Unused_3;
+            unused20?: Unused_3;
+            unused21?: Unused_3;
+            unused22?: Unused_3;
+            unused23?: Unused_3;
+            unused24?: Unused_3;
+            unused25?: Unused_3;
+            unused26?: Unused_3;
+            unused27?: Unused_3;
+            unused28?: Unused_3;
+            unused29?: Unused_3;
+            unused30?: Unused_3;
+            unused31?: Unused_3;
+            unused32?: Unused_3;
+            unused33?: Unused_3;
+            unused34?: Unused_3;
+            unused35?: Unused_3;
+            unused36?: Unused_3;
+            unused37?: Unused_3;
+            unused38?: Unused_3;
+            unused39?: Unused_3;
+            unused40?: Unused_3;
+            unused41?: Unused_3;
+            unused42?: Unused_3;
+            unused43?: Unused_3;
+            unused44?: Unused_3;
+            unused45?: Unused_3;
+            unused46?: Unused_3;
+            unused47?: Unused_3;
+            unused48?: Unused_3;
+            unused49?: Unused_3;
+            unused50?: Unused_3;
+            unused51?: Unused_3;
+            unused52?: Unused_3;
+            unused53?: Unused_3;
+            unused54?: Unused_3;
+            unused55?: Unused_3;
+            unused56?: Unused_3;
+            unused57?: Unused_3;
+            unused58?: Unused_3;
+            unused59?: Unused_3;
+            unused60?: Unused_3;
+            unused61?: Unused_3;
+            unused62?: Unused_3;
+            unused63?: Unused_3;
+            unused64?: Unused_3;
+            unused65?: Unused_3;
+            unused66?: Unused_3;
+            unused67?: Unused_3;
+            unused68?: Unused_3;
+            unused69?: Unused_3;
+            unused70?: Unused_3;
+            unused71?: Unused_3;
+            unused72?: Unused_3;
+            unused73?: Unused_3;
+            unused74?: Unused_3;
+            unused75?: Unused_3;
+            unused76?: Unused_3;
+            unused77?: Unused_3;
+            unused78?: Unused_3;
+            unused79?: Unused_3;
+            unused80?: Unused_3;
+            unused81?: Unused_3;
+            unused82?: Unused_3;
+            unused83?: Unused_3;
+            unused84?: Unused_3;
+            unused85?: Unused_3;
+            unused86?: Unused_3;
+            unused87?: Unused_3;
+            unused88?: Unused_3;
+            unused89?: Unused_3;
+            unused90?: Unused_3;
+            unused91?: Unused_3;
+            unused92?: Unused_3;
+            unused93?: Unused_3;
+            unused94?: Unused_3;
+            unused95?: Unused_3;
+            unused96?: Unused_3;
+            unused97?: Unused_3;
+            unused98?: Unused_3;
+            unused99?: Unused_3;
+            unused100?: Unused_3;
+            unused101?: Unused_3;
+            unused102?: Unused_3;
+            unused103?: Unused_3;
+            unused104?: Unused_3;
+            unused105?: Unused_3;
+            unused106?: Unused_3;
+            unused107?: Unused_3;
+            unused108?: Unused_3;
+            unused109?: Unused_3;
+            unused110?: Unused_3;
+            unused111?: Unused_3;
+            unused112?: Unused_3;
+            unused113?: Unused_3;
+            unused114?: Unused_3;
+            unused115?: Unused_3;
+            unused116?: Unused_3;
+            unused117?: Unused_3;
+            unused118?: Unused_3;
+            unused119?: Unused_3;
+            unused120?: Unused_3;
+            unused121?: Unused_3;
+            unused122?: Unused_3;
+            unused123?: Unused_3;
+            unused124?: Unused_3;
+            unused125?: Unused_3;
+            unused126?: Unused_3;
+            unused127?: Unused_3;
+            unused128?: Unused_3;
+            unused129?: Unused_3;
+            unused130?: Unused_3;
+            unused131?: Unused_3;
+            unused132?: Unused_3;
+            unused133?: Unused_3;
+            unused134?: Unused_3;
+            unused135?: Unused_3;
+            unused136?: Unused_3;
+            unused137?: Unused_3;
+            unused138?: Unused_3;
+            unused139?: Unused_3;
+            unused140?: Unused_3;
+            unused141?: Unused_3;
+            unused142?: Unused_3;
+            unused143?: Unused_3;
+            unused144?: Unused_3;
+            unused145?: Unused_3;
+            unused146?: Unused_3;
+            unused147?: Unused_3;
+            unused148?: Unused_3;
+            unused149?: Unused_3;
+            unused150?: Unused_3;
+            unused151?: Unused_3;
+            unused152?: Unused_3;
+            unused153?: Unused_3;
+            unused154?: Unused_3;
+            unused155?: Unused_3;
+            unused156?: Unused_3;
+            unused157?: Unused_3;
+            unused158?: Unused_3;
+            unused159?: Unused_3;
+            unused160?: Unused_3;
+            unused161?: Unused_3;
+            unused162?: Unused_3;
+            unused163?: Unused_3;
+            unused164?: Unused_3;
+            unused165?: Unused_3;
+            unused166?: Unused_3;
+            unused167?: Unused_3;
+            unused168?: Unused_3;
+            unused169?: Unused_3;
+            unused170?: Unused_3;
+            unused171?: Unused_3;
+            unused172?: Unused_3;
+            unused173?: Unused_3;
+            unused174?: Unused_3;
+            unused175?: Unused_3;
+            unused176?: Unused_3;
+            unused177?: Unused_3;
+            unused178?: Unused_3;
+            unused179?: Unused_3;
+            unused180?: Unused_3;
+            unused181?: Unused_3;
+            unused182?: Unused_3;
+            unused183?: Unused_3;
+            unused184?: Unused_3;
+            unused185?: Unused_3;
+            unused186?: Unused_3;
+            unused187?: Unused_3;
+            unused188?: Unused_3;
+            unused189?: Unused_3;
+            unused190?: Unused_3;
+            unused191?: Unused_3;
+            unused192?: Unused_3;
+            unused193?: Unused_3;
+            unused194?: Unused_3;
+            unused195?: Unused_3;
+            unused196?: Unused_3;
+            unused197?: Unused_3;
+            unused198?: Unused_3;
+            unused199?: Unused_3;
+            unused200?: Unused_3;
+            unused201?: Unused_3;
+            unused202?: Unused_3;
+            unused203?: Unused_3;
+            unused204?: Unused_3;
+            unused205?: Unused_3;
+            unused206?: Unused_3;
+            unused207?: Unused_3;
+            unused208?: Unused_3;
+            unused209?: Unused_3;
+            unused210?: Unused_3;
+            unused211?: Unused_3;
+            unused212?: Unused_3;
+            unused213?: Unused_3;
+            unused214?: Unused_3;
+            unused215?: Unused_3;
+            unused216?: Unused_3;
+            unused217?: Unused_3;
+            unused218?: Unused_3;
+            unused219?: Unused_3;
+            unused220?: Unused_3;
+            unused221?: Unused_3;
+            unused222?: Unused_3;
+            unused223?: Unused_3;
+            unused224?: Unused_3;
+            unused225?: Unused_3;
+            unused226?: Unused_3;
+            unused227?: Unused_3;
+            unused228?: Unused_3;
+            unused229?: Unused_3;
+            unused230?: Unused_3;
+            unused231?: Unused_3;
+            unused232?: Unused_3;
+            unused233?: Unused_3;
+            unused234?: Unused_3;
+            unused235?: Unused_3;
+            unused236?: Unused_3;
+            unused237?: Unused_3;
+            unused238?: Unused_3;
+            unused239?: Unused_3;
+            unused240?: Unused_3;
+            unused241?: Unused_3;
+            unused242?: Unused_3;
+            unused243?: Unused_3;
+            unused244?: Unused_3;
+            unused245?: Unused_3;
+            unused246?: Unused_3;
+            unused247?: Unused_3;
+            unused248?: Unused_3;
+            unused249?: Unused_3;
+            unused250?: Unused_3;
+            unused251?: Unused_3;
+            unused252?: Unused_3;
+            unused253?: Unused_3;
+            unused254?: Unused_3;
+            unused255?: Unused_3;
             /**
              * The (unique) ID of the VM.
              * @minimum 100
@@ -20466,13 +23537,262 @@ export namespace Proxmox {
                  * @typetext <string>
                  */
                 description?: string;
-                /**
-                 * Device to pass through to the container
-                 * Indexed property: `dev0`, `dev1`, ...
-                 * @propertyString deny-write=<boolean>, gid=<integer>, mode=<string>, path=<string>, uid=<integer>
-                 * @typetext [[path=]<Path>] [,deny-write=<1|0>] [,gid=<integer>] [,mode=<Octal access mode>] [,uid=<integer>]
-                 */
-                [key: `dev${number}`]: string;
+                dev0?: Dev;
+                dev1?: Dev;
+                dev2?: Dev;
+                dev3?: Dev;
+                dev4?: Dev;
+                dev5?: Dev;
+                dev6?: Dev;
+                dev7?: Dev;
+                dev8?: Dev;
+                dev9?: Dev;
+                dev10?: Dev;
+                dev11?: Dev;
+                dev12?: Dev;
+                dev13?: Dev;
+                dev14?: Dev;
+                dev15?: Dev;
+                dev16?: Dev;
+                dev17?: Dev;
+                dev18?: Dev;
+                dev19?: Dev;
+                dev20?: Dev;
+                dev21?: Dev;
+                dev22?: Dev;
+                dev23?: Dev;
+                dev24?: Dev;
+                dev25?: Dev;
+                dev26?: Dev;
+                dev27?: Dev;
+                dev28?: Dev;
+                dev29?: Dev;
+                dev30?: Dev;
+                dev31?: Dev;
+                dev32?: Dev;
+                dev33?: Dev;
+                dev34?: Dev;
+                dev35?: Dev;
+                dev36?: Dev;
+                dev37?: Dev;
+                dev38?: Dev;
+                dev39?: Dev;
+                dev40?: Dev;
+                dev41?: Dev;
+                dev42?: Dev;
+                dev43?: Dev;
+                dev44?: Dev;
+                dev45?: Dev;
+                dev46?: Dev;
+                dev47?: Dev;
+                dev48?: Dev;
+                dev49?: Dev;
+                dev50?: Dev;
+                dev51?: Dev;
+                dev52?: Dev;
+                dev53?: Dev;
+                dev54?: Dev;
+                dev55?: Dev;
+                dev56?: Dev;
+                dev57?: Dev;
+                dev58?: Dev;
+                dev59?: Dev;
+                dev60?: Dev;
+                dev61?: Dev;
+                dev62?: Dev;
+                dev63?: Dev;
+                dev64?: Dev;
+                dev65?: Dev;
+                dev66?: Dev;
+                dev67?: Dev;
+                dev68?: Dev;
+                dev69?: Dev;
+                dev70?: Dev;
+                dev71?: Dev;
+                dev72?: Dev;
+                dev73?: Dev;
+                dev74?: Dev;
+                dev75?: Dev;
+                dev76?: Dev;
+                dev77?: Dev;
+                dev78?: Dev;
+                dev79?: Dev;
+                dev80?: Dev;
+                dev81?: Dev;
+                dev82?: Dev;
+                dev83?: Dev;
+                dev84?: Dev;
+                dev85?: Dev;
+                dev86?: Dev;
+                dev87?: Dev;
+                dev88?: Dev;
+                dev89?: Dev;
+                dev90?: Dev;
+                dev91?: Dev;
+                dev92?: Dev;
+                dev93?: Dev;
+                dev94?: Dev;
+                dev95?: Dev;
+                dev96?: Dev;
+                dev97?: Dev;
+                dev98?: Dev;
+                dev99?: Dev;
+                dev100?: Dev;
+                dev101?: Dev;
+                dev102?: Dev;
+                dev103?: Dev;
+                dev104?: Dev;
+                dev105?: Dev;
+                dev106?: Dev;
+                dev107?: Dev;
+                dev108?: Dev;
+                dev109?: Dev;
+                dev110?: Dev;
+                dev111?: Dev;
+                dev112?: Dev;
+                dev113?: Dev;
+                dev114?: Dev;
+                dev115?: Dev;
+                dev116?: Dev;
+                dev117?: Dev;
+                dev118?: Dev;
+                dev119?: Dev;
+                dev120?: Dev;
+                dev121?: Dev;
+                dev122?: Dev;
+                dev123?: Dev;
+                dev124?: Dev;
+                dev125?: Dev;
+                dev126?: Dev;
+                dev127?: Dev;
+                dev128?: Dev;
+                dev129?: Dev;
+                dev130?: Dev;
+                dev131?: Dev;
+                dev132?: Dev;
+                dev133?: Dev;
+                dev134?: Dev;
+                dev135?: Dev;
+                dev136?: Dev;
+                dev137?: Dev;
+                dev138?: Dev;
+                dev139?: Dev;
+                dev140?: Dev;
+                dev141?: Dev;
+                dev142?: Dev;
+                dev143?: Dev;
+                dev144?: Dev;
+                dev145?: Dev;
+                dev146?: Dev;
+                dev147?: Dev;
+                dev148?: Dev;
+                dev149?: Dev;
+                dev150?: Dev;
+                dev151?: Dev;
+                dev152?: Dev;
+                dev153?: Dev;
+                dev154?: Dev;
+                dev155?: Dev;
+                dev156?: Dev;
+                dev157?: Dev;
+                dev158?: Dev;
+                dev159?: Dev;
+                dev160?: Dev;
+                dev161?: Dev;
+                dev162?: Dev;
+                dev163?: Dev;
+                dev164?: Dev;
+                dev165?: Dev;
+                dev166?: Dev;
+                dev167?: Dev;
+                dev168?: Dev;
+                dev169?: Dev;
+                dev170?: Dev;
+                dev171?: Dev;
+                dev172?: Dev;
+                dev173?: Dev;
+                dev174?: Dev;
+                dev175?: Dev;
+                dev176?: Dev;
+                dev177?: Dev;
+                dev178?: Dev;
+                dev179?: Dev;
+                dev180?: Dev;
+                dev181?: Dev;
+                dev182?: Dev;
+                dev183?: Dev;
+                dev184?: Dev;
+                dev185?: Dev;
+                dev186?: Dev;
+                dev187?: Dev;
+                dev188?: Dev;
+                dev189?: Dev;
+                dev190?: Dev;
+                dev191?: Dev;
+                dev192?: Dev;
+                dev193?: Dev;
+                dev194?: Dev;
+                dev195?: Dev;
+                dev196?: Dev;
+                dev197?: Dev;
+                dev198?: Dev;
+                dev199?: Dev;
+                dev200?: Dev;
+                dev201?: Dev;
+                dev202?: Dev;
+                dev203?: Dev;
+                dev204?: Dev;
+                dev205?: Dev;
+                dev206?: Dev;
+                dev207?: Dev;
+                dev208?: Dev;
+                dev209?: Dev;
+                dev210?: Dev;
+                dev211?: Dev;
+                dev212?: Dev;
+                dev213?: Dev;
+                dev214?: Dev;
+                dev215?: Dev;
+                dev216?: Dev;
+                dev217?: Dev;
+                dev218?: Dev;
+                dev219?: Dev;
+                dev220?: Dev;
+                dev221?: Dev;
+                dev222?: Dev;
+                dev223?: Dev;
+                dev224?: Dev;
+                dev225?: Dev;
+                dev226?: Dev;
+                dev227?: Dev;
+                dev228?: Dev;
+                dev229?: Dev;
+                dev230?: Dev;
+                dev231?: Dev;
+                dev232?: Dev;
+                dev233?: Dev;
+                dev234?: Dev;
+                dev235?: Dev;
+                dev236?: Dev;
+                dev237?: Dev;
+                dev238?: Dev;
+                dev239?: Dev;
+                dev240?: Dev;
+                dev241?: Dev;
+                dev242?: Dev;
+                dev243?: Dev;
+                dev244?: Dev;
+                dev245?: Dev;
+                dev246?: Dev;
+                dev247?: Dev;
+                dev248?: Dev;
+                dev249?: Dev;
+                dev250?: Dev;
+                dev251?: Dev;
+                dev252?: Dev;
+                dev253?: Dev;
+                dev254?: Dev;
+                dev255?: Dev;
                 /**
                  * Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.
                  * @maxLength 40
@@ -20518,26 +23838,300 @@ export namespace Proxmox {
                  * @typetext <integer> (16 - N)
                  */
                 memory?: number;
-                /**
-                 * Use volume as container mount point. Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume.
-                 * Indexed property: `mp0`, `mp1`, ...
-                 * @propertyString acl=<boolean>, backup=<boolean>, idmap=<string>, keepattrs=<boolean>, mountoptions=<string>, mp=<string>, quota=<boolean>, replicate=<boolean>, ro=<boolean>, shared=<boolean>, size=<string>, volume=<string>
-                 * @typetext [volume=]<volume> ,mp=<Path> [,acl=<1|0>] [,backup=<1|0>] [,idmap=<type:container:disk:range-size[;type:container:disk:range-size;...]>] [,keepattrs=<1|0>] [,mountoptions=<opt[;opt...]>] [,quota=<1|0>] [,replicate=<1|0>] [,ro=<1|0>] [,shared=<1|0>] [,size=<DiskSize>]
-                 */
-                [key: `mp${number}`]: string;
+                mp0?: Mp;
+                mp1?: Mp;
+                mp2?: Mp;
+                mp3?: Mp;
+                mp4?: Mp;
+                mp5?: Mp;
+                mp6?: Mp;
+                mp7?: Mp;
+                mp8?: Mp;
+                mp9?: Mp;
+                mp10?: Mp;
+                mp11?: Mp;
+                mp12?: Mp;
+                mp13?: Mp;
+                mp14?: Mp;
+                mp15?: Mp;
+                mp16?: Mp;
+                mp17?: Mp;
+                mp18?: Mp;
+                mp19?: Mp;
+                mp20?: Mp;
+                mp21?: Mp;
+                mp22?: Mp;
+                mp23?: Mp;
+                mp24?: Mp;
+                mp25?: Mp;
+                mp26?: Mp;
+                mp27?: Mp;
+                mp28?: Mp;
+                mp29?: Mp;
+                mp30?: Mp;
+                mp31?: Mp;
+                mp32?: Mp;
+                mp33?: Mp;
+                mp34?: Mp;
+                mp35?: Mp;
+                mp36?: Mp;
+                mp37?: Mp;
+                mp38?: Mp;
+                mp39?: Mp;
+                mp40?: Mp;
+                mp41?: Mp;
+                mp42?: Mp;
+                mp43?: Mp;
+                mp44?: Mp;
+                mp45?: Mp;
+                mp46?: Mp;
+                mp47?: Mp;
+                mp48?: Mp;
+                mp49?: Mp;
+                mp50?: Mp;
+                mp51?: Mp;
+                mp52?: Mp;
+                mp53?: Mp;
+                mp54?: Mp;
+                mp55?: Mp;
+                mp56?: Mp;
+                mp57?: Mp;
+                mp58?: Mp;
+                mp59?: Mp;
+                mp60?: Mp;
+                mp61?: Mp;
+                mp62?: Mp;
+                mp63?: Mp;
+                mp64?: Mp;
+                mp65?: Mp;
+                mp66?: Mp;
+                mp67?: Mp;
+                mp68?: Mp;
+                mp69?: Mp;
+                mp70?: Mp;
+                mp71?: Mp;
+                mp72?: Mp;
+                mp73?: Mp;
+                mp74?: Mp;
+                mp75?: Mp;
+                mp76?: Mp;
+                mp77?: Mp;
+                mp78?: Mp;
+                mp79?: Mp;
+                mp80?: Mp;
+                mp81?: Mp;
+                mp82?: Mp;
+                mp83?: Mp;
+                mp84?: Mp;
+                mp85?: Mp;
+                mp86?: Mp;
+                mp87?: Mp;
+                mp88?: Mp;
+                mp89?: Mp;
+                mp90?: Mp;
+                mp91?: Mp;
+                mp92?: Mp;
+                mp93?: Mp;
+                mp94?: Mp;
+                mp95?: Mp;
+                mp96?: Mp;
+                mp97?: Mp;
+                mp98?: Mp;
+                mp99?: Mp;
+                mp100?: Mp;
+                mp101?: Mp;
+                mp102?: Mp;
+                mp103?: Mp;
+                mp104?: Mp;
+                mp105?: Mp;
+                mp106?: Mp;
+                mp107?: Mp;
+                mp108?: Mp;
+                mp109?: Mp;
+                mp110?: Mp;
+                mp111?: Mp;
+                mp112?: Mp;
+                mp113?: Mp;
+                mp114?: Mp;
+                mp115?: Mp;
+                mp116?: Mp;
+                mp117?: Mp;
+                mp118?: Mp;
+                mp119?: Mp;
+                mp120?: Mp;
+                mp121?: Mp;
+                mp122?: Mp;
+                mp123?: Mp;
+                mp124?: Mp;
+                mp125?: Mp;
+                mp126?: Mp;
+                mp127?: Mp;
+                mp128?: Mp;
+                mp129?: Mp;
+                mp130?: Mp;
+                mp131?: Mp;
+                mp132?: Mp;
+                mp133?: Mp;
+                mp134?: Mp;
+                mp135?: Mp;
+                mp136?: Mp;
+                mp137?: Mp;
+                mp138?: Mp;
+                mp139?: Mp;
+                mp140?: Mp;
+                mp141?: Mp;
+                mp142?: Mp;
+                mp143?: Mp;
+                mp144?: Mp;
+                mp145?: Mp;
+                mp146?: Mp;
+                mp147?: Mp;
+                mp148?: Mp;
+                mp149?: Mp;
+                mp150?: Mp;
+                mp151?: Mp;
+                mp152?: Mp;
+                mp153?: Mp;
+                mp154?: Mp;
+                mp155?: Mp;
+                mp156?: Mp;
+                mp157?: Mp;
+                mp158?: Mp;
+                mp159?: Mp;
+                mp160?: Mp;
+                mp161?: Mp;
+                mp162?: Mp;
+                mp163?: Mp;
+                mp164?: Mp;
+                mp165?: Mp;
+                mp166?: Mp;
+                mp167?: Mp;
+                mp168?: Mp;
+                mp169?: Mp;
+                mp170?: Mp;
+                mp171?: Mp;
+                mp172?: Mp;
+                mp173?: Mp;
+                mp174?: Mp;
+                mp175?: Mp;
+                mp176?: Mp;
+                mp177?: Mp;
+                mp178?: Mp;
+                mp179?: Mp;
+                mp180?: Mp;
+                mp181?: Mp;
+                mp182?: Mp;
+                mp183?: Mp;
+                mp184?: Mp;
+                mp185?: Mp;
+                mp186?: Mp;
+                mp187?: Mp;
+                mp188?: Mp;
+                mp189?: Mp;
+                mp190?: Mp;
+                mp191?: Mp;
+                mp192?: Mp;
+                mp193?: Mp;
+                mp194?: Mp;
+                mp195?: Mp;
+                mp196?: Mp;
+                mp197?: Mp;
+                mp198?: Mp;
+                mp199?: Mp;
+                mp200?: Mp;
+                mp201?: Mp;
+                mp202?: Mp;
+                mp203?: Mp;
+                mp204?: Mp;
+                mp205?: Mp;
+                mp206?: Mp;
+                mp207?: Mp;
+                mp208?: Mp;
+                mp209?: Mp;
+                mp210?: Mp;
+                mp211?: Mp;
+                mp212?: Mp;
+                mp213?: Mp;
+                mp214?: Mp;
+                mp215?: Mp;
+                mp216?: Mp;
+                mp217?: Mp;
+                mp218?: Mp;
+                mp219?: Mp;
+                mp220?: Mp;
+                mp221?: Mp;
+                mp222?: Mp;
+                mp223?: Mp;
+                mp224?: Mp;
+                mp225?: Mp;
+                mp226?: Mp;
+                mp227?: Mp;
+                mp228?: Mp;
+                mp229?: Mp;
+                mp230?: Mp;
+                mp231?: Mp;
+                mp232?: Mp;
+                mp233?: Mp;
+                mp234?: Mp;
+                mp235?: Mp;
+                mp236?: Mp;
+                mp237?: Mp;
+                mp238?: Mp;
+                mp239?: Mp;
+                mp240?: Mp;
+                mp241?: Mp;
+                mp242?: Mp;
+                mp243?: Mp;
+                mp244?: Mp;
+                mp245?: Mp;
+                mp246?: Mp;
+                mp247?: Mp;
+                mp248?: Mp;
+                mp249?: Mp;
+                mp250?: Mp;
+                mp251?: Mp;
+                mp252?: Mp;
+                mp253?: Mp;
+                mp254?: Mp;
+                mp255?: Mp;
                 /**
                  * Sets DNS server IP address for a container. Create will automatically use the setting from the host if you neither set searchdomain nor nameserver.
                  * @format lxc-ip-with-ll-iface-list
                  * @typetext <string>
                  */
                 nameserver?: LxcIpWithLlIfaceList;
-                /**
-                 * Specifies network interfaces for the container.
-                 * Indexed property: `net0`, `net1`, ...
-                 * @propertyString bridge=<string>, firewall=<boolean>, gw=<string>, gw6=<string>, host-managed=<boolean>, hwaddr=<string>, ip=<string>, ip6=<string>, link_down=<boolean>, mtu=<integer>, name=<string>, rate=<number>, tag=<integer>, trunks=<string>, type=<string>
-                 * @typetext name=<string> [,bridge=<bridge>] [,firewall=<1|0>] [,gw=<GatewayIPv4>] [,gw6=<GatewayIPv6>] [,host-managed=<1|0>] [,hwaddr=<XX:XX:XX:XX:XX:XX>] [,ip=<(IPv4/CIDR|dhcp|manual)>] [,ip6=<(IPv6/CIDR|auto|dhcp|manual)>] [,link_down=<1|0>] [,mtu=<integer>] [,rate=<mbps>] [,tag=<integer>] [,trunks=<vlanid[;vlanid...]>] [,type=<veth>]
-                 */
-                [key: `net${number}`]: string;
+                net0?: Net_3;
+                net1?: Net_3;
+                net2?: Net_3;
+                net3?: Net_3;
+                net4?: Net_3;
+                net5?: Net_3;
+                net6?: Net_3;
+                net7?: Net_3;
+                net8?: Net_3;
+                net9?: Net_3;
+                net10?: Net_3;
+                net11?: Net_3;
+                net12?: Net_3;
+                net13?: Net_3;
+                net14?: Net_3;
+                net15?: Net_3;
+                net16?: Net_3;
+                net17?: Net_3;
+                net18?: Net_3;
+                net19?: Net_3;
+                net20?: Net_3;
+                net21?: Net_3;
+                net22?: Net_3;
+                net23?: Net_3;
+                net24?: Net_3;
+                net25?: Net_3;
+                net26?: Net_3;
+                net27?: Net_3;
+                net28?: Net_3;
+                net29?: Net_3;
+                net30?: Net_3;
+                net31?: Net_3;
                 /**
                  * Specifies whether a container will be started during system bootup.
                  * @default 0
@@ -20615,13 +24209,262 @@ export namespace Proxmox {
                  * @typetext <boolean>
                  */
                 unprivileged?: boolean;
-                /**
-                 * Reference to unused volumes. This is used internally, and should not be modified manually.
-                 * Indexed property: `unused0`, `unused1`, ...
-                 * @propertyString volume=<string>
-                 * @typetext [volume=]<volume>
-                 */
-                [key: `unused${number}`]: string;
+                unused0?: Unused_3;
+                unused1?: Unused_3;
+                unused2?: Unused_3;
+                unused3?: Unused_3;
+                unused4?: Unused_3;
+                unused5?: Unused_3;
+                unused6?: Unused_3;
+                unused7?: Unused_3;
+                unused8?: Unused_3;
+                unused9?: Unused_3;
+                unused10?: Unused_3;
+                unused11?: Unused_3;
+                unused12?: Unused_3;
+                unused13?: Unused_3;
+                unused14?: Unused_3;
+                unused15?: Unused_3;
+                unused16?: Unused_3;
+                unused17?: Unused_3;
+                unused18?: Unused_3;
+                unused19?: Unused_3;
+                unused20?: Unused_3;
+                unused21?: Unused_3;
+                unused22?: Unused_3;
+                unused23?: Unused_3;
+                unused24?: Unused_3;
+                unused25?: Unused_3;
+                unused26?: Unused_3;
+                unused27?: Unused_3;
+                unused28?: Unused_3;
+                unused29?: Unused_3;
+                unused30?: Unused_3;
+                unused31?: Unused_3;
+                unused32?: Unused_3;
+                unused33?: Unused_3;
+                unused34?: Unused_3;
+                unused35?: Unused_3;
+                unused36?: Unused_3;
+                unused37?: Unused_3;
+                unused38?: Unused_3;
+                unused39?: Unused_3;
+                unused40?: Unused_3;
+                unused41?: Unused_3;
+                unused42?: Unused_3;
+                unused43?: Unused_3;
+                unused44?: Unused_3;
+                unused45?: Unused_3;
+                unused46?: Unused_3;
+                unused47?: Unused_3;
+                unused48?: Unused_3;
+                unused49?: Unused_3;
+                unused50?: Unused_3;
+                unused51?: Unused_3;
+                unused52?: Unused_3;
+                unused53?: Unused_3;
+                unused54?: Unused_3;
+                unused55?: Unused_3;
+                unused56?: Unused_3;
+                unused57?: Unused_3;
+                unused58?: Unused_3;
+                unused59?: Unused_3;
+                unused60?: Unused_3;
+                unused61?: Unused_3;
+                unused62?: Unused_3;
+                unused63?: Unused_3;
+                unused64?: Unused_3;
+                unused65?: Unused_3;
+                unused66?: Unused_3;
+                unused67?: Unused_3;
+                unused68?: Unused_3;
+                unused69?: Unused_3;
+                unused70?: Unused_3;
+                unused71?: Unused_3;
+                unused72?: Unused_3;
+                unused73?: Unused_3;
+                unused74?: Unused_3;
+                unused75?: Unused_3;
+                unused76?: Unused_3;
+                unused77?: Unused_3;
+                unused78?: Unused_3;
+                unused79?: Unused_3;
+                unused80?: Unused_3;
+                unused81?: Unused_3;
+                unused82?: Unused_3;
+                unused83?: Unused_3;
+                unused84?: Unused_3;
+                unused85?: Unused_3;
+                unused86?: Unused_3;
+                unused87?: Unused_3;
+                unused88?: Unused_3;
+                unused89?: Unused_3;
+                unused90?: Unused_3;
+                unused91?: Unused_3;
+                unused92?: Unused_3;
+                unused93?: Unused_3;
+                unused94?: Unused_3;
+                unused95?: Unused_3;
+                unused96?: Unused_3;
+                unused97?: Unused_3;
+                unused98?: Unused_3;
+                unused99?: Unused_3;
+                unused100?: Unused_3;
+                unused101?: Unused_3;
+                unused102?: Unused_3;
+                unused103?: Unused_3;
+                unused104?: Unused_3;
+                unused105?: Unused_3;
+                unused106?: Unused_3;
+                unused107?: Unused_3;
+                unused108?: Unused_3;
+                unused109?: Unused_3;
+                unused110?: Unused_3;
+                unused111?: Unused_3;
+                unused112?: Unused_3;
+                unused113?: Unused_3;
+                unused114?: Unused_3;
+                unused115?: Unused_3;
+                unused116?: Unused_3;
+                unused117?: Unused_3;
+                unused118?: Unused_3;
+                unused119?: Unused_3;
+                unused120?: Unused_3;
+                unused121?: Unused_3;
+                unused122?: Unused_3;
+                unused123?: Unused_3;
+                unused124?: Unused_3;
+                unused125?: Unused_3;
+                unused126?: Unused_3;
+                unused127?: Unused_3;
+                unused128?: Unused_3;
+                unused129?: Unused_3;
+                unused130?: Unused_3;
+                unused131?: Unused_3;
+                unused132?: Unused_3;
+                unused133?: Unused_3;
+                unused134?: Unused_3;
+                unused135?: Unused_3;
+                unused136?: Unused_3;
+                unused137?: Unused_3;
+                unused138?: Unused_3;
+                unused139?: Unused_3;
+                unused140?: Unused_3;
+                unused141?: Unused_3;
+                unused142?: Unused_3;
+                unused143?: Unused_3;
+                unused144?: Unused_3;
+                unused145?: Unused_3;
+                unused146?: Unused_3;
+                unused147?: Unused_3;
+                unused148?: Unused_3;
+                unused149?: Unused_3;
+                unused150?: Unused_3;
+                unused151?: Unused_3;
+                unused152?: Unused_3;
+                unused153?: Unused_3;
+                unused154?: Unused_3;
+                unused155?: Unused_3;
+                unused156?: Unused_3;
+                unused157?: Unused_3;
+                unused158?: Unused_3;
+                unused159?: Unused_3;
+                unused160?: Unused_3;
+                unused161?: Unused_3;
+                unused162?: Unused_3;
+                unused163?: Unused_3;
+                unused164?: Unused_3;
+                unused165?: Unused_3;
+                unused166?: Unused_3;
+                unused167?: Unused_3;
+                unused168?: Unused_3;
+                unused169?: Unused_3;
+                unused170?: Unused_3;
+                unused171?: Unused_3;
+                unused172?: Unused_3;
+                unused173?: Unused_3;
+                unused174?: Unused_3;
+                unused175?: Unused_3;
+                unused176?: Unused_3;
+                unused177?: Unused_3;
+                unused178?: Unused_3;
+                unused179?: Unused_3;
+                unused180?: Unused_3;
+                unused181?: Unused_3;
+                unused182?: Unused_3;
+                unused183?: Unused_3;
+                unused184?: Unused_3;
+                unused185?: Unused_3;
+                unused186?: Unused_3;
+                unused187?: Unused_3;
+                unused188?: Unused_3;
+                unused189?: Unused_3;
+                unused190?: Unused_3;
+                unused191?: Unused_3;
+                unused192?: Unused_3;
+                unused193?: Unused_3;
+                unused194?: Unused_3;
+                unused195?: Unused_3;
+                unused196?: Unused_3;
+                unused197?: Unused_3;
+                unused198?: Unused_3;
+                unused199?: Unused_3;
+                unused200?: Unused_3;
+                unused201?: Unused_3;
+                unused202?: Unused_3;
+                unused203?: Unused_3;
+                unused204?: Unused_3;
+                unused205?: Unused_3;
+                unused206?: Unused_3;
+                unused207?: Unused_3;
+                unused208?: Unused_3;
+                unused209?: Unused_3;
+                unused210?: Unused_3;
+                unused211?: Unused_3;
+                unused212?: Unused_3;
+                unused213?: Unused_3;
+                unused214?: Unused_3;
+                unused215?: Unused_3;
+                unused216?: Unused_3;
+                unused217?: Unused_3;
+                unused218?: Unused_3;
+                unused219?: Unused_3;
+                unused220?: Unused_3;
+                unused221?: Unused_3;
+                unused222?: Unused_3;
+                unused223?: Unused_3;
+                unused224?: Unused_3;
+                unused225?: Unused_3;
+                unused226?: Unused_3;
+                unused227?: Unused_3;
+                unused228?: Unused_3;
+                unused229?: Unused_3;
+                unused230?: Unused_3;
+                unused231?: Unused_3;
+                unused232?: Unused_3;
+                unused233?: Unused_3;
+                unused234?: Unused_3;
+                unused235?: Unused_3;
+                unused236?: Unused_3;
+                unused237?: Unused_3;
+                unused238?: Unused_3;
+                unused239?: Unused_3;
+                unused240?: Unused_3;
+                unused241?: Unused_3;
+                unused242?: Unused_3;
+                unused243?: Unused_3;
+                unused244?: Unused_3;
+                unused245?: Unused_3;
+                unused246?: Unused_3;
+                unused247?: Unused_3;
+                unused248?: Unused_3;
+                unused249?: Unused_3;
+                unused250?: Unused_3;
+                unused251?: Unused_3;
+                unused252?: Unused_3;
+                unused253?: Unused_3;
+                unused254?: Unused_3;
+                unused255?: Unused_3;
               }): Promise<null>;
             };
             status: {
@@ -25268,13 +29111,12 @@ export namespace Proxmox {
              * @typetext [account=<name>] [,domains=<domain[;domain;...]>]
              */
             acme?: string;
-            /**
-             * ACME domain and validation plugin
-             * Indexed property: `acmedomain0`, `acmedomain1`, ...
-             * @propertyString alias=<string>, domain=<string>, plugin=<string>
-             * @typetext [domain=]<domain> [,alias=<domain>] [,plugin=<name of the plugin configuration>]
-             */
-            [key: `acmedomain${number}`]: string;
+            acmedomain0?: Acmedomain_2;
+            acmedomain1?: Acmedomain_2;
+            acmedomain2?: Acmedomain_2;
+            acmedomain3?: Acmedomain_2;
+            acmedomain4?: Acmedomain_2;
+            acmedomain5?: Acmedomain_2;
             /**
              * RAM usage target for ballooning (in percent of total memory)
              * @minimum 0

@@ -1,7 +1,12 @@
 # @virtbase/proxmox-api-generator
 
-Generates [`packages/api/src/model.ts`](../api/src/model.ts) — the typed
-Proxmox VE API surface — from the schema Proxmox publishes with its API viewer.
+Generates two things from the schema Proxmox publishes with its API viewer:
+
+- [`packages/api/src/model.ts`](../api/src/model.ts) — the typed API surface.
+- [`docs/reference/endpoints/`](../../docs/reference/endpoints) — the endpoint
+  reference, one markdown page per group, plus the sidebar the docs site reads.
+
+Both come from the same parse, so the documentation cannot drift from the types.
 
 ```bash
 bun run codegen              # from the repo root
@@ -31,7 +36,9 @@ The bundle is cached at `.cache/apidoc.js`, which makes reruns offline-capable.
 | --- | --- |
 | `--url <url>` | Download a different bundle (an older release, or your own node). |
 | `--input <file>` | Read a bundle from disk; skips the network entirely. |
-| `--out <file>` | Write somewhere other than `packages/api/src/model.ts`. |
+| `--out <file>` | Write the model somewhere other than `packages/api/src/model.ts`. |
+| `--docs <dir>` | Write the endpoint reference somewhere else. |
+| `--no-docs` | Only write the model. |
 | `--cache <file>` | Move the cache. |
 | `--offline` | Use the cache and never touch the network. |
 | `--check` | Exit non-zero if the output would change. Writes nothing. |
@@ -49,6 +56,8 @@ whether it came from the network, the cache, or `--input`.
 | `load-schema.ts` | Fetch, extract, parse, cache, hash. |
 | `naming.ts` | Identifier casing, property quoting, collision-free type names. |
 | `emit.ts` | Schema → TypeScript. |
+| `emit-docs.ts` | Schema → the markdown endpoint reference. |
+| `index-bounds.ts` | Slot counts for indexed properties, with their sources. |
 | `cli.ts` | Argument handling. |
 
 ## How the schema maps to TypeScript
@@ -57,10 +66,21 @@ whether it came from the network, the cache, or `--input`.
   `status.status` is `"stopped" | "running"` rather than `string`.
 - **Named PVE formats** (`pve-vmid`, `CIDR`, …) become string aliases, which
   keeps the format visible in editor hints.
-- **Indexed properties** — PVE spells them `net[n]`, `scsi[n]`, `mp[n]` — become
-  pattern index signatures (`` [key: `net${number}`] ``), so every index the
-  API accepts is typed. Upstream expanded these to a hand-picked `net0`..`net3`,
-  which rejected valid configurations.
+- **Indexed properties** — PVE spells them `net[n]`, `scsi[n]`, `mp[n]` — are
+  expanded to exactly the slots the API accepts: `scsi0` through `scsi30`,
+  `ide0` through `ide3`, and so on. Upstream capped these at a hand-picked
+  `net0`..`net3`, which rejected valid configurations.
+
+  The bound is not in the schema as data. Seven prefixes state it in prose, and
+  that prose is not trustworthy — `usb[n]` reads *"n is 0 to 4 ... n can be up
+  to 14"*. So [`index-bounds.ts`](src/index-bounds.ts) carries a table taken
+  from the constants that generate these keys (`$MAX_SCSI_DISKS`,
+  `$MAX_MOUNT_POINTS`, `MAX_LINK_INDEX`, ...), each entry citing its source.
+  Where the schema does state a range, the two agree.
+
+  A prefix missing from the table is emitted as an unbounded key pattern and
+  reported as a warning, so a new indexed property in a future release stays
+  usable and gets noticed.
 - **Property strings** (a `format` holding a schema rather than a name) stay
   `string`; their packed fields are recorded as `@propertyString` in the JSDoc.
 - **`additionalProperties`** is honoured as written. An index signature is
