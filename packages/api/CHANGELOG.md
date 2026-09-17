@@ -14,60 +14,6 @@ commit conventions, so the sections below them were inferred from commit
 subjects and are approximate. Where the previous maintainer wrote release notes
 by hand, they are kept verbatim above the reconstructed sections.
 
-## Unreleased
-
-Forked from [UrielCh/proxmox-api](https://github.com/UrielCh/proxmox-api) at v1.1.1
-and republished as `@virtbase/proxmox-api`.
-
-* **Breaking:** ESM only. The CommonJS build (`cjs/`, `tsconfig-cjs.json`) and the
-  `require` condition in `exports` are gone; output moved from `esm/` to `dist/`.
-* **Breaking:** renamed to `@virtbase/proxmox-api`.
-* **Breaking:** the API model now targets **Proxmox VE 9** (was PVE 8): 678
-  operations, +98 added and -3 removed. New surface includes SDN fabrics, HA
-  rules, `cluster/bulk-action`, `cluster/qemu` custom CPU models, SDN
-  prefix-lists and route-maps, webhook notification endpoints, and
-  `cluster/metrics/export`. Gone: `nodes/{node}/hardware/pci/{pciid}`,
-  `.../{pciid}/mdev` and `nodes/{node}/scan/glusterfs`.
-* **Breaking:** returned objects no longer carry a blanket
-  `[key: string]: any`. It was applied to every response regardless of the
-  schema, which defeated type checking on all of them; it is now emitted only
-  where the schema permits extra keys.
-* Indexed parameters (`net[n]`, `scsi[n]`, `mp[n]`, ...) are expanded to the
-  slots the API actually accepts - `scsi0`..`scsi30`, `ide0`..`ide3`,
-  `net0`..`net31`, `usb0`..`usb13`, `mp0`..`mp255`, and so on - taken from the
-  constants that generate them in qemu-server, pve-container, pve-cluster and
-  pve-manager. Upstream capped them at a hand-picked `net0`..`net3`, which
-  rejected valid configurations.
-* Enumerations are emitted as unions and named PVE formats as string aliases,
-  both deduplicated across the whole model.
-* **Breaking:** `undici` is no longer a dependency - the client uses the
-  platform `fetch`. The package now has no runtime dependencies and no `node:`
-  imports.
-* Import via `node:` protocol in `ProxmoxEngine`.
-* **Breaking:** `ApiRequestable.doRequest` returns `Promise<unknown>` rather
-  than `Promise<any>`, and takes `ApiParamType` for its parameters. Custom
-  engines still satisfy it; direct callers of `doRequest` now need a cast.
-* **Breaking:** `USBInfo.product` and `USBInfo.id` are optional, matching the
-  monitor output they are parsed from - the trailing `, Product ..., ID: ...`
-  is not always present.
-* **Breaking:** `QmMonitor.infoUsb()` no longer takes a filter argument. It
-  accepted one whose fields (`vendorId`, `productId`) did not exist on
-  `USBInfo`, and never applied it.
-* **Breaking:** `QmMonitor.deviceAddMissing` returns the ids it attached and
-  awaits each attach. It previously fired them without awaiting, so failures
-  disappeared and the guest saw an unbounded burst of monitor commands.
-* Fixed `QmMonitor.infoUsbhost` filtering: `vendorId` and `productId` both
-  tested the device *name*, so neither filter could ever match.
-* Fixed `String(proxmox)` recursing until the stack overflowed. Reserved
-  methods were returned unbound, so `toString` read `this.path` back through
-  the proxy and stringified the result forever.
-* Path segments passed to `$()` now escape `?` and `#` as well as `/`, so a
-  value cannot truncate the path or start a query string.
-* Documentation moved to a VitePress site: hand-written guides, a client
-  reference, and an endpoint reference generated from the same schema parse as
-  the types. Replaces 63 MB of committed typedoc HTML that documented the PVE 8
-  surface.
-
 ## [3.0.0](https://github.com/virtbase/proxmox-api/compare/2.0.0...3.0.0) (2026-09-17)
 
 
