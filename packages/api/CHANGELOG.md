@@ -68,6 +68,17 @@ and republished as `@virtbase/proxmox-api`.
   the types. Replaces 63 MB of committed typedoc HTML that documented the PVE 8
   surface.
 
+## [3.0.0](https://github.com/virtbase/proxmox-api/compare/2.0.0...3.0.0) (2026-09-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* regenerate API model from the current Proxmox schema ([#5](https://github.com/virtbase/proxmox-api/issues/5))
+
+### Features
+
+* regenerate API model from the current Proxmox schema ([#5](https://github.com/virtbase/proxmox-api/issues/5)) ([99e564e](https://github.com/virtbase/proxmox-api/commit/99e564ee4d8427e7b1303ff115cc913684fd6ac6))
+
 ## [2.0.0](https://github.com/virtbase/proxmox-api/compare/1.1.1...2.0.0) (2026-09-04)
 
 
