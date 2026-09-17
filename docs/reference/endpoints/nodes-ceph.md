@@ -221,7 +221,7 @@ Returns `string`.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `hotstandby` | boolean |  | Determines whether a ceph-mds daemon should poll and replay the log of an active MDS. Faster switch on MDS failure, but needs more idle resources. — default `0` |
+| `hotstandby` | boolean |  | Determines whether a ceph-mds daemon should poll and replay the log of an active MDS. Faster switch on MDS failure, but needs more idle resources. Deprecated: the setting was removed in Ceph 14.1.1. — default `0` |
 | `name` | string |  | The ID for the mds, when omitted the same as the nodename — ≤ 200 chars, default `"nodename"` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
@@ -628,7 +628,7 @@ Returns `string`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `dry-run` | boolean |  | Log the plan (which OSDs would be restarted, in what order) without actually doing anything. — default `0` |
-| `force` | boolean |  | Proceed past a HEALTH_WARN with non-benign checks like PG_DEGRADED, SLOW_OPS, or MON_DOWN. HEALTH_ERR is always fatal regardless. The operator is responsible for confirming the cluster is stable enough to absorb a rolling restart. — default `0` |
+| `force` | boolean |  | Proceed past a HEALTH_WARN with non-benign checks like PG_DEGRADED, SLOW_OPS, or MON_DOWN. A blocking HEALTH_ERR is fatal regardless of this flag. Checks that ceph reports as muted, and checks known to be harmless for a rolling restart, never block and are named in the task log. The cluster-wide OSD map flags are only ever evaluated for an OSD restart, since they govern nothing a mon, mgr or mds restart touches. The operator is responsible for confirming the cluster is stable enough to absorb a rolling restart. — default `0` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `only-outdated` | boolean |  | Restart only OSDs whose running version differs from the locally-installed ceph-osd binary. Useful for post-upgrade rolling restarts that should touch only daemons that need it. Refuses if the local binary version cannot be determined. Ignored on resume (the saved plan is used as-is). — default `0` |
 | `resume` | boolean |  | Resume an aborted bulk-restart from the checkpoint stored in Ceph's config-key store. The plan and noout decision from the prior run are honored; 'set-noout' is ignored. When false (default), the endpoint refuses to start if a checkpoint exists for this node, to avoid silently overwriting in-progress work. — default `0` |
