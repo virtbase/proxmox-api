@@ -1,102 +1,65 @@
 # proxmox-api
 
-A fork of [UrielCh/proxmox-api](https://github.com/UrielCh/proxmox-api), maintained
-for [virtbase](https://virtbase.com).
+[![npm](https://img.shields.io/npm/v/@virtbase/proxmox-api)](https://www.npmjs.com/package/@virtbase/proxmox-api)
+[![CI](https://github.com/virtbase/proxmox-api/actions/workflows/ci.yml/badge.svg)](https://github.com/virtbase/proxmox-api/actions/workflows/ci.yml)
 
-Bun workspaces + Turborepo. Everything is ESM.
+The source of [`@virtbase/proxmox-api`](packages/api), a fully typed client for
+the Proxmox VE API, and of the generator that keeps it in step with Proxmox.
 
-## Packages
+- Using the client: [documentation](https://virtbase.github.io/proxmox-api/) and
+  [`packages/api/README.md`](packages/api/README.md).
+- Which release fits which Proxmox VE version:
+  [compatibility](https://virtbase.github.io/proxmox-api/guide/compatibility).
+- What changed in the Proxmox API between versions:
+  [API changelog](https://virtbase.github.io/proxmox-api/reference/api-changelog/).
 
-| Package | Description |
+## Repository
+
+A Bun workspace driven by Turborepo. Everything is ESM.
+
+| Path | |
 | --- | --- |
-| [`packages/api`](packages/api) | `@virtbase/proxmox-api` — the published client. |
-| [`packages/generator`](packages/generator) | Generates `packages/api/src/model.ts` from the published PVE API schema. |
-| [`tooling/typescript`](tooling/typescript) | `@virtbase/tsconfig` — the shared TypeScript configs. |
+| [`packages/api`](packages/api) | `@virtbase/proxmox-api`, the published client. |
+| [`packages/generator`](packages/generator) | Generates the API model, the endpoint reference and the API changelog from the Proxmox VE schema. |
 | [`docs`](docs) | The documentation site (VitePress). |
+| [`tooling/typescript`](tooling/typescript) | Shared TypeScript configuration. |
 
-Usage docs live in [`packages/api/README.md`](packages/api/README.md).
+## Development
 
-## Getting started
+Requires [Bun](https://bun.sh) (the version in `package.json`).
 
 ```bash
 bun install
-bun run build
-bun run test
+bun run verify
 ```
 
-## Scripts
-
-| Script | Description |
+| Script | |
 | --- | --- |
-| `bun run build` | Compile every package. |
-| `bun run typecheck` | Type-check without emitting. |
-| `bun run test` | Run every package's tests. |
-| `bun run test:coverage` | Same, with coverage reporters. |
-| `bun run check` | Biome lint + format check. |
-| `bun run check:write` | Apply Biome's safe fixes. |
-| `bun run check:unsafe` | Apply Biome's unsafe fixes too. |
-| `bun run codegen` | Regenerate the API model and the endpoint reference. |
-| `bun run lint:package` | Validate the published package shape (publint, attw). |
-| `bun run codegen:check` | CI: fail if either is stale. |
-| `bun run docs:dev` | Serve the docs site locally. |
-| `bun run docs:build` | Build the docs site. |
-| `bun run clean` | Drop `node_modules` via `git clean`. |
-| `bun run clean:workspaces` | Run each package's `clean`. |
+| `bun run verify` | Everything CI checks: lint, types, tests, build, package shape, generated output. |
+| `bun run test` | Run the tests. |
+| `bun run typecheck` | Type-check every package. |
+| `bun run check:write` | Format and apply lint fixes (Biome). |
+| `bun run build` | Compile the package and build the docs. |
+| `bun run codegen` | Regenerate from the pinned schema version. |
+| `bun run codegen:update` | Move to the newest Proxmox schema and regenerate. |
+| `bun run docs:dev` | Serve the docs locally. |
 
-## Regenerating the API model
+See [CONTRIBUTING.md](CONTRIBUTING.md) for conventions and
+[MAINTAINING.md](MAINTAINING.md) for how releases and updates are automated.
 
-`packages/api/src/model.ts` is generated from the schema Proxmox publishes with
-its [API viewer](https://pve.proxmox.com/pve-docs/api-viewer/):
+## How it stays current
 
-```bash
-bun run codegen           # fetch the current schema and regenerate
-bun run codegen:check     # CI: fail if the generated output is stale
-```
+| Trigger | What happens |
+| --- | --- |
+| Proxmox publishes a new API schema | A daily job regenerates the types, records the differences in the API changelog and opens a pull request. Additive updates merge and release on their own; breaking ones wait for review. |
+| A dependency has an update | Renovate opens a pull request after a seven-day cooling-off period and merges it once CI passes. |
+| A change lands on `main` | release-please maintains a release pull request; once it merges, the package is published to npm with provenance. |
 
-One command produces two things: `packages/api/src/model.ts`, and the endpoint
-reference under `docs/reference/endpoints/`. Both come from the same parse, so
-the docs cannot describe a surface the types do not have.
+## Credits
 
-The generator downloads the viewer bundle, caches it under
-`packages/generator/.cache/`, and records the source URL and a SHA-256 of the
-input in the generated header. Output is deterministic, so regenerating from an
-unchanged schema produces no diff. See
-[`packages/generator/README.md`](packages/generator/README.md) for the options
-and for how the schema maps onto TypeScript.
-
-## Documentation
-
-The site in [`docs/`](docs) is VitePress: hand-written guides, a reference for
-the client surface, and the generated endpoint reference. `bun run docs:dev`
-serves it; the `Docs` workflow builds it on every push and deploys to GitHub
-Pages, failing first if the generated pages are stale.
-
-## Automation
-
-| Workflow | Trigger | What it does |
-| --- | --- | --- |
-| `CI` | push, pull request | Lint, typecheck, test, build, and validate the published package shape. |
-| `Docs` | push, pull request | Builds the site; deploys to Pages on the default branch. |
-| `Schema drift` | weekly, manual | Regenerates against the current Proxmox schema and opens a pull request if anything moved. |
-| `Release` | push to default branch | Maintains a release pull request; on merge, tags, releases, and publishes to npm with provenance. |
-
-Releases are driven by [release-please](https://github.com/googleapis/release-please):
-the version bump and the changelog entry both come from the conventional
-commits since the last release, so the only thing to get right is the commit
-message. `feat!` or a `BREAKING CHANGE:` footer produces a major.
-
-Publishing needs an `NPM_TOKEN` secret and an `npm` environment; Pages
-deployment needs Pages enabled with GitHub Actions as the source.
-
-## Conventions
-
-- **Commits** follow [Conventional Commits](https://www.conventionalcommits.org/);
-  `commitlint` enforces this in a `commit-msg` hook.
-- **Formatting and linting** are Biome's. A `pre-commit` hook runs `lint-staged`
-  over staged files and then the test suite.
-- Rules relaxed for code inherited from upstream are marked `TODO(fork)` in the
-  package's `biome.jsonc` or `tsconfig.json`.
+A fork of [UrielCh/proxmox-api](https://github.com/UrielCh/proxmox-api),
+maintained by [virtbase](https://virtbase.com).
 
 ## License
 
-GPL-3.0. See [LICENSE](LICENSE).
+[MIT](LICENSE)
