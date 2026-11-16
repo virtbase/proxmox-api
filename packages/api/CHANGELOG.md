@@ -14,6 +14,17 @@ commit conventions, so the sections below them were inferred from commit
 subjects and are approximate. Where the previous maintainer wrote release notes
 by hand, they are kept verbatim above the reconstructed sections.
 
+## [4.0.0](https://github.com/virtbase/proxmox-api/compare/3.0.0...4.0.0) (2026-11-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* typed client errors, versioned Proxmox schema tracking and automated releases ([#9](https://github.com/virtbase/proxmox-api/issues/9))
+
+### Features
+
+* typed client errors, versioned Proxmox schema tracking and automated releases ([#9](https://github.com/virtbase/proxmox-api/issues/9)) ([40a03b3](https://github.com/virtbase/proxmox-api/commit/40a03b3ef2e5b88fe66893fe29db7accf15a95e1))
+
 ## [3.0.0](https://github.com/virtbase/proxmox-api/compare/2.0.0...3.0.0) (2026-09-17)
 
 
