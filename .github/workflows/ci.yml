@@ -1,58 +1,99 @@
 name: CI
 
 on:
-  push:
-    branches: [main, master]
   pull_request:
+  push:
+    branches: [main]
   merge_group:
 
+permissions: {}
+
 concurrency:
-  group: ci-${{ github.ref }}
-  cancel-in-progress: true
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  TURBO_TELEMETRY_DISABLED: "1"
 
 jobs:
-  verify:
-    runs-on: ubuntu-latest
+  static:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v7
-      - uses: oven-sh/setup-bun@v2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          bun-version-file: package.json
-      - run: bun install --frozen-lockfile
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+      - run: bun run check:ci
+      - run: bun run typecheck
+      - run: bun run lint:docs
+      - run: bun run lint:knip
+      - run: bun run lint:sherif
+      - uses: crate-ci/typos@4c8b7f51ca60df14e3c5ca82770dfbbe6c3dae85 # v1.52.0
+      - uses: zizmorcore/zizmor-action@45d7276c9ca790aabd705e31ca99c6185c3e76dd # v0.8.1
+        with:
+          advanced-security: false
+          annotations: true
+          min-severity: medium
 
-      # Split rather than chained so a failure names which gate broke.
-      - name: Lint and format
-        run: bun run check
-      - name: Typecheck
-        run: bun run typecheck
-      - name: Test
-        run: bun run test
-      - name: Build
-        run: bun run build
-
-      # The published shape - exports map, types resolution, file list - is not
-      # covered by typecheck, and is only observable once the package is packed.
-      - name: Validate package
-        run: bun run lint:package
-
-  commits:
-    # The version bump and the changelog are derived from commit subjects, so a
-    # malformed one is a release bug rather than a style nit. Pull requests
-    # only: the merge queue re-checks nothing new, and direct pushes to the
-    # default branch have no range to check against.
-    if: github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+      - run: bun run test
+
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
-      - uses: oven-sh/setup-bun@v2
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
-          bun-version-file: package.json
-      - run: bun install --frozen-lockfile
-      - name: Check commit messages
-        run: >
-          bun commitlint
-          --from ${{ github.event.pull_request.base.sha }}
-          --to ${{ github.event.pull_request.head.sha }}
-          --verbose
+          path: packages/generator/.cache
+          key: pve-docs-${{ hashFiles('packages/generator/schema.lock.json') }}
+      - run: bun run codegen:check
+      - run: bun run build
+      - run: bun run lint:publint
+
+  osv:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: google/osv-scanner-action/osv-scanner-action@b1d267aea5211fa648d9d442fa64b90dbdcbdd36 # v2.7.0
+        with:
+          scan-args: |-
+            --lockfile=bun.lock
+
+  required:
+    if: always()
+    needs: [static, test, build, osv]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 1
+    permissions: {}
+    steps:
+      - env:
+          FAILED: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
+        run: |
+          if [ "$FAILED" = "true" ]; then
+            echo "::error::A required job failed or was cancelled."
+            exit 1
+          fi
