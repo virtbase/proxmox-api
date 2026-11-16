@@ -69,6 +69,7 @@ Returns `object`.
 | `nocow` | boolean |  | Set the NOCOW flag on files. Disables data checksumming and causes data errors to be unrecoverable from while allowing direct I/O. Only use this if data does not need to be any more safe than on a single ext4 formatted disk with no underlying raid system. — default `0` |
 | `nodes` | string |  | List of nodes for which the storage configuration applies. — format `pve-node-list` |
 | `nowritecache` | boolean |  | disable write caching on the target |
+| `on-volume-remove` | string |  | Optional actions when removing LVs. — format `on-volume-remove` |
 | `options` | string |  | NFS/CIFS mount options (see 'man nfs' or 'man mount.cifs') — format `pve-storage-options` |
 | `password` | string |  | Password for accessing the share/datastore. — ≤ 256 chars |
 | `path` | string |  | File system path. — format `pve-storage-path` |
@@ -79,7 +80,7 @@ Returns `object`.
 | `prune-backups` | string |  | The retention options with shorter intervals are processed first with --keep-last being the very first one. Each option covers a specific period of time. We say that backups within this period are covered by this option. The next option does not take care of already covered backups and only considers older backups. — format `prune-backups` |
 | `saferemove` | boolean |  | Zero-out data when removing LVs. |
 | `saferemove-stepsize` | `1` \| `2` \| `4` \| `8` \| `16` \| `32` |  | Wipe step size in MiB. It will be capped to the maximum supported by the storage. — default `32` |
-| `saferemove_throughput` | string |  | Wipe throughput (cstream -t parameter value). |
+| `saferemove_throughput` | string |  | Wipe throughput in bytes per second (optional suffix: k, m, or g). |
 | `server` | string |  | Server IP or DNS name. — format `pve-storage-server` |
 | `share` | string |  | CIFS share. |
 | `shared` | boolean |  | Indicate that this is a single storage with the same contents on all nodes (or all listed in the 'nodes' option). It will not make the contents of a local storage automatically accessible to other nodes, it just marks an already shared storage as such! |
@@ -154,6 +155,7 @@ Returns `object`.
 | `nocow` | boolean |  | Set the NOCOW flag on files. Disables data checksumming and causes data errors to be unrecoverable from while allowing direct I/O. Only use this if data does not need to be any more safe than on a single ext4 formatted disk with no underlying raid system. — default `0` |
 | `nodes` | string |  | List of nodes for which the storage configuration applies. — format `pve-node-list` |
 | `nowritecache` | boolean |  | disable write caching on the target |
+| `on-volume-remove` | string |  | Optional actions when removing LVs. — format `on-volume-remove` |
 | `options` | string |  | NFS/CIFS mount options (see 'man nfs' or 'man mount.cifs') — format `pve-storage-options` |
 | `password` | string |  | Password for accessing the share/datastore. — ≤ 256 chars |
 | `pool` | string |  | Pool. |
@@ -162,7 +164,7 @@ Returns `object`.
 | `prune-backups` | string |  | The retention options with shorter intervals are processed first with --keep-last being the very first one. Each option covers a specific period of time. We say that backups within this period are covered by this option. The next option does not take care of already covered backups and only considers older backups. — format `prune-backups` |
 | `saferemove` | boolean |  | Zero-out data when removing LVs. |
 | `saferemove-stepsize` | `1` \| `2` \| `4` \| `8` \| `16` \| `32` |  | Wipe step size in MiB. It will be capped to the maximum supported by the storage. — default `32` |
-| `saferemove_throughput` | string |  | Wipe throughput (cstream -t parameter value). |
+| `saferemove_throughput` | string |  | Wipe throughput in bytes per second (optional suffix: k, m, or g). |
 | `server` | string |  | Server IP or DNS name. — format `pve-storage-server` |
 | `shared` | boolean |  | Indicate that this is a single storage with the same contents on all nodes (or all listed in the 'nodes' option). It will not make the contents of a local storage automatically accessible to other nodes, it just marks an already shared storage as such! |
 | `skip-cert-verification` | boolean |  | Disable TLS certificate verification, only enable on fully trusted networks! — default `"false"` |

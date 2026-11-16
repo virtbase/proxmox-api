@@ -176,7 +176,7 @@ Returns nothing.
 | `min_size` | number |  | Minimum number of available replicas per object to allow I/O — min 1, max 7, default `2` |
 | `network` | string |  | Use specific network for all ceph related traffic — format `CIDR`, ≤ 128 chars |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
-| `pg_bits` | number |  | Placement group bits, used to specify the default number of placement groups. Depreacted. This setting was deprecated in recent Ceph versions. — min 6, max 14, default `6` |
+| `pg_bits` | number |  | Placement group bits, used to specify the default number of placement groups. Deprecated. This setting has been ignored since Ceph Nautilus. — min 6, max 14, default `6` |
 | `size` | number |  | Targeted number of replicas per object — min 1, max 7, default `3` |
 
 ### `GET /nodes/{node}/ceph/log`

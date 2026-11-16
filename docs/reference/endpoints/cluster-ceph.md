@@ -41,6 +41,7 @@ Returns `string`.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
+| `noautoscale` | boolean |  | The PG autoscaler does not change the number of PGs of any pool. |
 | `nobackfill` | boolean |  | Backfilling of PGs is suspended. |
 | `nodeep-scrub` | boolean |  | Deep Scrubbing is disabled. |
 | `nodown` | boolean |  | OSD failure reports are being ignored, such that the monitors will not mark OSDs down. |
@@ -65,7 +66,7 @@ Returns `boolean`.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `flag` | `nobackfill` \| `nodeep-scrub` \| `nodown` \| `noin` \| `noout` \| `norebalance` \| `norecover` \| `noscrub` \| … (3 more) | yes | The name of the flag name to get. |
+| `flag` | `noautoscale` \| `nobackfill` \| `nodeep-scrub` \| `nodown` \| `noin` \| `noout` \| `norebalance` \| `norecover` \| … (4 more) | yes | The name of the flag name to get. |
 
 ### `PUT /cluster/ceph/flags/{flag}`
 
@@ -79,7 +80,7 @@ Returns nothing.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `flag` | `nobackfill` \| `nodeep-scrub` \| `nodown` \| `noin` \| `noout` \| `norebalance` \| `norecover` \| `noscrub` \| … (3 more) | yes | The ceph flag to update |
+| `flag` | `noautoscale` \| `nobackfill` \| `nodeep-scrub` \| `nodown` \| `noin` \| `noout` \| `norebalance` \| `norecover` \| … (4 more) | yes | The ceph flag to update |
 | `value` | boolean | yes | The new value of the flag |
 
 ### `GET /cluster/ceph/health-mute`
@@ -136,7 +137,7 @@ Returns `string`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `dry-run` | boolean |  | Log the plan (which daemons would be restarted, in what order) without actually doing anything. — default `0` |
-| `force` | boolean |  | Proceed past a HEALTH_WARN with non-benign checks like PG_DEGRADED, SLOW_OPS, or MON_DOWN. A blocking HEALTH_ERR is fatal regardless of this flag. Checks that ceph reports as muted, and checks known to be harmless for a rolling restart, never block and are named in the task log. The cluster-wide OSD map flags are only ever evaluated for an OSD restart, since they govern nothing a mon, mgr or mds restart touches. The operator is responsible for confirming the cluster is stable enough to absorb a rolling restart. — default `0` |
+| `force` | boolean |  | Proceed past a HEALTH_WARN with non-benign checks like PG_DEGRADED, SLOW_OPS, or MON_DOWN. A blocking HEALTH_ERR is fatal regardless of this flag. Checks that ceph reports as muted, and checks known to be harmless for a rolling restart, never block and are named in the task log. The cluster-wide OSD map flags are only ever evaluated for an OSD restart, since they govern nothing a mon, mgr or mds restart touches. Likewise, a missing active manager (MGR_DOWN) only blocks an OSD restart, as only the OSD safety check needs a manager. The operator is responsible for confirming the cluster is stable enough to absorb a rolling restart. — default `0` |
 | `only-outdated` | boolean |  | OSDs only: restart only OSDs whose running version differs from the locally-installed ceph-osd binary on their host. Forwarded to each per-node sub-task so the per-host installed version is used (a partial upgrade where one host is on a newer build is handled correctly). — default `0` |
 | `service-type` | `mon` \| `mgr` \| `mds` \| `osd` | yes | Ceph daemon type to restart cluster-wide. |
 | `timeout` | number |  | Per-daemon timeout (in seconds) for the up-wait phase. Note: for daemons on remote nodes the same timeout also bounds the remote restart task, so the per-daemon budget can be up to 2x this value. Default sized for slow MDS journal replay or MON paxos settle on busy clusters; bump higher if the cluster routinely takes longer to stabilize after a daemon restart. — min 30, max 1800, default `600` |
