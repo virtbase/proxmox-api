@@ -67,13 +67,13 @@ Returns nothing.
 | `bgp-multipath-as-path-relax` | boolean |  | Consider different AS paths of equal length for multipath computation. |
 | `controller` | string | yes | The SDN controller object identifier. — ≤ 64 chars |
 | `ebgp` | boolean |  | Enable eBGP (remote-as external). |
-| `ebgp-multihop` | number |  | Set maximum amount of hops for eBGP peers. |
+| `ebgp-multihop` | number |  | Set maximum amount of hops for eBGP peers. — min 1, max 255 |
 | `fabric` | string |  | SDN fabric to use as underlay for this EVPN controller. — format `pve-sdn-fabric-id` |
 | `isis-domain` | string |  | Name of the IS-IS domain. |
 | `isis-ifaces` | string |  | Comma-separated list of interfaces where IS-IS should be active. — format `pve-iface-list` |
 | `isis-net` | string |  | Network Entity title for this node in the IS-IS network. — format `pve-sdn-isis-net`, ≤ 50 chars |
 | `lock-token` | string |  | the token for unlocking the global SDN configuration |
-| `loopback` | string |  | Name of the loopback/dummy interface that provides the Router-IP. |
+| `loopback` | string |  | Name of the loopback/dummy interface that provides the Router-IP. — format `pve-iface`, ≤ 15 chars |
 | `node` | string |  | The cluster node name. — format `pve-node` |
 | `nodes` | string |  | List of cluster node names. — format `pve-node-list` |
 | `peer-group-name` | string |  | Name of the peer group for this EVPN controller — format `pve-configid`, default `"VTEP"` |
@@ -117,13 +117,13 @@ Returns nothing.
 | `delete` | string |  | A list of settings you want to delete. — format `pve-configid-list`, ≤ 4096 chars |
 | `digest` | string |  | Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications. — ≤ 64 chars |
 | `ebgp` | boolean |  | Enable eBGP (remote-as external). |
-| `ebgp-multihop` | number |  | Set maximum amount of hops for eBGP peers. |
+| `ebgp-multihop` | number |  | Set maximum amount of hops for eBGP peers. — min 1, max 255 |
 | `fabric` | string |  | SDN fabric to use as underlay for this EVPN controller. — format `pve-sdn-fabric-id` |
 | `isis-domain` | string |  | Name of the IS-IS domain. |
 | `isis-ifaces` | string |  | Comma-separated list of interfaces where IS-IS should be active. — format `pve-iface-list` |
 | `isis-net` | string |  | Network Entity title for this node in the IS-IS network. — format `pve-sdn-isis-net`, ≤ 50 chars |
 | `lock-token` | string |  | the token for unlocking the global SDN configuration |
-| `loopback` | string |  | Name of the loopback/dummy interface that provides the Router-IP. |
+| `loopback` | string |  | Name of the loopback/dummy interface that provides the Router-IP. — format `pve-iface`, ≤ 15 chars |
 | `node` | string |  | The cluster node name. — format `pve-node` |
 | `nodes` | string |  | List of cluster node names. — format `pve-node-list` |
 | `peer-group-name` | string |  | Name of the peer group for this EVPN controller — format `pve-configid`, default `"VTEP"` |
@@ -299,7 +299,7 @@ Returns nothing.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `area` | string |  | OSPF area. Either a IPv4 address or a 32-bit number. Gets validated in rust. |
+| `area` | string |  | OSPF area. Either a IPv4 address or a 32-bit number. Gets validated in rust. — format `pve-sdn-fabric-ospf-area` |
 | `csnp_interval` | number |  | The csnp_interval property for Openfabric — min 1, max 600 |
 | `digest` | string |  | Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications. — ≤ 64 chars |
 | `hello_interval` | number |  | The hello_interval property for Openfabric — min 1, max 600 |
@@ -338,7 +338,7 @@ Returns nothing.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `area` | string |  | OSPF area. Either a IPv4 address or a 32-bit number. Gets validated in rust. |
+| `area` | string |  | OSPF area. Either a IPv4 address or a 32-bit number. Gets validated in rust. — format `pve-sdn-fabric-ospf-area` |
 | `csnp_interval` | number |  | The csnp_interval property for Openfabric — min 1, max 600 |
 | `delete` | any[] | yes |  |
 | `digest` | string |  | Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications. — ≤ 64 chars |
@@ -420,7 +420,7 @@ Returns nothing.
 | `node_id` | string | yes | Identifier for nodes in an SDN fabric — format `pve-node` |
 | `peers` | string[] |  |  |
 | `protocol` | `openfabric` \| `ospf` \| `wireguard` \| `bgp` | yes | Type of configuration entry in an SDN Fabric section config |
-| `public_key` | string |  | The public key for the external node. |
+| `public_key` | string |  | The public key for the external node. — format `pve-sdn-wireguard-key` |
 | `role` | `internal` \| `external` |  | The role of this node in the WireGuard fabric. |
 
 ### `GET /cluster/sdn/fabrics/node/{fabric_id}/{node_id}`
@@ -462,7 +462,7 @@ Returns nothing.
 | `node_id` | string | yes | Identifier for nodes in an SDN fabric — format `pve-node` |
 | `peers` | string[] |  |  |
 | `protocol` | `openfabric` \| `ospf` \| `wireguard` \| `bgp` | yes | Type of configuration entry in an SDN Fabric section config |
-| `public_key` | string |  | The public key for the external node. |
+| `public_key` | string |  | The public key for the external node. — format `pve-sdn-wireguard-key` |
 | `role` | `internal` \| `external` |  | The role of this node in the WireGuard fabric. |
 
 ### `DELETE /cluster/sdn/fabrics/node/{fabric_id}/{node_id}`
@@ -1163,7 +1163,7 @@ Returns nothing.
 | `ip` | string | yes | The IP address to associate with the given MAC address — format `ip` |
 | `mac` | string |  | Unicast MAC address. — format `mac-addr` |
 | `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
-| `zone` | string | yes | The SDN zone object identifier. — ≤ 8 chars |
+| `zone` | string |  | DEPRECATED: value is ignored and parameter will be removed with PVE 10 — ≤ 8 chars |
 
 ### `PUT /cluster/sdn/vnets/{vnet}/ips`
 
@@ -1181,7 +1181,7 @@ Returns nothing.
 | `mac` | string |  | Unicast MAC address. — format `mac-addr` |
 | `vmid` | number |  | The (unique) ID of the VM. — format `pve-vmid`, min 100, max 999999999 |
 | `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
-| `zone` | string | yes | The SDN zone object identifier. — ≤ 8 chars |
+| `zone` | string |  | DEPRECATED: value is ignored and parameter will be removed with PVE 10 — ≤ 8 chars |
 
 ### `DELETE /cluster/sdn/vnets/{vnet}/ips`
 
@@ -1198,7 +1198,7 @@ Returns nothing.
 | `ip` | string | yes | The IP address to delete — format `ip` |
 | `mac` | string |  | Unicast MAC address. — format `mac-addr` |
 | `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
-| `zone` | string | yes | The SDN zone object identifier. — ≤ 8 chars |
+| `zone` | string |  | DEPRECATED: value is ignored and parameter will be removed with PVE 10 — ≤ 8 chars |
 
 ### `GET /cluster/sdn/vnets/{vnet}/subnets`
 
@@ -1323,7 +1323,7 @@ Returns nothing.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `advertise-subnets` | boolean |  | Advertise IP prefixes (Type-5 routes) instead of MAC/IP pairs (Type-2 routes). |
-| `bridge` | string |  | The bridge for which VLANs should be managed. |
+| `bridge` | string |  | The bridge for which VLANs should be managed. — format `pve-iface`, ≤ 15 chars |
 | `bridge-disable-mac-learning` | boolean |  | Disable auto mac learning. |
 | `controller` | string |  | Controller for this zone. |
 | `dhcp` | `dnsmasq` |  | Type of the DHCP backend for this zone |
@@ -1338,17 +1338,17 @@ Returns nothing.
 | `ipam` | string |  | use a specific ipam |
 | `lock-token` | string |  | the token for unlocking the global SDN configuration |
 | `mac` | string |  | Anycast logical router mac address. — format `mac-addr` |
-| `mtu` | number |  | MTU of the zone, will be used for the created VNet bridges. |
+| `mtu` | number |  | MTU of the zone, will be used for the created VNet bridges. — min 68, max 65535 |
 | `nodes` | string |  | List of cluster node names. — format `pve-node-list` |
 | `peers` | string |  | Comma-separated list of peers, that are part of the VXLAN zone. Usually the IPs of the nodes. — format `ip-list` |
 | `reversedns` | string |  | reverse dns api server |
 | `rt-import` | string |  | List of Route Targets that should be imported into the VRF of the zone. — format `pve-sdn-bgp-rt-list` |
 | `secondary-controllers` | string[] |  | Additional controllers. |
-| `tag` | number |  | Service-VLAN Tag (outer VLAN) — min 0 |
+| `tag` | number |  | Service-VLAN Tag (outer VLAN) — min 2, max 4094 |
 | `type` | `evpn` \| `faucet` \| `qinq` \| `simple` \| `vlan` \| `vxlan` | yes | Plugin type. — format `pve-configid` |
 | `vlan-protocol` | `802.1q` \| `802.1ad` |  | Which VLAN protocol should be used for the creation of the QinQ zone. — default `"802.1q"` |
 | `vrf-vxlan` | number |  | VNI for the zone VRF. — min 1, max 16777215 |
-| `vxlan-port` | number |  | UDP port that should be used for the VXLAN tunnel (default 4789). — min 1, max 65536, default `4789` |
+| `vxlan-port` | number |  | UDP port that should be used for the VXLAN tunnel (default 4789). — min 1, max 65535, default `4789` |
 | `zone` | string | yes | The SDN zone object identifier. — ≤ 8 chars |
 
 ### `GET /cluster/sdn/zones/{zone}`
@@ -1380,7 +1380,7 @@ Returns nothing.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `advertise-subnets` | boolean |  | Advertise IP prefixes (Type-5 routes) instead of MAC/IP pairs (Type-2 routes). |
-| `bridge` | string |  | The bridge for which VLANs should be managed. |
+| `bridge` | string |  | The bridge for which VLANs should be managed. — format `pve-iface`, ≤ 15 chars |
 | `bridge-disable-mac-learning` | boolean |  | Disable auto mac learning. |
 | `controller` | string |  | Controller for this zone. |
 | `delete` | string |  | A list of settings you want to delete. — format `pve-configid-list`, ≤ 4096 chars |
@@ -1397,16 +1397,16 @@ Returns nothing.
 | `ipam` | string |  | use a specific ipam |
 | `lock-token` | string |  | the token for unlocking the global SDN configuration |
 | `mac` | string |  | Anycast logical router mac address. — format `mac-addr` |
-| `mtu` | number |  | MTU of the zone, will be used for the created VNet bridges. |
+| `mtu` | number |  | MTU of the zone, will be used for the created VNet bridges. — min 68, max 65535 |
 | `nodes` | string |  | List of cluster node names. — format `pve-node-list` |
 | `peers` | string |  | Comma-separated list of peers, that are part of the VXLAN zone. Usually the IPs of the nodes. — format `ip-list` |
 | `reversedns` | string |  | reverse dns api server |
 | `rt-import` | string |  | List of Route Targets that should be imported into the VRF of the zone. — format `pve-sdn-bgp-rt-list` |
 | `secondary-controllers` | string[] |  | Additional controllers. |
-| `tag` | number |  | Service-VLAN Tag (outer VLAN) — min 0 |
+| `tag` | number |  | Service-VLAN Tag (outer VLAN) — min 2, max 4094 |
 | `vlan-protocol` | `802.1q` \| `802.1ad` |  | Which VLAN protocol should be used for the creation of the QinQ zone. — default `"802.1q"` |
 | `vrf-vxlan` | number |  | VNI for the zone VRF. — min 1, max 16777215 |
-| `vxlan-port` | number |  | UDP port that should be used for the VXLAN tunnel (default 4789). — min 1, max 65536, default `4789` |
+| `vxlan-port` | number |  | UDP port that should be used for the VXLAN tunnel (default 4789). — min 1, max 65535, default `4789` |
 | `zone` | string | yes | The SDN zone object identifier. — ≤ 8 chars |
 
 ### `DELETE /cluster/sdn/zones/{zone}`

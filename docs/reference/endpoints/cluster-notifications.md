@@ -401,6 +401,7 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `comment` | string |  | Comment |
 | `disable` | boolean |  | Disable this matcher — default `0` |
+| `expression` | string |  | Match expression as inline JSON. This option is mutually exclusive with the following options: match-field, match-calendar, match-severity, invert-match and mode. All of these can be represented as (sub)-expressions of this expression |
 | `invert-match` | boolean |  | Invert match of the whole matcher |
 | `match-calendar` | string[] |  | Match notification timestamp |
 | `match-field` | string[] |  | Metadata fields to match (regex or exact match). Must be in the form (regex\|exact):&lt;field&gt;=&lt;value&gt; |
@@ -421,6 +422,7 @@ Returns `object`.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
+| `migrate-to-expression` | boolean |  | Automatically translate existing 'match-*', 'invert-match' and 'mode' to an equivalent matching 'expression'. — default `0` |
 | `name` | string | yes | format `pve-configid` |
 
 ### `PUT /cluster/notifications/matchers/{name}`
@@ -439,6 +441,7 @@ Returns nothing.
 | `delete` | string[] |  | A list of settings you want to delete. |
 | `digest` | string |  | Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications. — ≤ 64 chars |
 | `disable` | boolean |  | Disable this matcher — default `0` |
+| `expression` | string |  | Match expression as inline JSON. This option is mutually exclusive with the following options: match-field, match-calendar, match-severity, invert-match and mode. All of these can be represented as (sub)-expressions of this expression |
 | `invert-match` | boolean |  | Invert match of the whole matcher |
 | `match-calendar` | string[] |  | Match notification timestamp |
 | `match-field` | string[] |  | Metadata fields to match (regex or exact match). Must be in the form (regex\|exact):&lt;field&gt;=&lt;value&gt; |
