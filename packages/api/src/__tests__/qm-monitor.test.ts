@@ -1,33 +1,30 @@
-/*
- *   Copyright (c) 2026 Janic Bellmann
- *
- *   This program is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
-
 import { describe, expect, test } from "bun:test";
 import type { Proxmox } from "../model.js";
 import { buildApiProxy } from "../proxy.js";
 import { QmMonitor } from "../qm-monitor.js";
 import { RecordingEngine } from "./helpers.js";
 
+/**
+ * Builds a monitor for guest 100 on node `pve1` over a recording transport.
+ *
+ * @param replies - Monitor replies to hand out, one per command sent.
+ * @returns The monitor as `qm`, and the `engine` that records its calls.
+ */
 function monitor(...replies: string[]) {
   const engine = new RecordingEngine(...replies);
   const api = buildApiProxy<Proxmox.Api>(engine, "/api2/json");
   return { engine, qm: new QmMonitor(api, "pve1", 100) };
 }
 
-/** The command string sent by the nth monitor call. */
+/**
+ * Returns the command string sent by one recorded monitor call.
+ *
+ * @param engine - The transport that recorded the calls.
+ * @param index - Position of the call, starting at 0.
+ * @returns The `command` parameter of that call.
+ * @throws An {@link Error} if no call with parameters was recorded at
+ *   `index`.
+ */
 function commandAt(engine: RecordingEngine, index: number): string {
   const params = engine.calls[index]?.params;
   if (!params) throw new Error(`no monitor call recorded at index ${index}`);
