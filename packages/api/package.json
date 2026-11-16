@@ -1,65 +1,64 @@
 {
   "name": "@virtbase/proxmox-api",
   "version": "3.0.0",
-  "type": "module",
-  "description": "Cutting edge javascript / TypeScript / ESM Proxmox API",
+  "description": "Fully typed Proxmox VE API client for TypeScript, generated from the official API schema",
   "keywords": [
     "proxmox",
-    "client",
-    "typing",
+    "proxmox-ve",
+    "pve",
     "api",
+    "client",
+    "sdk",
     "typescript",
-    "async",
-    "promise"
+    "virtualization"
   ],
-  "author": "Uriel Chemouni <uchemouni@gmail.com> (https://uriel.ovh/)",
-  "contributors": [
-    "Janic Bellmann <contact@janic.dev>"
-  ],
-  "license": "GPL-3.0",
+  "homepage": "https://virtbase.github.io/proxmox-api/",
+  "bugs": {
+    "url": "https://github.com/virtbase/proxmox-api/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/virtbase/proxmox-api.git",
     "directory": "packages/api"
   },
-  "bugs": {
-    "url": "https://github.com/virtbase/proxmox-api/issues"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "engines": {
-    "node": ">=18"
-  },
+  "license": "MIT",
+  "author": "Uriel Chemouni <uchemouni@gmail.com> (https://uriel.ovh/)",
+  "contributors": [
+    "Janic Bellmann <contact@janic.dev>"
+  ],
+  "type": "module",
   "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
-    }
+    },
+    "./package.json": "./package.json"
   },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "files": [
     "dist",
-    "src",
     "CHANGELOG.md"
   ],
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
     "clean": "git clean -xdf .cache .turbo dist node_modules",
-    "dev": "tsc --watch",
-    "lint:package": "publint --strict && attw --pack . --ignore-rules cjs-resolves-to-esm",
+    "dev": "tsc -p tsconfig.build.json --watch",
     "prepack": "bun run build",
+    "publint": "publint --strict && attw --pack . --profile esm-only",
     "test": "bun test",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+    "typecheck": "tsc -p tsconfig.json"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.18.2",
-    "@biomejs/biome": "catalog:",
-    "@types/bun": "catalog:",
+    "@arethetypeswrong/cli": "0.18.5",
+    "@types/bun": "1.4.4",
     "@virtbase/tsconfig": "workspace:*",
-    "publint": "^0.3.12",
-    "typescript": "catalog:"
+    "publint": "0.3.25",
+    "typescript": "7.0.2"
   }
 }

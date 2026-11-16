@@ -1,0 +1,94 @@
+name: Schema update
+
+on:
+  schedule:
+    - cron: "23 4 * * *"
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: schema-update
+  cancel-in-progress: false
+
+env:
+  TURBO_TELEMETRY_DISABLED: "1"
+
+jobs:
+  update:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        id: app
+        if: vars.RELEASE_APP_CLIENT_ID != ''
+        with:
+          client-id: ${{ vars.RELEASE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+          permission-issues: write
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+      - id: update
+        run: bun packages/generator/src/cli.ts update --summary "$RUNNER_TEMP/schema-summary.txt"
+      - if: steps.update.outputs.updated == 'true'
+        run: bun turbo run typecheck test build publint
+      - id: message
+        if: steps.update.outputs.updated == 'true'
+        env:
+          LEVEL: ${{ steps.update.outputs.level }}
+          VERSION: ${{ steps.update.outputs.version }}
+        run: |
+          case "$LEVEL" in
+            major) title="feat(api)!: update to the Proxmox VE $VERSION API schema" ;;
+            minor) title="feat(api): update to the Proxmox VE $VERSION API schema" ;;
+            *) title="fix(api): sync with the Proxmox VE $VERSION API schema" ;;
+          esac
+          {
+            echo "title=$title"
+            echo "body<<SCHEMA_SUMMARY_EOF"
+            cat "$RUNNER_TEMP/schema-summary.txt"
+            echo "SCHEMA_SUMMARY_EOF"
+          } >> "$GITHUB_OUTPUT"
+      - id: pr
+        if: steps.update.outputs.updated == 'true'
+        uses: peter-evans/create-pull-request@3ffccacd46053766916f087ce41d627c0b8cf2d1 # v8.1.3
+        with:
+          token: ${{ steps.app.outputs.token || github.token }}
+          branch: automation/schema-update
+          delete-branch: true
+          title: ${{ steps.message.outputs.title }}
+          commit-message: |
+            ${{ steps.message.outputs.title }}
+
+            ${{ steps.message.outputs.body }}
+          body: |
+            Regenerated from `pve-docs` ${{ steps.update.outputs.version }} (previously ${{ steps.update.outputs.previous }}).
+
+            ```
+            ${{ steps.message.outputs.body }}
+            ```
+
+            The full list of changes is in `docs/reference/api-changelog/`.
+            Updates without breaking changes merge on their own once CI passes; breaking ones wait for a review.
+          labels: schema
+      - if: steps.pr.outputs.pull-request-number != ''
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token || github.token }}
+          GH_REPO: ${{ github.repository }}
+          PR: ${{ steps.pr.outputs.pull-request-number }}
+          LEVEL: ${{ steps.update.outputs.level }}
+        run: |
+          if [ "$LEVEL" = "major" ]; then
+            gh pr merge --disable-auto "$PR" || true
+            gh pr edit "$PR" --add-label breaking
+          else
+            gh pr edit "$PR" --remove-label breaking || true
+            gh pr merge --auto --squash "$PR" || echo "::warning::Could not enable auto-merge; see MAINTAINING.md."
+          fi

@@ -1,0 +1,90 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:best-practices",
+    ":pinAllExceptPeerDependencies",
+    ":semanticCommits"
+  ],
+  "timezone": "Europe/Berlin",
+  "schedule": ["* 0-5 * * 1"],
+  "labels": ["dependencies"],
+  "prConcurrentLimit": 10,
+  "prHourlyLimit": 0,
+  "internalChecksFilter": "strict",
+  "automerge": true,
+  "automergeType": "pr",
+  "automergeStrategy": "squash",
+  "platformAutomerge": true,
+  "osvVulnerabilityAlerts": true,
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["dependencies", "security"],
+    "minimumReleaseAge": null,
+    "schedule": []
+  },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true,
+    "schedule": ["* 0-5 * * 1"]
+  },
+  "packageRules": [
+    {
+      "matchPackageNames": ["*"],
+      "semanticCommitType": "chore",
+      "semanticCommitScope": "deps"
+    },
+    {
+      "matchFileNames": ["packages/api/package.json"],
+      "matchDepTypes": [
+        "dependencies",
+        "peerDependencies",
+        "optionalDependencies"
+      ],
+      "semanticCommitType": "fix",
+      "automerge": false
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "semanticCommitType": "ci"
+    },
+    {
+      "matchDatasources": ["npm", "github-tags", "github-releases"],
+      "matchUpdateTypes": ["major", "minor", "patch"],
+      "minimumReleaseAge": "7 days"
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "dependencyDashboardApproval": true
+    },
+    {
+      "groupName": "GitHub Actions",
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["minor", "patch", "digest", "pinDigest"]
+    },
+    {
+      "groupName": "Bun",
+      "matchPackageNames": ["bun", "@types/bun"]
+    },
+    {
+      "groupName": "TypeScript",
+      "matchPackageNames": ["typescript", "@typescript/**"]
+    },
+    {
+      "groupName": "Turborepo",
+      "matchPackageNames": ["turbo", "@turbo/**"]
+    },
+    {
+      "groupName": "Biome",
+      "matchPackageNames": ["@biomejs/**"]
+    },
+    {
+      "groupName": "commitlint",
+      "matchPackageNames": ["@commitlint/**"]
+    },
+    {
+      "groupName": "VitePress",
+      "matchPackageNames": ["vitepress", "vue"]
+    }
+  ]
+}

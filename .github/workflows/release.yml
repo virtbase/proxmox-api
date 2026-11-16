@@ -2,79 +2,83 @@ name: Release
 
 on:
   push:
-    branches: [main, master]
-  # Escape hatch for a release whose tag exists but whose publish never ran -
-  # a manually recovered release, or a run that failed after tagging. It
-  # publishes whatever the default branch currently says, so only run it on a
-  # commit that is already tagged.
+    branches: [main]
   workflow_dispatch:
     inputs:
-      publish:
-        description: Publish the current version to npm, skipping release-please
-        type: boolean
-        default: false
+      tag:
+        description: Existing release tag (for example 4.0.0) to publish to npm, for a release whose publish did not finish
+        type: string
+        required: true
 
-permissions:
-  contents: write
-  pull-requests: write
+permissions: {}
 
 concurrency:
   group: release
   cancel-in-progress: false
 
+env:
+  TURBO_TELEMETRY_DISABLED: "1"
+
 jobs:
-  # Maintains a rolling release pull request: the version bump and the
-  # changelog entry, both derived from the conventional commits since the last
-  # release. Merging it tags and creates the GitHub release.
   prepare:
-    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
     outputs:
-      # `releases_created`, plural. In manifest mode the action reports one
-      # result per configured package, and the singular `release_created` is
-      # never set - reading it silently skips every publish.
       released: ${{ steps.release.outputs.releases_created }}
+      tag: ${{ steps.release.outputs['packages/api--tag_name'] }}
     steps:
-      - uses: googleapis/release-please-action@v5
+      - uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        id: app
+        if: vars.RELEASE_APP_CLIENT_ID != ''
+        with:
+          client-id: ${{ vars.RELEASE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+          permission-issues: write
+      - uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
         id: release
         with:
+          token: ${{ steps.app.outputs.token || github.token }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+      - if: steps.release.outputs.prs_created == 'true'
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token || github.token }}
+          GH_REPO: ${{ github.repository }}
+          PR: ${{ fromJSON(steps.release.outputs.pr).number }}
+        run: gh pr merge --auto --squash "$PR" || echo "::warning::Could not enable auto-merge; see MAINTAINING.md."
 
   publish:
     needs: prepare
-    if: >-
-      needs.prepare.outputs.released == 'true' ||
-      inputs.publish == true
-    runs-on: ubuntu-latest
+    if: always() && (needs.prepare.outputs.released == 'true' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
     permissions:
       contents: read
-      # Required for npm provenance, which signs the package with a verifiable
-      # link back to this workflow run.
       id-token: write
     environment:
       name: npm
       url: https://www.npmjs.com/package/@virtbase/proxmox-api
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ needs.prepare.outputs.tag }}
-      - uses: oven-sh/setup-bun@v2
+          ref: refs/tags/${{ needs.prepare.outputs.tag || inputs.tag }}
+          persist-credentials: false
+      - uses: ./.github/actions/setup
         with:
-          bun-version-file: package.json
-      # npm rather than bun for the publish itself: provenance attestation is
-      # an npm CLI feature and bun does not emit it.
-      - uses: actions/setup-node@v7
+          cache: "false"
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version-file: .nvmrc
           registry-url: https://registry.npmjs.org
-
-      - run: bun install --frozen-lockfile
-      - run: bun run test
-      - run: bun run build
-      - run: bun run lint:package
-
-      - name: Publish to npm
-        run: npm publish --provenance --access public
+          package-manager-cache: false
+      - run: bun turbo run test build publint --filter=@virtbase/proxmox-api
+      - run: npm publish --access public
         working-directory: packages/api
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: "true"

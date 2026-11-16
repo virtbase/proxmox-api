@@ -1,0 +1,44 @@
+[[IgnoredVulns]]
+id = "GHSA-4w7w-66w2-5vf9"
+ignoreUntil = 2027-06-01
+reason = "vite is pulled in by VitePress 1.x, which pins the affected major. It only builds the static documentation site and its dev server is never exposed; revisit when VitePress 2 is stable."
+
+[[IgnoredVulns]]
+id = "GHSA-587h-7wmj-h5pm"
+ignoreUntil = 2027-06-01
+reason = "vite is pulled in by VitePress 1.x, which pins the affected major. It only builds the static documentation site and its dev server is never exposed; revisit when VitePress 2 is stable."
+
+[[IgnoredVulns]]
+id = "GHSA-698v-4r3x-3vcv"
+ignoreUntil = 2027-06-01
+reason = "vite is pulled in by VitePress 1.x, which pins the affected major. It only builds the static documentation site and its dev server is never exposed; revisit when VitePress 2 is stable."
+
+[[IgnoredVulns]]
+id = "GHSA-9jrq-w75r-8gcw"
+ignoreUntil = 2027-06-01
+reason = "vite is pulled in by VitePress 1.x, which pins the affected major. It only builds the static documentation site and its dev server is never exposed; revisit when VitePress 2 is stable."
+
+[[IgnoredVulns]]
+id = "GHSA-fx2h-pf6j-xcff"
+ignoreUntil = 2027-06-01
+reason = "vite is pulled in by VitePress 1.x, which pins the affected major. It only builds the static documentation site and its dev server is never exposed; revisit when VitePress 2 is stable."
+
+[[IgnoredVulns]]
+id = "GHSA-r825-w8mm-5pxw"
+ignoreUntil = 2027-06-01
+reason = "vite is pulled in by VitePress 1.x, which pins the affected major. It only builds the static documentation site and its dev server is never exposed; revisit when VitePress 2 is stable."
+
+[[IgnoredVulns]]
+id = "GHSA-rq7h-c2jc-7f22"
+ignoreUntil = 2027-06-01
+reason = "vite is pulled in by VitePress 1.x, which pins the affected major. It only builds the static documentation site and its dev server is never exposed; revisit when VitePress 2 is stable."
+
+[[IgnoredVulns]]
+id = "GHSA-v6wh-96g9-6wx3"
+ignoreUntil = 2027-06-01
+reason = "vite is pulled in by VitePress 1.x, which pins the affected major. It only builds the static documentation site and its dev server is never exposed; revisit when VitePress 2 is stable."
+
+[[IgnoredVulns]]
+id = "GHSA-67mh-4wv8-2f99"
+ignoreUntil = 2027-06-01
+reason = "esbuild is pulled in by VitePress 1.x, which pins the affected major. It only builds the static documentation site and its dev server is never exposed; revisit when VitePress 2 is stable."

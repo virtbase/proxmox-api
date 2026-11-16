@@ -1,0 +1,16 @@
+{
+  "version": "8.0.5",
+  "released": "2023-08-16",
+  "schemaSha256": "85546c26057f28de1b481bf2f3526796f72555b452e8dd2edb5eae3b68e32559",
+  "operations": 549,
+  "level": "none",
+  "summary": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0,
+    "breaking": 0,
+    "documentation": 0
+  },
+  "changes": [],
+  "removedTypes": []
+}

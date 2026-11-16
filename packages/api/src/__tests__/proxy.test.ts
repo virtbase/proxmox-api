@@ -1,36 +1,32 @@
-/*
- *   Copyright (c) 2026 Janic Bellmann
- *
- *   This program is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
-
 import { describe, expect, test } from "bun:test";
+import { ProxmoxConfigError } from "../errors.js";
 import type { ApiParamType, ApiRequestable } from "../proxy.js";
 import { buildApiProxy } from "../proxy.js";
 
+/**
+ * What the proxy passed to the transport for one call.
+ */
 interface Call {
   method: string;
   path: string;
   template: string;
+  /**
+   * The parameters, with `null` recorded as `undefined`.
+   */
   params?: ApiParamType;
 }
 
+/**
+ * Builds an untyped proxy over a transport that records every call.
+ *
+ * @returns The proxy as `api`, rooted at `/api2/json`, and the `calls` it
+ *   has made so far, oldest first. Every call resolves with `null`.
+ */
 function recorder() {
   const calls: Call[] = [];
   const engine: ApiRequestable = {
     doRequest(method, path, template, params) {
-      calls.push({ method, path, template, params });
+      calls.push({ method, path, template, params: params ?? undefined });
       return Promise.resolve(null);
     },
   };
@@ -123,6 +119,37 @@ describe("segment escaping", () => {
     await api.nodes.$("pve1").tasks.$("UPID:pve1:001:qmstart:").status.$get();
     expect(calls[0]?.path).toBe(
       "/api2/json/nodes/pve1/tasks/UPID:pve1:001:qmstart:/status",
+    );
+  });
+
+  test.each([
+    ["..", "a parent reference"],
+    [".", "a self reference"],
+    ["", "an empty value"],
+  ])("%j is refused as %s", (value) => {
+    const { calls, api } = recorder();
+    const snapshot = api.nodes.$("pve1").qemu.$(100).snapshot;
+    expect(() => snapshot.$(value)).toThrow(ProxmoxConfigError);
+    expect(calls).toHaveLength(0);
+  });
+
+  test.each([
+    ["%2e%2e", "%252e%252e"],
+    ["..\\..\\access", "..%5C..%5Caccess"],
+    ["a%41", "a%2541"],
+    ["a b", "a%20b"],
+  ])("%j cannot be reinterpreted by the URL parser", async (value, encoded) => {
+    const { calls, api } = recorder();
+    await api.storage.$(value).$get();
+    expect(calls[0]?.path).toBe(`/api2/json/storage/${encoded}`);
+    const url = new URL(`https://pve.example:8006${calls[0]?.path}`);
+    expect(url.pathname).toBe(`/api2/json/storage/${encoded}`);
+  });
+
+  test("the proxy can be serialised without recursing", () => {
+    const { api } = recorder();
+    expect(JSON.stringify(api.nodes.$("pve1"))).toBe(
+      '{"path":"/api2/json/nodes/pve1"}',
     );
   });
 

@@ -64,7 +64,7 @@ Returns `string`.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `force` | boolean |  | Force renewal even if expiry is more than 30 days away. — default `0` |
+| `force` | boolean |  | Force renewal even if the certificate is not yet due for renewal. — default `0` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
 ### `DELETE /nodes/{node}/certificates/acme/certificate`

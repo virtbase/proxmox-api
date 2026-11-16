@@ -1,0 +1,4 @@
+{
+  "extends": "@virtbase/tsconfig/base.json",
+  "include": [".vitepress/*.ts"]
+}

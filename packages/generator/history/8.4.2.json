@@ -1,0 +1,51 @@
+{
+  "version": "8.4.2",
+  "previous": "8.3.2",
+  "released": "2026-03-27",
+  "schemaSha256": "552841fab8b5915fa9e121ee34fc987f7886b5d00c4171d57a65c21aca3dc30f",
+  "operations": 605,
+  "level": "minor",
+  "summary": {
+    "added": 0,
+    "removed": 0,
+    "changed": 3,
+    "breaking": 0,
+    "documentation": 13
+  },
+  "changes": [
+    {
+      "operation": "POST /nodes/{node}/qemu/{vmid}/status/start",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `nets-host-mtu` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /storage",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `zfs-base-path` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /storage/{storage}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `zfs-base-path` added",
+          "breaking": false
+        }
+      ]
+    }
+  ],
+  "removedTypes": []
+}

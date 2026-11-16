@@ -1,0 +1,765 @@
+{
+  "version": "8.1.5",
+  "previous": "8.0.5",
+  "released": "2024-03-27",
+  "schemaSha256": "7273f1132027108d21eac3f381b48d7a8eb491dc490da6f92d76967e5c10c9c2",
+  "operations": 584,
+  "level": "major",
+  "summary": {
+    "added": 35,
+    "removed": 0,
+    "changed": 38,
+    "breaking": 4,
+    "documentation": 91
+  },
+  "changes": [
+    {
+      "operation": "POST /access/domains",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `check-connection` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /access/domains/{realm}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `check-connection` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /access/password",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `confirmation-password` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /access/roles/{roleid}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `Sys.AccessNetwork` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/acme/account",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `eab-hmac-key` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `eab-kid` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/acme/meta",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/acme/plugins",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `api` accepts `artfiles`, `bookmyname`, `dnsexit`, `tencent`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/acme/plugins/{id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `api` accepts `artfiles`, `bookmyname`, `dnsexit`, `tencent`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/backup",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `notification-mode` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `notification-policy` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `notification-target` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/backup/{id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `notification-mode` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `notification-policy` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `notification-target` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/notifications",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/notifications/endpoints",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/notifications/endpoints/gotify",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/notifications/endpoints/gotify",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "DELETE /cluster/notifications/endpoints/gotify/{name}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/notifications/endpoints/gotify/{name}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "PUT /cluster/notifications/endpoints/gotify/{name}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/notifications/endpoints/sendmail",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/notifications/endpoints/sendmail",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "DELETE /cluster/notifications/endpoints/sendmail/{name}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/notifications/endpoints/sendmail/{name}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "PUT /cluster/notifications/endpoints/sendmail/{name}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/notifications/endpoints/smtp",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/notifications/endpoints/smtp",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "DELETE /cluster/notifications/endpoints/smtp/{name}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/notifications/endpoints/smtp/{name}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "PUT /cluster/notifications/endpoints/smtp/{name}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/notifications/matchers",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/notifications/matchers",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "DELETE /cluster/notifications/matchers/{name}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/notifications/matchers/{name}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "PUT /cluster/notifications/matchers/{name}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/notifications/targets",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/notifications/targets/{name}/test",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "PUT /cluster/options",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `language` accepts `ar`, `hr`, `ka`, `kr`, `nl`, `ukr`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/controllers",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `type` accepts `isis`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/sdn/controllers",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `isis-domain` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `isis-ifaces` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `isis-net` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `type` accepts `isis`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/sdn/controllers/{controller}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `isis-domain` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `isis-ifaces` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `isis-net` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/ipams/{ipam}/status",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "DELETE /cluster/sdn/vnets/{vnet}/ips",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/sdn/vnets/{vnet}/ips",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "PUT /cluster/sdn/vnets/{vnet}/ips",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/sdn/vnets/{vnet}/subnets",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `dhcp-dns-server` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `dhcp-range` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `dhcp-range[]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/sdn/vnets/{vnet}/subnets/{subnet}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `dhcp-dns-server` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `dhcp-range` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `dhcp-range[]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/zones",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].dhcp` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/sdn/zones",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `dhcp` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/sdn/zones/{zone}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `dhcp` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/ceph/cfg/value",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /nodes/{node}/ceph/osd",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `osds-per-device` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/disks/list",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].osdid-list` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].osdid-list[]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/lxc",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `dev[n]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/lxc/{vmid}/config",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `dev[n]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /nodes/{node}/lxc/{vmid}/config",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `dev[n]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/lxc/{vmid}/interfaces",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /nodes/{node}/qemu",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `memory` changed from number to string",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/qemu/{vmid}/config",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "returned `memory` changed from number to string",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/qemu/{vmid}/config",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `memory` changed from number to string",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "PUT /nodes/{node}/qemu/{vmid}/config",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `memory` changed from number to string",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/qemu/{vmid}/status/current",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `clipboard` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/status",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `boot-info` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `boot-info.mode` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `boot-info.secureboot` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `current-kernel` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `current-kernel.machine` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `current-kernel.release` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `current-kernel.sysname` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `current-kernel.version` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/storage/{storage}/download-url",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `compression` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/storage/{storage}/file-restore/download",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `tar` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/storage/{storage}/import-metadata",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /nodes/{node}/suspendall",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /nodes/{node}/vzdump",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `notification-mode` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `notification-policy` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `notification-target` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/vzdump/defaults",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `notification-mode` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `notification-policy` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `notification-target` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "DELETE /pools",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /pools",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `poolid` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `type` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].comment` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].members` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].members[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].members[].id` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].members[].node` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].members[].storage` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].members[].type` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].members[].vmid` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /pools",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "PUT /pools/{poolid}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `allow-move` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /storage",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `type` accepts `esxi`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /storage",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `skip-cert-verification` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `type` accepts `esxi`",
+          "breaking": false
+        },
+        {
+          "text": "returned `type` may be `esxi`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /storage/{storage}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `skip-cert-verification` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `type` may be `esxi`",
+          "breaking": false
+        }
+      ]
+    }
+  ],
+  "removedTypes": [
+    "Source"
+  ]
+}

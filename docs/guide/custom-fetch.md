@@ -22,7 +22,6 @@ const insecure = new Agent({ connect: { rejectUnauthorized: false } });
 
 const proxmox = proxmoxApi({
   host: "192.0.2.10",
-  port: 8006,
   tokenID: "root@pam!automation",
   tokenSecret: "…",
   fetch: (url, options) =>
@@ -41,22 +40,15 @@ Disabling certificate verification removes the protection against an
 intercepted connection. Prefer `NODE_EXTRA_CA_CERTS` with the cluster CA.
 :::
 
-## Logging
+## Logging and metrics
 
-```ts
-fetch: async (url, options) => {
-  const started = performance.now();
-  const response = await fetch(url, options);
-  console.log(options?.method ?? "GET", String(url), response.status,
-              `${Math.round(performance.now() - started)}ms`);
-  return response;
-},
-```
+Use [`onEvent`](./errors#observing-requests) rather than wrapping `fetch`: it
+reports retries and failures as well, and never sees credentials.
 
-## Rate limiting and retries
+## Limiting concurrency
 
-Proxmox's API is single-threaded per node, and hammering it during a migration
-will make things worse. Wrap the transport rather than the call sites:
+Proxmox does not rate limit, but flooding a busy node makes things worse. To
+send one request at a time, wrap the transport rather than the call sites:
 
 ```ts
 let chain: Promise<unknown> = Promise.resolve();
@@ -80,7 +72,7 @@ test("requests the node list", async () => {
   const proxmox = proxmoxApi({
     host: "127.0.0.1",
     tokenID: "root@pam!t",
-    tokenSecret: "12345678-1234-1234-1234-1234567890ab",
+    tokenSecret: "secret",
     fetch: async (url) => {
       calls.push(String(url));
       return new Response(JSON.stringify({ data: [{ node: "pve1" }] }), {
@@ -90,9 +82,12 @@ test("requests the node list", async () => {
   });
 
   expect(await proxmox.nodes.$get()).toEqual([{ node: "pve1" }] as never);
-  expect(calls[0]).toBe("https://127.0.0.1/api2/json/nodes");
+  expect(calls[0]).toBe("https://127.0.0.1:8006/api2/json/nodes");
 });
 ```
 
 Using a token avoids the login round trip, so the stub only sees the call you
 are testing.
+
+To stub above the HTTP layer instead, pass any object with a `doRequest` method
+to `proxmoxApi()` — see [`ApiRequestable`](/reference/client#apirequestable).

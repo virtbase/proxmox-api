@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "verify",
+      "type": "npm",
+      "script": "verify",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "codegen",
+      "type": "npm",
+      "script": "codegen",
+      "problemMatcher": []
+    },
+    {
+      "label": "docs",
+      "type": "npm",
+      "script": "docs:dev",
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ]
+}

@@ -299,7 +299,7 @@ Returns nothing.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `cidr` | string | yes | Network/IP specification in CIDR format. — format `IPorCIDR` |
+| `cidr` | string |  | Network/IP specification in CIDR format. — format `IPorCIDR` |
 | `comment` | string |  | format `pve-fw-comment-spec` |
 | `digest` | string |  | Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications. — ≤ 64 chars |
 | `name` | string | yes | Alias name. — ≤ 64 chars |

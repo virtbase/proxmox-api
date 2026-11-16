@@ -37,6 +37,7 @@ Returns nothing.
 | `rate` | number |  | Rate limit in mbps (megabytes per second) as floating point number. — min 1 |
 | `remove_job` | `local` \| `full` |  | Mark the replication job for removal. The job will remove all local replication snapshots. When set to 'full', it also tries to remove replicated volumes on the target. The job then removes itself from the configuration file. |
 | `schedule` | string |  | Storage replication schedule. The format is a subset of `systemd` calendar events. — format `pve-calendar-event`, ≤ 128 chars, default `"*/15"` |
+| `skip-freeze-fs` | boolean |  | Whether to skip freezing and thawing the guest's filesystems for consistency during replication. — default `0` |
 | `source` | string |  | For internal use, to detect if the guest was stolen. — format `pve-node` |
 | `target` | string | yes | Target node. — format `pve-node` |
 | `type` | `local` | yes | Section type. |
@@ -75,6 +76,7 @@ Returns nothing.
 | `rate` | number |  | Rate limit in mbps (megabytes per second) as floating point number. — min 1 |
 | `remove_job` | `local` \| `full` |  | Mark the replication job for removal. The job will remove all local replication snapshots. When set to 'full', it also tries to remove replicated volumes on the target. The job then removes itself from the configuration file. |
 | `schedule` | string |  | Storage replication schedule. The format is a subset of `systemd` calendar events. — format `pve-calendar-event`, ≤ 128 chars, default `"*/15"` |
+| `skip-freeze-fs` | boolean |  | Whether to skip freezing and thawing the guest's filesystems for consistency during replication. — default `0` |
 | `source` | string |  | For internal use, to detect if the guest was stolen. — format `pve-node` |
 
 ### `DELETE /cluster/replication/{id}`

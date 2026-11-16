@@ -1,0 +1,38 @@
+[
+  {
+    "text": "Overview",
+    "link": "/reference/api-changelog/"
+  },
+  {
+    "text": "Proxmox VE 9.2",
+    "link": "/reference/api-changelog/pve-9.2"
+  },
+  {
+    "text": "Proxmox VE 9.1",
+    "link": "/reference/api-changelog/pve-9.1"
+  },
+  {
+    "text": "Proxmox VE 9.0",
+    "link": "/reference/api-changelog/pve-9.0"
+  },
+  {
+    "text": "Proxmox VE 8.4",
+    "link": "/reference/api-changelog/pve-8.4"
+  },
+  {
+    "text": "Proxmox VE 8.3",
+    "link": "/reference/api-changelog/pve-8.3"
+  },
+  {
+    "text": "Proxmox VE 8.2",
+    "link": "/reference/api-changelog/pve-8.2"
+  },
+  {
+    "text": "Proxmox VE 8.1",
+    "link": "/reference/api-changelog/pve-8.1"
+  },
+  {
+    "text": "Proxmox VE 8.0",
+    "link": "/reference/api-changelog/pve-8.0"
+  }
+]

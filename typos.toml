@@ -1,0 +1,14 @@
+[files]
+ignore-hidden = false
+extend-exclude = [
+  ".git",
+  "bun.lock",
+  "**/CHANGELOG.md",
+  "packages/api/src/model.ts",
+  "packages/generator/history",
+  "docs/reference/endpoints",
+  "docs/reference/api-changelog",
+]
+
+[default.extend-words]
+sherif = "sherif"

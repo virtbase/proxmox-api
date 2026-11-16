@@ -1,0 +1,1334 @@
+{
+  "version": "9.1.5",
+  "previous": "9.0.9",
+  "released": "2026-05-18",
+  "schemaSha256": "a5c4ff103425a1bc0549bb408a061c30248e427a8efcb0d52a335928273851e5",
+  "operations": 667,
+  "level": "major",
+  "summary": {
+    "added": 21,
+    "removed": 0,
+    "changed": 41,
+    "breaking": 3,
+    "documentation": 64
+  },
+  "changes": [
+    {
+      "operation": "PUT /access/users/{userid}/token/{tokenid}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `regenerate` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `full-tokenid` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `value` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /access/vncticket",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `port` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/acme/plugins",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].api` may be `hetznercloud`, `openprovider_rest`, `spaceship`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/acme/plugins",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `api` accepts `hetznercloud`, `openprovider_rest`, `spaceship`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/acme/plugins/{id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `api` may be `hetznercloud`, `openprovider_rest`, `spaceship`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/acme/plugins/{id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `api` accepts `hetznercloud`, `openprovider_rest`, `spaceship`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/backup",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].all` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].bwlimit` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].comment` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].compress` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].dumpdir` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].enabled` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].exclude` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].exclude-path` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].exclude-path[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].fleecing` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].fleecing.enabled` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].fleecing.storage` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].ionice` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].lockwait` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].mailnotification` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].mailto` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].maxfiles` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].mode` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].next-run` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].node` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].notes-template` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].notification-mode` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pbs-change-detection-mode` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].performance` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].performance.max-workers` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].performance.pbs-entries-max` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pigz` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pool` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].protected` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].prune-backups` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].prune-backups.keep-all` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].prune-backups.keep-daily` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].prune-backups.keep-hourly` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].prune-backups.keep-last` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].prune-backups.keep-monthly` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].prune-backups.keep-weekly` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].prune-backups.keep-yearly` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].quiet` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].remove` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].repeat-missed` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].schedule` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].script` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].stdexcludes` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].stop` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].stopwait` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].storage` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].tmpdir` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].vmid` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].zstd` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/backup/{id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `all` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `bwlimit` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `comment` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `compress` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `dumpdir` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `enabled` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `exclude` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `exclude-path` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `exclude-path[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `fleecing` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `fleecing.enabled` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `fleecing.storage` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `id` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `ionice` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `lockwait` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mailnotification` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mailto` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `maxfiles` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mode` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `next-run` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `node` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `notes-template` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `notification-mode` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pbs-change-detection-mode` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `performance` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `performance.max-workers` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `performance.pbs-entries-max` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pigz` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pool` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `protected` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `prune-backups` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `prune-backups.keep-all` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `prune-backups.keep-daily` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `prune-backups.keep-hourly` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `prune-backups.keep-last` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `prune-backups.keep-monthly` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `prune-backups.keep-weekly` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `prune-backups.keep-yearly` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `quiet` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `remove` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `repeat-missed` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `schedule` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `script` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `stdexcludes` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `stop` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `stopwait` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `storage` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `tmpdir` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `vmid` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `zstd` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/bulk-action/guest/migrate",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `max-workers` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/bulk-action/guest/shutdown",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `max-workers` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/bulk-action/guest/start",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `max-workers` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/bulk-action/guest/suspend",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `max-workers` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/ceph/metadata",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "returned `osd[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `osd[].back_addr` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `osd[].ceph_release` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `osd[].ceph_version` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `osd[].ceph_version_short` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `osd[].device_id` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `osd[].front_addr` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `osd[].hostname` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `osd[].id` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `osd[].mem_swap_kb` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `osd[].mem_total_kb` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `osd[].osd_data` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `osd[].osd_objectstore` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `osd.{id}` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `osd.{id}.back_addr` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `osd.{id}.ceph_release` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `osd.{id}.ceph_version` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `osd.{id}.ceph_version_short` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `osd.{id}.device_id` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `osd.{id}.front_addr` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `osd.{id}.hostname` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `osd.{id}.id` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `osd.{id}.mem_swap_kb` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `osd.{id}.mem_total_kb` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `osd.{id}.osd_data` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `osd.{id}.osd_objectstore` removed",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/config",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `token-coefficient` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/ha/resources/{sid}/migrate",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `blocking-resources[].cause` may be `node-affinity`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/ha/resources/{sid}/relocate",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `blocking-resources[].cause` may be `node-affinity`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/ha/status/arm-ha",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/ha/status/current",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].armed-state` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].resource_mode` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].type` may be `fencing`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/ha/status/disarm-ha",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "PUT /cluster/options",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `location` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/resources",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].host-arch` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].shared` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/sdn/controllers",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `route-map-in` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `route-map-out` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/sdn/controllers/{controller}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `route-map-in` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `route-map-out` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/dry-run",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/sdn/fabrics/all",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `fabrics[].persistent_keepalive` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `fabrics[].protocol` may be `wireguard`",
+          "breaking": false
+        },
+        {
+          "text": "returned `fabrics[].route_filter` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].allowed_ips` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].allowed_ips[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].endpoint` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].peers` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].peers[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].protocol` may be `wireguard`",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].public_key` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].role` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/fabrics/fabric",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].persistent_keepalive` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].protocol` may be `wireguard`",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].route_filter` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/sdn/fabrics/fabric",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `persistent_keepalive` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `protocol` accepts `wireguard`",
+          "breaking": false
+        },
+        {
+          "text": "parameter `route_filter` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/fabrics/fabric/{id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `persistent_keepalive` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `protocol` may be `wireguard`",
+          "breaking": false
+        },
+        {
+          "text": "returned `route_filter` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/sdn/fabrics/fabric/{id}",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `delete[]` accepts `persistent_keepalive`",
+          "breaking": false
+        },
+        {
+          "text": "parameter `delete[]` no longer accepts `area`",
+          "breaking": true
+        },
+        {
+          "text": "parameter `persistent_keepalive` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `protocol` accepts `wireguard`",
+          "breaking": false
+        },
+        {
+          "text": "parameter `route_filter` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/fabrics/node",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].allowed_ips` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].allowed_ips[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].endpoint` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].peers` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].peers[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].protocol` may be `wireguard`",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].public_key` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].role` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/fabrics/node/{fabric_id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].allowed_ips` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].allowed_ips[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].endpoint` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].peers` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].peers[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].protocol` may be `wireguard`",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].public_key` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].role` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/sdn/fabrics/node/{fabric_id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `allowed_ips` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `allowed_ips[]` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `endpoint` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `peers` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `peers[]` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `protocol` accepts `wireguard`",
+          "breaking": false
+        },
+        {
+          "text": "parameter `public_key` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `role` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/fabrics/node/{fabric_id}/{node_id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `allowed_ips` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `allowed_ips[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `endpoint` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `peers` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `peers[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `protocol` may be `wireguard`",
+          "breaking": false
+        },
+        {
+          "text": "returned `public_key` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `role` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/sdn/fabrics/node/{fabric_id}/{node_id}",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `allowed_ips` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `allowed_ips[]` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `delete` changed from array to union",
+          "breaking": true
+        },
+        {
+          "text": "parameter `delete[]` accepts `allowed_ips`, `endpoint`, `peers`",
+          "breaking": false
+        },
+        {
+          "text": "parameter `endpoint` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `peers` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `peers[]` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `protocol` accepts `wireguard`",
+          "breaking": false
+        },
+        {
+          "text": "parameter `public_key` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `role` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/prefix-lists",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/sdn/prefix-lists",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "DELETE /cluster/sdn/prefix-lists/{id}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/sdn/prefix-lists/{id}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "PUT /cluster/sdn/prefix-lists/{id}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/sdn/prefix-lists/{id}/entries",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/sdn/prefix-lists/{id}/entries",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "DELETE /cluster/sdn/prefix-lists/{id}/entries/{url_seq}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/sdn/prefix-lists/{id}/entries/{url_seq}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "PUT /cluster/sdn/prefix-lists/{id}/entries/{url_seq}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/sdn/route-maps",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/sdn/route-maps/entries",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/sdn/route-maps/entries",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/sdn/route-maps/entries/{route-map-id}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "DELETE /cluster/sdn/route-maps/entries/{route-map-id}/entry/{order}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/sdn/route-maps/entries/{route-map-id}/entry/{order}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "PUT /cluster/sdn/route-maps/entries/{route-map-id}/entry/{order}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/capabilities/qemu/cpu",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `arch` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/capabilities/qemu/cpu-flags",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `arch` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/capabilities/qemu/machines",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `arch` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/lxc/{vmid}/vncproxy",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `password` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/migrateall",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `max-workers` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/qemu/{vmid}/agent/file-read",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `count` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `decode` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `offset` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/startall",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `max-workers` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/stopall",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `max-workers` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/storage/{storage}/identity",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /nodes/{node}/suspendall",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `max-workers` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/vncshell",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `password` added",
+          "breaking": false
+        }
+      ]
+    }
+  ],
+  "removedTypes": [
+    "Cause",
+    "PveSdnControllerId",
+    "PveSdnDnsId",
+    "PveSdnIpamId",
+    "PveSdnVnetId",
+    "PveSdnZoneId",
+    "StorageType"
+  ]
+}

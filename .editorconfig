@@ -1,4 +1,3 @@
-# Matches biome.jsonc; keeps editors without the Biome extension in line.
 root = true
 
 [*]
@@ -10,5 +9,4 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 
 [*.md]
-# Two trailing spaces are a hard line break in Markdown.
 trim_trailing_whitespace = false

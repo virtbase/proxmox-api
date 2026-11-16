@@ -1,383 +1,263 @@
 # Maintaining `@virtbase/proxmox-api`
 
-Everything a maintainer needs: first-time setup of GitHub, npm and the docs
-site, then the day-to-day loop.
+How the automation fits together, the one-time setup it needs, and what is left
+for a human.
 
-For contributing (commit conventions, local checks) see
-[CONTRIBUTING.md](CONTRIBUTING.md).
-
----
-
-## Contents
-
-1. [How the pieces fit](#1-how-the-pieces-fit)
-2. [GitHub repository setup](#2-github-repository-setup)
-3. [npm setup](#3-npm-setup)
-4. [Documentation site setup](#4-documentation-site-setup)
-5. [The first release](#5-the-first-release)
-6. [Publishing, day to day](#6-publishing-day-to-day)
-7. [Keeping up with Proxmox](#7-keeping-up-with-proxmox)
-8. [Troubleshooting](#8-troubleshooting)
-
----
-
-## 1. How the pieces fit
-
-Four workflows, each with one job:
+## How the pieces fit
 
 | Workflow | Runs on | Does |
 | --- | --- | --- |
-| `ci.yml` | pull request, push, merge queue | Lint, typecheck, test, build, validate the packed package, check commit subjects. |
-| `docs.yml` | pull request, push | Builds the docs site; deploys to Pages on the default branch. |
-| `release.yml` | push to the default branch | Maintains a release pull request. Merging it tags and publishes to npm. |
-| `schema-drift.yml` | weekly, or manually | Regenerates against the live Proxmox schema; opens a pull request if it changed. |
+| `ci.yml` | pull request, push to `main`, merge queue | Lint, types, tests, build, package shape, generated output, workflow and dependency audits. `required` is the one check to require. |
+| `pr-title.yml` | pull request | Checks the title is a Conventional Commit. |
+| `schema-update.yml` | daily, or manually | Looks for a new Proxmox API schema; opens a pull request when there is one. |
+| `release.yml` | push to `main` | Maintains the release pull request; publishes to npm once it merges. |
+| `docs.yml` | push to `main` | Builds and deploys the documentation site. |
 
-The releasing chain is worth understanding before you touch it:
+Renovate (the hosted app, configured in `.github/renovate.json`) handles
+dependency updates.
 
 ```
-conventional commit  ->  release-please opens/updates a release PR
-                              (version bump + CHANGELOG entry)
-        you merge it  ->  tag pushed, GitHub release created
-                              -> publish job runs
-                                   -> npm publish --provenance
+Proxmox publishes a schema          a dependency is updated
+          |                                   |
+  schema-update.yml                        Renovate
+  feat / fix / feat! pull request     chore(deps) pull request
+          |                                   |
+          +---------- CI passes --------------+
+                          |
+              merges on its own (squash)
+          breaking schema updates wait for you
+                          |
+                 release.yml on main
+        release-please opens the release pull request
+                          |
+              CI passes, merges on its own
+                          |
+        tag + GitHub release + npm publish (provenance)
 ```
 
-Nothing publishes without a merged release pull request. There is no manual
-publish path by design, so the tag, the changelog and the tarball can never
-disagree.
+What a human still does:
 
----
+- **Review breaking schema updates.** A pull request labelled `breaking` does
+  not merge on its own. Read it, then merge it; the major release follows.
+- **Approve major dependency updates** from Renovate's dependency dashboard.
+- **Move to a new Proxmox major** when one is released — see
+  [below](#a-new-proxmox-ve-major).
 
-## 2. GitHub repository setup
+## One-time setup
 
-### 2.1 Create and push
+The repository works without these, but nothing is automatic until they are
+done.
 
-```bash
-gh repo create virtbase/proxmox-api --public --source=. --remote=origin --push
-```
+### 1. Repository settings
 
-The repository must be **public** if you want npm provenance — sigstore will not
-attest a private build. It also has to match the `repository.url` in
-`packages/api/package.json`, or npm rejects the provenance claim.
+**Settings → General → Pull Requests**
 
-If you push by hand, keep the full history: the changelog links to commits back
-to 2020.
+- Allow **squash merging** only, with the default commit message set to
+  **Pull request title** and no description. The title alone decides the
+  release; a pull request body can quote text such as `BREAKING CHANGE:` that
+  release-please would act on.
+- Enable **Allow auto-merge**.
+- Enable **Automatically delete head branches**.
 
-### 2.2 Let Actions open pull requests
+**Settings → Rules → Rulesets**, on `main`:
 
-Both release-please and the schema-drift job open pull requests, and this is
-off by default.
+- Require a pull request before merging, with **0** required approvals and
+  code-owner review **off**. Automated pull requests have no reviewer; the
+  required checks are the gate.
+- Require status checks: `required` and `pr-title`.
+- Allow only the squash merge method.
+- Block force pushes and deletion.
 
-**Settings → Actions → General → Workflow permissions**
+### 2. A GitHub App for the automation
 
-- Select **Read and write permissions**.
-- Tick **Allow GitHub Actions to create and approve pull requests**.
+A pull request opened with the built-in `GITHUB_TOKEN` does not start CI until
+someone approves the run, and a merge performed with it does not trigger
+`release.yml`. An App token has neither limit.
 
-Miss the second one and `release.yml` fails with `GitHub Actions is not
-permitted to create or approve pull requests`.
+1. **Settings → Developer settings → GitHub Apps → New GitHub App** (in the
+   `virtbase` organisation). No webhook. Repository permissions:
+   **Contents**, **Pull requests** and **Issues**: read and write.
+2. Install it on this repository only.
+3. Generate a private key.
+4. In this repository, **Settings → Secrets and variables → Actions**:
+   - variable `RELEASE_APP_CLIENT_ID`: the App's client ID
+   - secret `RELEASE_APP_PRIVATE_KEY`: the private key
 
-### 2.3 Protect the default branch
+Until the variable exists the workflows fall back to `GITHUB_TOKEN`: pull
+requests are still opened, but you have to approve their CI runs and merge them
+yourself.
 
-**Settings → Rules → Rulesets → New branch ruleset**, targeting your default
-branch:
+### 3. npm trusted publishing
 
-- Require a pull request before merging.
-- Require status checks: `verify` and `commits` (from `ci.yml`).
-- Block force pushes.
+Publishing uses OIDC, so there is no token to leak or rotate.
 
-Do **not** require signed commits unless you are prepared to sign
-release-please's commits too — its bot cannot.
+On npmjs.com, **`@virtbase/proxmox-api` → Settings → Trusted Publisher → GitHub
+Actions**:
 
-### 2.4 Create the `npm` environment
-
-`release.yml` publishes from an environment, which is where the token lives and
-where you can require a human to approve a release.
-
-**Settings → Environments → New environment**, named exactly `npm`.
-
-- Optionally add yourself under **Required reviewers**. With this on, every
-  publish pauses for a click. Recommended until you trust the pipeline.
-- Under **Deployment branches**, restrict to your default branch.
-
-The `NPM_TOKEN` secret goes in this environment (not repository-wide) in
-[§3.3](#33-add-the-token-to-github).
-
----
-
-## 3. npm setup
-
-### 3.1 Claim the scope
-
-`@virtbase` is a scope, and you need to own it:
-
-```bash
-npm login
-npm org create virtbase     # for an organisation
-```
-
-A free organisation can publish unlimited **public** packages. Scoped packages
-default to restricted, which is why the publish command passes
-`--access public`.
-
-### 3.2 Create an automation token
-
-**npmjs.com → Access Tokens → Generate New Token → Granular Access Token**
-
-- **Expiration**: set a real one — 90 days — and put the renewal in a calendar.
-- **Packages and scopes**: read and write, limited to `@virtbase/proxmox-api`.
-  Do not grant the whole scope.
-- **Organizations**: no access needed.
-
-Choose *Granular*, not *Classic*. A classic automation token works but is
-unscoped and unexpiring, so a leak is unbounded.
-
-> **2FA:** if your account enforces two-factor for publishing, a granular token
-> satisfies it for automation. You do not need to weaken the account setting.
-
-### 3.3 Add the token to GitHub
-
-**Settings → Environments → `npm` → Add environment secret**
-
-- Name: `NPM_TOKEN`
-- Value: the token from §3.2
-
-### 3.4 What provenance needs
-
-The publish job already sets this up; it is listed so you know what breaks it:
-
-- `id-token: write` permission on the job.
-- A **public** repository.
-- `npm publish --provenance`, run by **npm** — bun cannot emit provenance,
-  which is why the job installs Node alongside Bun.
-- `repository.url` in `packages/api/package.json` matching the real repo.
-
-Once published, the npm page shows a green *Provenance* block linking back to
-the workflow run and commit that built the tarball.
-
----
-
-## 4. Documentation site setup
-
-### 4.1 Turn on Pages
-
-**Settings → Pages → Build and deployment → Source: GitHub Actions.**
-
-Do not pick "Deploy from a branch" — `docs.yml` uploads an artefact and deploys
-it directly, and the branch option would look for files that are never
-committed.
-
-The first deploy happens on the next push to the default branch. The URL is
-`https://virtbase.github.io/proxmox-api/`.
-
-### 4.2 The base path has to match
-
-`docs/.vitepress/config.ts` sets:
-
-```ts
-base: "/proxmox-api/",
-```
-
-That is correct for a project page. Every stylesheet and script 404s if it is
-wrong, so:
-
-| Where the site lives | `base` |
+| Field | Value |
 | --- | --- |
-| `virtbase.github.io/proxmox-api/` | `"/proxmox-api/"` |
-| A custom domain, or `virtbase.github.io` | `"/"` |
+| Organization or user | `virtbase` |
+| Repository | `proxmox-api` |
+| Workflow filename | `release.yml` |
+| Environment | `npm` |
 
-### 4.3 Custom domain (optional)
+Tick **allow `npm publish`**. New configurations default to staged publishing,
+which needs a human to approve each release with 2FA.
 
-Add a `CNAME` DNS record pointing at `virtbase.github.io`, enter the domain
-under **Settings → Pages → Custom domain**, tick **Enforce HTTPS**, then set
-`base: "/"`.
+A new configuration expires unless a publish succeeds within 48 hours, so set
+it up shortly before a release. Afterwards, under **Publishing access**, choose
+**Require two-factor authentication and disallow tokens**, and delete the old
+`NPM_TOKEN` secret from the `npm` environment.
 
-### 4.4 Editing the docs
+In GitHub, **Settings → Environments → `npm`**: restrict deployment to `main`,
+and leave **Required reviewers** empty unless you want to click through every
+publish.
 
-```bash
-bun run docs:dev     # http://localhost:5173
-bun run docs:build
-```
+### 4. Renovate
 
-Guides in `docs/guide/` and the client reference in `docs/reference/client.md`
-are hand-written. **`docs/reference/endpoints/` is generated** — edits there are
-overwritten and CI rejects a stale copy.
+Install the [Renovate app](https://github.com/apps/renovate) on this
+repository. It reads `.github/renovate.json`; nothing else is needed.
 
----
+### 5. Documentation site
 
-## 5. The first release
+**Settings → Pages → Source: GitHub Actions.** The site is served at
+<https://virtbase.github.io/proxmox-api/>, which is why
+`docs/.vitepress/config.ts` sets `base: "/proxmox-api/"`. Change both together
+if the site moves to a custom domain (`base: "/"`).
 
-One decision to make before the pipeline runs.
+## Schema updates
 
-`.release-please-manifest.json` says `1.1.1`, inherited from upstream. But
-`@virtbase/proxmox-api` has never been published under that name, and the
-pending changes are heavily breaking. Two defensible options:
+Proxmox publishes its API schema inside the `pve-docs` package.
+`packages/generator/schema.lock.json` pins one version of it, and
+`schema-update.yml` checks daily for a newer one. See
+[`packages/generator/README.md`](packages/generator/README.md) for the
+mechanics.
 
-**A. Continue upstream's numbering (recommended).** The changelog is continuous
-with the fork's history, and `2.0.0` signals the break to anyone migrating from
-`proxmox-api`. Leave the manifest alone; the first `feat!` commit produces
-`2.0.0`.
-
-**B. Start fresh at `1.0.0`.** Treat it as a new package. Set the manifest and
-`packages/api/package.json` to `0.0.0` and add `"release-as": "1.0.0"` to the
-package block in `release-please-config.json` for one release, then remove it.
-
-Either way, the pending work is already breaking, so commit it as:
-
-```
-feat!: fork as @virtbase/proxmox-api targeting Proxmox VE 9
-
-BREAKING CHANGE: ESM only, renamed package, PVE 9 model, no undici dependency.
-```
-
-### The `## Unreleased` section
-
-`packages/api/CHANGELOG.md` currently has hand-written notes under
-`## Unreleased` that describe the fork in far more detail than commit subjects
-ever could. release-please will insert its generated entry *above* that heading.
-
-On the first release, fold the two together by hand: move the prose under the
-generated `## [2.0.0]` heading and delete `## Unreleased`. It is a one-off —
-after that, release-please owns the top of the file.
-
----
-
-## 6. Publishing, day to day
-
-### The loop
-
-1. Merge pull requests using conventional commit subjects.
-2. release-please opens or updates **chore(main): release ...**. It stays open,
-   accumulating changes.
-3. Read it. The diff is the version bump plus the changelog entry — check the
-   bump matches what actually changed.
-4. Merge it. The tag, the GitHub release and the npm publish follow.
-5. If the `npm` environment has required reviewers, approve the run.
-
-### Which prefix produces which bump
-
-| Commit | Result |
-| --- | --- |
-| `fix:` | patch — `2.0.0` → `2.0.1` |
-| `feat:` | minor — `2.0.0` → `2.1.0` |
-| `feat!:` or a `BREAKING CHANGE:` footer | major — `2.0.0` → `3.0.0` |
-| `refactor:`, `docs:`, `perf:`, `build:` | changelog only, no bump |
-| `chore:`, `test:`, `ci:`, `style:` | nothing |
-
-A release pull request containing only no-bump commits will not appear. That is
-correct: there is nothing for a consumer to install.
-
-### Verifying a release
+To check now: **Actions → Schema update → Run workflow**, or locally:
 
 ```bash
-npm view @virtbase/proxmox-api version
-npm view @virtbase/proxmox-api dist-tags
+bun run codegen:update
 ```
 
-The npm page should show the provenance block. To check the tarball's contents
-before any of this, run `bun run lint:package` locally — it packs the package
-and validates the exports map and type resolution.
+The pull request title depends on what changed:
 
-### If you must publish by hand
+| Change | Title | Merges on its own | Release |
+| --- | --- | --- | --- |
+| Something removed or narrowed | `feat(api)!: …` | no, labelled `breaking` | major |
+| Only additions | `feat(api): …` | yes | minor |
+| Descriptions or metadata only | `fix(api): …` | yes | patch |
 
-Only when Actions is down. It bypasses provenance and every gate:
+### Reviewing a breaking update
 
-```bash
-bun install && bun run build
-cd packages/api && npm publish --access public
-```
+The pull request body lists every breaking change, including generated types
+that were renamed or removed, and `docs/reference/api-changelog/` in the diff
+has the full detail. Check that:
 
-Afterwards, tag the commit to match, or release-please will lose track of where
-it is.
+- each one is a real change in Proxmox, not a generator regression — a sudden
+  wave of "removed" across unrelated endpoints points at the generator;
+- nothing in `model.ts` was renamed that should not have been.
 
-### Unpublishing
+Then merge. If Proxmox simply corrected its documentation and nothing breaks in
+practice, you may retitle the pull request to `feat(api): …` before merging to
+release a minor instead.
 
-You mostly cannot — npm allows it only within 72 hours, and it breaks anyone who
-already installed. Publish a fixed patch instead. To stop a bad version being
-resolved:
+### An indexed property without a bound
 
-```bash
-npm deprecate @virtbase/proxmox-api@2.0.1 "Broken build, use 2.0.2"
-```
-
----
-
-## 7. Keeping up with Proxmox
-
-Proxmox rewrites its published schema **in place**, with no version to pin. So
-"which Proxmox version does this support" is answered by when you last
-regenerated.
-
-`schema-drift.yml` runs weekly and opens a pull request when upstream no longer
-matches what is committed. To run it now: **Actions → Schema drift → Run
-workflow**. By hand:
-
-```bash
-bun run codegen        # fetch and regenerate
-bun run codegen:check  # is the committed copy current?
-```
-
-### Reviewing a drift pull request
-
-It is committed as `feat!`, so merging it releases a major version. Before you
-merge, read the `model.ts` diff for:
-
-- **Removed endpoints** — breaking. Anyone calling one stops compiling.
-- **Narrowed types** — an enum losing a member, a parameter becoming required.
-  Also breaking.
-- **New endpoints, widened enums** — additive and safe.
-
-If the diff is purely additive, downgrade the commit to `feat:` when merging so
-consumers get a minor bump rather than a major one.
-
-### New indexed properties
-
-If the generator warns:
+If the run warns
 
 ```
 Warning: no index bound known for <prefix>; emitted as unbounded keys.
 ```
 
 Proxmox added an indexed property (`net[n]`-style) that
-`packages/generator/src/index-bounds.ts` does not know about. The generated
-types stay usable, but the slot count is unbounded until you look up the
-constant in the Proxmox source and add it. That file documents where each
-existing number came from.
+`packages/generator/src/index-bounds.ts` does not know. The types stay usable.
+Look up the constant in the Proxmox source, add it to the table and regenerate.
 
-### Dependencies
+### A new Proxmox VE major
 
-Dependabot opens grouped pull requests weekly with conventional-commit
-prefixes, so they flow through the same pipeline. The package itself has **no
-runtime dependencies** — every bump is tooling, and CI passing is enough.
+A new major lives in a new apt suite, named after the Debian release it is
+built on. The update job stays on the suite in `schema.lock.json` and prints a
+warning once a later suite has a release.
 
----
+To move: change `suite` in `packages/generator/schema.lock.json` (for example
+`trixie` to `forky`), run `bun run codegen:update`, and open a pull request
+titled `feat(api)!: …`. Add the new codename to `LATER_SUITES` in
+`packages/generator/src/cli.ts` if it is not there yet.
 
-## 8. Troubleshooting
+## Releases
 
-**`GitHub Actions is not permitted to create or approve pull requests`**
-[§2.2](#22-let-actions-open-pull-requests) — the second checkbox.
+1. Changes land on `main` with Conventional Commit titles.
+2. release-please opens or updates **chore: release main** with the version
+   bump and the changelog entry.
+3. Once CI passes it merges, release-please tags the commit and creates the
+   GitHub release, and the `publish` job publishes that tag to npm.
+
+A release pull request only appears when something under `packages/api`
+changed in a way that releases; dependency and CI updates do not.
+
+To hold a release back, close the release pull request or convert it to a
+draft. It is recreated on the next push to `main`.
+
+### Checking a release
+
+```bash
+npm view @virtbase/proxmox-api version
+npm audit signatures
+```
+
+### When a publish fails
+
+The tag and the GitHub release exist, but npm does not have the version. Fix
+the cause, then **Actions → Release → Run workflow** with the tag. That runs
+only the publish job, against that tag.
+
+### A bad release
+
+A version can only be unpublished within 72 hours, and doing so breaks anyone
+who installed it. Publish a fix instead, and steer people off the bad one:
+
+```bash
+npm deprecate @virtbase/proxmox-api@4.0.1 "Broken build, use 4.0.2"
+```
+
+## Dependencies
+
+Renovate opens pull requests on Monday mornings. Updates must be seven days
+old before they are proposed — the same cooling-off period `bunfig.toml`
+enforces on install — and merge once CI passes. Majors wait for approval in the
+dependency dashboard issue.
+
+The published package has no runtime dependencies, so these updates are tooling
+only and release nothing.
+
+To update by hand: change the version in the relevant `package.json`, run
+`bun install`, and commit the lockfile.
+
+## Troubleshooting
+
+**An automated pull request's CI says "action required".**
+It was opened with `GITHUB_TOKEN`. Approve the run, or finish
+[the App setup](#2-a-github-app-for-the-automation).
+
+**A pull request does not merge although CI passed.**
+Auto-merge is off, or the ruleset requires an approval — see
+[repository settings](#1-repository-settings).
+
+**A pull request merged but no release appeared.**
+The merge was performed with `GITHUB_TOKEN`, which does not trigger
+`release.yml`. Push any commit to `main`, or finish the App setup.
 
 **No release pull request appears.**
-Nothing since the last tag bumps a version. Check with
-`git log $(git describe --tags --abbrev=0)..HEAD --oneline`; if everything is
-`chore:` or `docs:`, that is correct behaviour.
+Nothing under `packages/api` changed in a releasing way since the last tag.
 
-**Publish fails with `ENEEDAUTH` or `E403`.**
-`NPM_TOKEN` is missing, expired, or scoped to the wrong package. Confirm it is
-on the **`npm` environment**, not repository secrets — the job cannot see
-repository-level secrets when it declares an environment.
-
-**Publish fails on provenance.**
-The repository is private, `repository.url` does not match, or `id-token:
-write` was dropped from the job.
-
-**Docs deploy succeeds but the site is unstyled.**
-`base` in `docs/.vitepress/config.ts` does not match the URL —
-[§4.2](#42-the-base-path-has-to-match).
+**Publish fails with `ENEEDAUTH` or a 404 on PUT.**
+The trusted publisher does not match: the workflow filename, the environment
+name and the repository must be exactly as in
+[step 3](#3-npm-trusted-publishing), and `npm publish` must be allowed.
 
 **CI fails on `codegen:check`.**
-Generated output was edited by hand, or regenerated against a schema that has
-since changed. Run `bun run codegen` and commit the result.
+Generated output was edited by hand, or the generator changed without
+regenerating. Run `bun run codegen` and commit the result.
 
-**`commitlint` fails on a pull request.**
-A commit subject is not conventional. Rewrite the history — the bump and the
-changelog are derived from those subjects, so this is not cosmetic.
+**`pr-title` fails.**
+The title is not a Conventional Commit. Edit the title; the check reruns.

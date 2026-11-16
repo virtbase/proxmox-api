@@ -1,25 +1,13 @@
-// Proxmox-API Interactive proxmox API for developpers how do not like reading docs
-// Copyright (C) 2020-2022  Chemouni Uriel <uchemouni@gmail.com>
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+import { ProxmoxError } from "./errors.js";
 import type { Proxmox } from "./model.js";
 
-// 'mem', // ERROR: VM XXX qmp command 'human-monitor-command' failed - got timeout
-// 'tlb', // ERROR: VM XXX qmp command 'human-monitor-command' failed - got timeout
-
-export const VALID_QEMU_INFO_SIMPLE = [
+/**
+ * `info` subcommands that take no argument.
+ *
+ * `mem` and `tlb` are left out on purpose: both time out through the PVE
+ * monitor endpoint.
+ */
+const VALID_QEMU_INFO_SIMPLE = [
   "backup",
   "balloon",
   "block-jobs",
@@ -71,7 +59,10 @@ export const VALID_QEMU_INFO_SIMPLE = [
   "vnc",
 ] as const;
 
-export const VALID_QEMU_INFO_OPTION = [
+/**
+ * `info` subcommands that accept optional arguments.
+ */
+const VALID_QEMU_INFO_OPTION = [
   "block",
   "lapic",
   "mtree",
@@ -81,89 +72,244 @@ export const VALID_QEMU_INFO_OPTION = [
   "trace-events",
 ] as const;
 
-export const VALID_QEMU_INFO_PARAM = [
+/**
+ * `info` subcommands that need at least one argument.
+ */
+const VALID_QEMU_INFO_PARAM = [
   "rocker-of-dpa-flows",
   "rocker-of-dpa-groups",
   "rocker-ports",
 ] as const;
 
+/**
+ * Name of an `info` subcommand that {@link QmMonitor.info} sends without
+ * arguments.
+ */
 export type QemuInfoSimple = (typeof VALID_QEMU_INFO_SIMPLE)[number];
+
+/**
+ * Name of an `info` subcommand that {@link QmMonitor.info} sends with or
+ * without arguments.
+ */
 export type QemuInfoOption = (typeof VALID_QEMU_INFO_OPTION)[number];
+
+/**
+ * Name of an `info` subcommand that {@link QmMonitor.info} only sends with
+ * at least one argument.
+ */
 export type QemuInfoParam = (typeof VALID_QEMU_INFO_PARAM)[number];
 
-/** One USB device attached to the guest, from `info usb`. */
+/**
+ * One USB device attached to the guest, as parsed from `info usb` by
+ * {@link QmMonitor.infoUsb}.
+ */
 export interface USBInfo {
+  /**
+   * The device's address as QEMU prints it, e.g. `1.1`.
+   */
   device: string;
+  /**
+   * Port of the guest's USB bus the device sits on, e.g. `1`.
+   */
   port: string;
+  /**
+   * Speed with its unit, e.g. `1.5 Mb/s`.
+   */
   speed: string;
   /**
+   * Product name exactly as QEMU prints it, which can end in a space.
+   *
    * Absent for a device QEMU reports without a product string - the trailing
-   * `, Product ..., ID: ...` is optional in the monitor's own output.
+   * `, Product ..., ID: ...` is optional in the monitor's own output, and is
+   * only recognised as a whole.
    */
   product?: string;
-  /** Absent for the same reason as {@link USBInfo.product}. */
+  /**
+   * Identifier the device was added under, which
+   * {@link QmMonitor.deviceDel} takes. Absent for the same reason as
+   * {@link USBInfo.product}.
+   */
   id?: string;
 }
 
-/** One USB device present on the host, from `info usbhost`. */
+/**
+ * One USB device present on the host, as parsed from `info usbhost` by
+ * {@link QmMonitor.infoUsbhost}.
+ */
 export interface USBHostInfo {
+  /**
+   * Number of the host bus the device is on.
+   */
   bus: number;
+  /**
+   * Address of the device on that bus.
+   */
   addr: number;
+  /**
+   * Physical port on that bus, e.g. `2`. Together with `bus` it is what
+   * {@link QmMonitor.deviceAddByPort} takes.
+   */
   port: string;
+  /**
+   * Speed with its unit, e.g. `480 Mb/s`.
+   */
   speed: string;
+  /**
+   * Device class code as printed, e.g. `00`.
+   */
   class: string;
+  /**
+   * Four lower-case hexadecimal digits without a `0x` prefix, e.g. `046d`.
+   */
   vendorId: string;
+  /**
+   * Four lower-case hexadecimal digits without a `0x` prefix, e.g. `c52b`.
+   */
   productId: string;
+  /**
+   * Product name as the host reports it. May be empty.
+   */
   name: string;
 }
 
-/** Narrows which host devices {@link QmMonitor.infoUsbhost} returns. */
+/**
+ * Narrows which host devices {@link QmMonitor.infoUsbhost} returns.
+ *
+ * A device is kept when it matches every pattern given; an empty filter
+ * keeps all of them. Each pattern is applied with `RegExp.prototype.test`
+ * to one device after another, so it must not carry the `g` or `y` flag,
+ * which make `test` remember its position between calls.
+ */
 export interface USBHostFilter {
+  /**
+   * Tested against {@link USBHostInfo.vendorId}.
+   */
   vendorId?: RegExp;
+  /**
+   * Tested against {@link USBHostInfo.productId}.
+   */
   productId?: RegExp;
+  /**
+   * Tested against {@link USBHostInfo.name}.
+   */
   name?: RegExp;
 }
 
-// Device 1.1, Port 1, Speed 1.5 Mb/s, Product USB OPTICAL MOUSE , ID: mouse
-// Device 1.0, Port 2, Speed 12 Mb/s, Product Gaming KB , ID: keyboard
+/**
+ * Matches one device in the reply to `info usb`, capturing device, port,
+ * speed and - when present - product and id.
+ *
+ * ```text
+ * Device 1.1, Port 1, Speed 1.5 Mb/s, Product USB OPTICAL MOUSE , ID: mouse
+ * Device 1.0, Port 2, Speed 12 Mb/s, Product Gaming KB , ID: keyboard
+ * ```
+ */
 const GUEST_USB =
   /Device ([\d.]+), Port ([\d.]+), Speed ([\d KMGTbfs/.]+)(?:, Product (.+), ID: (.+))?/g;
 
-// Bus 1, Addr 4, Port 2, Speed 480 Mb/s
-//   Class 00: USB device 1234:5678, Some Device
+/**
+ * Matches one device in the reply to `info usbhost`, which spans two lines,
+ * capturing bus, address, port, speed, class, vendor id, product id and
+ * name.
+ *
+ * ```text
+ * Bus 1, Addr 4, Port 2, Speed 480 Mb/s
+ *   Class 00: USB device 1234:5678, Some Device
+ * ```
+ */
 const HOST_USB =
   /Bus (\d+), Addr (\d+), Port ([\d.]+), Speed ([\d KMGTbfs/.]+)[\r\n]\s+Class (\d+): USB device ([0-9a-f]{4}):([0-9a-f]{4}), (.*)/gm;
 
-/** Strip an optional `0x` prefix from a USB vendor or product id. */
+/**
+ * Strips an optional `0x` prefix, in either case, from a USB vendor or
+ * product id.
+ */
 function bareHexId(value: string): string {
   return value.replace(/^0x/i, "");
 }
 
 /**
- * QEMU monitor access for one guest, over
- * `POST /nodes/{node}/qemu/{vmid}/monitor`.
+ * Gives access to the QEMU monitor of one guest, over
+ * `POST /nodes/{node}/qemu/{vmid}/monitor`; use it for monitor commands that
+ * have no endpoint of their own.
  *
+ * @remarks
  * The monitor is a debugging interface: commands are passed through
  * unvalidated and replies are unstructured text whose format is not stable
  * across QEMU versions. Prefer a real endpoint wherever one exists.
+ *
+ * Every method sends at least one request and fails with the error of that
+ * request - a {@link ProxmoxError} when the client is backed by a
+ * {@link ProxmoxEngine}. Nothing here is retried, as the requests are
+ * `POST`s.
  */
 export class QmMonitor {
+  /**
+   * Name of the node the guest runs on.
+   */
   readonly node: string;
+  /**
+   * Id of the guest.
+   */
   readonly vmid: number;
-  /** Send a raw monitor command and return its unparsed reply. */
+  /**
+   * Sends a raw monitor command and returns its unparsed reply.
+   *
+   * @param command - The command line, handed to the monitor as it is.
+   * @returns The monitor's reply as text.
+   * @throws A {@link ProxmoxError} if the request fails.
+   */
   readonly monitor: (command: string) => Promise<string>;
 
+  /**
+   * Binds a monitor to one guest, without sending anything.
+   *
+   * @param proxmox - Client to send the monitor commands through.
+   * @param node - Name of the node the guest runs on.
+   * @param vmid - Id of the guest.
+   * @throws A {@link ProxmoxConfigError} if `node` is empty, `.` or `..`.
+   */
   constructor(proxmox: Proxmox.Api, node: string, vmid: number) {
     this.node = node;
     this.vmid = vmid;
-    const post = proxmox.nodes.$(node).qemu.$(vmid).monitor.$post;
-    this.monitor = (command) => post({ command });
+    const endpoint = proxmox.nodes.$(node).qemu.$(vmid).monitor;
+    this.monitor = (command) => endpoint.$post({ command });
   }
 
+  /**
+   * Runs `info <type>` for a subcommand that takes no argument.
+   *
+   * @param type - The `info` subcommand.
+   * @returns The monitor's unparsed reply.
+   * @throws A {@link ProxmoxError} if the request fails.
+   */
   info(type: QemuInfoSimple): Promise<string>;
+  /**
+   * Runs `info <type>` for a subcommand that accepts arguments.
+   *
+   * @param type - The `info` subcommand.
+   * @param args - Arguments for the subcommand, appended to the command
+   *   separated by single spaces and otherwise as given.
+   * @returns The monitor's unparsed reply.
+   * @throws A {@link ProxmoxError} if the request fails.
+   */
   info(type: QemuInfoOption, ...args: string[]): Promise<string>;
+  /**
+   * Runs `info <type>` for a subcommand that needs at least one argument.
+   *
+   * @param type - The `info` subcommand.
+   * @param arg1 - The argument the subcommand requires.
+   * @param args - Further arguments. All of them are appended to the command
+   *   separated by single spaces and otherwise as given.
+   * @returns The monitor's unparsed reply.
+   * @throws A {@link ProxmoxError} if the request fails.
+   */
   info(type: QemuInfoParam, arg1: string, ...args: string[]): Promise<string>;
-  /** Run `info <type>` and return the raw reply. */
+  /**
+   * Joins the subcommand and its arguments into one `info` command and
+   * sends it; the overloads above say which arguments each subcommand
+   * takes.
+   */
   async info(
     type: QemuInfoSimple | QemuInfoOption | QemuInfoParam,
     ...args: string[]
@@ -173,10 +319,14 @@ export class QmMonitor {
   }
 
   /**
-   * USB devices currently attached to the guest.
+   * Lists the USB devices currently attached to the guest, from `info usb`.
    *
-   * @throws if the reply has lines the device pattern did not match, which
-   *   means QEMU changed the format and the result would be silently short.
+   * @returns One entry per device, in the order of the reply. Empty for an
+   *   empty reply.
+   * @throws A {@link ProxmoxError} with code `response` if the number of
+   *   devices recognised differs from the number of lines in the reply, which
+   *   means the output format changed and the result would be silently short.
+   * @throws A {@link ProxmoxError} if the request fails.
    */
   async infoUsb(): Promise<USBInfo[]> {
     const text = await this.info("usb");
@@ -189,7 +339,8 @@ export class QmMonitor {
     }
 
     if (devices.length !== expected) {
-      throw new Error(
+      throw new ProxmoxError(
+        "response",
         `Parsed ${devices.length} USB devices but the reply has ${expected} lines. ` +
           `The monitor output format may have changed:\n${text}`,
       );
@@ -198,8 +349,18 @@ export class QmMonitor {
   }
 
   /**
-   * USB devices present on the host, optionally narrowed by
-   * vendor id, product id or name.
+   * Lists the USB devices present on the host, from `info usbhost`,
+   * optionally narrowed by vendor id, product id or name.
+   *
+   * @remarks
+   * Unlike {@link QmMonitor.infoUsb}, this does not verify that the whole
+   * reply was understood: an entry the pattern does not recognise is left
+   * out without an error.
+   *
+   * @param filter - Keeps only the devices that match every pattern given.
+   *   All devices are returned when it is omitted.
+   * @returns The devices, in the order of the reply.
+   * @throws A {@link ProxmoxError} if the request fails.
    */
   async infoUsbhost(filter?: USBHostFilter): Promise<USBHostInfo[]> {
     const text = await this.info("usbhost");
@@ -233,17 +394,27 @@ export class QmMonitor {
     return devices.filter(
       (usb) =>
         (!filter.name || filter.name.test(usb.name)) &&
-        // Each of these tested `usb.name` before, so filtering by vendor or
-        // product id matched on the wrong field entirely.
         (!filter.vendorId || filter.vendorId.test(usb.vendorId)) &&
         (!filter.productId || filter.productId.test(usb.productId)),
     );
   }
 
   /**
-   * Attach a host USB device by vendor and product id.
+   * Attaches a host USB device to the guest by vendor and product id.
    *
-   * @param id Identifier for the new device, used to detach it later.
+   * @remarks
+   * Sends `device_add usb-host,vendorid=0x...,productid=0x...,id=...`. The
+   * values are inserted into the command as given, without validation or
+   * escaping.
+   *
+   * @param id - Identifier for the new device, used to detach it later.
+   * @param params - The device to attach.
+   * @param params.vendorId - Vendor id in hexadecimal, with or without a
+   *   `0x` prefix.
+   * @param params.productId - Product id in hexadecimal, with or without a
+   *   `0x` prefix.
+   * @returns The monitor's unparsed reply.
+   * @throws A {@link ProxmoxError} if the request fails.
    */
   async deviceAddById(
     id: string,
@@ -257,8 +428,19 @@ export class QmMonitor {
   }
 
   /**
-   * Attach a host USB device by physical port, which survives swapping a
-   * device for another of the same model.
+   * Attaches a host USB device to the guest by physical port, which survives
+   * swapping a device for another of the same model.
+   *
+   * @remarks
+   * Sends `device_add usb-host,hostbus=...,hostport=...,id=...`. The values
+   * are inserted into the command as given, without validation or escaping.
+   *
+   * @param id - Identifier for the new device, used to detach it later.
+   * @param params - The port to attach; a {@link USBHostInfo} fits.
+   * @param params.bus - Number of the host bus.
+   * @param params.port - Port on that bus.
+   * @returns The monitor's unparsed reply.
+   * @throws A {@link ProxmoxError} if the request fails.
    */
   async deviceAddByPort(
     id: string,
@@ -269,30 +451,51 @@ export class QmMonitor {
     );
   }
 
-  /** Detach a device previously added under `id`. */
+  /**
+   * Detaches a device previously added under `id`, by sending
+   * `device_del <id>`.
+   *
+   * @param id - Identifier the device was added under. It is inserted into
+   *   the command as given.
+   * @returns The monitor's unparsed reply.
+   * @throws A {@link ProxmoxError} if the request fails.
+   */
   async deviceDel(id: string): Promise<string> {
     return this.monitor(`device_del ${id}`);
   }
 
   /**
-   * Attach every host device matching `filter` that is not already present.
+   * Attaches every host USB device matching `filter`, by physical port,
+   * provided nothing is attached to the guest under `id` yet.
    *
+   * @remarks
    * The first is added as `id`, subsequent ones as `id-1`, `id-2` and so on.
+   * The check against the guest covers `id` alone: whether a matching host
+   * device is already attached under another identifier is not looked at.
    *
-   * @returns the ids that were attached.
-   * @throws if `id` is already attached to the guest.
+   * The devices are attached one at a time, after one `info usb` and one
+   * `info usbhost` request. When a request fails, the devices attached
+   * before it stay attached.
+   *
+   * @param id - Identifier for the first device and stem for the others.
+   * @param filter - Selects the host devices. An empty filter selects every
+   *   USB device on the host.
+   * @returns The ids that were attached, in order. Empty when no host device
+   *   matches.
+   * @throws A {@link ProxmoxError} with code `config` if a device is already
+   *   attached to the guest under `id`, with code `response` if the reply to
+   *   `info usb` cannot be parsed in full, and with the request's own code if
+   *   a request fails.
    */
   async deviceAddMissing(id: string, filter: USBHostFilter): Promise<string[]> {
     const attached = await this.infoUsb();
     if (attached.some((device) => device.id === id)) {
-      throw new Error(`USB device ${id} already present`);
+      throw new ProxmoxError("config", `USB device ${id} already present`);
     }
 
     const candidates = await this.infoUsbhost(filter);
     const added: string[] = [];
-    // Sequential, not concurrent: these were previously fired without being
-    // awaited at all, so failures vanished and the guest saw an unbounded
-    // burst of monitor commands.
+    // One at a time: the monitor is a single channel into a running guest.
     for (const [index, device] of candidates.entries()) {
       const deviceId = index ? `${id}-${index}` : id;
       await this.deviceAddByPort(deviceId, device);

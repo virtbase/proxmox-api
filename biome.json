@@ -1,0 +1,85 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "includes": [
+      "**",
+      "!**/*.md",
+      "!packages/api/src/model.ts",
+      "!packages/api/src/schema-info.ts",
+      "!packages/generator/history",
+      "!docs/reference/endpoints",
+      "!docs/reference/api-changelog"
+    ]
+  },
+  "formatter": {
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 80
+  },
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  },
+  "linter": {
+    "domains": {
+      "test": "recommended",
+      "turborepo": "recommended"
+    },
+    "rules": {
+      "preset": "recommended",
+      "complexity": {
+        "useDateNow": "error"
+      },
+      "correctness": {
+        "noUnusedImports": "error",
+        "noUnusedVariables": "error"
+      },
+      "nursery": {
+        "noFloatingPromises": "error",
+        "noMisusedPromises": "error"
+      },
+      "performance": {
+        "noDelete": "error"
+      },
+      "style": {
+        "useConst": "error",
+        "useImportType": {
+          "level": "error",
+          "options": {
+            "style": "separatedType"
+          }
+        },
+        "useNodejsImportProtocol": "error"
+      },
+      "suspicious": {
+        "noDebugger": "error",
+        "noImportCycles": "error",
+        "noTsIgnore": "error"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "includes": [
+        "**/tsconfig*.json",
+        "tooling/typescript/*.json",
+        ".vscode/*.json"
+      ],
+      "json": {
+        "parser": {
+          "allowComments": true,
+          "allowTrailingCommas": true
+        }
+      }
+    }
+  ]
+}

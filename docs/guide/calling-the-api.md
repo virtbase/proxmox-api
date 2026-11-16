@@ -26,12 +26,10 @@ await proxmox.nodes.$("pve1").qemu.$(100).agent["get-fsinfo"].$get();
 await proxmox.cluster.qemu["custom-cpu-models"].$get();
 ```
 
-A segment that collides with something on the proxy can be reached by prefixing
-an underscore, which is stripped before the request:
-
-```ts
-await proxmox.nodes.$("pve1")._on.$get(); // requests /nodes/pve1/on
-```
+Placeholder values are escaped for you, so an id containing `/`, `?`, `#` or
+`%` cannot change which endpoint is called. The values `.`, `..` and the empty
+string can never be a path segment and throw a `ProxmoxConfigError`, which
+makes it safe to pass ids that come from user input.
 
 ## Parameters
 
@@ -100,14 +98,56 @@ const status = await proxmox.nodes.$("pve1").qemu.$(100).status.current.$get();
 //    ^? { status: "stopped" | "running"; vmid: number; ... }
 ```
 
-Long-running operations return a UPID string. Poll it for completion:
+::: tip Booleans come back as `0` and `1`
+Most of Proxmox answers a boolean field with the number `1` or `0`, and newer
+endpoints with a real `true` or `false`. Returned booleans are therefore typed
+`boolean | 0 | 1`. Test them for truthiness — `if (config.onboot)` — rather
+than comparing against `true`.
+:::
+
+Calls that start background work return a UPID string rather than the result.
+See [Tasks](./tasks) for how to wait for one.
+
+## Per-request options
+
+Every method takes a second argument with options for that one request:
 
 ```ts
-const upid = await proxmox.nodes.$("pve1").qemu.$(100).status.start.$post({});
-let task = await proxmox.nodes.$("pve1").tasks.$(upid).status.$get();
-while (task.status === "running") {
-  await new Promise((r) => setTimeout(r, 1000));
-  task = await proxmox.nodes.$("pve1").tasks.$(upid).status.$get();
-}
-if (task.exitstatus !== "OK") throw new Error(task.exitstatus);
+const controller = new AbortController();
+
+await proxmox.nodes.$("pve1").qemu.$get(
+  { full: true },
+  { signal: controller.signal, timeout: 5_000 },
+);
+
+// For an operation without parameters, pass null first.
+await proxmox.version.$get(null, { maxRetries: 0 });
 ```
+
+| Option | |
+| --- | --- |
+| `signal` | Cancels the request, including while it waits for a login or a retry. Throws a `ProxmoxAbortError`. |
+| `timeout` | Milliseconds for this request, overriding `queryTimeout`. A streamed download is only bound by it until the response headers arrive. |
+| `maxRetries` | Retries for this request, overriding the client's `maxRetries`. Only `GET` is ever retried. |
+| `headers` | Extra headers for this request. |
+
+## Using the generated types
+
+Every parameter object and every response has a named type under the `Proxmox`
+namespace, so you can use them in your own signatures:
+
+```ts
+import type { Proxmox } from "@virtbase/proxmox-api";
+
+function defaults(): Proxmox.NodesQemuCreateVmParams {
+  return { vmid: 101, memory: "2048", net0: "virtio,bridge=vmbr0" };
+}
+
+function summarise(vm: Proxmox.NodesQemuVmlist): string {
+  return `${vm.vmid} ${vm.name ?? ""} (${vm.status})`;
+}
+```
+
+Names follow the path and Proxmox's own name for the operation:
+`/nodes/{node}/qemu` + `create_vm` is `NodesQemuCreateVm`, its parameters
+`NodesQemuCreateVmParams`. Hover a method in your editor to see both.

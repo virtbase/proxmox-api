@@ -1,0 +1,28 @@
+{
+  "version": "9.2.5",
+  "previous": "9.2.4",
+  "released": "2026-08-26",
+  "schemaSha256": "df08c5a7ce8269096eb6d1237e64ff77ebe24dc51ad3e71e57a8165dd1b8572c",
+  "operations": 680,
+  "level": "minor",
+  "summary": {
+    "added": 2,
+    "removed": 0,
+    "changed": 0,
+    "breaking": 0,
+    "documentation": 4
+  },
+  "changes": [
+    {
+      "operation": "GET /cluster/ceph/health-mute",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "PUT /cluster/ceph/health-mute/{code}",
+      "change": "added",
+      "breaking": false
+    }
+  ],
+  "removedTypes": []
+}

@@ -1,0 +1,8 @@
+* text=auto eol=lf
+bun.lock linguist-generated
+packages/api/src/model.ts linguist-generated
+packages/api/src/schema-info.ts linguist-generated
+packages/generator/history/** linguist-generated
+packages/generator/schema.json.gz binary linguist-generated
+docs/reference/endpoints/** linguist-generated
+docs/reference/api-changelog/** linguist-generated

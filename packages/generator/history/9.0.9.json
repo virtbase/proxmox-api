@@ -1,0 +1,2945 @@
+{
+  "version": "9.0.9",
+  "previous": "8.4.2",
+  "released": "2025-11-17",
+  "schemaSha256": "83223a59e5fa2776913a9e595f99d5c6deb8e710b7ec11ba6e44cc2b63083ce0",
+  "operations": 646,
+  "level": "major",
+  "summary": {
+    "added": 42,
+    "removed": 1,
+    "changed": 93,
+    "breaking": 12,
+    "documentation": 65
+  },
+  "changes": [
+    {
+      "operation": "GET /access/roles/{roleid}",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "returned `VM.GuestAgent.Audit` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `VM.GuestAgent.FileRead` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `VM.GuestAgent.FileSystemMgmt` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `VM.GuestAgent.FileWrite` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `VM.GuestAgent.Unrestricted` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `VM.Replicate` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `VM.Monitor` removed",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "PUT /access/users/{userid}/token/{tokenid}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `delete` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /access/vncticket",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/acme/plugins",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].api` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].data` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].digest` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].disable` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].nodes` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].type` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].validation-delay` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/acme/plugins",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `api` accepts `beget`, `edgecenter`, `freemyip`, `he_ddns`, `mijnhost`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/acme/plugins/{id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `api` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `data` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `digest` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `disable` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `plugin` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `type` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `validation-delay` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/acme/plugins/{id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `api` accepts `beget`, `edgecenter`, `freemyip`, `he_ddns`, `mijnhost`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/backup",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `notification-policy` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `notification-target` removed",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/backup/{id}",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `notification-policy` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `notification-target` removed",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/bulk-action",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/bulk-action/guest",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/bulk-action/guest/migrate",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/bulk-action/guest/shutdown",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/bulk-action/guest/start",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/bulk-action/guest/suspend",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/firewall/groups/{group}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].action` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].comment` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].dest` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].dport` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].enable` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].icmp-type` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].iface` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].ipversion` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].log` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].macro` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].proto` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].source` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].sport` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].type` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/firewall/rules",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].action` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].comment` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].dest` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].dport` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].enable` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].icmp-type` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].iface` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].ipversion` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].log` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].macro` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].proto` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].source` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].sport` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].type` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/ha/resources",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `failback` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "DELETE /cluster/ha/resources/{sid}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `purge` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/ha/resources/{sid}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `failback` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/ha/resources/{sid}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `failback` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/ha/resources/{sid}/migrate",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "return value changed from null to object",
+          "breaking": false
+        },
+        {
+          "text": "returned `blocking-resources` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `blocking-resources[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `blocking-resources[].cause` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `blocking-resources[].sid` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `comigrated-resources` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `requested-node` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `sid` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/ha/resources/{sid}/relocate",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "return value changed from null to object",
+          "breaking": false
+        },
+        {
+          "text": "returned `blocking-resources` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `blocking-resources[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `blocking-resources[].cause` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `blocking-resources[].sid` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `comigrated-resources` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `comigrated-resources[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `requested-node` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `sid` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/ha/rules",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/ha/rules",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "DELETE /cluster/ha/rules/{rule}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/ha/rules/{rule}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "PUT /cluster/ha/rules/{rule}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/ha/status/current",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].failback` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/metrics/export",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `node-list` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/metrics/server/{id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `otel-compression` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `otel-headers` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `otel-max-body-size` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `otel-path` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `otel-protocol` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `otel-resource-attributes` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `otel-timeout` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `otel-verify-ssl` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `type` accepts `opentelemetry`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/metrics/server/{id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `otel-compression` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `otel-headers` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `otel-max-body-size` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `otel-path` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `otel-protocol` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `otel-resource-attributes` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `otel-timeout` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `otel-verify-ssl` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/options",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `replication` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/replication",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].comment` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].disable` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].guest` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].id` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].jobnum` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].rate` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].remove_job` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].schedule` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].source` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].target` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].type` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/replication/{id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `comment` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `digest` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `disable` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `guest` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `id` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `jobnum` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `rate` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `remove_job` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `schedule` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `source` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `target` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `type` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/resources",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].memhost` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].network` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].network-type` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].protocol` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].sdn` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].type` may be `network`",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].zone-type` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/sdn",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `lock-token` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `release-lock` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/controllers",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "returned `[].asn` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].bgp-multipath-as-relax` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].digest` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].ebgp` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].ebgp-multihop` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].isis-domain` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].isis-ifaces` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].isis-net` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].loopback` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].node` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].peers` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending` changed from boolean to object",
+          "breaking": true
+        },
+        {
+          "text": "returned `[].pending.asn` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.bgp-multipath-as-relax` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.ebgp` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.ebgp-multihop` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.isis-domain` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.isis-ifaces` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.isis-net` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.loopback` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.node` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.peers` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/sdn/controllers",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `fabric` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `lock-token` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "DELETE /cluster/sdn/controllers/{controller}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `lock-token` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/controllers/{controller}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `asn` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `bgp-multipath-as-relax` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `controller` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `digest` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `ebgp` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `ebgp-multihop` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `isis-domain` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `isis-ifaces` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `isis-net` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `loopback` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `node` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `peers` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.asn` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.bgp-multipath-as-relax` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.ebgp` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.ebgp-multihop` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.isis-domain` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.isis-ifaces` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.isis-net` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.loopback` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.node` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.peers` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `state` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `type` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/sdn/controllers/{controller}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `fabric` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `lock-token` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/sdn/dns",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `lock-token` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "DELETE /cluster/sdn/dns/{dns}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `lock-token` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/sdn/dns/{dns}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `lock-token` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/fabrics",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/sdn/fabrics/all",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/sdn/fabrics/fabric",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/sdn/fabrics/fabric",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "DELETE /cluster/sdn/fabrics/fabric/{id}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/sdn/fabrics/fabric/{id}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "PUT /cluster/sdn/fabrics/fabric/{id}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/sdn/fabrics/node",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/sdn/fabrics/node/{fabric_id}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/sdn/fabrics/node/{fabric_id}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "DELETE /cluster/sdn/fabrics/node/{fabric_id}/{node_id}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/sdn/fabrics/node/{fabric_id}/{node_id}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "PUT /cluster/sdn/fabrics/node/{fabric_id}/{node_id}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/sdn/ipams",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `lock-token` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "DELETE /cluster/sdn/ipams/{ipam}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `lock-token` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/sdn/ipams/{ipam}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `lock-token` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "DELETE /cluster/sdn/lock",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/sdn/lock",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/sdn/rollback",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/sdn/vnets",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].alias` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].digest` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].isolate-ports` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.alias` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.isolate-ports` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.tag` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.vlanaware` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.zone` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].state` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].tag` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].type` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].vlanaware` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].vnet` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].zone` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/sdn/vnets",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `lock-token` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "DELETE /cluster/sdn/vnets/{vnet}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `lock-token` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/vnets/{vnet}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `alias` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `digest` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `isolate-ports` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.alias` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.isolate-ports` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.tag` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.vlanaware` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.zone` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `state` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `tag` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `type` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `vlanaware` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `vnet` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `zone` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/sdn/vnets/{vnet}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `lock-token` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/vnets/{vnet}/firewall/rules",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].action` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].comment` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].dest` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].dport` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].enable` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].icmp-type` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].iface` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].ipversion` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].log` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].macro` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].proto` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].source` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].sport` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].type` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/sdn/vnets/{vnet}/subnets",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `lock-token` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "DELETE /cluster/sdn/vnets/{vnet}/subnets/{subnet}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `lock-token` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/sdn/vnets/{vnet}/subnets/{subnet}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `lock-token` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/zones",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "returned `[].advertise-subnets` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].bridge` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].bridge-disable-mac-learning` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].controller` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].digest` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].disable-arp-nd-suppression` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].exitnodes` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].exitnodes-local-routing` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].exitnodes-primary` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].mac` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].peers` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending` changed from boolean to object",
+          "breaking": true
+        },
+        {
+          "text": "returned `[].pending.advertise-subnets` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.bridge` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.bridge-disable-mac-learning` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.controller` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.dhcp` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.disable-arp-nd-suppression` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.dns` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.dnszone` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.exitnodes` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.exitnodes-local-routing` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.exitnodes-primary` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.ipam` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.mac` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.mtu` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.nodes` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.peers` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.reversedns` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.rt-import` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.tag` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.vlan-protocol` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.vrf-vxlan` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.vxlan-port` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].rt-import` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].tag` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].vlan-protocol` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].vrf-vxlan` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].vxlan-port` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/sdn/zones",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `fabric` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `lock-token` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "DELETE /cluster/sdn/zones/{zone}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `lock-token` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/zones/{zone}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `advertise-subnets` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `bridge` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `bridge-disable-mac-learning` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `controller` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `dhcp` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `digest` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `disable-arp-nd-suppression` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `dns` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `dnszone` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `exitnodes` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `exitnodes-local-routing` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `exitnodes-primary` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `ipam` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mac` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mtu` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `peers` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.advertise-subnets` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.bridge` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.bridge-disable-mac-learning` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.controller` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.dhcp` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.disable-arp-nd-suppression` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.dns` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.dnszone` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.exitnodes` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.exitnodes-local-routing` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.exitnodes-primary` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.ipam` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.mac` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.mtu` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.nodes` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.peers` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.reversedns` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.rt-import` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.tag` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.vlan-protocol` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.vrf-vxlan` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.vxlan-port` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `reversedns` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `rt-import` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `state` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `tag` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `type` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `vlan-protocol` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `vrf-vxlan` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `vxlan-port` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `zone` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/sdn/zones/{zone}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `fabric` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `lock-token` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/apt/update",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].Arch` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].Description` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].NotifyStatus` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].OldVersion` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].Origin` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].Package` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].Priority` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].Section` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].Title` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].Version` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/apt/versions",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].Arch` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].CurrentState` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].Description` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].ManagerVersion` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].NotifyStatus` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].OldVersion` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].Origin` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].Package` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].Priority` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].RunningKernel` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].Section` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].Title` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].Version` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/capabilities/qemu/cpu-flags",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/capabilities/qemu/migration",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/ceph/mds",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].name` changed from any to string",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/ceph/mgr",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].name` changed from any to string",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/firewall/rules",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].action` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].comment` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].dest` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].dport` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].enable` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].icmp-type` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].iface` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].ipversion` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].log` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].macro` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].proto` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].source` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].sport` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].type` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/lxc",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].pressurecpusome` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pressureiofull` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pressureiosome` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pressurememoryfull` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pressurememorysome` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/lxc",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `entrypoint` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `env` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `ha-managed` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/lxc/{vmid}/config",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `entrypoint` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `env` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /nodes/{node}/lxc/{vmid}/config",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `entrypoint` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `env` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/lxc/{vmid}/firewall/rules",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].action` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].comment` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].dest` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].dport` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].enable` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].icmp-type` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].iface` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].ipversion` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].log` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].macro` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].proto` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].source` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].sport` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].type` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/lxc/{vmid}/migrate",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/lxc/{vmid}/status/current",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `pressurecpusome` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pressureiofull` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pressureiosome` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pressurememoryfull` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pressurememorysome` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/network",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `type` accepts `fabric`, `include_sdn`",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].type` may be `fabric`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/network",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `type` accepts `fabric`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /nodes/{node}/network",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `regenerate-frr` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /nodes/{node}/network/{iface}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `type` accepts `fabric`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/qemu",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].memhost` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pressurecpufull` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pressurecpusome` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pressureiofull` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pressureiosome` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pressurememoryfull` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pressurememorysome` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/qemu",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `allow-ksm` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `ha-managed` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `intel-tdx` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/qemu/{vmid}/agent/exec",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `command[]` changed from any to string",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/qemu/{vmid}/config",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `allow-ksm` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `intel-tdx` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `meta` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `parent` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `running-nets-host-mtu` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `runningcpu` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `runningmachine` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `snaptime` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `vmstate` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/qemu/{vmid}/config",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `allow-ksm` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `intel-tdx` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /nodes/{node}/qemu/{vmid}/config",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `allow-ksm` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `intel-tdx` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/qemu/{vmid}/dbus-vmstate",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/qemu/{vmid}/firewall/rules",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].action` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].comment` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].dest` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].dport` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].enable` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].icmp-type` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].iface` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].ipversion` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].log` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].macro` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].proto` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].source` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].sport` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].type` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/qemu/{vmid}/migrate",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `dependent-ha-resources` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `dependent-ha-resources[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `has-dbus-vmstate` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not_allowed_nodes.blocking-ha-resources` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not_allowed_nodes.blocking-ha-resources[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not_allowed_nodes.blocking-ha-resources[].cause` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not_allowed_nodes.blocking-ha-resources[].sid` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/qemu/{vmid}/migrate",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `with-conntrack-state` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/qemu/{vmid}/status/current",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `memhost` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pressurecpufull` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pressurecpusome` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pressureiofull` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pressureiosome` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pressurememoryfull` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pressurememorysome` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/qemu/{vmid}/status/start",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `with-conntrack-state` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/query-oci-repo-tags",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/rrd",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `timeframe` accepts `decade`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/rrddata",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `timeframe` accepts `decade`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/scan/glusterfs",
+      "change": "removed",
+      "breaking": true
+    },
+    {
+      "operation": "GET /nodes/{node}/sdn/fabrics/{fabric}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/sdn/fabrics/{fabric}/interfaces",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/sdn/fabrics/{fabric}/neighbors",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/sdn/fabrics/{fabric}/routes",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/sdn/vnets/{vnet}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/sdn/vnets/{vnet}/mac-vrf",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/sdn/zones/{zone}/bridges",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/sdn/zones/{zone}/ip-vrf",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/services",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].active-state` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].desc` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].name` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].service` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].state` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].unit-state` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/services/{service}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `service` accepts `lxcfs`, `proxmox-firewall`, `pve-lxc-syscalld`, `qmeventd`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/services/{service}/reload",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `service` accepts `lxcfs`, `proxmox-firewall`, `pve-lxc-syscalld`, `qmeventd`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/services/{service}/restart",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `service` accepts `lxcfs`, `proxmox-firewall`, `pve-lxc-syscalld`, `qmeventd`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/services/{service}/start",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `service` accepts `lxcfs`, `proxmox-firewall`, `pve-lxc-syscalld`, `qmeventd`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/services/{service}/state",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `service` accepts `lxcfs`, `proxmox-firewall`, `pve-lxc-syscalld`, `qmeventd`",
+          "breaking": false
+        },
+        {
+          "text": "returned `active-state` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `desc` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `name` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `service` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `state` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `unit-state` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/services/{service}/stop",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `service` accepts `lxcfs`, `proxmox-firewall`, `pve-lxc-syscalld`, `qmeventd`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/status",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `memory.available` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/storage",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].formats` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].formats.default` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].formats.supported` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].formats.supported[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].select_existing` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/storage/{storage}/oci-registry-pull",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/storage/{storage}/status",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `active` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `avail` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `content` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `enabled` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `shared` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `total` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `type` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `used` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/vzdump",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `notification-policy` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `notification-target` removed",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/vzdump/defaults",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "returned `notification-policy` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `notification-target` removed",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "GET /storage",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `type` no longer accepts `glusterfs`",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "POST /storage",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `saferemove-stepsize` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `snapshot-as-volume-chain` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `type` no longer accepts `glusterfs`",
+          "breaking": true
+        },
+        {
+          "text": "parameter `maxfiles` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `server2` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `transport` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `volume` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `type` is no longer `glusterfs`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /storage/{storage}",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `saferemove-stepsize` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `snapshot-as-volume-chain` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `maxfiles` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `server2` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `transport` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `type` is no longer `glusterfs`",
+          "breaking": false
+        }
+      ]
+    }
+  ],
+  "removedTypes": [
+    "Action",
+    "NodesScanGlusterfsGlusterfsscan",
+    "NodesScanGlusterfsGlusterfsscanParams",
+    "NotificationPolicy",
+    "PveHaGroupNodeList",
+    "State",
+    "Timeframe",
+    "Transport"
+  ]
+}
