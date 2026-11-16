@@ -61,10 +61,6 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - uses: ./.github/actions/setup
-      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: packages/generator/.cache
-          key: pve-docs-${{ hashFiles('packages/generator/schema.lock.json') }}
       - run: bun run codegen:check
       - run: bun run build
       - run: bun run lint:publint
@@ -82,6 +78,20 @@ jobs:
         with:
           scan-args: |-
             --lockfile=bun.lock
+            --config=osv-scanner.toml
+
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions: {}
+    steps:
+      - run: |
+          for flag in -4 -6; do
+            for url in http://download.proxmox.com/debian/pve/dists/trixie/InRelease http://download.proxmox.com/debian/pve/dists/trixie/pve-no-subscription/binary-amd64/pve-docs_9.2.14_all.deb https://pve.proxmox.com/pve-docs/api-viewer/apidoc.js; do
+              curl $flag -sS -m 60 -o /dev/null -w "$flag $url -> %{http_code} %{size_download}B %{time_total}s ip=%{remote_ip}\n" "$url" || true
+            done
+          done
+          getent ahosts download.proxmox.com || true
 
   required:
     if: always()
