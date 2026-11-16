@@ -19,8 +19,8 @@ Run from the repository root.
 - `packages/api`: the published client. `src/model.ts` and
   `src/schema-info.ts` are generated.
 - `packages/generator`: schema download, diff and code generation.
-  `schema.lock.json` pins the Proxmox schema; `history/` feeds the API
-  changelog and is append-only.
+  `schema.lock.json` pins the Proxmox schema and `schema.json.gz` is that
+  schema; `history/` feeds the API changelog and is append-only.
 - `docs`: VitePress site. `reference/endpoints/` and
   `reference/api-changelog/` are generated.
 - `tooling/typescript`: shared tsconfig presets.

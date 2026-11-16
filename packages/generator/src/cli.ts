@@ -17,10 +17,11 @@ import { readHistory, writeHistoryEntry } from "./history.js";
 import type { LoadedSchema, SchemaLock } from "./load-schema.js";
 import {
   GENERATOR_ROOT,
+  loadCommitted,
   loadFile,
-  loadLocked,
   loadVersion,
   readLock,
+  writeCommitted,
   writeLock,
 } from "./load-schema.js";
 import { collectOperations } from "./operations.js";
@@ -75,14 +76,14 @@ const USAGE = `Generate the Proxmox VE API model, endpoint reference and API cha
 Usage: bun src/cli.ts [command] [options]
 
 Commands:
-  generate            regenerate from the version pinned in schema.lock.json (default)
-  update              move the lock to the newest pve-docs release, record what
-                      changed in history/, then regenerate
+  generate            regenerate from the committed schema.json.gz, which
+                      schema.lock.json pins (default); needs no network
+  update              move the lock and schema.json.gz to the newest pve-docs
+                      release, record what changed in history/, then regenerate
   backfill <v...>     record history for specific pve-docs versions, oldest first
 
 Options:
   --check             exit 1 if generated output is stale; write nothing
-  --offline           never download; fail if the pinned schema is not cached
   --input <file>      generate every output from an apidoc.js on disk instead of
                       the locked version, for experiments; do not commit it
   --to <version>      with update: move to this version instead of the newest
@@ -432,7 +433,7 @@ async function update(options: {
   }
 
   log(`Updating pve-docs ${lock.version} -> ${target.version}`);
-  const previous = await loadLocked(lock);
+  const previous = await loadCommitted(lock);
   const entry = entryFor(next, previous);
   await writeHistoryEntry(entry);
   await writeLock({
@@ -442,6 +443,7 @@ async function update(options: {
     debSha256: target.sha256,
     schemaSha256: next.sha256,
   });
+  await writeCommitted(next.literal);
 
   const summary = summarize(entry);
   log(summary);
@@ -506,10 +508,11 @@ async function backfill(versions: string[]): Promise<number> {
  *
  * @remarks
  * `generate` is the default command and `--help` takes precedence over any
- * command. With `--input`, `generate` reads the given file under the version
- * label `custom` and bypasses the lock, the cache and the hash checks, so
- * `--offline` has no effect; every output is still rendered, not the model
- * alone. Flags that do not belong to the selected command are ignored.
+ * command. `generate` reads the committed `schema.json.gz` and needs no
+ * network. With `--input` it reads the given file instead, under the version
+ * label `custom`, and bypasses the lock and its hash check; every output is
+ * still rendered, not the model alone. Flags that do not belong to the
+ * selected command are ignored.
  *
  * @returns The process exit code: `0` on success and after printing the
  *   help, `1` when a command reports stale output or a missing version, `2`
@@ -524,7 +527,6 @@ async function main(): Promise<number> {
     allowPositionals: true,
     options: {
       check: { type: "boolean", default: false },
-      offline: { type: "boolean", default: false },
       input: { type: "string" },
       to: { type: "string" },
       summary: { type: "string" },
@@ -542,7 +544,7 @@ async function main(): Promise<number> {
     case "generate": {
       const schema = values.input
         ? await loadFile(resolve(values.input), "custom")
-        : await loadLocked(await readLock(), { offline: values.offline });
+        : await loadCommitted(await readLock());
       return generate(schema, { check: values.check });
     }
     case "update":

@@ -27,14 +27,16 @@ The same file ships inside the `pve-docs` Debian package, and Proxmox's public
 apt repository keeps every version of it. So that is what is used:
 
 1. `schema.lock.json` pins one `pve-docs` version together with the SHA-256 of
-   the `.deb` and of the schema inside it.
-2. `codegen` downloads that package, checks it against the `.deb` hash,
-   extracts `apidoc.js`, checks the schema inside against its hash and
-   generates from it. The extracted file is cached under `.cache/`; a cached
-   copy is checked against the schema hash only.
-3. `codegen:update` reads the repository index, and if a newer package carries
-   a different schema, moves the lock, writes a `history/<version>.json`
-   describing the differences, and regenerates.
+   the `.deb` and of the schema inside it. `schema.json.gz` is that schema,
+   committed alongside it.
+2. `codegen` reads `schema.json.gz`, checks it against the hash in the lock
+   and generates from it. It never touches the network, so neither local work
+   nor CI depends on Proxmox's servers being reachable.
+3. `codegen:update` reads the repository index, downloads the newest package
+   and checks it against the hash in the index. If it carries a different
+   schema, the lock and `schema.json.gz` move to it, a
+   `history/<version>.json` describing the differences is written, and
+   everything is regenerated. Downloads are cached under `.cache/`.
 
 Output is deterministic: the same lock produces byte-identical files, which is
 what `codegen:check` relies on in CI.
@@ -55,14 +57,14 @@ skipped, so the lock always names the first version that shipped a schema.
 ## Commands
 
 ```
-bun src/cli.ts [generate] [--check] [--offline] [--input <apidoc.js>]
+bun src/cli.ts [generate] [--check] [--input <apidoc.js>]
 bun src/cli.ts update [--to <version>] [--summary <file>]
 bun src/cli.ts backfill <version>...
 ```
 
 | | |
 | --- | --- |
-| `generate` | Regenerate from the lock. `--check` writes nothing and exits 1 if anything is stale. `--offline` refuses to download. `--input` generates from a file on disk, for experiments. |
+| `generate` | Regenerate from the committed schema. `--check` writes nothing and exits 1 if anything is stale. `--input` generates from an `apidoc.js` on disk instead, for experiments. |
 | `update` | Move the lock to the newest release in the tracked suite, or to `--to`. Prints a summary; `--summary` also writes it to a file. In GitHub Actions it sets the outputs `updated`, `version`, `previous` and `level`. |
 | `backfill` | Record history for specific versions, oldest first. Used once to seed `history/`. |
 
@@ -123,7 +125,7 @@ in the lock file (for example `trixie` to `forky`) and run
 | File | Role |
 | --- | --- |
 | `apt.ts` | Repository index, version ordering, `.deb` download and extraction. |
-| `load-schema.ts` | Lock file, cache, hashing, slicing the schema out of the bundle. |
+| `load-schema.ts` | Lock file, committed schema, download cache, hashing, slicing the schema out of the bundle. |
 | `schema.ts` | Types describing the PVE schema. |
 | `operations.ts` | Flattens the tree into named operations. |
 | `emit.ts` | Schema → TypeScript. |

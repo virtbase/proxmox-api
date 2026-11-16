@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { gunzipSync, gzipSync } from "node:zlib";
 import type { AptPackage, AptSource } from "./apt.js";
 import { downloadApidoc } from "./apt.js";
 import type { PveNode } from "./schema.js";
@@ -18,6 +19,12 @@ export const GENERATOR_ROOT = resolve(
  * Default location of the lock file.
  */
 const LOCK_PATH = join(GENERATOR_ROOT, "schema.lock.json");
+
+/**
+ * The committed, gzip-compressed copy of the pinned schema, which generating
+ * reads instead of the network.
+ */
+const SCHEMA_PATH = join(GENERATOR_ROOT, "schema.json.gz");
 
 /**
  * Directory in which downloaded API viewer bundles are kept between runs. It
@@ -67,6 +74,10 @@ export interface LoadedSchema {
    */
   nodes: PveNode[];
   /**
+   * The `apiSchema` array literal the nodes were parsed from.
+   */
+  literal: string;
+  /**
    * The `pve-docs` version the schema was taken from, or the label passed to
    * {@link loadFile}.
    */
@@ -78,7 +89,8 @@ export interface LoadedSchema {
   /**
    * Upload date of the package (`YYYY-MM-DD`). Known when the package was
    * downloaded during this run, or when an earlier download stored the date
-   * next to the cached bundle. Never set by {@link loadFile}.
+   * next to the cached bundle. Never set by {@link loadCommitted} or
+   * {@link loadFile}.
    */
   released?: string;
 }
@@ -234,72 +246,36 @@ async function readIfPresent(path: string): Promise<string | undefined> {
 }
 
 /**
- * Controls how {@link loadVersion} obtains and verifies a schema.
- */
-export interface LoadOptions {
-  /**
-   * Fail instead of downloading when the bundle is not cached.
-   *
-   * @defaultValue `false`
-   */
-  offline?: boolean;
-  /**
-   * SHA-256 the `apiSchema` literal must have, in lowercase hex. A bundle
-   * whose hash differs is rejected, so a pinned version stays pinned. The
-   * hash is not checked when this is omitted.
-   */
-  expectedSha256?: string;
-}
-
-/**
- * Loads the schema of one `pve-docs` version, from the cache or the network.
+ * Loads the schema of one `pve-docs` version, from the download cache or the
+ * network.
  *
  * @remarks
  * A bundle cached as `.cache/pve-docs_<version>.apidoc.js` is used as it is.
  * Otherwise the package is downloaded from `download.proxmox.com` by
- * {@link downloadApidoc}, which verifies the `.deb` against `entry.sha256`,
- * and the bundle is written to the cache with its upload date in a
- * `.released` file beside it.
- *
- * The cache is written before the schema hash is checked, so a bundle that
- * fails the check stays cached until the file is deleted.
+ * {@link downloadApidoc}, which verifies the `.deb` against `entry.sha256`.
+ * A downloaded bundle is cached only after its schema has been extracted, so
+ * a bad download is never served again from disk. Its upload date is kept in
+ * a `.released` file beside it.
  *
  * @param entry - The package to load. Its `filename` and `sha256` are used
  *   only when the package has to be downloaded.
- * @param options - How to obtain and verify the schema.
- * @param options.offline - Fail instead of downloading when the bundle is not
- *   cached.
- * @param options.expectedSha256 - Hash the `apiSchema` literal must have;
- *   not checked when omitted.
- * @returns The parsed schema, the hash of its literal and, when known, the
+ * @returns The parsed schema, its literal and hash and, when known, the
  *   upload date of the package.
- * @throws An {@link Error} if the bundle is not cached and `options.offline`
- *   is set.
  * @throws An {@link Error} if the download, its verification or the
  *   extraction fails; see {@link downloadApidoc}.
  * @throws An {@link Error} if the cache cannot be written.
  * @throws An {@link Error} if the bundle holds no `apiSchema` array literal;
  *   see {@link extractSchemaLiteral}.
- * @throws An {@link Error} if the hash of the literal differs from
- *   `options.expectedSha256`.
  * @throws A {@link SyntaxError} if the literal is not valid JSON.
  * @throws An {@link Error} if the literal is an empty array.
  */
-export async function loadVersion(
-  entry: AptPackage,
-  options: LoadOptions = {},
-): Promise<LoadedSchema> {
+export async function loadVersion(entry: AptPackage): Promise<LoadedSchema> {
   const path = cachePath(entry.version);
   let apidoc = await readIfPresent(path);
   let released: string | undefined;
   let downloaded = false;
 
   if (apidoc === undefined) {
-    if (options.offline) {
-      throw new Error(
-        `pve-docs ${entry.version} is not cached at ${path}; run without --offline once`,
-      );
-    }
     ({ apidoc, released } = await downloadApidoc(entry));
     downloaded = true;
   } else {
@@ -307,58 +283,80 @@ export async function loadVersion(
   }
 
   const literal = extractSchemaLiteral(apidoc);
-  const hash = sha256(literal);
-  if (options.expectedSha256 && hash !== options.expectedSha256) {
-    throw new Error(
-      `pve-docs ${entry.version}: schema sha256 ${hash} does not match the locked ${options.expectedSha256}.` +
-        (downloaded ? "" : ` Delete ${path} if the cache is stale.`),
-    );
-  }
-  // Cached only once it has parsed and matched, so a bad download is never
-  // served again from disk.
+  const nodes = parseLiteral(literal);
   if (downloaded) {
     await mkdir(CACHE_DIR, { recursive: true });
     await writeFile(path, apidoc, "utf8");
     if (released) await writeFile(`${path}.released`, released, "utf8");
   }
   return {
-    nodes: parseLiteral(literal),
+    nodes,
+    literal,
     version: entry.version,
-    sha256: hash,
+    sha256: sha256(literal),
     released,
   };
 }
 
 /**
- * Loads the schema pinned by the lock file and verifies that it is the pinned
- * one.
+ * Loads the schema committed to the repository and verifies that it is the
+ * one the lock file pins.
  *
  * @remarks
- * The schema literal, cached or downloaded, must hash to
- * `lock.schemaSha256`. A package that has to be downloaded must also hash to
- * `lock.debSha256`.
+ * Nothing is downloaded. The committed copy exists so that generating, and
+ * checking that generated output is current, never depends on Proxmox's
+ * servers being reachable.
  *
- * @param lock - The lock naming the version and its two hashes.
- * @param options - How to obtain the schema.
- * @param options.offline - Fail instead of downloading when the bundle is not
- *   cached.
- * @returns The parsed schema, the hash of its literal and, when known, the
- *   upload date of the package.
- * @throws An {@link Error} if the bundle is not cached and `options.offline`
- *   is set.
- * @throws An {@link Error} if the schema does not match
- *   `lock.schemaSha256`.
- * @throws An {@link Error} if downloading, caching or parsing fails; see
- *   {@link loadVersion}.
+ * @param lock - The lock naming the version and the hash the schema must
+ *   have.
+ * @param path - File to read. Defaults to `schema.json.gz` in the generator
+ *   package.
+ * @returns The parsed schema, its literal and its hash. The upload date is
+ *   never set.
+ * @throws An {@link Error} if the file cannot be read or is not gzip data.
+ * @throws An {@link Error} if the hash of the schema differs from
+ *   `lock.schemaSha256`, which means the file and the lock were not updated
+ *   together.
+ * @throws A {@link SyntaxError} if the schema is not valid JSON.
+ * @throws An {@link Error} if the schema is an empty array.
  */
-export function loadLocked(
+export async function loadCommitted(
   lock: SchemaLock,
-  options: Pick<LoadOptions, "offline"> = {},
+  path = SCHEMA_PATH,
 ): Promise<LoadedSchema> {
-  return loadVersion(
-    { version: lock.version, filename: lock.filename, sha256: lock.debSha256 },
-    { ...options, expectedSha256: lock.schemaSha256 },
-  );
+  const literal = gunzipSync(await readFile(path)).toString("utf8");
+  const hash = sha256(literal);
+  if (hash !== lock.schemaSha256) {
+    throw new Error(
+      `${path}: schema sha256 ${hash} does not match the locked ${lock.schemaSha256}. ` +
+        "Run `bun run codegen:update` to bring both in step.",
+    );
+  }
+  return {
+    nodes: parseLiteral(literal),
+    literal,
+    version: lock.version,
+    sha256: hash,
+  };
+}
+
+/**
+ * Writes a schema as the committed copy that {@link loadCommitted} reads.
+ *
+ * @remarks
+ * The literal is stored gzip-compressed, without a timestamp, so the same
+ * schema always produces the same bytes.
+ *
+ * @param literal - The `apiSchema` array literal to store.
+ * @param path - File to write. Defaults to `schema.json.gz` in the generator
+ *   package.
+ * @throws An {@link Error} if the file cannot be written.
+ */
+export async function writeCommitted(
+  literal: string,
+  path = SCHEMA_PATH,
+): Promise<void> {
+  await writeFile(path, gzipSync(literal, { level: 9 }));
 }
 
 /**
@@ -370,7 +368,7 @@ export function loadLocked(
  * @param path - Path of an `apidoc.js`.
  * @param version - Label recorded as the schema's version; the command line
  *   passes `custom`.
- * @returns The parsed schema and the hash of its literal. The upload date is
+ * @returns The parsed schema, its literal and its hash. The upload date is
  *   never set.
  * @throws An {@link Error} if the file cannot be read.
  * @throws An {@link Error} if the file holds no `apiSchema` array literal;
@@ -383,5 +381,10 @@ export async function loadFile(
   version: string,
 ): Promise<LoadedSchema> {
   const literal = extractSchemaLiteral(await readFile(path, "utf8"));
-  return { nodes: parseLiteral(literal), version, sha256: sha256(literal) };
+  return {
+    nodes: parseLiteral(literal),
+    literal,
+    version,
+    sha256: sha256(literal),
+  };
 }
