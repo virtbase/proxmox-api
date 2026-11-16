@@ -80,35 +80,6 @@ jobs:
             --lockfile=bun.lock
             --config=osv-scanner.toml
 
-  probe:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    permissions:
-      contents: read
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-      - uses: ./.github/actions/setup
-      - run: |
-          cat > "$RUNNER_TEMP/probe.ts" <<'PROBE'
-          import { downloadApidoc, listVersions } from "./packages/generator/src/apt.ts";
-          import { readLock } from "./packages/generator/src/load-schema.ts";
-          const lock = await readLock();
-          let started = Date.now();
-          const versions = await listVersions(lock);
-          console.log(`index: ${versions.length} versions in ${Date.now() - started} ms`);
-          started = Date.now();
-          const { apidoc, released } = await downloadApidoc({
-            version: lock.version,
-            filename: lock.filename,
-            sha256: lock.debSha256,
-          });
-          console.log(`package: ${apidoc.length} bytes, ${released}, in ${Date.now() - started} ms`);
-          PROBE
-          cp "$RUNNER_TEMP/probe.ts" probe.ts
-          bun probe.ts
-
   required:
     if: always()
     needs: [static, test, build, osv]
