@@ -1,54 +1,38 @@
 {
-  "$schema": "https://v2-10-13.turborepo.dev/schema.json",
-  "ui": "tui",
+  "$schema": "./node_modules/turbo/schema.json",
+  "ui": "stream",
+  "globalPassThroughEnv": ["GITHUB_ACTIONS", "GITHUB_OUTPUT"],
   "tasks": {
-    "topo": {
-      "dependsOn": ["^topo"]
-    },
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".cache/tsbuildinfo.json", "dist/**", ".vitepress/dist/**"]
+      "outputs": ["dist/**", ".vitepress/dist/**"]
     },
     "dev": {
-      "dependsOn": ["^dev"],
       "cache": false,
-      "persistent": false
+      "persistent": true
     },
-    "//#check": {},
-    "lint:package": {
+    "typecheck": {
+      "dependsOn": ["^build"],
+      "outputs": [".cache/tsbuildinfo.json"]
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "publint": {
       "dependsOn": ["build"],
       "outputs": []
     },
-    "test": {
-      "dependsOn": ["^topo", "^build"],
-      "outputs": [],
-      "inputs": [
-        "src/**",
-        "bunfig.toml",
-        "package.json",
-        "tsconfig.json",
-        "$TURBO_DEFAULT$"
-      ]
-    },
-    "typecheck": {
-      "dependsOn": ["^topo", "^build"],
-      "outputs": [".cache/tsbuildinfo.json"]
-    },
     "codegen": {
-      "cache": false,
-      "outputs": ["../api/src/model.ts", "../../docs/reference/endpoints/**"]
+      "cache": false
     },
     "codegen:check": {
       "cache": false
     },
-    "preview": {
-      "cache": false,
-      "persistent": true
-    },
-    "clean": {
+    "codegen:update": {
       "cache": false
     },
-    "//#clean": {
+    "clean": {
       "cache": false
     }
   }

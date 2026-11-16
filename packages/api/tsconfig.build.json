@@ -1,0 +1,9 @@
+{
+  "extends": "@virtbase/tsconfig/library.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "incremental": false
+  },
+  "include": ["src"],
+  "exclude": ["src/__tests__"]
+}

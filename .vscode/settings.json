@@ -1,39 +1,51 @@
 {
-  "js/ts.tsdk.path": "./node_modules/typescript/lib",
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "biomejs.biome",
+  "[javascript][typescript][json][jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome",
+    "editor.formatOnSave": true
+  },
+  "bun.test.enable": false,
   "editor.codeActionsOnSave": {
-    "source.organizeImports.biome": "explicit",
     "source.fixAll.biome": "explicit",
+    "source.organizeImports.biome": "explicit",
     "source.removeUnusedImports": "explicit"
   },
-  "biome.configurationPath": "./biome.jsonc",
-  "copyrighter.author": "Janic Bellmann",
-  "copyrighter.license": "GPL3",
-  "copyrighter.newFilesOnly": false,
-  "explorer.excludeGitIgnore": true,
-  // The generated PVE model and the raw upstream API dump. Both are hundreds
-  // of thousands of lines; opening one stalls the editor and every search
-  // drowns in them.
+  "editor.rulers": [80],
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "package.json": "bun.lock, bunfig.toml, turbo.json, tsconfig.json, tsconfig.*.json, biome.json, knip.json, typos.toml, osv-scanner.toml, release-please-config.json, .release-please-manifest.json",
+    "*.ts": "${capture}.test.ts"
+  },
+  "files.eol": "\n",
+  "files.exclude": {
+    "**/.turbo": true
+  },
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
   "files.watcherExclude": {
-    "**/packages/api/src/model.ts": true,
-    "**/packages/generator/src/pveapi8.ts": true
+    "**/.turbo/**": true,
+    "**/.cache/**": true,
+    "**/dist/**": true,
+    "docs/.vitepress/cache/**": true,
+    "docs/.vitepress/dist/**": true
   },
+  "js/ts.experimental.useTsgo": true,
+  "js/ts.preferences.importModuleSpecifierEnding": "js",
+  "js/ts.preferences.preferTypeOnlyAutoImports": true,
+  "js/ts.tsdk.path": "./node_modules/typescript",
   "search.exclude": {
-    "docs": true,
+    "**/node_modules": true,
+    "**/.turbo": true,
+    "**/.cache": true,
+    "**/dist": true,
+    "**/*.tsbuildinfo": true,
+    "bun.lock": true,
     "packages/api/src/model.ts": true,
-    "packages/generator/src/pveapi8.ts": true
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "biomejs.biome"
+    "packages/generator/history": true,
+    "docs/reference/endpoints": true,
+    "docs/reference/api-changelog": true,
+    "docs/.vitepress/cache": true,
+    "docs/.vitepress/dist": true
   }
 }

@@ -2,10 +2,10 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "./base.json",
   "compilerOptions": {
-    "module": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "erasableSyntaxOnly": true,
     "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
     "noEmit": false,
     "outDir": "${configDir}/dist"
   }

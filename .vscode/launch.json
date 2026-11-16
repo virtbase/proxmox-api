@@ -2,21 +2,26 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "api: tests",
       "type": "bun",
       "request": "launch",
-      "name": "Test: api",
-      "cwd": "${workspaceFolder}/packages/api",
-      "runtime": "bun",
-      "program": "${workspaceFolder}/packages/api/src/__tests__/proxmox-api.test.ts",
-      "runtimeArgs": ["test"]
+      "program": "test",
+      "cwd": "${workspaceFolder}/packages/api"
     },
     {
+      "name": "generator: tests",
       "type": "bun",
       "request": "launch",
-      "name": "Generate API model",
-      "cwd": "${workspaceFolder}/packages/generator",
-      "runtime": "bun",
-      "program": "${workspaceFolder}/packages/generator/src/gen.ts"
+      "program": "test",
+      "cwd": "${workspaceFolder}/packages/generator"
+    },
+    {
+      "name": "generator: codegen",
+      "type": "bun",
+      "request": "launch",
+      "program": "${workspaceFolder}/packages/generator/src/cli.ts",
+      "args": ["generate"],
+      "cwd": "${workspaceFolder}/packages/generator"
     }
   ]
 }

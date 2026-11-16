@@ -1,0 +1,17 @@
+{
+  "$schema": "./node_modules/knip/schema.json",
+  "treatConfigHintsAsErrors": true,
+  "workspaces": {
+    ".": {},
+    "docs": {
+      "entry": [".vitepress/*.data.ts"],
+      "ignoreDependencies": ["vue"]
+    },
+    "packages/api": {
+      "project": ["src/**/*.ts"]
+    },
+    "packages/generator": {
+      "project": ["src/**/*.ts"]
+    }
+  }
+}
