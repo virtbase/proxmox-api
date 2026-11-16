@@ -83,15 +83,31 @@ jobs:
   probe:
     runs-on: ubuntu-24.04
     timeout-minutes: 5
-    permissions: {}
+    permissions:
+      contents: read
     steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
       - run: |
-          for flag in -4 -6; do
-            for url in http://download.proxmox.com/debian/pve/dists/trixie/InRelease http://download.proxmox.com/debian/pve/dists/trixie/pve-no-subscription/binary-amd64/pve-docs_9.2.14_all.deb https://pve.proxmox.com/pve-docs/api-viewer/apidoc.js; do
-              curl $flag -sS -m 60 -o /dev/null -w "$flag $url -> %{http_code} %{size_download}B %{time_total}s ip=%{remote_ip}\n" "$url" || true
-            done
-          done
-          getent ahosts download.proxmox.com || true
+          cat > "$RUNNER_TEMP/probe.ts" <<'PROBE'
+          import { downloadApidoc, listVersions } from "./packages/generator/src/apt.ts";
+          import { readLock } from "./packages/generator/src/load-schema.ts";
+          const lock = await readLock();
+          let started = Date.now();
+          const versions = await listVersions(lock);
+          console.log(`index: ${versions.length} versions in ${Date.now() - started} ms`);
+          started = Date.now();
+          const { apidoc, released } = await downloadApidoc({
+            version: lock.version,
+            filename: lock.filename,
+            sha256: lock.debSha256,
+          });
+          console.log(`package: ${apidoc.length} bytes, ${released}, in ${Date.now() - started} ms`);
+          PROBE
+          cp "$RUNNER_TEMP/probe.ts" probe.ts
+          bun probe.ts
 
   required:
     if: always()

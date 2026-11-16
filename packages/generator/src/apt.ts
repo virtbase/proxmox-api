@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { resolve4 } from "node:dns/promises";
 import { mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -284,8 +285,43 @@ export function parsePackagesIndex(index: string, name: string): AptPackage[] {
 }
 
 /**
- * Sends a `GET` request with the generator's `User-Agent` and a five-minute
- * timeout.
+ * Sends a request to the apt repository, over IPv4 where possible.
+ *
+ * @remarks
+ * GitHub-hosted runners have no IPv6 route, and there `fetch` waits out its
+ * whole timeout on the repository's AAAA record instead of falling back to
+ * IPv4. The repository is plain HTTP, so the request is addressed to an A
+ * record directly, with the original name in the `Host` header. A URL that is
+ * not plain HTTP, or a name without an A record, is requested unchanged.
+ *
+ * @param url - Absolute URL to request.
+ * @param options - The HTTP method, `GET` when omitted, and the timeout in
+ *   milliseconds, which covers the whole exchange including the body.
+ * @returns The response, whatever its status.
+ * @throws An {@link Error} if the connection fails or the timeout expires.
+ */
+async function request(
+  url: string,
+  options: { method?: string; timeout: number },
+): Promise<Response> {
+  const target = new URL(url);
+  const headers: Record<string, string> = { "User-Agent": USER_AGENT };
+  if (target.protocol === "http:") {
+    const [address] = await resolve4(target.hostname).catch(() => []);
+    if (address) {
+      headers.Host = target.host;
+      target.hostname = address;
+    }
+  }
+  return fetch(target, {
+    method: options.method,
+    headers,
+    signal: AbortSignal.timeout(options.timeout),
+  });
+}
+
+/**
+ * Downloads a file from the apt repository, allowing five minutes.
  *
  * @remarks
  * The timeout covers the whole exchange, so reading a slow body can still
@@ -297,10 +333,7 @@ export function parsePackagesIndex(index: string, name: string): AptPackage[] {
  * @throws An {@link Error} if the connection fails or the timeout expires.
  */
 async function download(url: string): Promise<Response> {
-  const response = await fetch(url, {
-    headers: { "User-Agent": USER_AGENT },
-    signal: AbortSignal.timeout(300_000),
-  });
+  const response = await request(url, { timeout: 300_000 });
   if (!response.ok)
     throw new Error(`GET ${url} failed with ${response.status}`);
   return response;
@@ -349,11 +382,7 @@ export async function listVersions(source: AptSource): Promise<AptPackage[]> {
  */
 export async function suiteExists(source: AptSource): Promise<boolean> {
   const url = `${APT_BASE_URL}/dists/${source.suite}/${source.component}/binary-amd64/Packages.gz`;
-  const response = await fetch(url, {
-    method: "HEAD",
-    headers: { "User-Agent": USER_AGENT },
-    signal: AbortSignal.timeout(30_000),
-  });
+  const response = await request(url, { method: "HEAD", timeout: 30_000 });
   return response.ok;
 }
 
