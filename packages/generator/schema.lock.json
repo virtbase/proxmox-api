@@ -1,0 +1,9 @@
+{
+  "suite": "trixie",
+  "component": "pve-no-subscription",
+  "package": "pve-docs",
+  "version": "9.2.14",
+  "filename": "dists/trixie/pve-no-subscription/binary-amd64/pve-docs_9.2.14_all.deb",
+  "debSha256": "723a92d1694c31678b874b1547915ebc93d8c1a534e1a45bf2010da3388d77dc",
+  "schemaSha256": "2458b5cc9a174224079982e81d7b6c5626b43523a5f026e29598456c8b46abe6"
+}

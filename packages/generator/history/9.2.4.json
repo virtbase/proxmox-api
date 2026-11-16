@@ -1,0 +1,1328 @@
+{
+  "version": "9.2.4",
+  "previous": "9.1.5",
+  "released": "2026-08-03",
+  "schemaSha256": "2d9cfd43edfa21a77c954f387fb8e0cd4dd140738736e58d0ade1a83de6cf85c",
+  "operations": 678,
+  "level": "major",
+  "summary": {
+    "added": 11,
+    "removed": 0,
+    "changed": 50,
+    "breaking": 15,
+    "documentation": 68
+  },
+  "changes": [
+    {
+      "operation": "POST /access/domains",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `audiences` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /access/domains/{realm}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `audiences` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/backup",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "returned `[].maxfiles` removed",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/backup",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `maxfiles` removed",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/backup/{id}",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "returned `maxfiles` removed",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/backup/{id}",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `maxfiles` removed",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/ceph/metadata",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "returned `mds.*` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mds.*.addr` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mds.*.ceph_release` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mds.*.ceph_version` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mds.*.ceph_version_short` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mds.*.hostname` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mds.*.mem_swap_kb` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mds.*.mem_total_kb` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mds.*.name` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mgr.*` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mgr.*.addr` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mgr.*.ceph_release` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mgr.*.ceph_version` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mgr.*.ceph_version_short` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mgr.*.hostname` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mgr.*.mem_swap_kb` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mgr.*.mem_total_kb` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mgr.*.name` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mon.*` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mon.*.addrs` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mon.*.ceph_release` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mon.*.ceph_version` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mon.*.ceph_version_short` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mon.*.hostname` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mon.*.mem_swap_kb` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mon.*.mem_total_kb` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mon.*.name` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `node.*` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `node.*.buildcommit` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `node.*.version` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `node.*.version.parts` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `node.*.version.parts[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `node.*.version.str` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `osd[].device_ids` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `osd[].device_paths` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `osd[].devices` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mds.{id}` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mds.{id}.addr` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mds.{id}.ceph_release` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mds.{id}.ceph_version` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mds.{id}.ceph_version_short` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mds.{id}.hostname` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mds.{id}.mem_swap_kb` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mds.{id}.mem_total_kb` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mds.{id}.name` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mgr.{id}` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mgr.{id}.addr` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mgr.{id}.ceph_release` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mgr.{id}.ceph_version` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mgr.{id}.ceph_version_short` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mgr.{id}.hostname` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mgr.{id}.mem_swap_kb` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mgr.{id}.mem_total_kb` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mgr.{id}.name` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mon.{id}` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mon.{id}.addrs` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mon.{id}.ceph_release` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mon.{id}.ceph_version` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mon.{id}.ceph_version_short` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mon.{id}.hostname` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mon.{id}.mem_swap_kb` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mon.{id}.mem_total_kb` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `mon.{id}.name` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `node.{node}` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `node.{node}.buildcommit` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `node.{node}.version` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `node.{node}.version.parts` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `node.{node}.version.str` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `osd[].device_id` removed",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/ceph/restart-bulk",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/ha/resources",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `auto-rebalance` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/ha/resources/{sid}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `auto-rebalance` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/ha/resources/{sid}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `auto-rebalance` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/ha/rules",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `affinity` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `comment` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `disable` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `nodes` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `resources` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `rule` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `strict` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `type` removed",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/ha/rules/{rule}",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `affinity` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `comment` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `delete` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `digest` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `disable` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `nodes` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `resources` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `rule` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `strict` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `type` removed",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/ha/status/current",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].auto-rebalance` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/options",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `allowed-tags` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `allowed-tags[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `bwlimit` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `consent-text` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `console` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `crs` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `description` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `email_from` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `fencing` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `ha` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `http_proxy` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `keyboard` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `language` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `location` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mac_prefix` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `max_workers` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `migration` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `migration_unsecure` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `next-id` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `notify` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `registered-tags` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `replication` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `tag-style` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `u2f` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `user-tag-access` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `webauthn` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/qemu",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/qemu/cpu-flags",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/qemu/custom-cpu-models",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/qemu/custom-cpu-models",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "DELETE /cluster/qemu/custom-cpu-models/{cputype}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/qemu/custom-cpu-models/{cputype}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "PUT /cluster/qemu/custom-cpu-models/{cputype}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/sdn/controllers",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].bgp-mode` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].nodes` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].peer-group-name` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.bgp-mode` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.nodes` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.peer-group-name` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/sdn/controllers",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `bgp-mode` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `nodes` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `peer-group-name` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/controllers/{controller}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `bgp-mode` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `peer-group-name` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.bgp-mode` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.nodes` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.peer-group-name` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/sdn/controllers/{controller}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `bgp-mode` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `nodes` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `peer-group-name` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/fabrics/all",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `fabrics[].protocol` may be `bgp`",
+          "breaking": false
+        },
+        {
+          "text": "returned `fabrics[].redistribute` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `fabrics[].redistribute[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].protocol` may be `bgp`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/fabrics/fabric",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].protocol` may be `bgp`",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].redistribute` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].redistribute[]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/sdn/fabrics/fabric",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `protocol` accepts `bgp`",
+          "breaking": false
+        },
+        {
+          "text": "parameter `redistribute` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `redistribute[]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/fabrics/fabric/{id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `protocol` may be `bgp`",
+          "breaking": false
+        },
+        {
+          "text": "returned `redistribute` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `redistribute[]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/sdn/fabrics/fabric/{id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `protocol` accepts `bgp`",
+          "breaking": false
+        },
+        {
+          "text": "parameter `redistribute` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `redistribute[]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/fabrics/node",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].protocol` may be `bgp`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/fabrics/node/{fabric_id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].protocol` may be `bgp`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/sdn/fabrics/node/{fabric_id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `protocol` accepts `bgp`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/fabrics/node/{fabric_id}/{node_id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `protocol` may be `bgp`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/sdn/fabrics/node/{fabric_id}/{node_id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `protocol` accepts `bgp`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/zones",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].pending.secondary-controllers` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.secondary-controllers[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].secondary-controllers` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].secondary-controllers[]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/sdn/zones",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `secondary-controllers` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `secondary-controllers[]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/zones/{zone}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `pending.secondary-controllers` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.secondary-controllers[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `secondary-controllers` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `secondary-controllers[]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/sdn/zones/{zone}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `secondary-controllers` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `secondary-controllers[]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/capabilities/qemu/cpu",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].abstract` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/capabilities/qemu/cpu-flags",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `accel` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].description` is now optional",
+          "breaking": true
+        },
+        {
+          "text": "returned `[].supported-on` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].supported-on[]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/ceph/fs",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].data_pool_ids` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].data_pool_ids[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].data_pools` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].data_pools[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].metadata_pool_id` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "DELETE /nodes/{node}/ceph/fs/{name}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/ceph/mds",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].ceph_version` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].ceph_version_short` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].direxists` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].fs_name` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].service` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/ceph/mgr",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].ceph_version` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].ceph_version_short` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].direxists` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].service` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/ceph/mon",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "returned `[].direxists` changed from string to boolean",
+          "breaking": true
+        },
+        {
+          "text": "returned `[].host` changed from boolean to string",
+          "breaking": true
+        },
+        {
+          "text": "returned `[].service` changed from number to boolean",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/ceph/osd",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "returned `flags` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `root` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[]` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `[].flags` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `[].root` removed",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/ceph/osd/{osdid}/metadata",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "returned `devices[].physical_device` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `osd.encrypted` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `osd.pid` is now optional",
+          "breaking": true
+        },
+        {
+          "text": "returned `devices[].devices` removed",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/ceph/pool",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "returned `[].bytes_used` is now optional",
+          "breaking": true
+        },
+        {
+          "text": "returned `[].crush_rule_name` is now optional",
+          "breaking": true
+        },
+        {
+          "text": "returned `[].percent_used` is now optional",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/ceph/pool/{name}/status",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `application_list[]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/ceph/releases",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /nodes/{node}/ceph/restart-bulk",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/config",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `property` accepts `location`",
+          "breaking": false
+        },
+        {
+          "text": "returned `location` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /nodes/{node}/config",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `location` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/journal",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `identifiers` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `kernel` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `priority` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `service` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `structured` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `unit` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `units` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/lxc/{vmid}/migrate",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `not-allowed-nodes.blocking-ha-resources[].cause` may be `node-affinity`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/qemu/{vmid}/migrate",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `not_allowed_nodes.blocking-ha-resources[].cause` may be `node-affinity`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/storage/{storage}/content",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "returned `[].approximate-size` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].size` is now optional",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/vzdump",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `maxfiles` removed",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/vzdump/defaults",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "returned `maxfiles` removed",
+          "breaking": true
+        }
+      ]
+    }
+  ],
+  "removedTypes": [
+    "Affinity",
+    "ClusterHaRulesCreateRuleParams",
+    "ClusterHaRulesUpdateRuleParams",
+    "PveHaResourceIdList"
+  ]
+}

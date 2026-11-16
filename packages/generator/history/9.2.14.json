@@ -1,0 +1,524 @@
+{
+  "version": "9.2.14",
+  "previous": "9.2.5",
+  "released": "2026-11-06",
+  "schemaSha256": "2458b5cc9a174224079982e81d7b6c5626b43523a5f026e29598456c8b46abe6",
+  "operations": 684,
+  "level": "minor",
+  "summary": {
+    "added": 4,
+    "removed": 0,
+    "changed": 30,
+    "breaking": 0,
+    "documentation": 48
+  },
+  "changes": [
+    {
+      "operation": "GET /cluster/ceph/flags",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].name` may be `noautoscale`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/ceph/flags",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `noautoscale` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/ceph/flags/{flag}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `flag` accepts `noautoscale`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/ceph/flags/{flag}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `flag` accepts `noautoscale`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/firewall/aliases/{name}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `cidr` is now optional",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/notifications/matchers",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].expression` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/notifications/matchers",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `expression` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/notifications/matchers/{name}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `migrate-to-expression` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `expression` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/notifications/matchers/{name}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `expression` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/qemu/custom-cpu-models",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].reported-model` may be `Cascadelake-Server-v6`, `Cascadelake-Server-v7`, `ClearwaterForest-v4`, `DiamondRapids-v2`, `EPYC-Genoa-v3`, `EPYC-Milan-v4`, `EPYC-Turin-v2`, `GraniteRapids-v6`, `GraniteRapids-v7`, `Icelake-Server-v8`, `Icelake-Server-v9`, `SapphireRapids-v7`, `SapphireRapids-v8`, `SierraForest-v6`, `Skylake-Server-v6`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/qemu/custom-cpu-models",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `reported-model` accepts `Cascadelake-Server-v6`, `Cascadelake-Server-v7`, `ClearwaterForest-v4`, `DiamondRapids-v2`, `EPYC-Genoa-v3`, `EPYC-Milan-v4`, `EPYC-Turin-v2`, `GraniteRapids-v6`, `GraniteRapids-v7`, `Icelake-Server-v8`, `Icelake-Server-v9`, `SapphireRapids-v7`, `SapphireRapids-v8`, `SierraForest-v6`, `Skylake-Server-v6`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/qemu/custom-cpu-models/{cputype}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `reported-model` may be `Cascadelake-Server-v6`, `Cascadelake-Server-v7`, `ClearwaterForest-v4`, `DiamondRapids-v2`, `EPYC-Genoa-v3`, `EPYC-Milan-v4`, `EPYC-Turin-v2`, `GraniteRapids-v6`, `GraniteRapids-v7`, `Icelake-Server-v8`, `Icelake-Server-v9`, `SapphireRapids-v7`, `SapphireRapids-v8`, `SierraForest-v6`, `Skylake-Server-v6`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/qemu/custom-cpu-models/{cputype}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `reported-model` accepts `Cascadelake-Server-v6`, `Cascadelake-Server-v7`, `ClearwaterForest-v4`, `DiamondRapids-v2`, `EPYC-Genoa-v3`, `EPYC-Milan-v4`, `EPYC-Turin-v2`, `GraniteRapids-v6`, `GraniteRapids-v7`, `Icelake-Server-v8`, `Icelake-Server-v9`, `SapphireRapids-v7`, `SapphireRapids-v8`, `SierraForest-v6`, `Skylake-Server-v6`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/replication",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].skip-freeze-fs` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/replication",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `skip-freeze-fs` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/replication/{id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `skip-freeze-fs` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/replication/{id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `skip-freeze-fs` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "DELETE /cluster/sdn/vnets/{vnet}/ips",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `zone` is now optional",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/sdn/vnets/{vnet}/ips",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `zone` is now optional",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/sdn/vnets/{vnet}/ips",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `zone` is now optional",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/apt/update",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].Arch` may be `riscv64`",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].Arch` is no longer `risc64`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/apt/versions",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].Arch` may be `riscv64`",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].Arch` is no longer `risc64`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /nodes/{node}/lxc/{vmid}/firewall/aliases/{name}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `cidr` is now optional",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/qemu/{vmid}/agent",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `command` accepts `get-cpustats`, `get-disks`, `get-diskstats`, `get-load`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/qemu/{vmid}/agent/get-cpustats",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/qemu/{vmid}/agent/get-disks",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/qemu/{vmid}/agent/get-diskstats",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/qemu/{vmid}/agent/get-load",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "PUT /nodes/{node}/qemu/{vmid}/firewall/aliases/{name}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `cidr` is now optional",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/replication",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].comment` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].disable` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].duration` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].error` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].fail_count` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].guest` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].jobnum` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].last_sync` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].last_try` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].next_sync` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pid` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].rate` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].remove_job` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].schedule` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].source` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].target` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].type` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].vmtype` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/replication/{id}/status",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `comment` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `disable` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `duration` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `error` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `fail_count` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `guest` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `id` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `jobnum` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `last_sync` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `last_try` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `next_sync` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pid` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `rate` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `remove_job` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `schedule` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `source` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `target` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `type` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `vmtype` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/status",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `idle` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `uptime` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /storage",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `on-volume-remove` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /storage/{storage}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `on-volume-remove` added",
+          "breaking": false
+        }
+      ]
+    }
+  ],
+  "removedTypes": []
+}

@@ -1,0 +1,973 @@
+{
+  "version": "8.3.2",
+  "previous": "8.2.5",
+  "released": "2025-04-07",
+  "schemaSha256": "ebd3bd7f9753470b02ed698057c7f96df40917f256d1d44a4ff756c40cbb7eaf",
+  "operations": 605,
+  "level": "major",
+  "summary": {
+    "added": 13,
+    "removed": 0,
+    "changed": 45,
+    "breaking": 4,
+    "documentation": 24
+  },
+  "changes": [
+    {
+      "operation": "POST /access/domains",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `groups-autocreate` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `groups-claim` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `groups-overwrite` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `query-userinfo` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /access/domains/{realm}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `groups-autocreate` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `groups-claim` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `groups-overwrite` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `query-userinfo` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/acme/plugins",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `api` accepts `alviy`, `ionos_cloud`, `limacity`, `omglol`, `technitium`, `timeweb`, `west_cn`, `yandex360`, `zoneedit`",
+          "breaking": false
+        },
+        {
+          "text": "parameter `api` no longer accepts `do`, `yandex`",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/acme/plugins/{id}",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `api` accepts `alviy`, `ionos_cloud`, `limacity`, `omglol`, `technitium`, `timeweb`, `west_cn`, `yandex360`, `zoneedit`",
+          "breaking": false
+        },
+        {
+          "text": "parameter `api` no longer accepts `do`, `yandex`",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/firewall/groups/{group}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `type` accepts `forward`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/firewall/groups/{group}/{pos}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `type` accepts `forward`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/firewall/options",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `policy_forward` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/firewall/options",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `policy_forward` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/firewall/rules",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `type` accepts `forward`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/firewall/rules/{pos}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `type` accepts `forward`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/mapping/dir",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/mapping/dir",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "DELETE /cluster/mapping/dir/{id}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/mapping/dir/{id}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "PUT /cluster/mapping/dir/{id}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/mapping/pci",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `live-migration-capable` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/mapping/pci/{id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `live-migration-capable` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/options",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `consent-text` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/sdn/dns",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `fingerprint` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/sdn/dns/{dns}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `fingerprint` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/sdn/ipams",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `fingerprint` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/sdn/ipams/{ipam}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `fingerprint` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/vnets/{vnet}/firewall",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/sdn/vnets/{vnet}/firewall/options",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "PUT /cluster/sdn/vnets/{vnet}/firewall/options",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/sdn/vnets/{vnet}/firewall/rules",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/sdn/vnets/{vnet}/firewall/rules",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "DELETE /cluster/sdn/vnets/{vnet}/firewall/rules/{pos}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/sdn/vnets/{vnet}/firewall/rules/{pos}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "PUT /cluster/sdn/vnets/{vnet}/firewall/rules/{pos}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/capabilities/qemu/machines",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].changes` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/config",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `property` accepts `ballooning-target`",
+          "breaking": false
+        },
+        {
+          "text": "returned `ballooning-target` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /nodes/{node}/config",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `ballooning-target` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/firewall/options",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `log_level_forward` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /nodes/{node}/firewall/options",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `log_level_forward` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/firewall/rules",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `type` accepts `forward`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /nodes/{node}/firewall/rules/{pos}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `type` accepts `forward`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/lxc",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].cpu` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].mem` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/lxc/{vmid}/firewall/rules",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `type` accepts `forward`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /nodes/{node}/lxc/{vmid}/firewall/rules/{pos}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `type` accepts `forward`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/lxc/{vmid}/interfaces",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].hardware-address` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].ip-addresses` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].ip-addresses[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].ip-addresses[].ip-address` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].ip-addresses[].ip-address-type` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].ip-addresses[].prefix` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/lxc/{vmid}/status/current",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `cpu` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mem` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/network",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `type` accepts `vnet`",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].active` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].address` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].address6` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].autostart` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].bond-primary` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].bond_mode` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].bond_xmit_hash_policy` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].bridge-access` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].bridge-arp-nd-suppress` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].bridge-learning` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].bridge-multicast-flood` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].bridge-unicast-flood` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].bridge_ports` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].bridge_vids` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].bridge_vlan_aware` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].cidr` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].cidr6` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].comments` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].comments6` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].exists` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].families` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].families[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].gateway` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].gateway6` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].iface` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].link-type` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].method` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].method6` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].mtu` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].netmask` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].netmask6` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].options` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].options[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].options6` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].options6[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].ovs_bonds` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].ovs_bridge` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].ovs_options` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].ovs_ports` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].ovs_tag` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].priority` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].slaves` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].type` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].uplink-id` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].vlan-id` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].vlan-protocol` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].vlan-raw-device` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].vxlan-id` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].vxlan-local-tunnelip` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].vxlan-physdev` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].vxlan-svcnodeip` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/network",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `type` accepts `vnet`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /nodes/{node}/network/{iface}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `type` accepts `vnet`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/qemu",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].cpu` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].mem` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].serial` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/qemu",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `virtiofs[n]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/qemu/{vmid}/config",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `virtiofs[n]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/qemu/{vmid}/config",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `virtiofs[n]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /nodes/{node}/qemu/{vmid}/config",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `virtiofs[n]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/qemu/{vmid}/firewall/rules",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `type` accepts `forward`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /nodes/{node}/qemu/{vmid}/firewall/rules/{pos}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `type` accepts `forward`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/qemu/{vmid}/migrate",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `allowed_nodes[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `local_disks[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `local_disks[].cdrom` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `local_disks[].is_unused` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `local_disks[].size` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `local_disks[].volid` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `local_resources[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mapped-resource-info` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mapped-resources[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not_allowed_nodes.unavailable_storages` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not_allowed_nodes.unavailable_storages[]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/qemu/{vmid}/status/current",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `cpu` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `mem` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `serial` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/status",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `cpu` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `cpuinfo` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `cpuinfo.cores` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `cpuinfo.cpus` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `cpuinfo.model` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `cpuinfo.sockets` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `loadavg` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `loadavg[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `memory` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `memory.free` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `memory.total` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `memory.used` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pveversion` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `rootfs` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `rootfs.avail` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `rootfs.free` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `rootfs.total` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `rootfs.used` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/storage/{storage}/content",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `format` accepts `vmdk`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /storage",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `format` is now restricted to `qcow2`, `raw`, `subvol`, `vmdk`",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "PUT /storage/{storage}",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `format` is now restricted to `qcow2`, `raw`, `subvol`, `vmdk`",
+          "breaking": true
+        }
+      ]
+    }
+  ],
+  "removedTypes": [
+    "Method",
+    "PveStorageFormat"
+  ]
+}
