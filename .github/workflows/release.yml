@@ -46,12 +46,12 @@ jobs:
           token: ${{ steps.app.outputs.token || github.token }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
-      - if: steps.release.outputs.prs_created == 'true'
+      - if: steps.release.outputs.pr != ''
         env:
           GH_TOKEN: ${{ steps.app.outputs.token || github.token }}
           GH_REPO: ${{ github.repository }}
-          PR: ${{ fromJSON(steps.release.outputs.pr).number }}
-        run: gh pr merge --auto --squash "$PR" || echo "::warning::Could not enable auto-merge; see MAINTAINING.md."
+          PR: ${{ steps.release.outputs.pr }}
+        run: gh pr merge --auto --squash "$(jq -r .number <<<"$PR")" || echo "::warning::Could not enable auto-merge; see MAINTAINING.md."
 
   publish:
     needs: prepare
