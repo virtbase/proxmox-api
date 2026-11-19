@@ -21,6 +21,9 @@ npm install @virtbase/proxmox-api
 ```bash [pnpm]
 pnpm add @virtbase/proxmox-api
 ```
+```bash [deno]
+deno add npm:@virtbase/proxmox-api
+```
 :::
 
 The package is ESM only and has no runtime dependencies. It uses the platform

@@ -109,4 +109,42 @@ await waitForTask(proxmox, upid);
 </div>
 </div>
 
+## Why not plain `fetch`?
+
+<p class="lead">
+The Proxmox API is a few hundred endpoints of JSON over HTTPS, so a
+hand-rolled client is easy to start. Keeping it correct across releases is
+the part this package takes over.
+</p>
+
+| | Hand-written `fetch` | `@virtbase/proxmox-api` |
+| --- | --- | --- |
+| Paths | Strings; a typo shows up as a 501 at run time | Property access, checked by the compiler |
+| Parameters | Looked up in the API viewer | Completed and type-checked, with Proxmox's descriptions |
+| Responses | `any` | Typed per endpoint |
+| Authentication | Ticket and CSRF token handled by hand | API token, or a password with the ticket renewed for you |
+| Errors | A status code and some text | Typed errors with Proxmox's reason and the rejected parameters |
+| Background tasks | Poll the task status yourself | [`waitForTask`](/guide/tasks) |
+| New Proxmox releases | Re-read the documentation | An [API changelog](/reference/api-changelog/) of every change |
+
+## Runs where your code runs
+
+<p class="lead">
+Built on the platform <code>fetch</code>, with no runtime dependencies and
+nothing imported from <code>node:</code>. ESM only.
+</p>
+
+<div class="runtimes">
+  <span>Node.js 22+</span>
+  <span>Bun</span>
+  <span>Deno</span>
+  <span>Edge runtimes</span>
+</div>
+
+<p class="home-links">
+  <a href="https://www.npmjs.com/package/@virtbase/proxmox-api">npm package</a>
+  <a href="https://github.com/virtbase/proxmox-api">Source on GitHub</a>
+  <a href="https://github.com/virtbase/proxmox-api/blob/main/packages/api/CHANGELOG.md">Release notes</a>
+</p>
+
 </div>

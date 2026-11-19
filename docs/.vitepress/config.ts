@@ -1,11 +1,22 @@
 import { readFileSync } from "node:fs";
 import type { HeadConfig, PageData } from "vitepress";
 import { defineConfig } from "vitepress";
+import {
+  groupIconMdPlugin,
+  groupIconVitePlugin,
+} from "vitepress-plugin-group-icons";
+import llmstxt from "vitepress-plugin-llms";
 
 /**
- * One link of a generated sidebar, as stored in a `sidebar.json`.
+ * One entry of a generated sidebar, as stored in a `sidebar.json`. The
+ * endpoint sidebar nests entries; the changelog sidebar is a flat list.
  */
-type SidebarItem = { text: string; link: string };
+type SidebarItem = {
+  text: string;
+  link?: string;
+  collapsed?: boolean;
+  items?: SidebarItem[];
+};
 
 /**
  * Loads the sidebar the generator wrote next to the pages it produced.
@@ -16,7 +27,7 @@ type SidebarItem = { text: string; link: string };
  *
  * @param directory - Name of the directory below `docs/reference` that holds
  *   the `sidebar.json`.
- * @returns The sidebar items, in the order they are stored.
+ * @returns The sidebar entries, in the order they are stored.
  * @throws An {@link Error} if the file cannot be read.
  * @throws A {@link SyntaxError} if the file is not valid JSON.
  */
@@ -48,6 +59,38 @@ const { version: pveSchemaVersion } = JSON.parse(
 const pveVersion = pveSchemaVersion.split(".").slice(0, 2).join(".");
 
 /**
+ * Version of the published package, for example `5.0.0`. Shown in the
+ * navigation bar, so readers can tell which release the site describes.
+ */
+const { version: packageVersion } = JSON.parse(
+  readFileSync(
+    new URL("../../packages/api/package.json", import.meta.url),
+    "utf8",
+  ),
+) as { version: string };
+
+/**
+ * Returns the Markdown of a page as the local search index should see it.
+ *
+ * @remarks
+ * The endpoint pages hold thousands of parameter rows, which made up most
+ * of the search index every visitor downloads, while readers search for
+ * paths and operations rather than parameter descriptions. On those pages,
+ * table rows and the folded `details` blocks are dropped before indexing;
+ * headings, call expressions and summaries stay searchable.
+ *
+ * @param src - The page's Markdown source.
+ * @param relativePath - Path of the page's source file below `docs`.
+ * @returns The Markdown to index.
+ */
+function searchableSource(src: string, relativePath: string): string {
+  if (!relativePath.startsWith("reference/endpoints/")) return src;
+  return src
+    .replace(/^::: details[\s\S]*?^:::$/gm, "")
+    .replace(/^\|.*\|$/gm, "");
+}
+
+/**
  * Origin the site is served from, without a trailing slash. Used for the
  * sitemap, canonical links and social previews, which need absolute URLs.
  */
@@ -63,6 +106,30 @@ const siteName = "@virtbase/proxmox-api";
  * nor match a generated reference page.
  */
 const siteDescription = `Typed Proxmox VE ${pveVersion} API client for TypeScript`;
+
+/**
+ * Creates the plugin that writes `llms.txt`, `llms-full.txt` and a Markdown
+ * copy of every page, for AI assistants reading the documentation.
+ *
+ * @remarks
+ * `llms-full.txt` leaves out the endpoint reference and the API changelog:
+ * together they are megabytes of tables, more than an assistant's context
+ * holds, and both stay reachable as individual Markdown pages through
+ * `llms.txt`. The hidden "Are you an LLM?" text the plugin would otherwise
+ * add to the home page is turned off, since search engines treat hidden text
+ * as a spam signal.
+ *
+ * @returns The Vite plugin.
+ */
+function llmsPlugin() {
+  return llmstxt({
+    domain: siteUrl,
+    injectLLMHint: false,
+    ignoreFilesPerOutput: {
+      llmsFullTxt: ["reference/endpoints/**", "reference/api-changelog/**"],
+    },
+  });
+}
 
 /**
  * Returns the public URL of a page.
@@ -192,6 +259,21 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: true,
   sitemap: { hostname: siteUrl },
+  markdown: {
+    /**
+     * Adds the file-type icons to the tabs of code groups.
+     *
+     * @param md - The Markdown renderer VitePress builds pages with.
+     */
+    config(md) {
+      // VitePress 1.6 bundles markdown-it typings older than the ones the
+      // plugin is typed against; at run time it is the same instance.
+      md.use(groupIconMdPlugin as unknown as Parameters<typeof md.use>[0]);
+    },
+  },
+  vite: {
+    plugins: [groupIconVitePlugin(), llmsPlugin()],
+  },
   transformPageData: addPageMeta,
   head: [
     ["link", { rel: "icon", type: "image/svg+xml", href: "/logo.svg" }],
@@ -218,6 +300,18 @@ export default defineConfig({
       { text: "Client API", link: "/reference/client" },
       { text: "Endpoints", link: "/reference/endpoints/" },
       { text: `PVE ${pveVersion}`, link: "/guide/compatibility" },
+      {
+        text: `v${packageVersion}`,
+        items: [
+          {
+            text: "Release notes",
+            link: "https://github.com/virtbase/proxmox-api/blob/main/packages/api/CHANGELOG.md",
+          },
+          { text: "Upgrading", link: "/guide/upgrading" },
+          { text: "Compatibility", link: "/guide/compatibility" },
+          { text: "API changelog", link: "/reference/api-changelog/" },
+        ],
+      },
     ],
     sidebar: {
       "/guide/": [
@@ -241,20 +335,38 @@ export default defineConfig({
           ],
         },
       ],
+      "/reference/endpoints/": generatedSidebar("endpoints"),
       "/reference/": [
         {
           text: "Reference",
-          items: [{ text: "Client API", link: "/reference/client" }],
+          items: [
+            { text: "Client API", link: "/reference/client" },
+            { text: "Endpoints", link: "/reference/endpoints/" },
+          ],
         },
         {
           text: "API changelog",
           collapsed: true,
           items: generatedSidebar("api-changelog"),
         },
-        { text: "Endpoints", items: generatedSidebar("endpoints") },
       ],
     },
-    search: { provider: "local" },
+    externalLinkIcon: true,
+    search: {
+      provider: "local",
+      options: {
+        /**
+         * Renders a page for the search index, see {@link searchableSource}.
+         *
+         * @returns The HTML to index, or an empty string for a page that
+         *   opts out with `search: false` in its frontmatter.
+         */
+        _render(src, env, md) {
+          const html = md.render(searchableSource(src, env.relativePath), env);
+          return env.frontmatter?.search === false ? "" : html;
+        },
+      },
+    },
     socialLinks: [
       { icon: "github", link: "https://github.com/virtbase/proxmox-api" },
       {

@@ -4,8 +4,7 @@
   "workspaces": {
     ".": {},
     "docs": {
-      "entry": [".vitepress/*.data.ts"],
-      "ignoreDependencies": ["vue"]
+      "entry": [".vitepress/*.data.ts"]
     },
     "packages/api": {
       "project": ["src/**/*.ts"]
