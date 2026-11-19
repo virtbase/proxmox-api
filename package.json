@@ -47,7 +47,7 @@
     "knip": "6.44.2",
     "lint-staged": "17.6.0",
     "sherif": "1.13.0",
-    "turbo": "2.11.10",
+    "turbo": "2.11.11",
     "typescript": "7.0.2"
   },
   "trustedDependencies": [],
