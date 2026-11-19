@@ -1,6 +1,6 @@
 {
   "name": "@virtbase/proxmox-api",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Fully typed Proxmox VE API client for TypeScript, generated from the official API schema",
   "keywords": [
     "proxmox",
