@@ -14,6 +14,17 @@ commit conventions, so the sections below them were inferred from commit
 subjects and are approximate. Where the previous maintainer wrote release notes
 by hand, they are kept verbatim above the reconstructed sections.
 
+## [5.0.0](https://github.com/virtbase/proxmox-api/compare/4.0.0...5.0.0) (2026-11-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** update to the Proxmox VE 9.2.15 API schema ([#24](https://github.com/virtbase/proxmox-api/issues/24))
+
+### Features
+
+* **api:** update to the Proxmox VE 9.2.15 API schema ([#24](https://github.com/virtbase/proxmox-api/issues/24)) ([1e46b6c](https://github.com/virtbase/proxmox-api/commit/1e46b6cd8d5f269c50038a94af40ee6481af78cb))
+
 ## [4.0.0](https://github.com/virtbase/proxmox-api/compare/3.0.0...4.0.0) (2026-11-16)
 
 
