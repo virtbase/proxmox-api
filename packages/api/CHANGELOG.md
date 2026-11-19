@@ -14,6 +14,13 @@ commit conventions, so the sections below them were inferred from commit
 subjects and are approximate. Where the previous maintainer wrote release notes
 by hand, they are kept verbatim above the reconstructed sections.
 
+## [5.0.1](https://github.com/virtbase/proxmox-api/compare/5.0.0...5.0.1) (2026-11-19)
+
+
+### Documentation
+
+* move the documentation to proxmox-api.virtbase.com and rework the site ([#26](https://github.com/virtbase/proxmox-api/issues/26)) ([5c937a6](https://github.com/virtbase/proxmox-api/commit/5c937a6c28c391ba6d461fe7719b344512f6ba5f))
+
 ## [5.0.0](https://github.com/virtbase/proxmox-api/compare/4.0.0...5.0.0) (2026-11-19)
 
 
