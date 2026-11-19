@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `GET /nodes/{node}/version`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/version`
 
 ```ts
 proxmox.nodes.$(node).version.$get()
@@ -22,3 +22,5 @@ Returns `object`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/version" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

@@ -9,7 +9,7 @@ editLink: false
 
 7 operations.
 
-### `GET /nodes/{node}/services`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/services`
 
 ```ts
 proxmox.nodes.$(node).services.$get()
@@ -23,7 +23,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/services/{service}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/services" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/services/{service}`
 
 ```ts
 proxmox.nodes.$(node).services.$(service).$get()
@@ -38,7 +40,9 @@ Returns an array of `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `service` | `chrony` \| `corosync` \| `cron` \| `ksmtuned` \| `lxcfs` \| `postfix` \| `proxmox-firewall` \| `pve-cluster` \| … (15 more) | yes | Service ID |
 
-### `POST /nodes/{node}/services/{service}/reload`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/services/{service}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/services/{service}/reload`
 
 ```ts
 proxmox.nodes.$(node).services.$(service).reload.$post()
@@ -53,7 +57,9 @@ Returns `string`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `service` | `chrony` \| `corosync` \| `cron` \| `ksmtuned` \| `lxcfs` \| `postfix` \| `proxmox-firewall` \| `pve-cluster` \| … (15 more) | yes | Service ID |
 
-### `POST /nodes/{node}/services/{service}/restart`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/services/{service}/reload" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/services/{service}/restart`
 
 ```ts
 proxmox.nodes.$(node).services.$(service).restart.$post()
@@ -68,7 +74,9 @@ Returns `string`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `service` | `chrony` \| `corosync` \| `cron` \| `ksmtuned` \| `lxcfs` \| `postfix` \| `proxmox-firewall` \| `pve-cluster` \| … (15 more) | yes | Service ID |
 
-### `POST /nodes/{node}/services/{service}/start`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/services/{service}/restart" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/services/{service}/start`
 
 ```ts
 proxmox.nodes.$(node).services.$(service).start.$post()
@@ -83,7 +91,9 @@ Returns `string`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `service` | `chrony` \| `corosync` \| `cron` \| `ksmtuned` \| `lxcfs` \| `postfix` \| `proxmox-firewall` \| `pve-cluster` \| … (15 more) | yes | Service ID |
 
-### `GET /nodes/{node}/services/{service}/state`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/services/{service}/start" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/services/{service}/state`
 
 ```ts
 proxmox.nodes.$(node).services.$(service).state.$get()
@@ -98,7 +108,9 @@ Returns `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `service` | `chrony` \| `corosync` \| `cron` \| `ksmtuned` \| `lxcfs` \| `postfix` \| `proxmox-firewall` \| `pve-cluster` \| … (15 more) | yes | Service ID |
 
-### `POST /nodes/{node}/services/{service}/stop`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/services/{service}/state" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/services/{service}/stop`
 
 ```ts
 proxmox.nodes.$(node).services.$(service).stop.$post()
@@ -112,3 +124,5 @@ Returns `string`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `service` | `chrony` \| `corosync` \| `cron` \| `ksmtuned` \| `lxcfs` \| `postfix` \| `proxmox-firewall` \| `pve-cluster` \| … (15 more) | yes | Service ID |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/services/{service}/stop" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `GET /cluster/resources`
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/resources`
 
 ```ts
 proxmox.cluster.resources.$get()
@@ -22,3 +22,5 @@ Returns an array of `object`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `type` | `vm` \| `storage` \| `node` \| `sdn` |  | Resource type. |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/resources" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

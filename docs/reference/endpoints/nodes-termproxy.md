@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `POST /nodes/{node}/termproxy`
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/termproxy`
 
 ```ts
 proxmox.nodes.$(node).termproxy.$post()
@@ -24,3 +24,5 @@ Returns `any`.
 | `cmd` | `ceph_install` \| `login` \| `upgrade` |  | Run specific command or default to login (requires 'root@pam') — default `"login"` |
 | `cmd-opts` | string |  | Add parameters to a command. Encoded as null terminated strings. — default `""` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/termproxy" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

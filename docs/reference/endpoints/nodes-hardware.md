@@ -9,7 +9,7 @@ editLink: false
 
 5 operations.
 
-### `GET /nodes/{node}/hardware`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/hardware`
 
 ```ts
 proxmox.nodes.$(node).hardware.$get()
@@ -23,7 +23,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/hardware/pci`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/hardware" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/hardware/pci`
 
 ```ts
 proxmox.nodes.$(node).hardware.pci.$get()
@@ -39,7 +41,9 @@ Returns an array of `object`.
 | `pci-class-blacklist` | string |  | A list of blacklisted PCI classes, which will not be returned. Following are filtered by default: Memory Controller (05), Bridge (06) and Processor (0b). — format `string-list`, default `"05;06;0b"` |
 | `verbose` | boolean |  | If disabled, does only print the PCI IDs. Otherwise, additional information like vendor and device will be returned. — default `1` |
 
-### `GET /nodes/{node}/hardware/pci/{pci-id-or-mapping}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/hardware/pci" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/hardware/pci/{pci-id-or-mapping}`
 
 ```ts
 proxmox.nodes.$(node).hardware.pci.$(pciIdOrMapping).$get()
@@ -54,7 +58,9 @@ Returns an array of `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `pci-id-or-mapping` | string | yes |  |
 
-### `GET /nodes/{node}/hardware/pci/{pci-id-or-mapping}/mdev`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/hardware/pci/{pci-id-or-mapping}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/hardware/pci/{pci-id-or-mapping}/mdev`
 
 ```ts
 proxmox.nodes.$(node).hardware.pci.$(pciIdOrMapping).mdev.$get()
@@ -69,7 +75,9 @@ Returns an array of `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `pci-id-or-mapping` | string | yes | The PCI ID or mapping to list the mdev types for. |
 
-### `GET /nodes/{node}/hardware/usb`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/hardware/pci/{pci-id-or-mapping}/mdev" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/hardware/usb`
 
 ```ts
 proxmox.nodes.$(node).hardware.usb.$get()
@@ -82,3 +90,5 @@ Returns an array of `object`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/hardware/usb" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

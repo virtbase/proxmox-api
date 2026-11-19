@@ -9,7 +9,7 @@ editLink: false
 
 5 operations.
 
-### `GET /access/roles`
+### <span class="method-badge" data-method="GET">GET</span> `/access/roles`
 
 ```ts
 proxmox.access.roles.$get()
@@ -19,7 +19,9 @@ Role index.
 
 Returns an array of `object`.
 
-### `POST /access/roles`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/roles" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/access/roles`
 
 ```ts
 proxmox.access.roles.$post()
@@ -34,7 +36,9 @@ Returns nothing.
 | `privs` | string |  | format `pve-priv-list` |
 | `roleid` | string | yes | format `pve-roleid` |
 
-### `GET /access/roles/{roleid}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/roles" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/access/roles/{roleid}`
 
 ```ts
 proxmox.access.roles.$(roleid).$get()
@@ -48,7 +52,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `roleid` | string | yes | format `pve-roleid` |
 
-### `PUT /access/roles/{roleid}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/roles/{roleid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/access/roles/{roleid}`
 
 ```ts
 proxmox.access.roles.$(roleid).$put()
@@ -64,7 +70,9 @@ Returns nothing.
 | `privs` | string |  | format `pve-priv-list` |
 | `roleid` | string | yes | format `pve-roleid` |
 
-### `DELETE /access/roles/{roleid}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/roles/{roleid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/access/roles/{roleid}`
 
 ```ts
 proxmox.access.roles.$(roleid).$delete()
@@ -77,3 +85,5 @@ Returns nothing.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `roleid` | string | yes | format `pve-roleid` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/roles/{roleid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

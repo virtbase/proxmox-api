@@ -9,7 +9,7 @@ editLink: false
 
 2 operations.
 
-### `GET /cluster/options`
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/options`
 
 ```ts
 proxmox.cluster.options.$get()
@@ -19,7 +19,9 @@ Get datacenter options. Without 'Sys.Audit' on '/' not all options are returned.
 
 Returns `object`.
 
-### `PUT /cluster/options`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/options" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/options`
 
 ```ts
 proxmox.cluster.options.$put()
@@ -28,6 +30,8 @@ proxmox.cluster.options.$put()
 Set datacenter options.
 
 Returns nothing.
+
+::: details 25 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -56,3 +60,7 @@ Returns nothing.
 | `u2f` | string |  | u2f |
 | `user-tag-access` | string |  | Privilege options for user-settable tags |
 | `webauthn` | string |  | webauthn configuration |
+
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/options" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

@@ -9,7 +9,7 @@ editLink: false
 
 2 operations.
 
-### `GET /nodes/{node}/dns`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/dns`
 
 ```ts
 proxmox.nodes.$(node).dns.$get()
@@ -23,7 +23,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `PUT /nodes/{node}/dns`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/dns" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/nodes/{node}/dns`
 
 ```ts
 proxmox.nodes.$(node).dns.$put()
@@ -40,3 +42,5 @@ Returns nothing.
 | `dns3` | string |  | Third name server IP address. — format `ip` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `search` | string | yes | Search domain for host-name lookup. |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/dns" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

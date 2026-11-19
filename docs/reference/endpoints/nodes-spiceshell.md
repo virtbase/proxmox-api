@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `POST /nodes/{node}/spiceshell`
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/spiceshell`
 
 ```ts
 proxmox.nodes.$(node).spiceshell.$post()
@@ -25,3 +25,5 @@ Returns `any`.
 | `cmd-opts` | string |  | Add parameters to a command. Encoded as null terminated strings. — default `""` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `proxy` | string |  | SPICE proxy server. This can be used by the client to specify the proxy server. All nodes in a cluster runs 'spiceproxy', so it is up to the client to choose one. By default, we return the node where the VM is currently running. As reasonable setting is to use same node you use to connect to the API (This is window.location.hostname for the JS GUI). — format `address` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/spiceshell" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

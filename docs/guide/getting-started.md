@@ -1,3 +1,7 @@
+---
+description: "Install @virtbase/proxmox-api, connect to a Proxmox VE cluster with an API token, and deal with the cluster's self-signed certificate."
+---
+
 # Getting started
 
 `@virtbase/proxmox-api` maps the Proxmox VE API onto property access. Every
@@ -16,6 +20,9 @@ npm install @virtbase/proxmox-api
 ```
 ```bash [pnpm]
 pnpm add @virtbase/proxmox-api
+```
+```bash [deno]
+deno add npm:@virtbase/proxmox-api
 ```
 :::
 

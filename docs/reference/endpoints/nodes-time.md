@@ -9,7 +9,7 @@ editLink: false
 
 2 operations.
 
-### `GET /nodes/{node}/time`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/time`
 
 ```ts
 proxmox.nodes.$(node).time.$get()
@@ -23,7 +23,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `PUT /nodes/{node}/time`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/time" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/nodes/{node}/time`
 
 ```ts
 proxmox.nodes.$(node).time.$put()
@@ -37,3 +39,5 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `timezone` | string | yes | Time zone. The file '/usr/share/zoneinfo/zone.tab' contains the list of valid names. |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/time" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

@@ -43,7 +43,10 @@ Every one of the 688 operations in the Proxmox VE 9.2 API (schema
 | [cluster / qemu](./cluster-qemu) | 7 |
 | [cluster / replication](./cluster-replication) | 5 |
 | [cluster / resources](./cluster-resources) | 1 |
-| [cluster / sdn](./cluster-sdn) | 78 |
+| [cluster / sdn](./cluster-sdn) | 34 |
+| [cluster / sdn / fabrics](./cluster-sdn-fabrics) | 13 |
+| [cluster / sdn / prefix-lists](./cluster-sdn-prefix-lists) | 10 |
+| [cluster / sdn / vnets](./cluster-sdn-vnets) | 21 |
 | [cluster / status](./cluster-status) | 1 |
 | [cluster / tasks](./cluster-tasks) | 1 |
 | [nodes](./nodes) | 2 |
@@ -60,11 +63,14 @@ Every one of the 688 operations in the Proxmox VE 9.2 API (schema
 | [nodes / hardware](./nodes-hardware) | 5 |
 | [nodes / hosts](./nodes-hosts) | 2 |
 | [nodes / journal](./nodes-journal) | 1 |
-| [nodes / lxc](./nodes-lxc) | 62 |
+| [nodes / lxc](./nodes-lxc) | 39 |
+| [nodes / lxc / firewall](./nodes-lxc-firewall) | 23 |
 | [nodes / migrateall](./nodes-migrateall) | 1 |
 | [nodes / netstat](./nodes-netstat) | 1 |
 | [nodes / network](./nodes-network) | 7 |
-| [nodes / qemu](./nodes-qemu) | 101 |
+| [nodes / qemu](./nodes-qemu) | 47 |
+| [nodes / qemu / agent](./nodes-qemu-agent) | 31 |
+| [nodes / qemu / firewall](./nodes-qemu-firewall) | 23 |
 | [nodes / query-oci-repo-tags](./nodes-query-oci-repo-tags) | 1 |
 | [nodes / query-url-metadata](./nodes-query-url-metadata) | 1 |
 | [nodes / replication](./nodes-replication) | 5 |

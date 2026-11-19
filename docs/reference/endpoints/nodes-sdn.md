@@ -9,7 +9,7 @@ editLink: false
 
 12 operations.
 
-### `GET /nodes/{node}/sdn`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/sdn`
 
 ```ts
 proxmox.nodes.$(node).sdn.$get()
@@ -23,7 +23,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/sdn/fabrics/{fabric}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/sdn" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/sdn/fabrics/{fabric}`
 
 ```ts
 proxmox.nodes.$(node).sdn.fabrics.$(fabric).$get()
@@ -38,7 +40,9 @@ Returns an array of `object`.
 | `fabric` | string | yes | Identifier for SDN fabrics — format `pve-sdn-fabric-id`, ≤ 8 chars |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/sdn/fabrics/{fabric}/interfaces`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/sdn/fabrics/{fabric}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/sdn/fabrics/{fabric}/interfaces`
 
 ```ts
 proxmox.nodes.$(node).sdn.fabrics.$(fabric).interfaces.$get()
@@ -53,7 +57,9 @@ Returns an array of `object`.
 | `fabric` | string | yes | Identifier for SDN fabrics — format `pve-sdn-fabric-id`, ≤ 8 chars |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/sdn/fabrics/{fabric}/neighbors`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/sdn/fabrics/{fabric}/interfaces" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/sdn/fabrics/{fabric}/neighbors`
 
 ```ts
 proxmox.nodes.$(node).sdn.fabrics.$(fabric).neighbors.$get()
@@ -68,7 +74,9 @@ Returns an array of `object`.
 | `fabric` | string | yes | Identifier for SDN fabrics — format `pve-sdn-fabric-id`, ≤ 8 chars |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/sdn/fabrics/{fabric}/routes`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/sdn/fabrics/{fabric}/neighbors" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/sdn/fabrics/{fabric}/routes`
 
 ```ts
 proxmox.nodes.$(node).sdn.fabrics.$(fabric).routes.$get()
@@ -83,7 +91,9 @@ Returns an array of `object`.
 | `fabric` | string | yes | Identifier for SDN fabrics — format `pve-sdn-fabric-id`, ≤ 8 chars |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/sdn/vnets/{vnet}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/sdn/fabrics/{fabric}/routes" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/sdn/vnets/{vnet}`
 
 ```ts
 proxmox.nodes.$(node).sdn.vnets.$(vnet).$get()
@@ -96,7 +106,9 @@ Returns an array of `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
 
-### `GET /nodes/{node}/sdn/vnets/{vnet}/mac-vrf`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/sdn/vnets/{vnet}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/sdn/vnets/{vnet}/mac-vrf`
 
 ```ts
 proxmox.nodes.$(node).sdn.vnets.$(vnet)["mac-vrf"].$get()
@@ -111,7 +123,9 @@ Returns an array of `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
 
-### `GET /nodes/{node}/sdn/zones`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/sdn/vnets/{vnet}/mac-vrf" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/sdn/zones`
 
 ```ts
 proxmox.nodes.$(node).sdn.zones.$get()
@@ -125,7 +139,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/sdn/zones/{zone}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/sdn/zones" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/sdn/zones/{zone}`
 
 ```ts
 proxmox.nodes.$(node).sdn.zones.$(zone).$get()
@@ -140,7 +156,9 @@ Returns an array of `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `zone` | string | yes | The SDN zone object identifier. — ≤ 8 chars |
 
-### `GET /nodes/{node}/sdn/zones/{zone}/bridges`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/sdn/zones/{zone}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/sdn/zones/{zone}/bridges`
 
 ```ts
 proxmox.nodes.$(node).sdn.zones.$(zone).bridges.$get()
@@ -155,7 +173,9 @@ Returns an array of `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `zone` | string | yes | zone name or "localnetwork" |
 
-### `GET /nodes/{node}/sdn/zones/{zone}/content`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/sdn/zones/{zone}/bridges" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/sdn/zones/{zone}/content`
 
 ```ts
 proxmox.nodes.$(node).sdn.zones.$(zone).content.$get()
@@ -170,7 +190,9 @@ Returns an array of `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `zone` | string | yes | The SDN zone object identifier. — ≤ 8 chars |
 
-### `GET /nodes/{node}/sdn/zones/{zone}/ip-vrf`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/sdn/zones/{zone}/content" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/sdn/zones/{zone}/ip-vrf`
 
 ```ts
 proxmox.nodes.$(node).sdn.zones.$(zone)["ip-vrf"].$get()
@@ -184,3 +206,5 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `zone` | string | yes | Name of an EVPN zone. |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/sdn/zones/{zone}/ip-vrf" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

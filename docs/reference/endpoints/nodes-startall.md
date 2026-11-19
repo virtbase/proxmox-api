@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `POST /nodes/{node}/startall`
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/startall`
 
 ```ts
 proxmox.nodes.$(node).startall.$post()
@@ -25,3 +25,5 @@ Returns `string`.
 | `max-workers` | number |  | Defines the maximum number of tasks running concurrently. If not set, uses 'max_workers' from datacenter.cfg, and if that's not set, the available CPU threads, clamped to a maximum of 8, are used. — min 1, max 64 |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `vms` | string |  | Only consider guests from this comma separated list of VMIDs. — format `pve-vmid-list` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/startall" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

@@ -9,7 +9,7 @@ editLink: false
 
 5 operations.
 
-### `GET /nodes/{node}/replication`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/replication`
 
 ```ts
 proxmox.nodes.$(node).replication.$get()
@@ -24,7 +24,9 @@ Returns an array of `object`.
 | `guest` | number |  | Only list replication jobs for this guest. — format `pve-vmid`, min 100, max 999999999 |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/replication/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/replication" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/replication/{id}`
 
 ```ts
 proxmox.nodes.$(node).replication.$(id).$get()
@@ -39,7 +41,9 @@ Returns an array of `object`.
 | `id` | string | yes | Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. '&lt;GUEST&gt;-&lt;JOBNUM&gt;'. — format `pve-replication-job-id` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/replication/{id}/log`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/replication/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/replication/{id}/log`
 
 ```ts
 proxmox.nodes.$(node).replication.$(id).log.$get()
@@ -56,7 +60,9 @@ Returns an array of `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `start` | number |  | min 0 |
 
-### `POST /nodes/{node}/replication/{id}/schedule_now`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/replication/{id}/log" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/replication/{id}/schedule_now`
 
 ```ts
 proxmox.nodes.$(node).replication.$(id).schedule_now.$post()
@@ -71,7 +77,9 @@ Returns `string`.
 | `id` | string | yes | Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. '&lt;GUEST&gt;-&lt;JOBNUM&gt;'. — format `pve-replication-job-id` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/replication/{id}/status`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/replication/{id}/schedule_now" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/replication/{id}/status`
 
 ```ts
 proxmox.nodes.$(node).replication.$(id).status.$get()
@@ -85,3 +93,5 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `id` | string | yes | Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. '&lt;GUEST&gt;-&lt;JOBNUM&gt;'. — format `pve-replication-job-id` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/replication/{id}/status" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

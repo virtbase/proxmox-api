@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `POST /nodes/{node}/suspendall`
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/suspendall`
 
 ```ts
 proxmox.nodes.$(node).suspendall.$post()
@@ -24,3 +24,5 @@ Returns `string`.
 | `max-workers` | number |  | Maximal number of parallel migration job. If not set, uses'max_workers' from datacenter.cfg, and if that's not set the available'                     .' CPU threads, clamped to a maximum of 8, are used. — min 1, max 64 |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `vms` | string |  | Only consider Guests with these IDs. — format `pve-vmid-list` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/suspendall" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

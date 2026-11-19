@@ -1,338 +1,388 @@
 [
   {
     "text": "Endpoints",
-    "link": "/reference/endpoints/"
-  },
-  {
-    "text": "access",
-    "link": "/reference/endpoints/access"
-  },
-  {
-    "text": "access / acl",
-    "link": "/reference/endpoints/access-acl"
-  },
-  {
-    "text": "access / domains",
-    "link": "/reference/endpoints/access-domains"
-  },
-  {
-    "text": "access / groups",
-    "link": "/reference/endpoints/access-groups"
-  },
-  {
-    "text": "access / openid",
-    "link": "/reference/endpoints/access-openid"
-  },
-  {
-    "text": "access / password",
-    "link": "/reference/endpoints/access-password"
-  },
-  {
-    "text": "access / permissions",
-    "link": "/reference/endpoints/access-permissions"
-  },
-  {
-    "text": "access / roles",
-    "link": "/reference/endpoints/access-roles"
-  },
-  {
-    "text": "access / tfa",
-    "link": "/reference/endpoints/access-tfa"
-  },
-  {
-    "text": "access / ticket",
-    "link": "/reference/endpoints/access-ticket"
-  },
-  {
-    "text": "access / users",
-    "link": "/reference/endpoints/access-users"
-  },
-  {
-    "text": "access / vncticket",
-    "link": "/reference/endpoints/access-vncticket"
-  },
-  {
-    "text": "cluster",
-    "link": "/reference/endpoints/cluster"
-  },
-  {
-    "text": "cluster / acme",
-    "link": "/reference/endpoints/cluster-acme"
-  },
-  {
-    "text": "cluster / backup",
-    "link": "/reference/endpoints/cluster-backup"
-  },
-  {
-    "text": "cluster / backup-info",
-    "link": "/reference/endpoints/cluster-backup-info"
-  },
-  {
-    "text": "cluster / bulk-action",
-    "link": "/reference/endpoints/cluster-bulk-action"
-  },
-  {
-    "text": "cluster / ceph",
-    "link": "/reference/endpoints/cluster-ceph"
-  },
-  {
-    "text": "cluster / config",
-    "link": "/reference/endpoints/cluster-config"
-  },
-  {
-    "text": "cluster / firewall",
-    "link": "/reference/endpoints/cluster-firewall"
-  },
-  {
-    "text": "cluster / ha",
-    "link": "/reference/endpoints/cluster-ha"
-  },
-  {
-    "text": "cluster / jobs",
-    "link": "/reference/endpoints/cluster-jobs"
-  },
-  {
-    "text": "cluster / log",
-    "link": "/reference/endpoints/cluster-log"
-  },
-  {
-    "text": "cluster / mapping",
-    "link": "/reference/endpoints/cluster-mapping"
-  },
-  {
-    "text": "cluster / metrics",
-    "link": "/reference/endpoints/cluster-metrics"
-  },
-  {
-    "text": "cluster / nextid",
-    "link": "/reference/endpoints/cluster-nextid"
-  },
-  {
-    "text": "cluster / notifications",
-    "link": "/reference/endpoints/cluster-notifications"
-  },
-  {
-    "text": "cluster / options",
-    "link": "/reference/endpoints/cluster-options"
-  },
-  {
-    "text": "cluster / qemu",
-    "link": "/reference/endpoints/cluster-qemu"
-  },
-  {
-    "text": "cluster / replication",
-    "link": "/reference/endpoints/cluster-replication"
-  },
-  {
-    "text": "cluster / resources",
-    "link": "/reference/endpoints/cluster-resources"
-  },
-  {
-    "text": "cluster / sdn",
-    "link": "/reference/endpoints/cluster-sdn"
-  },
-  {
-    "text": "cluster / status",
-    "link": "/reference/endpoints/cluster-status"
-  },
-  {
-    "text": "cluster / tasks",
-    "link": "/reference/endpoints/cluster-tasks"
-  },
-  {
-    "text": "nodes",
-    "link": "/reference/endpoints/nodes"
-  },
-  {
-    "text": "nodes / aplinfo",
-    "link": "/reference/endpoints/nodes-aplinfo"
-  },
-  {
-    "text": "nodes / apt",
-    "link": "/reference/endpoints/nodes-apt"
-  },
-  {
-    "text": "nodes / capabilities",
-    "link": "/reference/endpoints/nodes-capabilities"
-  },
-  {
-    "text": "nodes / ceph",
-    "link": "/reference/endpoints/nodes-ceph"
-  },
-  {
-    "text": "nodes / certificates",
-    "link": "/reference/endpoints/nodes-certificates"
-  },
-  {
-    "text": "nodes / config",
-    "link": "/reference/endpoints/nodes-config"
-  },
-  {
-    "text": "nodes / disks",
-    "link": "/reference/endpoints/nodes-disks"
-  },
-  {
-    "text": "nodes / dns",
-    "link": "/reference/endpoints/nodes-dns"
-  },
-  {
-    "text": "nodes / execute",
-    "link": "/reference/endpoints/nodes-execute"
-  },
-  {
-    "text": "nodes / firewall",
-    "link": "/reference/endpoints/nodes-firewall"
-  },
-  {
-    "text": "nodes / hardware",
-    "link": "/reference/endpoints/nodes-hardware"
-  },
-  {
-    "text": "nodes / hosts",
-    "link": "/reference/endpoints/nodes-hosts"
-  },
-  {
-    "text": "nodes / journal",
-    "link": "/reference/endpoints/nodes-journal"
-  },
-  {
-    "text": "nodes / lxc",
-    "link": "/reference/endpoints/nodes-lxc"
-  },
-  {
-    "text": "nodes / migrateall",
-    "link": "/reference/endpoints/nodes-migrateall"
-  },
-  {
-    "text": "nodes / netstat",
-    "link": "/reference/endpoints/nodes-netstat"
-  },
-  {
-    "text": "nodes / network",
-    "link": "/reference/endpoints/nodes-network"
-  },
-  {
-    "text": "nodes / qemu",
-    "link": "/reference/endpoints/nodes-qemu"
-  },
-  {
-    "text": "nodes / query-oci-repo-tags",
-    "link": "/reference/endpoints/nodes-query-oci-repo-tags"
-  },
-  {
-    "text": "nodes / query-url-metadata",
-    "link": "/reference/endpoints/nodes-query-url-metadata"
-  },
-  {
-    "text": "nodes / replication",
-    "link": "/reference/endpoints/nodes-replication"
-  },
-  {
-    "text": "nodes / report",
-    "link": "/reference/endpoints/nodes-report"
-  },
-  {
-    "text": "nodes / rrd",
-    "link": "/reference/endpoints/nodes-rrd"
-  },
-  {
-    "text": "nodes / rrddata",
-    "link": "/reference/endpoints/nodes-rrddata"
-  },
-  {
-    "text": "nodes / scan",
-    "link": "/reference/endpoints/nodes-scan"
-  },
-  {
-    "text": "nodes / sdn",
-    "link": "/reference/endpoints/nodes-sdn"
-  },
-  {
-    "text": "nodes / services",
-    "link": "/reference/endpoints/nodes-services"
-  },
-  {
-    "text": "nodes / spiceshell",
-    "link": "/reference/endpoints/nodes-spiceshell"
-  },
-  {
-    "text": "nodes / startall",
-    "link": "/reference/endpoints/nodes-startall"
-  },
-  {
-    "text": "nodes / status",
-    "link": "/reference/endpoints/nodes-status"
-  },
-  {
-    "text": "nodes / stopall",
-    "link": "/reference/endpoints/nodes-stopall"
-  },
-  {
-    "text": "nodes / storage",
-    "link": "/reference/endpoints/nodes-storage"
-  },
-  {
-    "text": "nodes / subscription",
-    "link": "/reference/endpoints/nodes-subscription"
-  },
-  {
-    "text": "nodes / suspendall",
-    "link": "/reference/endpoints/nodes-suspendall"
-  },
-  {
-    "text": "nodes / syslog",
-    "link": "/reference/endpoints/nodes-syslog"
-  },
-  {
-    "text": "nodes / tasks",
-    "link": "/reference/endpoints/nodes-tasks"
-  },
-  {
-    "text": "nodes / termproxy",
-    "link": "/reference/endpoints/nodes-termproxy"
-  },
-  {
-    "text": "nodes / time",
-    "link": "/reference/endpoints/nodes-time"
-  },
-  {
-    "text": "nodes / version",
-    "link": "/reference/endpoints/nodes-version"
-  },
-  {
-    "text": "nodes / vncshell",
-    "link": "/reference/endpoints/nodes-vncshell"
-  },
-  {
-    "text": "nodes / vncwebsocket",
-    "link": "/reference/endpoints/nodes-vncwebsocket"
-  },
-  {
-    "text": "nodes / vzdump",
-    "link": "/reference/endpoints/nodes-vzdump"
-  },
-  {
-    "text": "nodes / wakeonlan",
-    "link": "/reference/endpoints/nodes-wakeonlan"
-  },
-  {
-    "text": "plugins",
-    "link": "/reference/endpoints/plugins"
-  },
-  {
-    "text": "plugins / storage",
-    "link": "/reference/endpoints/plugins-storage"
-  },
-  {
-    "text": "pools",
-    "link": "/reference/endpoints/pools"
-  },
-  {
-    "text": "storage",
-    "link": "/reference/endpoints/storage"
-  },
-  {
-    "text": "version",
-    "link": "/reference/endpoints/version"
+    "items": [
+      {
+        "text": "Overview",
+        "link": "/reference/endpoints/"
+      },
+      {
+        "text": "access",
+        "items": [
+          {
+            "text": "acl",
+            "link": "/reference/endpoints/access-acl"
+          },
+          {
+            "text": "domains",
+            "link": "/reference/endpoints/access-domains"
+          },
+          {
+            "text": "groups",
+            "link": "/reference/endpoints/access-groups"
+          },
+          {
+            "text": "openid",
+            "link": "/reference/endpoints/access-openid"
+          },
+          {
+            "text": "password",
+            "link": "/reference/endpoints/access-password"
+          },
+          {
+            "text": "permissions",
+            "link": "/reference/endpoints/access-permissions"
+          },
+          {
+            "text": "roles",
+            "link": "/reference/endpoints/access-roles"
+          },
+          {
+            "text": "tfa",
+            "link": "/reference/endpoints/access-tfa"
+          },
+          {
+            "text": "ticket",
+            "link": "/reference/endpoints/access-ticket"
+          },
+          {
+            "text": "users",
+            "link": "/reference/endpoints/access-users"
+          },
+          {
+            "text": "vncticket",
+            "link": "/reference/endpoints/access-vncticket"
+          }
+        ],
+        "link": "/reference/endpoints/access",
+        "collapsed": true
+      },
+      {
+        "text": "cluster",
+        "items": [
+          {
+            "text": "acme",
+            "link": "/reference/endpoints/cluster-acme"
+          },
+          {
+            "text": "backup",
+            "link": "/reference/endpoints/cluster-backup"
+          },
+          {
+            "text": "backup-info",
+            "link": "/reference/endpoints/cluster-backup-info"
+          },
+          {
+            "text": "bulk-action",
+            "link": "/reference/endpoints/cluster-bulk-action"
+          },
+          {
+            "text": "ceph",
+            "link": "/reference/endpoints/cluster-ceph"
+          },
+          {
+            "text": "config",
+            "link": "/reference/endpoints/cluster-config"
+          },
+          {
+            "text": "firewall",
+            "link": "/reference/endpoints/cluster-firewall"
+          },
+          {
+            "text": "ha",
+            "link": "/reference/endpoints/cluster-ha"
+          },
+          {
+            "text": "jobs",
+            "link": "/reference/endpoints/cluster-jobs"
+          },
+          {
+            "text": "log",
+            "link": "/reference/endpoints/cluster-log"
+          },
+          {
+            "text": "mapping",
+            "link": "/reference/endpoints/cluster-mapping"
+          },
+          {
+            "text": "metrics",
+            "link": "/reference/endpoints/cluster-metrics"
+          },
+          {
+            "text": "nextid",
+            "link": "/reference/endpoints/cluster-nextid"
+          },
+          {
+            "text": "notifications",
+            "link": "/reference/endpoints/cluster-notifications"
+          },
+          {
+            "text": "options",
+            "link": "/reference/endpoints/cluster-options"
+          },
+          {
+            "text": "qemu",
+            "link": "/reference/endpoints/cluster-qemu"
+          },
+          {
+            "text": "replication",
+            "link": "/reference/endpoints/cluster-replication"
+          },
+          {
+            "text": "resources",
+            "link": "/reference/endpoints/cluster-resources"
+          },
+          {
+            "text": "sdn",
+            "items": [
+              {
+                "text": "fabrics",
+                "link": "/reference/endpoints/cluster-sdn-fabrics"
+              },
+              {
+                "text": "prefix-lists",
+                "link": "/reference/endpoints/cluster-sdn-prefix-lists"
+              },
+              {
+                "text": "vnets",
+                "link": "/reference/endpoints/cluster-sdn-vnets"
+              }
+            ],
+            "link": "/reference/endpoints/cluster-sdn",
+            "collapsed": true
+          },
+          {
+            "text": "status",
+            "link": "/reference/endpoints/cluster-status"
+          },
+          {
+            "text": "tasks",
+            "link": "/reference/endpoints/cluster-tasks"
+          }
+        ],
+        "link": "/reference/endpoints/cluster",
+        "collapsed": true
+      },
+      {
+        "text": "nodes",
+        "items": [
+          {
+            "text": "aplinfo",
+            "link": "/reference/endpoints/nodes-aplinfo"
+          },
+          {
+            "text": "apt",
+            "link": "/reference/endpoints/nodes-apt"
+          },
+          {
+            "text": "capabilities",
+            "link": "/reference/endpoints/nodes-capabilities"
+          },
+          {
+            "text": "ceph",
+            "link": "/reference/endpoints/nodes-ceph"
+          },
+          {
+            "text": "certificates",
+            "link": "/reference/endpoints/nodes-certificates"
+          },
+          {
+            "text": "config",
+            "link": "/reference/endpoints/nodes-config"
+          },
+          {
+            "text": "disks",
+            "link": "/reference/endpoints/nodes-disks"
+          },
+          {
+            "text": "dns",
+            "link": "/reference/endpoints/nodes-dns"
+          },
+          {
+            "text": "execute",
+            "link": "/reference/endpoints/nodes-execute"
+          },
+          {
+            "text": "firewall",
+            "link": "/reference/endpoints/nodes-firewall"
+          },
+          {
+            "text": "hardware",
+            "link": "/reference/endpoints/nodes-hardware"
+          },
+          {
+            "text": "hosts",
+            "link": "/reference/endpoints/nodes-hosts"
+          },
+          {
+            "text": "journal",
+            "link": "/reference/endpoints/nodes-journal"
+          },
+          {
+            "text": "lxc",
+            "items": [
+              {
+                "text": "firewall",
+                "link": "/reference/endpoints/nodes-lxc-firewall"
+              }
+            ],
+            "link": "/reference/endpoints/nodes-lxc",
+            "collapsed": true
+          },
+          {
+            "text": "migrateall",
+            "link": "/reference/endpoints/nodes-migrateall"
+          },
+          {
+            "text": "netstat",
+            "link": "/reference/endpoints/nodes-netstat"
+          },
+          {
+            "text": "network",
+            "link": "/reference/endpoints/nodes-network"
+          },
+          {
+            "text": "qemu",
+            "items": [
+              {
+                "text": "agent",
+                "link": "/reference/endpoints/nodes-qemu-agent"
+              },
+              {
+                "text": "firewall",
+                "link": "/reference/endpoints/nodes-qemu-firewall"
+              }
+            ],
+            "link": "/reference/endpoints/nodes-qemu",
+            "collapsed": true
+          },
+          {
+            "text": "query-oci-repo-tags",
+            "link": "/reference/endpoints/nodes-query-oci-repo-tags"
+          },
+          {
+            "text": "query-url-metadata",
+            "link": "/reference/endpoints/nodes-query-url-metadata"
+          },
+          {
+            "text": "replication",
+            "link": "/reference/endpoints/nodes-replication"
+          },
+          {
+            "text": "report",
+            "link": "/reference/endpoints/nodes-report"
+          },
+          {
+            "text": "rrd",
+            "link": "/reference/endpoints/nodes-rrd"
+          },
+          {
+            "text": "rrddata",
+            "link": "/reference/endpoints/nodes-rrddata"
+          },
+          {
+            "text": "scan",
+            "link": "/reference/endpoints/nodes-scan"
+          },
+          {
+            "text": "sdn",
+            "link": "/reference/endpoints/nodes-sdn"
+          },
+          {
+            "text": "services",
+            "link": "/reference/endpoints/nodes-services"
+          },
+          {
+            "text": "spiceshell",
+            "link": "/reference/endpoints/nodes-spiceshell"
+          },
+          {
+            "text": "startall",
+            "link": "/reference/endpoints/nodes-startall"
+          },
+          {
+            "text": "status",
+            "link": "/reference/endpoints/nodes-status"
+          },
+          {
+            "text": "stopall",
+            "link": "/reference/endpoints/nodes-stopall"
+          },
+          {
+            "text": "storage",
+            "link": "/reference/endpoints/nodes-storage"
+          },
+          {
+            "text": "subscription",
+            "link": "/reference/endpoints/nodes-subscription"
+          },
+          {
+            "text": "suspendall",
+            "link": "/reference/endpoints/nodes-suspendall"
+          },
+          {
+            "text": "syslog",
+            "link": "/reference/endpoints/nodes-syslog"
+          },
+          {
+            "text": "tasks",
+            "link": "/reference/endpoints/nodes-tasks"
+          },
+          {
+            "text": "termproxy",
+            "link": "/reference/endpoints/nodes-termproxy"
+          },
+          {
+            "text": "time",
+            "link": "/reference/endpoints/nodes-time"
+          },
+          {
+            "text": "version",
+            "link": "/reference/endpoints/nodes-version"
+          },
+          {
+            "text": "vncshell",
+            "link": "/reference/endpoints/nodes-vncshell"
+          },
+          {
+            "text": "vncwebsocket",
+            "link": "/reference/endpoints/nodes-vncwebsocket"
+          },
+          {
+            "text": "vzdump",
+            "link": "/reference/endpoints/nodes-vzdump"
+          },
+          {
+            "text": "wakeonlan",
+            "link": "/reference/endpoints/nodes-wakeonlan"
+          }
+        ],
+        "link": "/reference/endpoints/nodes",
+        "collapsed": true
+      },
+      {
+        "text": "plugins",
+        "items": [
+          {
+            "text": "storage",
+            "link": "/reference/endpoints/plugins-storage"
+          }
+        ],
+        "link": "/reference/endpoints/plugins",
+        "collapsed": true
+      },
+      {
+        "text": "pools",
+        "link": "/reference/endpoints/pools"
+      },
+      {
+        "text": "storage",
+        "link": "/reference/endpoints/storage"
+      },
+      {
+        "text": "version",
+        "link": "/reference/endpoints/version"
+      }
+    ]
   }
 ]

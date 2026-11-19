@@ -15,11 +15,11 @@ caught at compile time.
 - **Useful errors.** Typed error classes with the status, Proxmox's reason and
   the rejected parameters.
 - **Tracks Proxmox automatically**, with a published
-  [API changelog](https://virtbase.github.io/proxmox-api/reference/api-changelog/).
+  [API changelog](https://proxmox-api.virtbase.com/reference/api-changelog/).
 
-**[Documentation](https://virtbase.github.io/proxmox-api/)** ·
-[Compatibility](https://virtbase.github.io/proxmox-api/guide/compatibility) ·
-[Endpoint reference](https://virtbase.github.io/proxmox-api/reference/endpoints/)
+**[Documentation](https://proxmox-api.virtbase.com/)** ·
+[Compatibility](https://proxmox-api.virtbase.com/guide/compatibility) ·
+[Endpoint reference](https://proxmox-api.virtbase.com/reference/endpoints/)
 
 ## Install
 
@@ -28,7 +28,7 @@ npm install @virtbase/proxmox-api
 ```
 
 Each release is generated from one Proxmox VE version; see
-[Compatibility](https://virtbase.github.io/proxmox-api/guide/compatibility) for
+[Compatibility](https://proxmox-api.virtbase.com/guide/compatibility) for
 which release matches your cluster.
 
 ## Usage
@@ -78,7 +78,7 @@ proxmoxApi({ host, username: "user@pve", password });
 
 The port defaults to `8006`. A stock Proxmox install uses a certificate signed
 by its own CA; see
-[Self-signed certificates](https://virtbase.github.io/proxmox-api/guide/getting-started#self-signed-certificates).
+[Self-signed certificates](https://proxmox-api.virtbase.com/guide/getting-started#self-signed-certificates).
 
 ### Errors
 
@@ -97,7 +97,7 @@ try {
 ```
 
 Only `GET` requests are retried. See
-[Errors, retries and timeouts](https://virtbase.github.io/proxmox-api/guide/errors).
+[Errors, retries and timeouts](https://proxmox-api.virtbase.com/guide/errors).
 
 ## Credits
 

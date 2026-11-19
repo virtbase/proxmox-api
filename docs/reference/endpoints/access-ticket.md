@@ -9,7 +9,7 @@ editLink: false
 
 2 operations.
 
-### `GET /access/ticket`
+### <span class="method-badge" data-method="GET">GET</span> `/access/ticket`
 
 ```ts
 proxmox.access.ticket.$get()
@@ -19,7 +19,9 @@ Dummy. Useful for formatters which want to provide a login page.
 
 Returns nothing.
 
-### `POST /access/ticket`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/ticket" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/access/ticket`
 
 ```ts
 proxmox.access.ticket.$post()
@@ -43,3 +45,5 @@ Not callable with an API token.
 | `realm` | string |  | You can optionally pass the realm using this parameter. Normally the realm is simply added to the username &lt;username&gt;@&lt;realm&gt;. — format `pve-realm`, ≤ 32 chars |
 | `tfa-challenge` | string |  | The signed TFA challenge string the user wants to respond to. |
 | `username` | string | yes | User name — ≤ 64 chars |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/ticket" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

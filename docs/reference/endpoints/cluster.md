@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `GET /cluster`
+### <span class="method-badge" data-method="GET">GET</span> `/cluster`
 
 ```ts
 proxmox.cluster.$get()
@@ -18,3 +18,5 @@ proxmox.cluster.$get()
 Cluster index.
 
 Returns an array of `object`.
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

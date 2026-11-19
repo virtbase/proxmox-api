@@ -1,3 +1,7 @@
+---
+description: "Replace the fetch @virtbase/proxmox-api uses to trust a self-signed certificate, add logging and metrics, limit concurrency or test without a Proxmox server."
+---
+
 # Custom fetch
 
 Pass `fetch` to replace the transport. Anything matching the platform signature

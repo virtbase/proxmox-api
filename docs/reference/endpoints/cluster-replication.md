@@ -9,7 +9,7 @@ editLink: false
 
 5 operations.
 
-### `GET /cluster/replication`
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/replication`
 
 ```ts
 proxmox.cluster.replication.$get()
@@ -19,7 +19,9 @@ List replication jobs.
 
 Returns an array of `object`.
 
-### `POST /cluster/replication`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/replication" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/replication`
 
 ```ts
 proxmox.cluster.replication.$post()
@@ -31,18 +33,27 @@ Returns nothing.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
+| `id` | string | yes | Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. '&lt;GUEST&gt;-&lt;JOBNUM&gt;'. — format `pve-replication-job-id` |
+| `target` | string | yes | Target node. — format `pve-node` |
+| `type` | `local` | yes | Section type. |
+
+::: details 7 optional parameters
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
 | `comment` | string |  | Description. — ≤ 4096 chars |
 | `disable` | boolean |  | Flag to disable/deactivate the entry. |
-| `id` | string | yes | Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. '&lt;GUEST&gt;-&lt;JOBNUM&gt;'. — format `pve-replication-job-id` |
 | `rate` | number |  | Rate limit in mbps (megabytes per second) as floating point number. — min 1 |
 | `remove_job` | `local` \| `full` |  | Mark the replication job for removal. The job will remove all local replication snapshots. When set to 'full', it also tries to remove replicated volumes on the target. The job then removes itself from the configuration file. |
 | `schedule` | string |  | Storage replication schedule. The format is a subset of `systemd` calendar events. — format `pve-calendar-event`, ≤ 128 chars, default `"*/15"` |
 | `skip-freeze-fs` | boolean |  | Whether to skip freezing and thawing the guest's filesystems for consistency during replication. — default `0` |
 | `source` | string |  | For internal use, to detect if the guest was stolen. — format `pve-node` |
-| `target` | string | yes | Target node. — format `pve-node` |
-| `type` | `local` | yes | Section type. |
 
-### `GET /cluster/replication/{id}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/replication" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/replication/{id}`
 
 ```ts
 proxmox.cluster.replication.$(id).$get()
@@ -56,7 +67,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `id` | string | yes | Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. '&lt;GUEST&gt;-&lt;JOBNUM&gt;'. — format `pve-replication-job-id` |
 
-### `PUT /cluster/replication/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/replication/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/replication/{id}`
 
 ```ts
 proxmox.cluster.replication.$(id).$put()
@@ -68,18 +81,27 @@ Returns nothing.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
+| `id` | string | yes | Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. '&lt;GUEST&gt;-&lt;JOBNUM&gt;'. — format `pve-replication-job-id` |
+
+::: details 9 optional parameters
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
 | `comment` | string |  | Description. — ≤ 4096 chars |
 | `delete` | string |  | A list of settings you want to delete. — format `pve-configid-list`, ≤ 4096 chars |
 | `digest` | string |  | Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications. — ≤ 64 chars |
 | `disable` | boolean |  | Flag to disable/deactivate the entry. |
-| `id` | string | yes | Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. '&lt;GUEST&gt;-&lt;JOBNUM&gt;'. — format `pve-replication-job-id` |
 | `rate` | number |  | Rate limit in mbps (megabytes per second) as floating point number. — min 1 |
 | `remove_job` | `local` \| `full` |  | Mark the replication job for removal. The job will remove all local replication snapshots. When set to 'full', it also tries to remove replicated volumes on the target. The job then removes itself from the configuration file. |
 | `schedule` | string |  | Storage replication schedule. The format is a subset of `systemd` calendar events. — format `pve-calendar-event`, ≤ 128 chars, default `"*/15"` |
 | `skip-freeze-fs` | boolean |  | Whether to skip freezing and thawing the guest's filesystems for consistency during replication. — default `0` |
 | `source` | string |  | For internal use, to detect if the guest was stolen. — format `pve-node` |
 
-### `DELETE /cluster/replication/{id}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/replication/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/replication/{id}`
 
 ```ts
 proxmox.cluster.replication.$(id).$delete()
@@ -94,3 +116,5 @@ Returns nothing.
 | `force` | boolean |  | Will remove the jobconfig entry, but will not cleanup. — default `0` |
 | `id` | string | yes | Replication Job ID. The ID is composed of a Guest ID and a job number, separated by a hyphen, i.e. '&lt;GUEST&gt;-&lt;JOBNUM&gt;'. — format `pve-replication-job-id` |
 | `keep` | boolean |  | Keep replicated data at target (do not remove). — default `0` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/replication/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

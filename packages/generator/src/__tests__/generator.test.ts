@@ -2,6 +2,7 @@ import { describe, expect, test } from "bun:test";
 import { diffOperations } from "../diff.js";
 import { emitModel, emitSchemaInfo, exportedTypeNames } from "../emit.js";
 import { emitChangelog } from "../emit-changelog.js";
+import { docsSidebar, emitDocs } from "../emit-docs.js";
 import { extractSchemaLiteral, parseSchema } from "../load-schema.js";
 import { collectOperations } from "../operations.js";
 import type { PveCall, PveNode, PveSchema } from "../schema.js";
@@ -382,4 +383,116 @@ test("emitChangelog groups versions by Proxmox VE release, newest first", () => 
   expect(pages[0]?.markdown).toContain(
     "[9.2.9](./pve-9.2#_9-2-9) | 2026-08-01",
   );
+});
+
+/**
+ * Builds a flat tree of `GET` endpoints below `/nodes/{node}/qemu/{vmid}`.
+ *
+ * @param segments - The path below the VM of each endpoint, e.g. `agent/ping`.
+ * @returns The root nodes of the tree, one per endpoint.
+ */
+function qemuEndpoints(segments: string[]): PveNode[] {
+  return segments.map((segment) => ({
+    path: `/nodes/{node}/qemu/{vmid}/${segment}`,
+    text: segment,
+    leaf: 1,
+    info: { GET: { method: "GET", name: segment } as PveCall },
+  }));
+}
+
+describe("emitDocs", () => {
+  test("splits a large group by its third segment", () => {
+    const range = (prefix: string, count: number) =>
+      Array.from({ length: count }, (_, i) => `${prefix}${i}`);
+    const pages = emitDocs(
+      qemuEndpoints([
+        ...range("agent/cmd", 12),
+        ...range("snapshot/s", 5),
+        ...range("op", 40),
+      ]),
+      "9.2.15",
+    );
+    expect(pages.map((page) => page.slug)).toEqual([
+      "index",
+      "nodes-qemu",
+      "nodes-qemu-agent",
+    ]);
+    expect(pages[1]?.markdown).toContain("45 operations.");
+    expect(pages[1]?.markdown).toContain("[agent](./nodes-qemu-agent) (12)");
+    expect(pages[0]?.markdown).toContain(
+      "| [nodes / qemu / agent](./nodes-qemu-agent) | 12 |",
+    );
+  });
+
+  test("keeps a group of up to 50 operations on one page", () => {
+    const pages = emitDocs(
+      qemuEndpoints(Array.from({ length: 50 }, (_, i) => `agent/cmd${i}`)),
+      "9.2.15",
+    );
+    expect(pages.map((page) => page.slug)).toEqual(["index", "nodes-qemu"]);
+  });
+
+  test("renders a method badge and links the API viewer", () => {
+    const page = emitDocs(fixture(), "9.2.15").find(
+      (p) => p.slug === "nodes-qemu",
+    );
+    expect(page?.markdown).toContain(
+      '### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/qemu`',
+    );
+    expect(page?.markdown).toContain(
+      '<a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/qemu" target="_blank"',
+    );
+  });
+
+  test("nests the sidebar by path segment", () => {
+    const range = (prefix: string, count: number) =>
+      Array.from({ length: count }, (_, i) => `${prefix}${i}`);
+    const sidebar = docsSidebar(
+      emitDocs(
+        qemuEndpoints([...range("agent/cmd", 12), ...range("op", 40)]),
+        "9.2.15",
+      ),
+    );
+    expect(sidebar).toEqual([
+      {
+        text: "Endpoints",
+        items: [
+          { text: "Overview", link: "/reference/endpoints/" },
+          {
+            text: "nodes",
+            collapsed: true,
+            items: [
+              {
+                text: "qemu",
+                link: "/reference/endpoints/nodes-qemu",
+                collapsed: true,
+                items: [
+                  {
+                    text: "agent",
+                    link: "/reference/endpoints/nodes-qemu-agent",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ]);
+  });
+
+  test("folds optional parameters of a call that takes many", () => {
+    const nodes = fixture();
+    const create = nodes[0]?.children?.[0]?.children?.[0]?.info?.POST;
+    const properties = create?.parameters?.properties ?? {};
+    for (let i = 0; i < 8; i++) {
+      properties[`extra${i}`] = { type: "string", optional: 1 };
+    }
+    const markdown =
+      emitDocs(nodes, "9.2.15").find((p) => p.slug === "nodes-qemu")
+        ?.markdown ?? "";
+    const folded = markdown.indexOf("::: details");
+    expect(markdown).toMatch(/::: details \d+ optional parameters/);
+    expect(markdown.indexOf("| `node` |")).toBeLessThan(folded);
+    expect(markdown.indexOf("| `extra0` |")).toBeGreaterThan(folded);
+  });
 });

@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `GET /version`
+### <span class="method-badge" data-method="GET">GET</span> `/version`
 
 ```ts
 proxmox.version.$get()
@@ -18,3 +18,5 @@ proxmox.version.$get()
 API version details, including some parts of the global datacenter config.
 
 Returns `object`.
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/version" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

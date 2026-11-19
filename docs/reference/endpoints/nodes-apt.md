@@ -9,7 +9,7 @@ editLink: false
 
 8 operations.
 
-### `GET /nodes/{node}/apt`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/apt`
 
 ```ts
 proxmox.nodes.$(node).apt.$get()
@@ -23,7 +23,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/apt/changelog`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/apt" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/apt/changelog`
 
 ```ts
 proxmox.nodes.$(node).apt.changelog.$get()
@@ -39,7 +41,9 @@ Returns `string`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `version` | string |  | Package version. |
 
-### `GET /nodes/{node}/apt/repositories`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/apt/changelog" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/apt/repositories`
 
 ```ts
 proxmox.nodes.$(node).apt.repositories.$get()
@@ -53,7 +57,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `POST /nodes/{node}/apt/repositories`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/apt/repositories" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/apt/repositories`
 
 ```ts
 proxmox.nodes.$(node).apt.repositories.$post()
@@ -71,7 +77,9 @@ Returns nothing.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `path` | string | yes | Path to the containing file. |
 
-### `PUT /nodes/{node}/apt/repositories`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/apt/repositories" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/nodes/{node}/apt/repositories`
 
 ```ts
 proxmox.nodes.$(node).apt.repositories.$put()
@@ -87,7 +95,9 @@ Returns nothing.
 | `handle` | string | yes | Handle that identifies a repository. |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/apt/update`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/apt/repositories" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/apt/update`
 
 ```ts
 proxmox.nodes.$(node).apt.update.$get()
@@ -101,7 +111,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `POST /nodes/{node}/apt/update`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/apt/update" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/apt/update`
 
 ```ts
 proxmox.nodes.$(node).apt.update.$post()
@@ -117,7 +129,9 @@ Returns `string`.
 | `notify` | boolean |  | Send notification about new packages. — default `0` |
 | `quiet` | boolean |  | Only produces output suitable for logging, omitting progress indicators. — default `0` |
 
-### `GET /nodes/{node}/apt/versions`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/apt/update" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/apt/versions`
 
 ```ts
 proxmox.nodes.$(node).apt.versions.$get()
@@ -130,3 +144,5 @@ Returns an array of `object`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/apt/versions" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

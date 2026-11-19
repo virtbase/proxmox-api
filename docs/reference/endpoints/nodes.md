@@ -9,7 +9,7 @@ editLink: false
 
 2 operations.
 
-### `GET /nodes`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes`
 
 ```ts
 proxmox.nodes.$get()
@@ -19,7 +19,9 @@ Cluster node index.
 
 Returns an array of `object`.
 
-### `GET /nodes/{node}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}`
 
 ```ts
 proxmox.nodes.$(node).$get()
@@ -32,3 +34,5 @@ Returns an array of `object`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

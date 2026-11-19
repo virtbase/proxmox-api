@@ -121,9 +121,26 @@ repository. It reads `.github/renovate.json`; nothing else is needed.
 ### 5. Documentation site
 
 **Settings → Pages → Source: GitHub Actions.** The site is served at
-<https://virtbase.github.io/proxmox-api/>, which is why
-`docs/.vitepress/config.ts` sets `base: "/proxmox-api/"`. Change both together
-if the site moves to a custom domain (`base: "/"`).
+<https://proxmox-api.virtbase.com/>:
+
+1. In Cloudflare, `proxmox-api.virtbase.com` is a `CNAME` to
+   `virtbase.github.io`, set to **DNS only**. With the proxy on, GitHub cannot
+   issue its certificate.
+2. **Settings → Pages → Custom domain** is `proxmox-api.virtbase.com`, with
+   **Enforce HTTPS** on. The site is deployed by a workflow, so a `CNAME` file
+   in the repository would be ignored; the setting is the only source.
+3. `virtbase.com` is verified under the organisation's **Settings → Pages**,
+   so no other account can claim the subdomain.
+
+The old <https://virtbase.github.io/proxmox-api/> URLs redirect to the custom
+domain. If the domain ever changes, update `siteUrl` in
+`docs/.vitepress/config.ts` (canonical links, sitemap, social previews),
+`docs/public/robots.txt`, the `homepage` in `packages/api/package.json`, the
+links in both READMEs and the repository's homepage setting. If the site moves
+back under a path, also set `base` in the VitePress configuration.
+
+`docs/public/og-image.png` is the preview shown when a link is shared. It is a
+static image; regenerate it if the package name or tagline changes.
 
 ## Schema updates
 

@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `POST /nodes/{node}/vncshell`
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/vncshell`
 
 ```ts
 proxmox.nodes.$(node).vncshell.$post()
@@ -27,3 +27,5 @@ Returns `any`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `websocket` | boolean |  | use websocket instead of standard vnc. |
 | `width` | number |  | sets the width of the console in pixels. — min 16, max 4096 |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/vncshell" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

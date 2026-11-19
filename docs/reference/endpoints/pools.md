@@ -9,7 +9,7 @@ editLink: false
 
 7 operations.
 
-### `GET /pools`
+### <span class="method-badge" data-method="GET">GET</span> `/pools`
 
 ```ts
 proxmox.pools.$get()
@@ -24,7 +24,9 @@ Returns an array of `object`.
 | `poolid` | string |  | format `pve-poolid` |
 | `type` | `qemu` \| `lxc` \| `storage` |  |  |
 
-### `POST /pools`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/pools" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/pools`
 
 ```ts
 proxmox.pools.$post()
@@ -39,7 +41,9 @@ Returns nothing.
 | `comment` | string |  |  |
 | `poolid` | string | yes | format `pve-poolid` |
 
-### `PUT /pools`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/pools" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/pools`
 
 ```ts
 proxmox.pools.$put()
@@ -58,7 +62,9 @@ Returns nothing.
 | `storage` | string |  | List of storage IDs to add or remove from this pool. — format `pve-storage-id-list` |
 | `vms` | string |  | List of guest VMIDs to add or remove from this pool. — format `pve-vmid-list` |
 
-### `DELETE /pools`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/pools" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/pools`
 
 ```ts
 proxmox.pools.$delete()
@@ -72,7 +78,9 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `poolid` | string | yes | format `pve-poolid` |
 
-### `GET /pools/{poolid}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/pools" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/pools/{poolid}`
 
 ```ts
 proxmox.pools.$(poolid).$get()
@@ -87,7 +95,9 @@ Returns `object`.
 | `poolid` | string | yes | format `pve-poolid` |
 | `type` | `qemu` \| `lxc` \| `storage` |  |  |
 
-### `PUT /pools/{poolid}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/pools/{poolid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/pools/{poolid}`
 
 ```ts
 proxmox.pools.$(poolid).$put()
@@ -106,7 +116,9 @@ Returns nothing.
 | `storage` | string |  | List of storage IDs to add or remove from this pool. — format `pve-storage-id-list` |
 | `vms` | string |  | List of guest VMIDs to add or remove from this pool. — format `pve-vmid-list` |
 
-### `DELETE /pools/{poolid}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/pools/{poolid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/pools/{poolid}`
 
 ```ts
 proxmox.pools.$(poolid).$delete()
@@ -119,3 +131,5 @@ Returns nothing.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `poolid` | string | yes | format `pve-poolid` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/pools/{poolid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `PUT /access/password`
+### <span class="method-badge" data-method="PUT">PUT</span> `/access/password`
 
 ```ts
 proxmox.access.password.$put()
@@ -28,3 +28,5 @@ Not callable with an API token.
 | `confirmation-password` | string |  | The current password of the user performing the change. — ≤ 64 chars |
 | `password` | string | yes | The new password. — ≤ 64 chars |
 | `userid` | string | yes | Full User ID, in the `name@realm` format. — format `pve-userid`, ≤ 64 chars |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/password" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

@@ -1,3 +1,7 @@
+---
+description: "How Proxmox VE API paths map to typed TypeScript calls: placeholders, hyphenated segments, parameters, property strings, return values and per-request options."
+---
+
 # Calling the API
 
 Take the path from Proxmox's documentation and read it as property access.

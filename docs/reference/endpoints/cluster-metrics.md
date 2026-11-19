@@ -9,7 +9,7 @@ editLink: false
 
 7 operations.
 
-### `GET /cluster/metrics`
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/metrics`
 
 ```ts
 proxmox.cluster.metrics.$get()
@@ -19,7 +19,9 @@ Metrics index.
 
 Returns an array of `object`.
 
-### `GET /cluster/metrics/export`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/metrics" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/metrics/export`
 
 ```ts
 proxmox.cluster.metrics.export.$get()
@@ -36,7 +38,9 @@ Returns `object`.
 | `node-list` | string |  | Only return metrics from nodes passed as comma-separated list |
 | `start-time` | number |  | Only include metrics with a timestamp &gt; start-time. — default `0` |
 
-### `GET /cluster/metrics/server`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/metrics/export" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/metrics/server`
 
 ```ts
 proxmox.cluster.metrics.server.$get()
@@ -46,7 +50,9 @@ List configured metric servers.
 
 Returns an array of `object`.
 
-### `GET /cluster/metrics/server/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/metrics/server" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/metrics/server/{id}`
 
 ```ts
 proxmox.cluster.metrics.server.$(id).$get()
@@ -60,7 +66,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `id` | string | yes | format `pve-configid` |
 
-### `POST /cluster/metrics/server/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/metrics/server/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/metrics/server/{id}`
 
 ```ts
 proxmox.cluster.metrics.server.$(id).$post()
@@ -72,10 +80,18 @@ Returns nothing.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
+| `id` | string | yes | The ID of the entry. — format `pve-configid` |
+| `port` | number | yes | server network port — min 1, max 65536 |
+| `server` | string | yes | server dns name or IP address — format `address` |
+| `type` | `graphite` \| `influxdb` \| `opentelemetry` | yes | Plugin type. — format `pve-configid` |
+
+::: details 20 optional parameters
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
 | `api-path-prefix` | string |  | An API path prefix inserted between '&lt;host&gt;:&lt;port&gt;/' and '/api2/'. Can be useful if the InfluxDB service runs behind a reverse proxy. |
 | `bucket` | string |  | The InfluxDB bucket/db. Only necessary when using the http v2 api. |
 | `disable` | boolean |  | Flag to disable the plugin. |
-| `id` | string | yes | The ID of the entry. — format `pve-configid` |
 | `influxdbproto` | `udp` \| `http` \| `https` |  | default `"udp"` |
 | `max-body-size` | number |  | InfluxDB max-body-size in bytes. Requests are batched up to this size. — min 1, default `25000000` |
 | `mtu` | number |  | MTU for metrics transmission over UDP — min 512, max 65536, default `1500` |
@@ -89,15 +105,16 @@ Returns nothing.
 | `otel-timeout` | number |  | HTTP request timeout in seconds — min 1, max 10, default `5` |
 | `otel-verify-ssl` | boolean |  | Verify SSL certificates — default `1` |
 | `path` | string |  | root graphite path (ex: proxmox.mycluster.mykey) — format `graphite-path` |
-| `port` | number | yes | server network port — min 1, max 65536 |
 | `proto` | `udp` \| `tcp` |  | Protocol to send graphite data. TCP or UDP (default) |
-| `server` | string | yes | server dns name or IP address — format `address` |
 | `timeout` | number |  | graphite TCP socket timeout (default=1) — min 0, default `1` |
 | `token` | string |  | The InfluxDB access token. Only necessary when using the http v2 api. If the v2 compatibility api is used, use 'user:password' instead. |
-| `type` | `graphite` \| `influxdb` \| `opentelemetry` | yes | Plugin type. — format `pve-configid` |
 | `verify-certificate` | boolean |  | Set to 0 to disable certificate verification for https endpoints. — default `1` |
 
-### `PUT /cluster/metrics/server/{id}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/metrics/server/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/metrics/server/{id}`
 
 ```ts
 proxmox.cluster.metrics.server.$(id).$put()
@@ -109,12 +126,19 @@ Returns nothing.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
+| `id` | string | yes | The ID of the entry. — format `pve-configid` |
+| `port` | number | yes | server network port — min 1, max 65536 |
+| `server` | string | yes | server dns name or IP address — format `address` |
+
+::: details 22 optional parameters
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
 | `api-path-prefix` | string |  | An API path prefix inserted between '&lt;host&gt;:&lt;port&gt;/' and '/api2/'. Can be useful if the InfluxDB service runs behind a reverse proxy. |
 | `bucket` | string |  | The InfluxDB bucket/db. Only necessary when using the http v2 api. |
 | `delete` | string |  | A list of settings you want to delete. — format `pve-configid-list`, ≤ 4096 chars |
 | `digest` | string |  | Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications. — ≤ 64 chars |
 | `disable` | boolean |  | Flag to disable the plugin. |
-| `id` | string | yes | The ID of the entry. — format `pve-configid` |
 | `influxdbproto` | `udp` \| `http` \| `https` |  | default `"udp"` |
 | `max-body-size` | number |  | InfluxDB max-body-size in bytes. Requests are batched up to this size. — min 1, default `25000000` |
 | `mtu` | number |  | MTU for metrics transmission over UDP — min 512, max 65536, default `1500` |
@@ -128,14 +152,16 @@ Returns nothing.
 | `otel-timeout` | number |  | HTTP request timeout in seconds — min 1, max 10, default `5` |
 | `otel-verify-ssl` | boolean |  | Verify SSL certificates — default `1` |
 | `path` | string |  | root graphite path (ex: proxmox.mycluster.mykey) — format `graphite-path` |
-| `port` | number | yes | server network port — min 1, max 65536 |
 | `proto` | `udp` \| `tcp` |  | Protocol to send graphite data. TCP or UDP (default) |
-| `server` | string | yes | server dns name or IP address — format `address` |
 | `timeout` | number |  | graphite TCP socket timeout (default=1) — min 0, default `1` |
 | `token` | string |  | The InfluxDB access token. Only necessary when using the http v2 api. If the v2 compatibility api is used, use 'user:password' instead. |
 | `verify-certificate` | boolean |  | Set to 0 to disable certificate verification for https endpoints. — default `1` |
 
-### `DELETE /cluster/metrics/server/{id}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/metrics/server/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/metrics/server/{id}`
 
 ```ts
 proxmox.cluster.metrics.server.$(id).$delete()
@@ -148,3 +174,5 @@ Returns nothing.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `id` | string | yes | format `pve-configid` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/metrics/server/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

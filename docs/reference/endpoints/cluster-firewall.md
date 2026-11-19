@@ -9,7 +9,7 @@ editLink: false
 
 31 operations.
 
-### `GET /cluster/firewall`
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/firewall`
 
 ```ts
 proxmox.cluster.firewall.$get()
@@ -19,7 +19,9 @@ Directory index.
 
 Returns an array of `object`.
 
-### `GET /cluster/firewall/aliases`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/firewall/aliases`
 
 ```ts
 proxmox.cluster.firewall.aliases.$get()
@@ -29,7 +31,9 @@ List aliases
 
 Returns an array of `object`.
 
-### `POST /cluster/firewall/aliases`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/aliases" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/firewall/aliases`
 
 ```ts
 proxmox.cluster.firewall.aliases.$post()
@@ -45,7 +49,9 @@ Returns nothing.
 | `comment` | string |  | format `pve-fw-comment-spec` |
 | `name` | string | yes | Alias name. — ≤ 64 chars |
 
-### `GET /cluster/firewall/aliases/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/aliases" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/firewall/aliases/{name}`
 
 ```ts
 proxmox.cluster.firewall.aliases.$(name).$get()
@@ -59,7 +65,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `name` | string | yes | Alias name. — ≤ 64 chars |
 
-### `PUT /cluster/firewall/aliases/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/aliases/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/firewall/aliases/{name}`
 
 ```ts
 proxmox.cluster.firewall.aliases.$(name).$put()
@@ -77,7 +85,9 @@ Returns nothing.
 | `name` | string | yes | Alias name. — ≤ 64 chars |
 | `rename` | string |  | Rename an existing alias. — ≤ 64 chars |
 
-### `DELETE /cluster/firewall/aliases/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/aliases/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/firewall/aliases/{name}`
 
 ```ts
 proxmox.cluster.firewall.aliases.$(name).$delete()
@@ -92,7 +102,9 @@ Returns nothing.
 | `digest` | string |  | Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications. — ≤ 64 chars |
 | `name` | string | yes | Alias name. — ≤ 64 chars |
 
-### `GET /cluster/firewall/groups`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/aliases/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/firewall/groups`
 
 ```ts
 proxmox.cluster.firewall.groups.$get()
@@ -102,7 +114,9 @@ List security groups.
 
 Returns an array of `object`.
 
-### `POST /cluster/firewall/groups`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/groups" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/firewall/groups`
 
 ```ts
 proxmox.cluster.firewall.groups.$post()
@@ -119,7 +133,9 @@ Returns nothing.
 | `group` | string | yes | Security Group name. — ≤ 18 chars |
 | `rename` | string |  | Rename/update an existing security group. You can set 'rename' to the same value as 'name' to update the 'comment' of an existing group. — ≤ 18 chars |
 
-### `GET /cluster/firewall/groups/{group}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/groups" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/firewall/groups/{group}`
 
 ```ts
 proxmox.cluster.firewall.groups.$(group).$get()
@@ -133,7 +149,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `group` | string | yes | Security Group name. — ≤ 18 chars |
 
-### `POST /cluster/firewall/groups/{group}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/groups/{group}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/firewall/groups/{group}`
 
 ```ts
 proxmox.cluster.firewall.groups.$(group).$post()
@@ -146,12 +164,18 @@ Returns nothing.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `action` | string | yes | Rule action ('ACCEPT', 'DROP', 'REJECT') or security group name. — ≤ 20 chars |
+| `group` | string | yes | Security Group name. — ≤ 18 chars |
+| `type` | `in` \| `out` \| `forward` \| `group` | yes | Rule type. |
+
+::: details 13 optional parameters
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
 | `comment` | string |  | Descriptive comment. — format `pve-fw-comment-spec` |
 | `dest` | string |  | Restrict packet destination address. This can refer to a single IP address, an IP set ('+ipsetname') or an IP alias definition. You can also specify an address range like '20.34.101.207-201.3.9.99', or a list of IP addresses and networks (entries are separated by comma). Please do not mix IPv4 and IPv6 addresses inside such lists. — format `pve-fw-addr-spec`, ≤ 512 chars |
 | `digest` | string |  | Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications. — ≤ 64 chars |
 | `dport` | string |  | Restrict TCP/UDP destination port. You can use service names or simple numbers (0-65535), as defined in '/etc/services'. Port ranges can be specified with '\d+:\d+', for example '80:85', and you can use comma separated list to match several ports or ranges. — format `pve-fw-dport-spec` |
 | `enable` | number |  | Flag to enable/disable a rule. — min 0 |
-| `group` | string | yes | Security Group name. — ≤ 18 chars |
 | `icmp-type` | string |  | Specify icmp-type. Only valid if proto equals 'icmp' or 'icmpv6'/'ipv6-icmp'. — format `pve-fw-icmp-type-spec` |
 | `iface` | string |  | Network interface name. You have to use network configuration key names for VMs and containers ('net\d+'). Host related rules can use arbitrary strings. — format `pve-iface`, ≤ 20 chars |
 | `log` | `emerg` \| `alert` \| `crit` \| `err` \| `warning` \| `notice` \| `info` \| `debug` \| … (1 more) |  | Log level for firewall rule. |
@@ -160,9 +184,12 @@ Returns nothing.
 | `proto` | string |  | IP protocol. You can use protocol names ('tcp'/'udp') or simple numbers, as defined in '/etc/protocols'. — format `pve-fw-protocol-spec` |
 | `source` | string |  | Restrict packet source address. This can refer to a single IP address, an IP set ('+ipsetname') or an IP alias definition. You can also specify an address range like '20.34.101.207-201.3.9.99', or a list of IP addresses and networks (entries are separated by comma). Please do not mix IPv4 and IPv6 addresses inside such lists. — format `pve-fw-addr-spec`, ≤ 512 chars |
 | `sport` | string |  | Restrict TCP/UDP source port. You can use service names or simple numbers (0-65535), as defined in '/etc/services'. Port ranges can be specified with '\d+:\d+', for example '80:85', and you can use comma separated list to match several ports or ranges. — format `pve-fw-sport-spec` |
-| `type` | `in` \| `out` \| `forward` \| `group` | yes | Rule type. |
 
-### `DELETE /cluster/firewall/groups/{group}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/groups/{group}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/firewall/groups/{group}`
 
 ```ts
 proxmox.cluster.firewall.groups.$(group).$delete()
@@ -176,7 +203,9 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `group` | string | yes | Security Group name. — ≤ 18 chars |
 
-### `GET /cluster/firewall/groups/{group}/{pos}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/groups/{group}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/firewall/groups/{group}/{pos}`
 
 ```ts
 proxmox.cluster.firewall.groups.$(group).$(pos).$get()
@@ -191,7 +220,9 @@ Returns `object`.
 | `group` | string | yes | Security Group name. — ≤ 18 chars |
 | `pos` | number |  | Update rule at position &lt;pos&gt;. — min 0 |
 
-### `PUT /cluster/firewall/groups/{group}/{pos}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/groups/{group}/{pos}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/firewall/groups/{group}/{pos}`
 
 ```ts
 proxmox.cluster.firewall.groups.$(group).$(pos).$put()
@@ -203,6 +234,12 @@ Returns nothing.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
+| `group` | string | yes | Security Group name. — ≤ 18 chars |
+
+::: details 17 optional parameters
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
 | `action` | string |  | Rule action ('ACCEPT', 'DROP', 'REJECT') or security group name. — ≤ 20 chars |
 | `comment` | string |  | Descriptive comment. — format `pve-fw-comment-spec` |
 | `delete` | string |  | A list of settings you want to delete. — format `pve-configid-list` |
@@ -210,7 +247,6 @@ Returns nothing.
 | `digest` | string |  | Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications. — ≤ 64 chars |
 | `dport` | string |  | Restrict TCP/UDP destination port. You can use service names or simple numbers (0-65535), as defined in '/etc/services'. Port ranges can be specified with '\d+:\d+', for example '80:85', and you can use comma separated list to match several ports or ranges. — format `pve-fw-dport-spec` |
 | `enable` | number |  | Flag to enable/disable a rule. — min 0 |
-| `group` | string | yes | Security Group name. — ≤ 18 chars |
 | `icmp-type` | string |  | Specify icmp-type. Only valid if proto equals 'icmp' or 'icmpv6'/'ipv6-icmp'. — format `pve-fw-icmp-type-spec` |
 | `iface` | string |  | Network interface name. You have to use network configuration key names for VMs and containers ('net\d+'). Host related rules can use arbitrary strings. — format `pve-iface`, ≤ 20 chars |
 | `log` | `emerg` \| `alert` \| `crit` \| `err` \| `warning` \| `notice` \| `info` \| `debug` \| … (1 more) |  | Log level for firewall rule. |
@@ -222,7 +258,11 @@ Returns nothing.
 | `sport` | string |  | Restrict TCP/UDP source port. You can use service names or simple numbers (0-65535), as defined in '/etc/services'. Port ranges can be specified with '\d+:\d+', for example '80:85', and you can use comma separated list to match several ports or ranges. — format `pve-fw-sport-spec` |
 | `type` | `in` \| `out` \| `forward` \| `group` |  | Rule type. |
 
-### `DELETE /cluster/firewall/groups/{group}/{pos}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/groups/{group}/{pos}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/firewall/groups/{group}/{pos}`
 
 ```ts
 proxmox.cluster.firewall.groups.$(group).$(pos).$delete()
@@ -238,7 +278,9 @@ Returns nothing.
 | `group` | string | yes | Security Group name. — ≤ 18 chars |
 | `pos` | number |  | Update rule at position &lt;pos&gt;. — min 0 |
 
-### `GET /cluster/firewall/ipset`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/groups/{group}/{pos}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/firewall/ipset`
 
 ```ts
 proxmox.cluster.firewall.ipset.$get()
@@ -248,7 +290,9 @@ List IPSets
 
 Returns an array of `object`.
 
-### `POST /cluster/firewall/ipset`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/ipset" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/firewall/ipset`
 
 ```ts
 proxmox.cluster.firewall.ipset.$post()
@@ -265,7 +309,9 @@ Returns nothing.
 | `name` | string | yes | IP set name. — ≤ 64 chars |
 | `rename` | string |  | Rename an existing IPSet. You can set 'rename' to the same value as 'name' to update the 'comment' of an existing IPSet. — ≤ 64 chars |
 
-### `GET /cluster/firewall/ipset/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/ipset" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/firewall/ipset/{name}`
 
 ```ts
 proxmox.cluster.firewall.ipset.$(name).$get()
@@ -279,7 +325,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `name` | string | yes | IP set name. — ≤ 64 chars |
 
-### `POST /cluster/firewall/ipset/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/ipset/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/firewall/ipset/{name}`
 
 ```ts
 proxmox.cluster.firewall.ipset.$(name).$post()
@@ -296,7 +344,9 @@ Returns nothing.
 | `name` | string | yes | IP set name. — ≤ 64 chars |
 | `nomatch` | boolean |  |  |
 
-### `DELETE /cluster/firewall/ipset/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/ipset/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/firewall/ipset/{name}`
 
 ```ts
 proxmox.cluster.firewall.ipset.$(name).$delete()
@@ -311,7 +361,9 @@ Returns nothing.
 | `force` | boolean |  | Delete all members of the IPSet, if there are any. |
 | `name` | string | yes | IP set name. — ≤ 64 chars |
 
-### `GET /cluster/firewall/ipset/{name}/{cidr}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/ipset/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/firewall/ipset/{name}/{cidr}`
 
 ```ts
 proxmox.cluster.firewall.ipset.$(name).$(cidr).$get()
@@ -326,7 +378,9 @@ Returns `object`.
 | `cidr` | string | yes | Network/IP specification in CIDR format. — format `IPorCIDRorAlias` |
 | `name` | string | yes | IP set name. — ≤ 64 chars |
 
-### `PUT /cluster/firewall/ipset/{name}/{cidr}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/ipset/{name}/{cidr}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/firewall/ipset/{name}/{cidr}`
 
 ```ts
 proxmox.cluster.firewall.ipset.$(name).$(cidr).$put()
@@ -344,7 +398,9 @@ Returns nothing.
 | `name` | string | yes | IP set name. — ≤ 64 chars |
 | `nomatch` | boolean |  |  |
 
-### `DELETE /cluster/firewall/ipset/{name}/{cidr}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/ipset/{name}/{cidr}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/firewall/ipset/{name}/{cidr}`
 
 ```ts
 proxmox.cluster.firewall.ipset.$(name).$(cidr).$delete()
@@ -360,7 +416,9 @@ Returns nothing.
 | `digest` | string |  | Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications. — ≤ 64 chars |
 | `name` | string | yes | IP set name. — ≤ 64 chars |
 
-### `GET /cluster/firewall/macros`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/ipset/{name}/{cidr}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/firewall/macros`
 
 ```ts
 proxmox.cluster.firewall.macros.$get()
@@ -370,7 +428,9 @@ List available macros
 
 Returns an array of `object`.
 
-### `GET /cluster/firewall/options`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/macros" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/firewall/options`
 
 ```ts
 proxmox.cluster.firewall.options.$get()
@@ -380,7 +440,9 @@ Get Firewall options.
 
 Returns `object`.
 
-### `PUT /cluster/firewall/options`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/options" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/firewall/options`
 
 ```ts
 proxmox.cluster.firewall.options.$put()
@@ -401,7 +463,9 @@ Returns nothing.
 | `policy_in` | `ACCEPT` \| `REJECT` \| `DROP` |  | Input policy. |
 | `policy_out` | `ACCEPT` \| `REJECT` \| `DROP` |  | Output policy. |
 
-### `GET /cluster/firewall/refs`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/options" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/firewall/refs`
 
 ```ts
 proxmox.cluster.firewall.refs.$get()
@@ -415,7 +479,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `type` | `alias` \| `ipset` |  | Only list references of specified type. |
 
-### `GET /cluster/firewall/rules`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/refs" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/firewall/rules`
 
 ```ts
 proxmox.cluster.firewall.rules.$get()
@@ -425,7 +491,9 @@ List rules.
 
 Returns an array of `object`.
 
-### `POST /cluster/firewall/rules`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/rules" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/firewall/rules`
 
 ```ts
 proxmox.cluster.firewall.rules.$post()
@@ -438,6 +506,12 @@ Returns nothing.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `action` | string | yes | Rule action ('ACCEPT', 'DROP', 'REJECT') or security group name. — ≤ 20 chars |
+| `type` | `in` \| `out` \| `forward` \| `group` | yes | Rule type. |
+
+::: details 13 optional parameters
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
 | `comment` | string |  | Descriptive comment. — format `pve-fw-comment-spec` |
 | `dest` | string |  | Restrict packet destination address. This can refer to a single IP address, an IP set ('+ipsetname') or an IP alias definition. You can also specify an address range like '20.34.101.207-201.3.9.99', or a list of IP addresses and networks (entries are separated by comma). Please do not mix IPv4 and IPv6 addresses inside such lists. — format `pve-fw-addr-spec`, ≤ 512 chars |
 | `digest` | string |  | Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications. — ≤ 64 chars |
@@ -451,9 +525,12 @@ Returns nothing.
 | `proto` | string |  | IP protocol. You can use protocol names ('tcp'/'udp') or simple numbers, as defined in '/etc/protocols'. — format `pve-fw-protocol-spec` |
 | `source` | string |  | Restrict packet source address. This can refer to a single IP address, an IP set ('+ipsetname') or an IP alias definition. You can also specify an address range like '20.34.101.207-201.3.9.99', or a list of IP addresses and networks (entries are separated by comma). Please do not mix IPv4 and IPv6 addresses inside such lists. — format `pve-fw-addr-spec`, ≤ 512 chars |
 | `sport` | string |  | Restrict TCP/UDP source port. You can use service names or simple numbers (0-65535), as defined in '/etc/services'. Port ranges can be specified with '\d+:\d+', for example '80:85', and you can use comma separated list to match several ports or ranges. — format `pve-fw-sport-spec` |
-| `type` | `in` \| `out` \| `forward` \| `group` | yes | Rule type. |
 
-### `GET /cluster/firewall/rules/{pos}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/rules" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/firewall/rules/{pos}`
 
 ```ts
 proxmox.cluster.firewall.rules.$(pos).$get()
@@ -467,7 +544,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `pos` | number |  | Update rule at position &lt;pos&gt;. — min 0 |
 
-### `PUT /cluster/firewall/rules/{pos}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/rules/{pos}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/firewall/rules/{pos}`
 
 ```ts
 proxmox.cluster.firewall.rules.$(pos).$put()
@@ -476,6 +555,8 @@ proxmox.cluster.firewall.rules.$(pos).$put()
 Modify rule data.
 
 Returns nothing.
+
+::: details 17 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -497,7 +578,11 @@ Returns nothing.
 | `sport` | string |  | Restrict TCP/UDP source port. You can use service names or simple numbers (0-65535), as defined in '/etc/services'. Port ranges can be specified with '\d+:\d+', for example '80:85', and you can use comma separated list to match several ports or ranges. — format `pve-fw-sport-spec` |
 | `type` | `in` \| `out` \| `forward` \| `group` |  | Rule type. |
 
-### `DELETE /cluster/firewall/rules/{pos}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/rules/{pos}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/firewall/rules/{pos}`
 
 ```ts
 proxmox.cluster.firewall.rules.$(pos).$delete()
@@ -511,3 +596,5 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `digest` | string |  | Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications. — ≤ 64 chars |
 | `pos` | number |  | Update rule at position &lt;pos&gt;. — min 0 |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/firewall/rules/{pos}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

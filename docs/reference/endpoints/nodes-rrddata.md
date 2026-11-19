@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `GET /nodes/{node}/rrddata`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/rrddata`
 
 ```ts
 proxmox.nodes.$(node).rrddata.$get()
@@ -24,3 +24,5 @@ Returns an array of `object`.
 | `cf` | `AVERAGE` \| `MAX` |  | The RRD consolidation function |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `timeframe` | `hour` \| `day` \| `week` \| `month` \| `year` \| `decade` | yes | Specify the time frame you are interested in. |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/rrddata" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

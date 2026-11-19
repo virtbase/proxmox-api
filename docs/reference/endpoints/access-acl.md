@@ -9,7 +9,7 @@ editLink: false
 
 2 operations.
 
-### `GET /access/acl`
+### <span class="method-badge" data-method="GET">GET</span> `/access/acl`
 
 ```ts
 proxmox.access.acl.$get()
@@ -19,7 +19,9 @@ Get Access Control List (ACLs).
 
 Returns an array of `object`.
 
-### `PUT /access/acl`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/acl" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/access/acl`
 
 ```ts
 proxmox.access.acl.$put()
@@ -38,3 +40,5 @@ Returns nothing.
 | `roles` | string | yes | List of roles. — format `pve-roleid-list` |
 | `tokens` | string |  | List of API tokens. — format `pve-tokenid-list` |
 | `users` | string |  | List of users. — format `pve-userid-list` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/acl" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

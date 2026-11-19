@@ -9,7 +9,7 @@ editLink: false
 
 5 operations.
 
-### `GET /storage`
+### <span class="method-badge" data-method="GET">GET</span> `/storage`
 
 ```ts
 proxmox.storage.$get()
@@ -23,7 +23,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `type` | `btrfs` \| `cephfs` \| `cifs` \| `dir` \| `esxi` \| `iscsi` \| `iscsidirect` \| `lvm` \| … (6 more) |  | Only list storage of specific type |
 
-### `POST /storage`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/storage" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/storage`
 
 ```ts
 proxmox.storage.$post()
@@ -32,6 +34,13 @@ proxmox.storage.$post()
 Create a new storage.
 
 Returns `object`.
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `storage` | string | yes | The storage identifier. — format `pve-storage-id` |
+| `type` | `btrfs` \| `cephfs` \| `cifs` \| `dir` \| `esxi` \| `iscsi` \| `iscsidirect` \| `lvm` \| … (6 more) | yes | Storage type. |
+
+::: details 60 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -88,17 +97,19 @@ Returns `object`.
 | `smbversion` | `default` \| `2.0` \| `2.1` \| `3` \| `3.0` \| `3.11` |  | SMB protocol version. 'default' if not set, negotiates the highest SMB2+ version supported by both the client and server. — default `"default"` |
 | `snapshot-as-volume-chain` | boolean |  | Enable support for creating storage-vendor agnostic snapshot through volume backing-chains. — default `0` |
 | `sparse` | boolean |  | Use sparse (thin-provisioned) volumes. |
-| `storage` | string | yes | The storage identifier. — format `pve-storage-id` |
 | `subdir` | string |  | Subdir to mount. — format `pve-storage-path` |
 | `tagged_only` | boolean |  | Only list logical volumes tagged with 'pve-vm-ID'. |
 | `target` | string |  | iSCSI target name (an iSCSI Qualified Name - IQN). |
 | `thinpool` | string |  | Name of the LVM thin pool logical volume. — format `pve-storage-vgname` |
-| `type` | `btrfs` \| `cephfs` \| `cifs` \| `dir` \| `esxi` \| `iscsi` \| `iscsidirect` \| `lvm` \| … (6 more) | yes | Storage type. |
 | `username` | string |  | The username for authentication. For RBD and CephFS, the Ceph client ID without the 'client.' prefix. |
 | `vgname` | string |  | LVM volume group name. — format `pve-storage-vgname` |
 | `zfs-base-path` | string |  | Base path where to look for the created ZFS block devices. Set automatically during creation if not specified. Usually '/dev/zvol'. — format `pve-storage-path` |
 
-### `GET /storage/{storage}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/storage" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/storage/{storage}`
 
 ```ts
 proxmox.storage.$(storage).$get()
@@ -112,7 +123,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `storage` | string | yes | The storage identifier. — format `pve-storage-id` |
 
-### `PUT /storage/{storage}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/storage/{storage}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/storage/{storage}`
 
 ```ts
 proxmox.storage.$(storage).$put()
@@ -121,6 +134,12 @@ proxmox.storage.$(storage).$put()
 Update storage configuration.
 
 Returns `object`.
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `storage` | string | yes | The storage identifier. — format `pve-storage-id` |
+
+::: details 51 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -171,13 +190,16 @@ Returns `object`.
 | `smbversion` | `default` \| `2.0` \| `2.1` \| `3` \| `3.0` \| `3.11` |  | SMB protocol version. 'default' if not set, negotiates the highest SMB2+ version supported by both the client and server. — default `"default"` |
 | `snapshot-as-volume-chain` | boolean |  | Enable support for creating storage-vendor agnostic snapshot through volume backing-chains. — default `0` |
 | `sparse` | boolean |  | Use sparse (thin-provisioned) volumes. |
-| `storage` | string | yes | The storage identifier. — format `pve-storage-id` |
 | `subdir` | string |  | Subdir to mount. — format `pve-storage-path` |
 | `tagged_only` | boolean |  | Only list logical volumes tagged with 'pve-vm-ID'. |
 | `username` | string |  | The username for authentication. For RBD and CephFS, the Ceph client ID without the 'client.' prefix. |
 | `zfs-base-path` | string |  | Base path where to look for the created ZFS block devices. Set automatically during creation if not specified. Usually '/dev/zvol'. — format `pve-storage-path` |
 
-### `DELETE /storage/{storage}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/storage/{storage}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/storage/{storage}`
 
 ```ts
 proxmox.storage.$(storage).$delete()
@@ -190,3 +212,5 @@ Returns nothing.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `storage` | string | yes | The storage identifier. — format `pve-storage-id` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/storage/{storage}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

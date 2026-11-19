@@ -9,7 +9,7 @@ editLink: false
 
 2 operations.
 
-### `GET /nodes/{node}/status`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/status`
 
 ```ts
 proxmox.nodes.$(node).status.$get()
@@ -23,7 +23,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `POST /nodes/{node}/status`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/status" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/status`
 
 ```ts
 proxmox.nodes.$(node).status.$post()
@@ -37,3 +39,5 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `command` | `reboot` \| `shutdown` | yes | Specify the command. |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/status" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

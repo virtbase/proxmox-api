@@ -1,3 +1,7 @@
+---
+description: "Wait for Proxmox VE background tasks to finish, read their logs and inspect a UPID with @virtbase/proxmox-api."
+---
+
 # Tasks
 
 Most calls that change something — starting a guest, taking a backup, cloning,

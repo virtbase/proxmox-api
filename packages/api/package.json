@@ -12,7 +12,7 @@
     "typescript",
     "virtualization"
   ],
-  "homepage": "https://virtbase.github.io/proxmox-api/",
+  "homepage": "https://proxmox-api.virtbase.com/",
   "bugs": {
     "url": "https://github.com/virtbase/proxmox-api/issues"
   },

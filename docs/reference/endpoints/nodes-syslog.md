@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `GET /nodes/{node}/syslog`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/syslog`
 
 ```ts
 proxmox.nodes.$(node).syslog.$get()
@@ -27,3 +27,5 @@ Returns an array of `object`.
 | `since` | string |  | Display all log since this date-time string. |
 | `start` | number |  | min 0 |
 | `until` | string |  | Display all log until this date-time string. |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/syslog" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `GET /nodes/{node}/vncwebsocket`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/vncwebsocket`
 
 ```ts
 proxmox.nodes.$(node).vncwebsocket.$get()
@@ -24,3 +24,5 @@ Returns `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `port` | number | yes | Port number returned by previous 'vncshell' call. — min 5900, max 5999 |
 | `vncticket` | string | yes | Ticket from previous call to 'vncshell'. — ≤ 512 chars |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/vncwebsocket" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

@@ -9,7 +9,7 @@ editLink: false
 
 5 operations.
 
-### `GET /access/groups`
+### <span class="method-badge" data-method="GET">GET</span> `/access/groups`
 
 ```ts
 proxmox.access.groups.$get()
@@ -19,7 +19,9 @@ Group index.
 
 Returns an array of `object`.
 
-### `POST /access/groups`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/groups" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/access/groups`
 
 ```ts
 proxmox.access.groups.$post()
@@ -34,7 +36,9 @@ Returns nothing.
 | `comment` | string |  |  |
 | `groupid` | string | yes | format `pve-groupid` |
 
-### `GET /access/groups/{groupid}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/groups" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/access/groups/{groupid}`
 
 ```ts
 proxmox.access.groups.$(groupid).$get()
@@ -48,7 +52,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `groupid` | string | yes | format `pve-groupid` |
 
-### `PUT /access/groups/{groupid}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/groups/{groupid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/access/groups/{groupid}`
 
 ```ts
 proxmox.access.groups.$(groupid).$put()
@@ -63,7 +69,9 @@ Returns nothing.
 | `comment` | string |  |  |
 | `groupid` | string | yes | format `pve-groupid` |
 
-### `DELETE /access/groups/{groupid}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/groups/{groupid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/access/groups/{groupid}`
 
 ```ts
 proxmox.access.groups.$(groupid).$delete()
@@ -76,3 +84,5 @@ Returns nothing.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `groupid` | string | yes | format `pve-groupid` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/groups/{groupid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

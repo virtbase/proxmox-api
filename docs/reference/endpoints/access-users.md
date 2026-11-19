@@ -9,7 +9,7 @@ editLink: false
 
 12 operations.
 
-### `GET /access/users`
+### <span class="method-badge" data-method="GET">GET</span> `/access/users`
 
 ```ts
 proxmox.access.users.$get()
@@ -24,7 +24,9 @@ Returns an array of `object`.
 | `enabled` | boolean |  | Optional filter for enable property. |
 | `full` | boolean |  | Include group and token information. — default `0` |
 
-### `POST /access/users`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/users" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/access/users`
 
 ```ts
 proxmox.access.users.$post()
@@ -33,6 +35,12 @@ proxmox.access.users.$post()
 Create new user.
 
 Returns nothing.
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `userid` | string | yes | Full User ID, in the `name@realm` format. — format `pve-userid`, ≤ 64 chars |
+
+::: details 9 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -45,9 +53,12 @@ Returns nothing.
 | `keys` | string |  | Keys for two factor auth (yubico). |
 | `lastname` | string |  | ≤ 1024 chars |
 | `password` | string |  | Initial password. — ≤ 64 chars |
-| `userid` | string | yes | Full User ID, in the `name@realm` format. — format `pve-userid`, ≤ 64 chars |
 
-### `GET /access/users/{userid}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/users" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/access/users/{userid}`
 
 ```ts
 proxmox.access.users.$(userid).$get()
@@ -61,7 +72,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `userid` | string | yes | Full User ID, in the `name@realm` format. — format `pve-userid`, ≤ 64 chars |
 
-### `PUT /access/users/{userid}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/users/{userid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/access/users/{userid}`
 
 ```ts
 proxmox.access.users.$(userid).$put()
@@ -70,6 +83,12 @@ proxmox.access.users.$(userid).$put()
 Update user configuration.
 
 Returns nothing.
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `userid` | string | yes | Full User ID, in the `name@realm` format. — format `pve-userid`, ≤ 64 chars |
+
+::: details 9 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -82,9 +101,12 @@ Returns nothing.
 | `groups` | string |  | format `pve-groupid-list` |
 | `keys` | string |  | Keys for two factor auth (yubico). |
 | `lastname` | string |  | ≤ 1024 chars |
-| `userid` | string | yes | Full User ID, in the `name@realm` format. — format `pve-userid`, ≤ 64 chars |
 
-### `DELETE /access/users/{userid}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/users/{userid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/access/users/{userid}`
 
 ```ts
 proxmox.access.users.$(userid).$delete()
@@ -98,7 +120,9 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `userid` | string | yes | Full User ID, in the `name@realm` format. — format `pve-userid`, ≤ 64 chars |
 
-### `GET /access/users/{userid}/tfa`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/users/{userid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/access/users/{userid}/tfa`
 
 ```ts
 proxmox.access.users.$(userid).tfa.$get()
@@ -113,7 +137,9 @@ Returns `object`.
 | `multiple` | boolean |  | Request all entries as an array. — default `0` |
 | `userid` | string | yes | Full User ID, in the `name@realm` format. — format `pve-userid`, ≤ 64 chars |
 
-### `GET /access/users/{userid}/token`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/users/{userid}/tfa" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/access/users/{userid}/token`
 
 ```ts
 proxmox.access.users.$(userid).token.$get()
@@ -127,7 +153,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `userid` | string | yes | Full User ID, in the `name@realm` format. — format `pve-userid`, ≤ 64 chars |
 
-### `GET /access/users/{userid}/token/{tokenid}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/users/{userid}/token" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/access/users/{userid}/token/{tokenid}`
 
 ```ts
 proxmox.access.users.$(userid).token.$(tokenid).$get()
@@ -142,7 +170,9 @@ Returns `object`.
 | `tokenid` | string | yes | User-specific token identifier. |
 | `userid` | string | yes | Full User ID, in the `name@realm` format. — format `pve-userid`, ≤ 64 chars |
 
-### `POST /access/users/{userid}/token/{tokenid}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/users/{userid}/token/{tokenid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/access/users/{userid}/token/{tokenid}`
 
 ```ts
 proxmox.access.users.$(userid).token.$(tokenid).$post()
@@ -160,7 +190,9 @@ Returns `object`.
 | `tokenid` | string | yes | User-specific token identifier. |
 | `userid` | string | yes | Full User ID, in the `name@realm` format. — format `pve-userid`, ≤ 64 chars |
 
-### `PUT /access/users/{userid}/token/{tokenid}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/users/{userid}/token/{tokenid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/access/users/{userid}/token/{tokenid}`
 
 ```ts
 proxmox.access.users.$(userid).token.$(tokenid).$put()
@@ -180,7 +212,9 @@ Returns `object`.
 | `tokenid` | string | yes | User-specific token identifier. |
 | `userid` | string | yes | Full User ID, in the `name@realm` format. — format `pve-userid`, ≤ 64 chars |
 
-### `DELETE /access/users/{userid}/token/{tokenid}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/users/{userid}/token/{tokenid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/access/users/{userid}/token/{tokenid}`
 
 ```ts
 proxmox.access.users.$(userid).token.$(tokenid).$delete()
@@ -195,7 +229,9 @@ Returns nothing.
 | `tokenid` | string | yes | User-specific token identifier. |
 | `userid` | string | yes | Full User ID, in the `name@realm` format. — format `pve-userid`, ≤ 64 chars |
 
-### `PUT /access/users/{userid}/unlock-tfa`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/users/{userid}/token/{tokenid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/access/users/{userid}/unlock-tfa`
 
 ```ts
 proxmox.access.users.$(userid)["unlock-tfa"].$put()
@@ -208,3 +244,5 @@ Returns `boolean`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `userid` | string | yes | Full User ID, in the `name@realm` format. — format `pve-userid`, ≤ 64 chars |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/users/{userid}/unlock-tfa" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

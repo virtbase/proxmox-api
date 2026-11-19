@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `GET /cluster/log`
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/log`
 
 ```ts
 proxmox.cluster.log.$get()
@@ -22,3 +22,5 @@ Returns an array of `object`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `max` | number |  | Maximum number of entries. — min 1 |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/log" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

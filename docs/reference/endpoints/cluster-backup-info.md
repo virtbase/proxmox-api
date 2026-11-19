@@ -9,7 +9,7 @@ editLink: false
 
 2 operations.
 
-### `GET /cluster/backup-info`
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/backup-info`
 
 ```ts
 proxmox.cluster["backup-info"].$get()
@@ -19,7 +19,9 @@ Index for backup info related endpoints
 
 Returns an array of `object`.
 
-### `GET /cluster/backup-info/not-backed-up`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/backup-info" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/backup-info/not-backed-up`
 
 ```ts
 proxmox.cluster["backup-info"]["not-backed-up"].$get()
@@ -28,3 +30,5 @@ proxmox.cluster["backup-info"]["not-backed-up"].$get()
 Shows all guests which are not covered by any backup job.
 
 Returns an array of `object`.
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/backup-info/not-backed-up" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

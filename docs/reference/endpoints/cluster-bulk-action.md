@@ -9,7 +9,7 @@ editLink: false
 
 6 operations.
 
-### `GET /cluster/bulk-action`
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/bulk-action`
 
 ```ts
 proxmox.cluster["bulk-action"].$get()
@@ -19,7 +19,9 @@ List resource types.
 
 Returns an array of `object`.
 
-### `GET /cluster/bulk-action/guest`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/bulk-action" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/bulk-action/guest`
 
 ```ts
 proxmox.cluster["bulk-action"].guest.$get()
@@ -29,7 +31,9 @@ Bulk action index.
 
 Returns an array of `object`.
 
-### `POST /cluster/bulk-action/guest/migrate`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/bulk-action/guest" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/bulk-action/guest/migrate`
 
 ```ts
 proxmox.cluster["bulk-action"].guest.migrate.$post()
@@ -48,7 +52,9 @@ Returns `string`.
 | `vms` | number[] |  | Only consider guests from this list of VMIDs. |
 | `with-local-disks` | boolean |  | Enable live storage migration for local disk |
 
-### `POST /cluster/bulk-action/guest/shutdown`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/bulk-action/guest/migrate" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/bulk-action/guest/shutdown`
 
 ```ts
 proxmox.cluster["bulk-action"].guest.shutdown.$post()
@@ -66,7 +72,9 @@ Returns `string`.
 | `timeout` | number |  | Default shutdown timeout in seconds if none is configured for the guest. — default `180` |
 | `vms` | number[] |  | Only consider guests from this list of VMIDs. |
 
-### `POST /cluster/bulk-action/guest/start`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/bulk-action/guest/shutdown" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/bulk-action/guest/start`
 
 ```ts
 proxmox.cluster["bulk-action"].guest.start.$post()
@@ -83,7 +91,9 @@ Returns `string`.
 | `timeout` | number |  | Default start timeout in seconds. Only valid for VMs. (default depends on the guest configuration). |
 | `vms` | number[] |  | Only consider guests from this list of VMIDs. |
 
-### `POST /cluster/bulk-action/guest/suspend`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/bulk-action/guest/start" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/bulk-action/guest/suspend`
 
 ```ts
 proxmox.cluster["bulk-action"].guest.suspend.$post()
@@ -100,3 +110,5 @@ Returns `string`.
 | `statestorage` | string |  | The storage for the VM state. — format `pve-storage-id` |
 | `to-disk` | boolean |  | If set, suspends the guests to disk. Will be resumed on next start. — default `0` |
 | `vms` | number[] |  | Only consider guests from this list of VMIDs. |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/bulk-action/guest/suspend" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

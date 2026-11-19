@@ -9,7 +9,7 @@ editLink: false
 
 2 operations.
 
-### `GET /nodes/{node}/hosts`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/hosts`
 
 ```ts
 proxmox.nodes.$(node).hosts.$get()
@@ -23,7 +23,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `POST /nodes/{node}/hosts`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/hosts" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/hosts`
 
 ```ts
 proxmox.nodes.$(node).hosts.$post()
@@ -38,3 +40,5 @@ Returns nothing.
 | `data` | string | yes | The target content of /etc/hosts. |
 | `digest` | string |  | Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications. — ≤ 64 chars |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/hosts" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

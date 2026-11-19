@@ -1,3 +1,7 @@
+---
+description: "Reference for the hand-written API of @virtbase/proxmox-api: proxmoxApi(), waitForTask(), parseUpid(), the error classes, ProxmoxEngine and QmMonitor."
+---
+
 # Client API
 
 The hand-written surface. For the generated endpoints see the
