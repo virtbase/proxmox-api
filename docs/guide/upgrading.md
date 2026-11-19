@@ -1,3 +1,7 @@
+---
+description: "Migrate between major versions of @virtbase/proxmox-api, including from the original proxmox-api package."
+---
+
 # Upgrading
 
 ## From 3.x to 4.x

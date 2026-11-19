@@ -1,3 +1,7 @@
+---
+description: "Which @virtbase/proxmox-api release matches which Proxmox VE version, what compatible means, and how to check the cluster version at run time."
+---
+
 <script setup>
 import { data as releases } from "../.vitepress/compatibility.data.ts";
 

@@ -1,3 +1,7 @@
+---
+description: "Authenticate @virtbase/proxmox-api against Proxmox VE with an API token or a username and password, reuse a session ticket, and pick the right realm."
+---
+
 # Authentication
 
 Two mechanisms, chosen by which options you pass.

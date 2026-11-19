@@ -30,7 +30,7 @@ const ROOT = new URL("..", import.meta.url).pathname;
  */
 const SOURCES = [
   "packages/*/src/**/*.ts",
-  "docs/.vitepress/*.ts",
+  "docs/.vitepress/**/*.ts",
   "scripts/*.ts",
 ];
 

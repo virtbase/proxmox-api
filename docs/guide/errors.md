@@ -1,3 +1,7 @@
+---
+description: "The typed errors @virtbase/proxmox-api throws for Proxmox VE API failures, which requests are retried, and how timeouts and request hooks work."
+---
+
 # Errors, retries and timeouts
 
 ## What gets thrown

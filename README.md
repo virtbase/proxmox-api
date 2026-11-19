@@ -6,12 +6,12 @@
 The source of [`@virtbase/proxmox-api`](packages/api), a fully typed client for
 the Proxmox VE API, and of the generator that keeps it in step with Proxmox.
 
-- Using the client: [documentation](https://virtbase.github.io/proxmox-api/) and
+- Using the client: [documentation](https://proxmox-api.virtbase.com/) and
   [`packages/api/README.md`](packages/api/README.md).
 - Which release fits which Proxmox VE version:
-  [compatibility](https://virtbase.github.io/proxmox-api/guide/compatibility).
+  [compatibility](https://proxmox-api.virtbase.com/guide/compatibility).
 - What changed in the Proxmox API between versions:
-  [API changelog](https://virtbase.github.io/proxmox-api/reference/api-changelog/).
+  [API changelog](https://proxmox-api.virtbase.com/reference/api-changelog/).
 
 ## Repository
 
