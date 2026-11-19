@@ -151,7 +151,7 @@ Returns nothing.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `api` | `1984hosting` \| `acmedns` \| `acmeproxy` \| `active24` \| `ad` \| `ali` \| `alviy` \| `anx` \| … (152 more) |  | API plugin name |
+| `api` | `1984hosting` \| `acmedns` \| `acmeproxy` \| `active24` \| `ad` \| `ali` \| `alviy` \| `anx` \| … (190 more) |  | API plugin name |
 | `data` | string |  | DNS plugin data. (base64 encoded) |
 | `disable` | boolean |  | Flag to disable the config. |
 | `id` | string | yes | ACME Plugin ID name — format `pve-configid` |
@@ -185,7 +185,7 @@ Returns nothing.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `api` | `1984hosting` \| `acmedns` \| `acmeproxy` \| `active24` \| `ad` \| `ali` \| `alviy` \| `anx` \| … (152 more) |  | API plugin name |
+| `api` | `1984hosting` \| `acmedns` \| `acmeproxy` \| `active24` \| `ad` \| `ali` \| `alviy` \| `anx` \| … (190 more) |  | API plugin name |
 | `data` | string |  | DNS plugin data. (base64 encoded) |
 | `delete` | string |  | A list of settings you want to delete. — format `pve-configid-list`, ≤ 4096 chars |
 | `digest` | string |  | Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications. — ≤ 64 chars |

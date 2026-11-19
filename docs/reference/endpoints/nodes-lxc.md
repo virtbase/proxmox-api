@@ -56,7 +56,7 @@ Returns `string`.
 | `lock` | `backup` \| `create` \| `destroyed` \| `disk` \| `fstrim` \| `migrate` \| `mounted` \| `rollback` \| … (2 more) |  | Lock/unlock the container. |
 | `memory` | number |  | Amount of RAM for the container in MB. — min 16, default `512` |
 | `mp0`…`mp255` | string |  | Use volume as container mount point. Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. |
-| `nameserver` | string |  | Sets DNS server IP address for a container. Create will automatically use the setting from the host if you neither set searchdomain nor nameserver. — format `lxc-ip-with-ll-iface-list` |
+| `nameserver` | string |  | Comma-separated list of IP addresses. Sets the addresses of the DNS servers of the container. Create will automatically use the setting from the host if you neither set searchdomain nor nameserver. — format `lxc-ip-with-ll-iface-list` |
 | `net0`…`net31` | string |  | Specifies network interfaces for the container. |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `onboot` | boolean |  | Specifies whether a container will be started during system bootup. — default `0` |
@@ -187,7 +187,7 @@ Returns nothing.
 | `lock` | `backup` \| `create` \| `destroyed` \| `disk` \| `fstrim` \| `migrate` \| `mounted` \| `rollback` \| … (2 more) |  | Lock/unlock the container. |
 | `memory` | number |  | Amount of RAM for the container in MB. — min 16, default `512` |
 | `mp0`…`mp255` | string |  | Use volume as container mount point. Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. |
-| `nameserver` | string |  | Sets DNS server IP address for a container. Create will automatically use the setting from the host if you neither set searchdomain nor nameserver. — format `lxc-ip-with-ll-iface-list` |
+| `nameserver` | string |  | Comma-separated list of IP addresses. Sets the addresses of the DNS servers of the container. Create will automatically use the setting from the host if you neither set searchdomain nor nameserver. — format `lxc-ip-with-ll-iface-list` |
 | `net0`…`net31` | string |  | Specifies network interfaces for the container. |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `onboot` | boolean |  | Specifies whether a container will be started during system bootup. — default `0` |

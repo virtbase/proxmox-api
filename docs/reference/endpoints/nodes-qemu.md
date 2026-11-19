@@ -80,7 +80,7 @@ Returns `string`.
 | `kvm` | boolean |  | Enable/disable KVM hardware virtualization. — default `1` |
 | `live-restore` | boolean |  | Start the VM immediately while importing or restoring in the background. |
 | `localtime` | boolean |  | Set the real time clock (RTC) to local time. This is enabled by default if the `ostype` indicates a Microsoft Windows OS. |
-| `lock` | `backup` \| `clone` \| `create` \| `migrate` \| `rollback` \| `snapshot` \| `snapshot-delete` \| `suspending` \| … (1 more) |  | Lock/unlock the VM. |
+| `lock` | `backup` \| `clone` \| `create` \| `import` \| `migrate` \| `rollback` \| `snapshot` \| `snapshot-delete` \| … (2 more) |  | Lock/unlock the VM. |
 | `machine` | string |  | Specify the QEMU machine. |
 | `memory` | string |  | Memory properties. |
 | `migrate_downtime` | number |  | Set maximum tolerated downtime (in seconds) for migrations. Should the migration not be able to converge in the very end, because too much newly dirtied RAM needs to be transferred, the limit will be increased automatically step-by-step until migration can converge. Will be capped to 2000 seconds (maximum in QEMU). — min 0, default `0.1` |
@@ -785,7 +785,7 @@ Returns `string`.
 | `keyboard` | `de` \| `de-ch` \| `da` \| `en-gb` \| `en-us` \| `es` \| `fi` \| `fr` \| … (17 more) |  | Keyboard layout for VNC server. This option is generally not required and is often better handled from within the guest OS. — default `null` |
 | `kvm` | boolean |  | Enable/disable KVM hardware virtualization. — default `1` |
 | `localtime` | boolean |  | Set the real time clock (RTC) to local time. This is enabled by default if the `ostype` indicates a Microsoft Windows OS. |
-| `lock` | `backup` \| `clone` \| `create` \| `migrate` \| `rollback` \| `snapshot` \| `snapshot-delete` \| `suspending` \| … (1 more) |  | Lock/unlock the VM. |
+| `lock` | `backup` \| `clone` \| `create` \| `import` \| `migrate` \| `rollback` \| `snapshot` \| `snapshot-delete` \| … (2 more) |  | Lock/unlock the VM. |
 | `machine` | string |  | Specify the QEMU machine. |
 | `memory` | string |  | Memory properties. |
 | `migrate_downtime` | number |  | Set maximum tolerated downtime (in seconds) for migrations. Should the migration not be able to converge in the very end, because too much newly dirtied RAM needs to be transferred, the limit will be increased automatically step-by-step until migration can converge. Will be capped to 2000 seconds (maximum in QEMU). — min 0, default `0.1` |
@@ -886,7 +886,7 @@ Returns nothing.
 | `keyboard` | `de` \| `de-ch` \| `da` \| `en-gb` \| `en-us` \| `es` \| `fi` \| `fr` \| … (17 more) |  | Keyboard layout for VNC server. This option is generally not required and is often better handled from within the guest OS. — default `null` |
 | `kvm` | boolean |  | Enable/disable KVM hardware virtualization. — default `1` |
 | `localtime` | boolean |  | Set the real time clock (RTC) to local time. This is enabled by default if the `ostype` indicates a Microsoft Windows OS. |
-| `lock` | `backup` \| `clone` \| `create` \| `migrate` \| `rollback` \| `snapshot` \| `snapshot-delete` \| `suspending` \| … (1 more) |  | Lock/unlock the VM. |
+| `lock` | `backup` \| `clone` \| `create` \| `import` \| `migrate` \| `rollback` \| `snapshot` \| `snapshot-delete` \| … (2 more) |  | Lock/unlock the VM. |
 | `machine` | string |  | Specify the QEMU machine. |
 | `memory` | string |  | Memory properties. |
 | `migrate_downtime` | number |  | Set maximum tolerated downtime (in seconds) for migrations. Should the migration not be able to converge in the very end, because too much newly dirtied RAM needs to be transferred, the limit will be increased automatically step-by-step until migration can converge. Will be capped to 2000 seconds (maximum in QEMU). — min 0, default `0.1` |
