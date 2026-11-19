@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `POST /nodes/{node}/stopall`
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/stopall`
 
 ```ts
 proxmox.nodes.$(node).stopall.$post()
@@ -26,3 +26,5 @@ Returns `string`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `timeout` | number |  | Timeout for each guest shutdown task. Depending on `force-stop`, the shutdown gets then simply aborted or a hard-stop is forced. — min 0, max 7200, default `180` |
 | `vms` | string |  | Only consider Guests with these IDs. — format `pve-vmid-list` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/stopall" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

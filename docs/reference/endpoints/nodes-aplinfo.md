@@ -9,7 +9,7 @@ editLink: false
 
 2 operations.
 
-### `GET /nodes/{node}/aplinfo`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/aplinfo`
 
 ```ts
 proxmox.nodes.$(node).aplinfo.$get()
@@ -23,7 +23,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `POST /nodes/{node}/aplinfo`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/aplinfo" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/aplinfo`
 
 ```ts
 proxmox.nodes.$(node).aplinfo.$post()
@@ -38,3 +40,5 @@ Returns `string`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `storage` | string | yes | The storage where the template will be stored — format `pve-storage-id` |
 | `template` | string | yes | The template which will downloaded — ≤ 255 chars |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/aplinfo" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

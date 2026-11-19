@@ -9,7 +9,7 @@ editLink: false
 
 6 operations.
 
-### `GET /access/domains`
+### <span class="method-badge" data-method="GET">GET</span> `/access/domains`
 
 ```ts
 proxmox.access.domains.$get()
@@ -19,7 +19,9 @@ Authentication domain index.
 
 Returns an array of `object`.
 
-### `POST /access/domains`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/domains" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/access/domains`
 
 ```ts
 proxmox.access.domains.$post()
@@ -28,6 +30,13 @@ proxmox.access.domains.$post()
 Add an authentication server.
 
 Returns nothing.
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `realm` | string | yes | Authentication domain ID — format `pve-realm`, ≤ 32 chars |
+| `type` | `ad` \| `ldap` \| `openid` \| `pam` \| `pve` | yes | Realm type. |
+
+::: details 41 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -60,7 +69,6 @@ Returns nothing.
 | `port` | number |  | Server port. — min 1, max 65535 |
 | `prompt` | string |  | Specifies whether the Authorization Server prompts the End-User for reauthentication and consent. |
 | `query-userinfo` | boolean |  | Enables querying the userinfo endpoint for claims values. — default `1` |
-| `realm` | string | yes | Authentication domain ID — format `pve-realm`, ≤ 32 chars |
 | `scopes` | string |  | Specifies the scopes (user details) that should be authorized and returned, for example 'email' or 'profile'. — default `"email profile"` |
 | `secure` | boolean |  | Use secure LDAPS protocol. DEPRECATED: use 'mode' instead. |
 | `server1` | string |  | Server IP address (or DNS name) — format `address`, ≤ 256 chars |
@@ -69,13 +77,16 @@ Returns nothing.
 | `sync-defaults-options` | string |  | The default options for behavior of synchronizations. — format `realm-sync-options` |
 | `sync_attributes` | string |  | Comma separated list of key=value pairs for specifying which LDAP attributes map to which PVE user field. For example, to map the LDAP attribute 'mail' to PVEs 'email', write  'email=mail'. By default, each PVE user field is represented  by an LDAP attribute of the same name. |
 | `tfa` | string |  | Use Two-factor authentication. — format `pve-tfa-config`, ≤ 128 chars |
-| `type` | `ad` \| `ldap` \| `openid` \| `pam` \| `pve` | yes | Realm type. |
 | `user_attr` | string |  | LDAP user attribute name — ≤ 256 chars |
 | `user_classes` | string |  | The objectclasses for users. — format `ldap-simple-attr-list`, default `"inetorgperson, posixaccount, person, user"` |
 | `username-claim` | string |  | OpenID claim used to generate the unique username. |
 | `verify` | boolean |  | Verify the server's SSL certificate — default `0` |
 
-### `GET /access/domains/{realm}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/domains" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/access/domains/{realm}`
 
 ```ts
 proxmox.access.domains.$(realm).$get()
@@ -89,7 +100,9 @@ Returns `any`.
 | --- | --- | --- | --- |
 | `realm` | string | yes | Authentication domain ID — format `pve-realm`, ≤ 32 chars |
 
-### `PUT /access/domains/{realm}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/domains/{realm}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/access/domains/{realm}`
 
 ```ts
 proxmox.access.domains.$(realm).$put()
@@ -98,6 +111,12 @@ proxmox.access.domains.$(realm).$put()
 Update authentication server settings.
 
 Returns nothing.
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `realm` | string | yes | Authentication domain ID — format `pve-realm`, ≤ 32 chars |
+
+::: details 42 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -132,7 +151,6 @@ Returns nothing.
 | `port` | number |  | Server port. — min 1, max 65535 |
 | `prompt` | string |  | Specifies whether the Authorization Server prompts the End-User for reauthentication and consent. |
 | `query-userinfo` | boolean |  | Enables querying the userinfo endpoint for claims values. — default `1` |
-| `realm` | string | yes | Authentication domain ID — format `pve-realm`, ≤ 32 chars |
 | `scopes` | string |  | Specifies the scopes (user details) that should be authorized and returned, for example 'email' or 'profile'. — default `"email profile"` |
 | `secure` | boolean |  | Use secure LDAPS protocol. DEPRECATED: use 'mode' instead. |
 | `server1` | string |  | Server IP address (or DNS name) — format `address`, ≤ 256 chars |
@@ -145,7 +163,11 @@ Returns nothing.
 | `user_classes` | string |  | The objectclasses for users. — format `ldap-simple-attr-list`, default `"inetorgperson, posixaccount, person, user"` |
 | `verify` | boolean |  | Verify the server's SSL certificate — default `0` |
 
-### `DELETE /access/domains/{realm}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/domains/{realm}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/access/domains/{realm}`
 
 ```ts
 proxmox.access.domains.$(realm).$delete()
@@ -159,7 +181,9 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `realm` | string | yes | Authentication domain ID — format `pve-realm`, ≤ 32 chars |
 
-### `POST /access/domains/{realm}/sync`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/domains/{realm}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/access/domains/{realm}/sync`
 
 ```ts
 proxmox.access.domains.$(realm).sync.$post()
@@ -178,3 +202,5 @@ Returns `string`.
 | `realm` | string | yes | Authentication domain ID — format `pve-realm`, ≤ 32 chars |
 | `remove-vanished` | string |  | A semicolon-separated list of things to remove when they or the user vanishes during a sync. The following values are possible: 'entry' removes the user/group when not returned from the sync. 'properties' removes the set properties on existing user/group that do not appear in the source (even custom ones). 'acl' removes acls when the user/group is not returned from the sync. Instead of a list it also can be 'none' (the default). — default `"none"` |
 | `scope` | `users` \| `groups` \| `both` |  | Select what to sync. |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/domains/{realm}/sync" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

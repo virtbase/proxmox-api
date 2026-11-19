@@ -9,7 +9,7 @@ editLink: false
 
 8 operations.
 
-### `GET /nodes/{node}/scan`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/scan`
 
 ```ts
 proxmox.nodes.$(node).scan.$get()
@@ -23,7 +23,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/scan/cifs`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/scan" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/scan/cifs`
 
 ```ts
 proxmox.nodes.$(node).scan.cifs.$get()
@@ -41,7 +43,9 @@ Returns an array of `object`.
 | `server` | string | yes | The server address (name or IP). — format `pve-storage-server` |
 | `username` | string |  | User name. |
 
-### `GET /nodes/{node}/scan/iscsi`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/scan/cifs" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/scan/iscsi`
 
 ```ts
 proxmox.nodes.$(node).scan.iscsi.$get()
@@ -56,7 +60,9 @@ Returns an array of `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `portal` | string | yes | The iSCSI portal (IP or DNS name with optional port). — format `pve-storage-portal-dns` |
 
-### `GET /nodes/{node}/scan/lvm`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/scan/iscsi" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/scan/lvm`
 
 ```ts
 proxmox.nodes.$(node).scan.lvm.$get()
@@ -70,7 +76,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/scan/lvmthin`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/scan/lvm" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/scan/lvmthin`
 
 ```ts
 proxmox.nodes.$(node).scan.lvmthin.$get()
@@ -85,7 +93,9 @@ Returns an array of `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `vg` | string | yes | ≤ 100 chars |
 
-### `GET /nodes/{node}/scan/nfs`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/scan/lvmthin" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/scan/nfs`
 
 ```ts
 proxmox.nodes.$(node).scan.nfs.$get()
@@ -100,7 +110,9 @@ Returns an array of `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `server` | string | yes | The server address (name or IP). — format `pve-storage-server` |
 
-### `GET /nodes/{node}/scan/pbs`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/scan/nfs" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/scan/pbs`
 
 ```ts
 proxmox.nodes.$(node).scan.pbs.$get()
@@ -119,7 +131,9 @@ Returns an array of `object`.
 | `server` | string | yes | The server address (name or IP). — format `pve-storage-server` |
 | `username` | string | yes | User-name or API token-ID. |
 
-### `GET /nodes/{node}/scan/zfs`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/scan/pbs" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/scan/zfs`
 
 ```ts
 proxmox.nodes.$(node).scan.zfs.$get()
@@ -132,3 +146,5 @@ Returns an array of `object`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/scan/zfs" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

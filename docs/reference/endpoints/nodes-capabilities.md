@@ -9,7 +9,7 @@ editLink: false
 
 6 operations.
 
-### `GET /nodes/{node}/capabilities`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/capabilities`
 
 ```ts
 proxmox.nodes.$(node).capabilities.$get()
@@ -23,7 +23,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/capabilities/qemu`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/capabilities" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/capabilities/qemu`
 
 ```ts
 proxmox.nodes.$(node).capabilities.qemu.$get()
@@ -37,7 +39,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/capabilities/qemu/cpu`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/capabilities/qemu" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/capabilities/qemu/cpu`
 
 ```ts
 proxmox.nodes.$(node).capabilities.qemu.cpu.$get()
@@ -52,7 +56,9 @@ Returns an array of `object`.
 | `arch` | `x86_64` \| `aarch64` |  | Virtual processor architecture. Defaults to the host architecture. |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/capabilities/qemu/cpu-flags`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/capabilities/qemu/cpu" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/capabilities/qemu/cpu-flags`
 
 ```ts
 proxmox.nodes.$(node).capabilities.qemu["cpu-flags"].$get()
@@ -68,7 +74,9 @@ Returns an array of `object`.
 | `arch` | `x86_64` \| `aarch64` |  | Virtual processor architecture. Defaults to the host architecture. |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/capabilities/qemu/machines`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/capabilities/qemu/cpu-flags" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/capabilities/qemu/machines`
 
 ```ts
 proxmox.nodes.$(node).capabilities.qemu.machines.$get()
@@ -83,7 +91,9 @@ Returns an array of `object`.
 | `arch` | `x86_64` \| `aarch64` |  | Virtual processor architecture. Defaults to the host architecture. |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/capabilities/qemu/migration`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/capabilities/qemu/machines" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/capabilities/qemu/migration`
 
 ```ts
 proxmox.nodes.$(node).capabilities.qemu.migration.$get()
@@ -96,3 +106,5 @@ Returns `object`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/capabilities/qemu/migration" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

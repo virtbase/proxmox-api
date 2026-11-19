@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `GET /nodes/{node}/query-url-metadata`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/query-url-metadata`
 
 ```ts
 proxmox.nodes.$(node)["query-url-metadata"].$get()
@@ -24,3 +24,5 @@ Returns `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `url` | string | yes | The URL to query the metadata from. |
 | `verify-certificates` | boolean |  | If false, no SSL/TLS certificates will be verified. — default `1` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/query-url-metadata" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

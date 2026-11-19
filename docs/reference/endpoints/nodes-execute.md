@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `POST /nodes/{node}/execute`
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/execute`
 
 ```ts
 proxmox.nodes.$(node).execute.$post()
@@ -23,3 +23,5 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `commands` | string | yes | JSON encoded array of commands. — format `pve-command-batch` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/execute" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

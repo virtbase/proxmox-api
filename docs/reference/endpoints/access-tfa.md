@@ -9,7 +9,7 @@ editLink: false
 
 6 operations.
 
-### `GET /access/tfa`
+### <span class="method-badge" data-method="GET">GET</span> `/access/tfa`
 
 ```ts
 proxmox.access.tfa.$get()
@@ -19,7 +19,9 @@ List TFA configurations of users.
 
 Returns an array of `object`.
 
-### `GET /access/tfa/{userid}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/tfa" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/access/tfa/{userid}`
 
 ```ts
 proxmox.access.tfa.$(userid).$get()
@@ -33,7 +35,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `userid` | string | yes | Full User ID, in the `name@realm` format. — format `pve-userid`, ≤ 64 chars |
 
-### `POST /access/tfa/{userid}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/tfa/{userid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/access/tfa/{userid}`
 
 ```ts
 proxmox.access.tfa.$(userid).$post()
@@ -57,7 +61,9 @@ Not callable with an API token.
 | `userid` | string | yes | Full User ID, in the `name@realm` format. — format `pve-userid`, ≤ 64 chars |
 | `value` | string |  | The current value for the provided totp URI, or a Webauthn/U2F challenge response |
 
-### `GET /access/tfa/{userid}/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/tfa/{userid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/access/tfa/{userid}/{id}`
 
 ```ts
 proxmox.access.tfa.$(userid).$(id).$get()
@@ -72,7 +78,9 @@ Returns `object`.
 | `id` | string | yes | A TFA entry id. |
 | `userid` | string | yes | Full User ID, in the `name@realm` format. — format `pve-userid`, ≤ 64 chars |
 
-### `PUT /access/tfa/{userid}/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/tfa/{userid}/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/access/tfa/{userid}/{id}`
 
 ```ts
 proxmox.access.tfa.$(userid).$(id).$put()
@@ -94,7 +102,9 @@ Not callable with an API token.
 | `password` | string |  | The current password of the user performing the change. — ≤ 64 chars |
 | `userid` | string | yes | Full User ID, in the `name@realm` format. — format `pve-userid`, ≤ 64 chars |
 
-### `DELETE /access/tfa/{userid}/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/tfa/{userid}/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/access/tfa/{userid}/{id}`
 
 ```ts
 proxmox.access.tfa.$(userid).$(id).$delete()
@@ -113,3 +123,5 @@ Not callable with an API token.
 | `id` | string | yes | A TFA entry id. |
 | `password` | string |  | The current password of the user performing the change. — ≤ 64 chars |
 | `userid` | string | yes | Full User ID, in the `name@realm` format. — format `pve-userid`, ≤ 64 chars |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/tfa/{userid}/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

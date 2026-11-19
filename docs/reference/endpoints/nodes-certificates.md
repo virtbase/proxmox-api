@@ -9,7 +9,7 @@ editLink: false
 
 8 operations.
 
-### `GET /nodes/{node}/certificates`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/certificates`
 
 ```ts
 proxmox.nodes.$(node).certificates.$get()
@@ -23,7 +23,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/certificates/acme`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/certificates" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/certificates/acme`
 
 ```ts
 proxmox.nodes.$(node).certificates.acme.$get()
@@ -37,7 +39,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `POST /nodes/{node}/certificates/acme/certificate`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/certificates/acme" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/certificates/acme/certificate`
 
 ```ts
 proxmox.nodes.$(node).certificates.acme.certificate.$post()
@@ -52,7 +56,9 @@ Returns `string`.
 | `force` | boolean |  | Overwrite existing custom certificate. — default `0` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `PUT /nodes/{node}/certificates/acme/certificate`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/certificates/acme/certificate" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/nodes/{node}/certificates/acme/certificate`
 
 ```ts
 proxmox.nodes.$(node).certificates.acme.certificate.$put()
@@ -67,7 +73,9 @@ Returns `string`.
 | `force` | boolean |  | Force renewal even if the certificate is not yet due for renewal. — default `0` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `DELETE /nodes/{node}/certificates/acme/certificate`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/certificates/acme/certificate" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/nodes/{node}/certificates/acme/certificate`
 
 ```ts
 proxmox.nodes.$(node).certificates.acme.certificate.$delete()
@@ -81,7 +89,9 @@ Returns `string`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `POST /nodes/{node}/certificates/custom`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/certificates/acme/certificate" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/certificates/custom`
 
 ```ts
 proxmox.nodes.$(node).certificates.custom.$post()
@@ -99,7 +109,9 @@ Returns `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `restart` | boolean |  | Restart pveproxy. — default `0` |
 
-### `DELETE /nodes/{node}/certificates/custom`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/certificates/custom" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/nodes/{node}/certificates/custom`
 
 ```ts
 proxmox.nodes.$(node).certificates.custom.$delete()
@@ -114,7 +126,9 @@ Returns nothing.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `restart` | boolean |  | Restart pveproxy. — default `0` |
 
-### `GET /nodes/{node}/certificates/info`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/certificates/custom" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/certificates/info`
 
 ```ts
 proxmox.nodes.$(node).certificates.info.$get()
@@ -127,3 +141,5 @@ Returns an array of `object`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/certificates/info" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

@@ -9,7 +9,7 @@ editLink: false
 
 15 operations.
 
-### `GET /cluster/acme`
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/acme`
 
 ```ts
 proxmox.cluster.acme.$get()
@@ -19,7 +19,9 @@ ACMEAccount index.
 
 Returns an array of `object`.
 
-### `GET /cluster/acme/account`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/acme" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/acme/account`
 
 ```ts
 proxmox.cluster.acme.account.$get()
@@ -29,7 +31,9 @@ ACMEAccount index.
 
 Returns an array of `object`.
 
-### `POST /cluster/acme/account`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/acme/account" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/acme/account`
 
 ```ts
 proxmox.cluster.acme.account.$post()
@@ -48,7 +52,9 @@ Returns `string`.
 | `name` | string |  | ACME account config file name. — format `pve-configid`, default `"default"` |
 | `tos_url` | string |  | URL of CA TermsOfService - setting this indicates agreement. |
 
-### `GET /cluster/acme/account/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/acme/account" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/acme/account/{name}`
 
 ```ts
 proxmox.cluster.acme.account.$(name).$get()
@@ -62,7 +68,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `name` | string |  | ACME account config file name. — format `pve-configid`, default `"default"` |
 
-### `PUT /cluster/acme/account/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/acme/account/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/acme/account/{name}`
 
 ```ts
 proxmox.cluster.acme.account.$(name).$put()
@@ -77,7 +85,9 @@ Returns `string`.
 | `contact` | string |  | Contact email addresses. — format `email-list` |
 | `name` | string |  | ACME account config file name. — format `pve-configid`, default `"default"` |
 
-### `DELETE /cluster/acme/account/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/acme/account/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/acme/account/{name}`
 
 ```ts
 proxmox.cluster.acme.account.$(name).$delete()
@@ -91,7 +101,9 @@ Returns `string`.
 | --- | --- | --- | --- |
 | `name` | string |  | ACME account config file name. — format `pve-configid`, default `"default"` |
 
-### `GET /cluster/acme/challenge-schema`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/acme/account/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/acme/challenge-schema`
 
 ```ts
 proxmox.cluster.acme["challenge-schema"].$get()
@@ -101,7 +113,9 @@ Get schema of ACME challenge types.
 
 Returns an array of `object`.
 
-### `GET /cluster/acme/directories`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/acme/challenge-schema" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/acme/directories`
 
 ```ts
 proxmox.cluster.acme.directories.$get()
@@ -111,7 +125,9 @@ Get named known ACME directory endpoints.
 
 Returns an array of `object`.
 
-### `GET /cluster/acme/meta`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/acme/directories" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/acme/meta`
 
 ```ts
 proxmox.cluster.acme.meta.$get()
@@ -125,7 +141,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `directory` | string |  | URL of ACME CA directory endpoint. — default `"https://acme-v02.api.letsencrypt.org/directory"` |
 
-### `GET /cluster/acme/plugins`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/acme/meta" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/acme/plugins`
 
 ```ts
 proxmox.cluster.acme.plugins.$get()
@@ -139,7 +157,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `type` | `dns` \| `standalone` |  | Only list ACME plugins of a specific type |
 
-### `POST /cluster/acme/plugins`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/acme/plugins" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/acme/plugins`
 
 ```ts
 proxmox.cluster.acme.plugins.$post()
@@ -159,7 +179,9 @@ Returns nothing.
 | `type` | `dns` \| `standalone` | yes | ACME challenge type. |
 | `validation-delay` | number |  | Extra delay in seconds to wait before requesting validation. Allows to cope with a long TTL of DNS records. — min 0, max 172800, default `30` |
 
-### `GET /cluster/acme/plugins/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/acme/plugins" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/acme/plugins/{id}`
 
 ```ts
 proxmox.cluster.acme.plugins.$(id).$get()
@@ -173,7 +195,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `id` | string | yes | Unique identifier for ACME plugin instance. — format `pve-configid` |
 
-### `PUT /cluster/acme/plugins/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/acme/plugins/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/acme/plugins/{id}`
 
 ```ts
 proxmox.cluster.acme.plugins.$(id).$put()
@@ -194,7 +218,9 @@ Returns nothing.
 | `nodes` | string |  | List of cluster node names. — format `pve-node-list` |
 | `validation-delay` | number |  | Extra delay in seconds to wait before requesting validation. Allows to cope with a long TTL of DNS records. — min 0, max 172800, default `30` |
 
-### `DELETE /cluster/acme/plugins/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/acme/plugins/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/acme/plugins/{id}`
 
 ```ts
 proxmox.cluster.acme.plugins.$(id).$delete()
@@ -208,7 +234,9 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `id` | string | yes | Unique identifier for ACME plugin instance. — format `pve-configid` |
 
-### `GET /cluster/acme/tos`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/acme/plugins/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/acme/tos`
 
 ```ts
 proxmox.cluster.acme.tos.$get()
@@ -221,3 +249,5 @@ Returns `string`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `directory` | string |  | URL of ACME CA directory endpoint. — default `"https://acme-v02.api.letsencrypt.org/directory"` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/acme/tos" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

@@ -9,7 +9,7 @@ editLink: false
 
 3 operations.
 
-### `GET /plugins/storage`
+### <span class="method-badge" data-method="GET">GET</span> `/plugins/storage`
 
 ```ts
 proxmox.plugins.storage.$get()
@@ -19,7 +19,9 @@ Directory index.
 
 Returns an array of `object`.
 
-### `GET /plugins/storage/plugin`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/plugins/storage" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/plugins/storage/plugin`
 
 ```ts
 proxmox.plugins.storage.plugin.$get()
@@ -33,7 +35,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `origin` | `builtin` \| `custom` |  | Only list plugins of this origin. |
 
-### `GET /plugins/storage/plugin/{type}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/plugins/storage/plugin" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/plugins/storage/plugin/{type}`
 
 ```ts
 proxmox.plugins.storage.plugin.$(type).$get()
@@ -46,3 +50,5 @@ Returns `object`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `type` | `btrfs` \| `cephfs` \| `cifs` \| `dir` \| `esxi` \| `iscsi` \| `iscsidirect` \| `lvm` \| … (6 more) | yes | The type of the storage plugin. |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/plugins/storage/plugin/{type}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

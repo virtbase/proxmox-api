@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `POST /access/vncticket`
+### <span class="method-badge" data-method="POST">POST</span> `/access/vncticket`
 
 ```ts
 proxmox.access.vncticket.$post()
@@ -26,3 +26,5 @@ Returns nothing.
 | `port` | number |  | Verify that the ticket is valid for this port. |
 | `privs` | string | yes | Verify ticket, and check if user have access 'privs' on 'path' — format `pve-priv-list`, ≤ 64 chars |
 | `vncticket` | string | yes | The VNC ticket. |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/vncticket" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

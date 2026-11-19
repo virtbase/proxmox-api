@@ -9,7 +9,7 @@ editLink: false
 
 43 operations.
 
-### `GET /nodes/{node}/ceph`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/ceph`
 
 ```ts
 proxmox.nodes.$(node).ceph.$get()
@@ -23,7 +23,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/ceph/cfg`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/ceph/cfg`
 
 ```ts
 proxmox.nodes.$(node).ceph.cfg.$get()
@@ -37,7 +39,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/ceph/cfg/db`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/cfg" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/ceph/cfg/db`
 
 ```ts
 proxmox.nodes.$(node).ceph.cfg.db.$get()
@@ -51,7 +55,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/ceph/cfg/raw`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/cfg/db" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/ceph/cfg/raw`
 
 ```ts
 proxmox.nodes.$(node).ceph.cfg.raw.$get()
@@ -65,7 +71,9 @@ Returns `string`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/ceph/cfg/value`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/cfg/raw" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/ceph/cfg/value`
 
 ```ts
 proxmox.nodes.$(node).ceph.cfg.value.$get()
@@ -80,7 +88,9 @@ Returns `object`.
 | `config-keys` | string | yes | List of &lt;section&gt;:&lt;config key&gt; items separated by semicolon, comma or space. — ≤ 4096 chars |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/ceph/cmd-safety`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/cfg/value" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/ceph/cmd-safety`
 
 ```ts
 proxmox.nodes.$(node).ceph["cmd-safety"].$get()
@@ -97,7 +107,9 @@ Returns `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `service` | `osd` \| `mon` \| `mds` | yes | Service type |
 
-### `GET /nodes/{node}/ceph/crush`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/cmd-safety" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/ceph/crush`
 
 ```ts
 proxmox.nodes.$(node).ceph.crush.$get()
@@ -111,7 +123,9 @@ Returns `string`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/ceph/fs`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/crush" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/ceph/fs`
 
 ```ts
 proxmox.nodes.$(node).ceph.fs.$get()
@@ -125,7 +139,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `POST /nodes/{node}/ceph/fs/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/fs" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/ceph/fs/{name}`
 
 ```ts
 proxmox.nodes.$(node).ceph.fs.$(name).$post()
@@ -142,7 +158,9 @@ Returns `string`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `pg_num` | number |  | Number of placement groups for the backing data pool. The metadata pool will use a quarter of this. — min 8, max 32768, default `128` |
 
-### `DELETE /nodes/{node}/ceph/fs/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/fs/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/nodes/{node}/ceph/fs/{name}`
 
 ```ts
 proxmox.nodes.$(node).ceph.fs.$(name).$delete()
@@ -159,7 +177,9 @@ Returns `string`.
 | `remove-pools` | boolean |  | Remove the metadata and data pools used by this filesystem. — default `0` |
 | `remove-storages` | boolean |  | Remove pveceph-managed storages configured for this filesystem. — default `0` |
 
-### `POST /nodes/{node}/ceph/init`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/fs/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/ceph/init`
 
 ```ts
 proxmox.nodes.$(node).ceph.init.$post()
@@ -179,7 +199,9 @@ Returns nothing.
 | `pg_bits` | number |  | Placement group bits, used to specify the default number of placement groups. Deprecated. This setting has been ignored since Ceph Nautilus. — min 6, max 14, default `6` |
 | `size` | number |  | Targeted number of replicas per object — min 1, max 7, default `3` |
 
-### `GET /nodes/{node}/ceph/log`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/init" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/ceph/log`
 
 ```ts
 proxmox.nodes.$(node).ceph.log.$get()
@@ -195,7 +217,9 @@ Returns an array of `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `start` | number |  | Offset of the first log line to return (0-based). — min 0 |
 
-### `GET /nodes/{node}/ceph/mds`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/log" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/ceph/mds`
 
 ```ts
 proxmox.nodes.$(node).ceph.mds.$get()
@@ -209,7 +233,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `POST /nodes/{node}/ceph/mds/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/mds" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/ceph/mds/{name}`
 
 ```ts
 proxmox.nodes.$(node).ceph.mds.$(name).$post()
@@ -225,7 +251,9 @@ Returns `string`.
 | `name` | string |  | The ID for the mds, when omitted the same as the nodename — ≤ 200 chars, default `"nodename"` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `DELETE /nodes/{node}/ceph/mds/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/mds/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/nodes/{node}/ceph/mds/{name}`
 
 ```ts
 proxmox.nodes.$(node).ceph.mds.$(name).$delete()
@@ -240,7 +268,9 @@ Returns `string`.
 | `name` | string | yes | The name (ID) of the mds |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/ceph/mgr`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/mds/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/ceph/mgr`
 
 ```ts
 proxmox.nodes.$(node).ceph.mgr.$get()
@@ -254,7 +284,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `POST /nodes/{node}/ceph/mgr/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/mgr" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/ceph/mgr/{id}`
 
 ```ts
 proxmox.nodes.$(node).ceph.mgr.$(id).$post()
@@ -269,7 +301,9 @@ Returns `string`.
 | `id` | string |  | The ID for the manager, when omitted the same as the nodename. — ≤ 200 chars, default `"nodename"` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `DELETE /nodes/{node}/ceph/mgr/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/mgr/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/nodes/{node}/ceph/mgr/{id}`
 
 ```ts
 proxmox.nodes.$(node).ceph.mgr.$(id).$delete()
@@ -284,7 +318,9 @@ Returns `string`.
 | `id` | string | yes | The ID of the manager |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/ceph/mon`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/mgr/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/ceph/mon`
 
 ```ts
 proxmox.nodes.$(node).ceph.mon.$get()
@@ -298,7 +334,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `POST /nodes/{node}/ceph/mon/{monid}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/mon" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/ceph/mon/{monid}`
 
 ```ts
 proxmox.nodes.$(node).ceph.mon.$(monid).$post()
@@ -314,7 +352,9 @@ Returns `string`.
 | `monid` | string |  | The ID for the monitor, when omitted the same as the nodename. — ≤ 200 chars, default `"nodename"` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `DELETE /nodes/{node}/ceph/mon/{monid}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/mon/{monid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/nodes/{node}/ceph/mon/{monid}`
 
 ```ts
 proxmox.nodes.$(node).ceph.mon.$(monid).$delete()
@@ -329,7 +369,9 @@ Returns `string`.
 | `monid` | string | yes | Monitor ID |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/ceph/osd`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/mon/{monid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/ceph/osd`
 
 ```ts
 proxmox.nodes.$(node).ceph.osd.$get()
@@ -343,7 +385,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `POST /nodes/{node}/ceph/osd`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/osd" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/ceph/osd`
 
 ```ts
 proxmox.nodes.$(node).ceph.osd.$post()
@@ -355,17 +399,26 @@ Returns `string`.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
+| `dev` | string | yes | Block device name. |
+| `node` | string | yes | The cluster node name. — format `pve-node` |
+
+::: details 7 optional parameters
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
 | `crush-device-class` | string |  | Set the device class of the OSD in crush. |
 | `db_dev` | string |  | Block device name for block.db. |
 | `db_dev_size` | number |  | Size in GiB for block.db. — min 1 |
-| `dev` | string | yes | Block device name. |
 | `encrypted` | boolean |  | Enables encryption of the OSD. — default `0` |
-| `node` | string | yes | The cluster node name. — format `pve-node` |
 | `osds-per-device` | number |  | OSD services per physical device. Only useful for fast NVMe devices to utilize their performance better. Mutually exclusive with 'db_dev' and 'wal_dev'. — min 1 |
 | `wal_dev` | string |  | Block device name for block.wal. |
 | `wal_dev_size` | number |  | Size in GiB for block.wal. — min 0.5 |
 
-### `GET /nodes/{node}/ceph/osd/{osdid}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/osd" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/ceph/osd/{osdid}`
 
 ```ts
 proxmox.nodes.$(node).ceph.osd.$(osdid).$get()
@@ -380,7 +433,9 @@ Returns an array of `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `osdid` | number | yes | OSD ID |
 
-### `DELETE /nodes/{node}/ceph/osd/{osdid}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/osd/{osdid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/nodes/{node}/ceph/osd/{osdid}`
 
 ```ts
 proxmox.nodes.$(node).ceph.osd.$(osdid).$delete()
@@ -396,7 +451,9 @@ Returns `string`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `osdid` | number | yes | OSD ID |
 
-### `POST /nodes/{node}/ceph/osd/{osdid}/in`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/osd/{osdid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/ceph/osd/{osdid}/in`
 
 ```ts
 proxmox.nodes.$(node).ceph.osd.$(osdid).in.$post()
@@ -411,7 +468,9 @@ Returns nothing.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `osdid` | number | yes | OSD ID |
 
-### `GET /nodes/{node}/ceph/osd/{osdid}/lv-info`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/osd/{osdid}/in" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/ceph/osd/{osdid}/lv-info`
 
 ```ts
 proxmox.nodes.$(node).ceph.osd.$(osdid)["lv-info"].$get()
@@ -427,7 +486,9 @@ Returns `object`.
 | `osdid` | number | yes | OSD ID |
 | `type` | `block` \| `db` \| `wal` |  | OSD device type — default `"block"` |
 
-### `GET /nodes/{node}/ceph/osd/{osdid}/metadata`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/osd/{osdid}/lv-info" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/ceph/osd/{osdid}/metadata`
 
 ```ts
 proxmox.nodes.$(node).ceph.osd.$(osdid).metadata.$get()
@@ -442,7 +503,9 @@ Returns `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `osdid` | number | yes | OSD ID |
 
-### `POST /nodes/{node}/ceph/osd/{osdid}/out`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/osd/{osdid}/metadata" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/ceph/osd/{osdid}/out`
 
 ```ts
 proxmox.nodes.$(node).ceph.osd.$(osdid).out.$post()
@@ -457,7 +520,9 @@ Returns nothing.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `osdid` | number | yes | OSD ID |
 
-### `POST /nodes/{node}/ceph/osd/{osdid}/scrub`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/osd/{osdid}/out" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/ceph/osd/{osdid}/scrub`
 
 ```ts
 proxmox.nodes.$(node).ceph.osd.$(osdid).scrub.$post()
@@ -473,7 +538,9 @@ Returns nothing.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `osdid` | number | yes | OSD ID |
 
-### `GET /nodes/{node}/ceph/pool`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/osd/{osdid}/scrub" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/ceph/pool`
 
 ```ts
 proxmox.nodes.$(node).ceph.pool.$get()
@@ -487,7 +554,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `POST /nodes/{node}/ceph/pool`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/pool" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/ceph/pool`
 
 ```ts
 proxmox.nodes.$(node).ceph.pool.$post()
@@ -499,13 +568,18 @@ Returns `string`.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
+| `name` | string | yes | The name of the pool. It must be unique. |
+| `node` | string | yes | The cluster node name. — format `pve-node` |
+
+::: details 11 optional parameters
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
 | `add_storages` | boolean |  | Configure VM and CT storage using the new pool. Defaults to false for replicated pools and to true for erasure-coded pools (since EC pools are typically only useful when wired up to storage). — default `0` |
 | `application` | `rbd` \| `cephfs` \| `rgw` |  | The application of the pool. — default `"rbd"` |
 | `crush_rule` | string |  | The rule to use for mapping object placement in the cluster. |
 | `erasure-coding` | string |  | Create an erasure coded pool for RBD with an accompaning replicated pool for metadata storage. With EC, the common ceph options 'size', 'min_size' and 'crush_rule' parameters will be applied to the metadata pool. |
 | `min_size` | number |  | Minimum number of replicas per object — min 1, max 7, default `2` |
-| `name` | string | yes | The name of the pool. It must be unique. |
-| `node` | string | yes | The cluster node name. — format `pve-node` |
 | `pg_autoscale_mode` | `on` \| `off` \| `warn` |  | The automatic PG scaling mode of the pool. — default `"warn"` |
 | `pg_num` | number |  | Number of placement groups. — min 1, max 32768, default `128` |
 | `pg_num_min` | number |  | Minimal number of placement groups. — max 32768 |
@@ -513,7 +587,11 @@ Returns `string`.
 | `target_size` | string |  | The estimated target size of the pool for the PG autoscaler. |
 | `target_size_ratio` | number |  | The estimated target ratio of the pool for the PG autoscaler. |
 
-### `GET /nodes/{node}/ceph/pool/{name}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/pool" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/ceph/pool/{name}`
 
 ```ts
 proxmox.nodes.$(node).ceph.pool.$(name).$get()
@@ -528,7 +606,9 @@ Returns an array of `object`.
 | `name` | string | yes | The name of the pool. |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `PUT /nodes/{node}/ceph/pool/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/pool/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/nodes/{node}/ceph/pool/{name}`
 
 ```ts
 proxmox.nodes.$(node).ceph.pool.$(name).$put()
@@ -540,11 +620,16 @@ Returns `string`.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
+| `name` | string | yes | The name of the pool. It must be unique. |
+| `node` | string | yes | The cluster node name. — format `pve-node` |
+
+::: details 9 optional parameters
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
 | `application` | `rbd` \| `cephfs` \| `rgw` |  | The application of the pool. |
 | `crush_rule` | string |  | The rule to use for mapping object placement in the cluster. |
 | `min_size` | number |  | Minimum number of replicas per object — min 1, max 7 |
-| `name` | string | yes | The name of the pool. It must be unique. |
-| `node` | string | yes | The cluster node name. — format `pve-node` |
 | `pg_autoscale_mode` | `on` \| `off` \| `warn` |  | The automatic PG scaling mode of the pool. |
 | `pg_num` | number |  | Number of placement groups. — min 1, max 32768 |
 | `pg_num_min` | number |  | Minimal number of placement groups. — max 32768 |
@@ -552,7 +637,11 @@ Returns `string`.
 | `target_size` | string |  | The estimated target size of the pool for the PG autoscaler. |
 | `target_size_ratio` | number |  | The estimated target ratio of the pool for the PG autoscaler. |
 
-### `DELETE /nodes/{node}/ceph/pool/{name}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/pool/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/nodes/{node}/ceph/pool/{name}`
 
 ```ts
 proxmox.nodes.$(node).ceph.pool.$(name).$delete()
@@ -570,7 +659,9 @@ Returns `string`.
 | `remove_ecprofile` | boolean |  | Remove the erasure code profile. Defaults to true, if applicable. — default `1` |
 | `remove_storages` | boolean |  | Remove all pveceph-managed storages configured for this pool — default `0` |
 
-### `GET /nodes/{node}/ceph/pool/{name}/status`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/pool/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/ceph/pool/{name}/status`
 
 ```ts
 proxmox.nodes.$(node).ceph.pool.$(name).status.$get()
@@ -586,7 +677,9 @@ Returns `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `verbose` | boolean |  | If enabled, will display additional data(eg. statistics). — default `0` |
 
-### `GET /nodes/{node}/ceph/releases`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/pool/{name}/status" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/ceph/releases`
 
 ```ts
 proxmox.nodes.$(node).ceph.releases.$get()
@@ -600,7 +693,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `POST /nodes/{node}/ceph/restart`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/releases" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/ceph/restart`
 
 ```ts
 proxmox.nodes.$(node).ceph.restart.$post()
@@ -615,7 +710,9 @@ Returns `string`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `service` | string |  | Ceph service name. — default `"ceph.target"` |
 
-### `POST /nodes/{node}/ceph/restart-bulk`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/restart" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/ceph/restart-bulk`
 
 ```ts
 proxmox.nodes.$(node).ceph["restart-bulk"].$post()
@@ -636,7 +733,9 @@ Returns `string`.
 | `set-noout` | boolean |  | Set the 'noout' flag on each OSD targeted by this run for the duration of the rolling restart, and unset it on completion. Per-OSD rather than cluster-wide so that unrelated OSDs failing on other nodes still trigger backfill normally. — default `1` |
 | `timeout` | number |  | Per-OSD timeout (in seconds). Bounds both the wait for a restarted OSD to come back up and the wait for recovery to quiesce enough that Ceph reports the next OSD safe to stop. Default sized for busy clusters where multi-TB OSDs with many PGs can need several minutes to clear peering after a restart; bump higher for very large or heavily-loaded OSDs. — min 30, max 1800, default `600` |
 
-### `GET /nodes/{node}/ceph/rules`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/restart-bulk" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/ceph/rules`
 
 ```ts
 proxmox.nodes.$(node).ceph.rules.$get()
@@ -650,7 +749,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `POST /nodes/{node}/ceph/start`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/rules" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/ceph/start`
 
 ```ts
 proxmox.nodes.$(node).ceph.start.$post()
@@ -665,7 +766,9 @@ Returns `string`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `service` | string |  | Ceph service name. — default `"ceph.target"` |
 
-### `GET /nodes/{node}/ceph/status`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/start" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/ceph/status`
 
 ```ts
 proxmox.nodes.$(node).ceph.status.$get()
@@ -679,7 +782,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `POST /nodes/{node}/ceph/stop`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/status" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/ceph/stop`
 
 ```ts
 proxmox.nodes.$(node).ceph.stop.$post()
@@ -693,3 +798,5 @@ Returns `string`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `service` | string |  | Ceph service name. — default `"ceph.target"` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/ceph/stop" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

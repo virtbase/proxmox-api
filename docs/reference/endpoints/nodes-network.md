@@ -9,7 +9,7 @@ editLink: false
 
 7 operations.
 
-### `GET /nodes/{node}/network`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/network`
 
 ```ts
 proxmox.nodes.$(node).network.$get()
@@ -24,7 +24,9 @@ Returns an array of `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `type` | `bridge` \| `bond` \| `eth` \| `alias` \| `vlan` \| `fabric` \| `OVSBridge` \| `OVSBond` \| … (6 more) |  | Only list specific interface types. |
 
-### `POST /nodes/{node}/network`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/network" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/network`
 
 ```ts
 proxmox.nodes.$(node).network.$post()
@@ -33,6 +35,14 @@ proxmox.nodes.$(node).network.$post()
 Create network device configuration
 
 Returns nothing.
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `iface` | string | yes | Network interface name. — format `pve-iface`, ≤ 20 chars |
+| `node` | string | yes | The cluster node name. — format `pve-node` |
+| `type` | `bridge` \| `bond` \| `eth` \| `alias` \| `vlan` \| `fabric` \| `OVSBridge` \| `OVSBond` \| … (4 more) | yes | Network interface type |
+
+::: details 26 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -51,22 +61,23 @@ Returns nothing.
 | `comments6` | string |  | Comments |
 | `gateway` | string |  | Default gateway address. — format `ipv4` |
 | `gateway6` | string |  | Default ipv6 gateway address. — format `ipv6` |
-| `iface` | string | yes | Network interface name. — format `pve-iface`, ≤ 20 chars |
 | `mtu` | number |  | MTU. — min 1280, max 65520 |
 | `netmask` | string |  | Network mask. — format `ipv4mask` |
 | `netmask6` | number |  | Network mask. — min 0, max 128 |
-| `node` | string | yes | The cluster node name. — format `pve-node` |
 | `ovs_bonds` | string |  | Specify the interfaces used by the bonding device. — format `pve-iface-list` |
 | `ovs_bridge` | string |  | The OVS bridge associated with a OVS port. This is required when you create an OVS port. — format `pve-iface` |
 | `ovs_options` | string |  | OVS interface options. — ≤ 1024 chars |
 | `ovs_ports` | string |  | Specify the interfaces you want to add to your bridge. — format `pve-iface-list` |
 | `ovs_tag` | number |  | Specify a VLan tag (used by OVSPort, OVSIntPort, OVSBond) — min 1, max 4094 |
 | `slaves` | string |  | Specify the interfaces used by the bonding device. — format `pve-iface-list` |
-| `type` | `bridge` \| `bond` \| `eth` \| `alias` \| `vlan` \| `fabric` \| `OVSBridge` \| `OVSBond` \| … (4 more) | yes | Network interface type |
 | `vlan-id` | number |  | vlan-id for a custom named vlan interface (ifupdown2 only). — min 1, max 4094 |
 | `vlan-raw-device` | string |  | Specify the raw interface for the vlan interface. — format `pve-iface` |
 
-### `PUT /nodes/{node}/network`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/network" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/nodes/{node}/network`
 
 ```ts
 proxmox.nodes.$(node).network.$put()
@@ -81,7 +92,9 @@ Returns `string`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `regenerate-frr` | boolean |  | Whether FRR config generation should get skipped or not. — default `0` |
 
-### `DELETE /nodes/{node}/network`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/network" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/nodes/{node}/network`
 
 ```ts
 proxmox.nodes.$(node).network.$delete()
@@ -95,7 +108,9 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/network/{iface}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/network" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/network/{iface}`
 
 ```ts
 proxmox.nodes.$(node).network.$(iface).$get()
@@ -110,7 +125,9 @@ Returns `object`.
 | `iface` | string | yes | Network interface name. — format `pve-iface`, ≤ 20 chars |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `PUT /nodes/{node}/network/{iface}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/network/{iface}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/nodes/{node}/network/{iface}`
 
 ```ts
 proxmox.nodes.$(node).network.$(iface).$put()
@@ -119,6 +136,14 @@ proxmox.nodes.$(node).network.$(iface).$put()
 Update network device configuration
 
 Returns nothing.
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `iface` | string | yes | Network interface name. — format `pve-iface`, ≤ 20 chars |
+| `node` | string | yes | The cluster node name. — format `pve-node` |
+| `type` | `bridge` \| `bond` \| `eth` \| `alias` \| `vlan` \| `fabric` \| `OVSBridge` \| `OVSBond` \| … (4 more) | yes | Network interface type |
+
+::: details 27 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -138,22 +163,23 @@ Returns nothing.
 | `delete` | string |  | A list of settings you want to delete. — format `pve-configid-list` |
 | `gateway` | string |  | Default gateway address. — format `ipv4` |
 | `gateway6` | string |  | Default ipv6 gateway address. — format `ipv6` |
-| `iface` | string | yes | Network interface name. — format `pve-iface`, ≤ 20 chars |
 | `mtu` | number |  | MTU. — min 1280, max 65520 |
 | `netmask` | string |  | Network mask. — format `ipv4mask` |
 | `netmask6` | number |  | Network mask. — min 0, max 128 |
-| `node` | string | yes | The cluster node name. — format `pve-node` |
 | `ovs_bonds` | string |  | Specify the interfaces used by the bonding device. — format `pve-iface-list` |
 | `ovs_bridge` | string |  | The OVS bridge associated with a OVS port. This is required when you create an OVS port. — format `pve-iface` |
 | `ovs_options` | string |  | OVS interface options. — ≤ 1024 chars |
 | `ovs_ports` | string |  | Specify the interfaces you want to add to your bridge. — format `pve-iface-list` |
 | `ovs_tag` | number |  | Specify a VLan tag (used by OVSPort, OVSIntPort, OVSBond) — min 1, max 4094 |
 | `slaves` | string |  | Specify the interfaces used by the bonding device. — format `pve-iface-list` |
-| `type` | `bridge` \| `bond` \| `eth` \| `alias` \| `vlan` \| `fabric` \| `OVSBridge` \| `OVSBond` \| … (4 more) | yes | Network interface type |
 | `vlan-id` | number |  | vlan-id for a custom named vlan interface (ifupdown2 only). — min 1, max 4094 |
 | `vlan-raw-device` | string |  | Specify the raw interface for the vlan interface. — format `pve-iface` |
 
-### `DELETE /nodes/{node}/network/{iface}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/network/{iface}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/nodes/{node}/network/{iface}`
 
 ```ts
 proxmox.nodes.$(node).network.$(iface).$delete()
@@ -167,3 +193,5 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `iface` | string | yes | Network interface name. — format `pve-iface`, ≤ 20 chars |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/network/{iface}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

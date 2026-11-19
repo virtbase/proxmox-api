@@ -9,7 +9,7 @@ editLink: false
 
 4 operations.
 
-### `GET /nodes/{node}/subscription`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/subscription`
 
 ```ts
 proxmox.nodes.$(node).subscription.$get()
@@ -23,7 +23,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `POST /nodes/{node}/subscription`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/subscription" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/subscription`
 
 ```ts
 proxmox.nodes.$(node).subscription.$post()
@@ -38,7 +40,9 @@ Returns nothing.
 | `force` | boolean |  | Always connect to server, even if local cache is still valid. — default `0` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `PUT /nodes/{node}/subscription`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/subscription" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/nodes/{node}/subscription`
 
 ```ts
 proxmox.nodes.$(node).subscription.$put()
@@ -53,7 +57,9 @@ Returns nothing.
 | `key` | string | yes | Proxmox VE subscription key — ≤ 32 chars |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `DELETE /nodes/{node}/subscription`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/subscription" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/nodes/{node}/subscription`
 
 ```ts
 proxmox.nodes.$(node).subscription.$delete()
@@ -66,3 +72,5 @@ Returns nothing.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/subscription" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

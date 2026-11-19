@@ -9,7 +9,7 @@ editLink: false
 
 10 operations.
 
-### `GET /cluster/ceph`
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/ceph`
 
 ```ts
 proxmox.cluster.ceph.$get()
@@ -19,7 +19,9 @@ Cluster ceph index.
 
 Returns an array of `object`.
 
-### `GET /cluster/ceph/flags`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ceph" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/ceph/flags`
 
 ```ts
 proxmox.cluster.ceph.flags.$get()
@@ -29,7 +31,9 @@ get the status of all ceph flags
 
 Returns an array of `object`.
 
-### `PUT /cluster/ceph/flags`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ceph/flags" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/ceph/flags`
 
 ```ts
 proxmox.cluster.ceph.flags.$put()
@@ -38,6 +42,8 @@ proxmox.cluster.ceph.flags.$put()
 Set/Unset multiple Ceph flags at once. Each flag is a top-level optional boolean: passing true sets the flag, false unsets it, omitting it leaves the current state untouched. Runs as a worker task; returns a UPID to follow.
 
 Returns `string`.
+
+::: details 12 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -54,7 +60,11 @@ Returns `string`.
 | `noup` | boolean |  | OSDs are not allowed to start. |
 | `pause` | boolean |  | Pauses read and writes. |
 
-### `GET /cluster/ceph/flags/{flag}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ceph/flags" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/ceph/flags/{flag}`
 
 ```ts
 proxmox.cluster.ceph.flags.$(flag).$get()
@@ -68,7 +78,9 @@ Returns `boolean`.
 | --- | --- | --- | --- |
 | `flag` | `noautoscale` \| `nobackfill` \| `nodeep-scrub` \| `nodown` \| `noin` \| `noout` \| `norebalance` \| `norecover` \| … (4 more) | yes | The name of the flag name to get. |
 
-### `PUT /cluster/ceph/flags/{flag}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ceph/flags/{flag}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/ceph/flags/{flag}`
 
 ```ts
 proxmox.cluster.ceph.flags.$(flag).$put()
@@ -83,7 +95,9 @@ Returns nothing.
 | `flag` | `noautoscale` \| `nobackfill` \| `nodeep-scrub` \| `nodown` \| `noin` \| `noout` \| `norebalance` \| `norecover` \| … (4 more) | yes | The ceph flag to update |
 | `value` | boolean | yes | The new value of the flag |
 
-### `GET /cluster/ceph/health-mute`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ceph/flags/{flag}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/ceph/health-mute`
 
 ```ts
 proxmox.cluster.ceph["health-mute"].$get()
@@ -93,7 +107,9 @@ Get the currently muted Ceph health checks.
 
 Returns an array of `object`.
 
-### `PUT /cluster/ceph/health-mute/{code}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ceph/health-mute" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/ceph/health-mute/{code}`
 
 ```ts
 proxmox.cluster.ceph["health-mute"].$(code).$put()
@@ -110,7 +126,9 @@ Returns nothing.
 | `ttl` | string |  | How long the mute lasts, for example '2h', '3d' or '1w'. Without it the mute has no expiry. Only used when muting. |
 | `value` | boolean | yes | Whether to mute (true) or unmute (false) the check. |
 
-### `GET /cluster/ceph/metadata`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ceph/health-mute/{code}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/ceph/metadata`
 
 ```ts
 proxmox.cluster.ceph.metadata.$get()
@@ -124,7 +142,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `scope` | `all` \| `versions` |  | Which metadata facet to return: 'all' enriches the per-daemon metadata with the PVE-side service state (presence of unit, data directory), 'versions' collects only per-node Ceph binary version data. — default `"all"` |
 
-### `POST /cluster/ceph/restart-bulk`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ceph/metadata" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/ceph/restart-bulk`
 
 ```ts
 proxmox.cluster.ceph["restart-bulk"].$post()
@@ -142,7 +162,9 @@ Returns `string`.
 | `service-type` | `mon` \| `mgr` \| `mds` \| `osd` | yes | Ceph daemon type to restart cluster-wide. |
 | `timeout` | number |  | Per-daemon timeout (in seconds) for the up-wait phase. Note: for daemons on remote nodes the same timeout also bounds the remote restart task, so the per-daemon budget can be up to 2x this value. Default sized for slow MDS journal replay or MON paxos settle on busy clusters; bump higher if the cluster routinely takes longer to stabilize after a daemon restart. — min 30, max 1800, default `600` |
 
-### `GET /cluster/ceph/status`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ceph/restart-bulk" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/ceph/status`
 
 ```ts
 proxmox.cluster.ceph.status.$get()
@@ -151,3 +173,5 @@ proxmox.cluster.ceph.status.$get()
 Get ceph status.
 
 Returns `object`.
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ceph/status" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

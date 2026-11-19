@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `POST /nodes/{node}/migrateall`
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/migrateall`
 
 ```ts
 proxmox.nodes.$(node).migrateall.$post()
@@ -27,3 +27,5 @@ Returns `string`.
 | `target` | string | yes | Target node. — format `pve-node` |
 | `vms` | string |  | Only consider Guests with these IDs. — format `pve-vmid-list` |
 | `with-local-disks` | boolean |  | Enable live storage migration for local disk |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/migrateall" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

@@ -9,7 +9,7 @@ editLink: false
 
 10 operations.
 
-### `GET /cluster/config`
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/config`
 
 ```ts
 proxmox.cluster.config.$get()
@@ -19,7 +19,9 @@ Directory index.
 
 Returns an array of `object`.
 
-### `POST /cluster/config`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/config" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/config`
 
 ```ts
 proxmox.cluster.config.$post()
@@ -37,7 +39,9 @@ Returns `string`.
 | `token-coefficient` | number |  | Coefficient used to determine Corosync's token timeout. See the corosync.conf(5) manual for more details. — min 0, default `125` |
 | `votes` | number |  | Number of votes for this node. — min 1 |
 
-### `GET /cluster/config/apiversion`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/config" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/config/apiversion`
 
 ```ts
 proxmox.cluster.config.apiversion.$get()
@@ -47,7 +51,9 @@ Return the version of the cluster join API available on this node.
 
 Returns `integer`.
 
-### `GET /cluster/config/join`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/config/apiversion" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/config/join`
 
 ```ts
 proxmox.cluster.config.join.$get()
@@ -61,7 +67,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `node` | string |  | The node for which the joinee gets the nodeinfo. — format `pve-node`, default `"current connected node"` |
 
-### `POST /cluster/config/join`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/config/join" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/config/join`
 
 ```ts
 proxmox.cluster.config.join.$post()
@@ -81,7 +89,9 @@ Returns `string`.
 | `password` | string | yes | Superuser (root) password of peer node. — ≤ 128 chars |
 | `votes` | number |  | Number of votes for this node — min 0 |
 
-### `GET /cluster/config/nodes`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/config/join" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/config/nodes`
 
 ```ts
 proxmox.cluster.config.nodes.$get()
@@ -91,7 +101,9 @@ Corosync node list.
 
 Returns an array of `object`.
 
-### `POST /cluster/config/nodes/{node}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/config/nodes" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/config/nodes/{node}`
 
 ```ts
 proxmox.cluster.config.nodes.$(node).$post()
@@ -111,7 +123,9 @@ Returns `object`.
 | `nodeid` | number |  | Node id for this node. — min 1 |
 | `votes` | number |  | Number of votes for this node — min 0 |
 
-### `DELETE /cluster/config/nodes/{node}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/config/nodes/{node}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/config/nodes/{node}`
 
 ```ts
 proxmox.cluster.config.nodes.$(node).$delete()
@@ -125,7 +139,9 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /cluster/config/qdevice`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/config/nodes/{node}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/config/qdevice`
 
 ```ts
 proxmox.cluster.config.qdevice.$get()
@@ -135,7 +151,9 @@ Get QDevice status
 
 Returns `object`.
 
-### `GET /cluster/config/totem`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/config/qdevice" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/config/totem`
 
 ```ts
 proxmox.cluster.config.totem.$get()
@@ -144,3 +162,5 @@ proxmox.cluster.config.totem.$get()
 Get corosync totem protocol settings.
 
 Returns `object`.
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/config/totem" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

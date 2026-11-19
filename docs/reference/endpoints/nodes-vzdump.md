@@ -9,7 +9,7 @@ editLink: false
 
 3 operations.
 
-### `POST /nodes/{node}/vzdump`
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/vzdump`
 
 ```ts
 proxmox.nodes.$(node).vzdump.$post()
@@ -18,6 +18,8 @@ proxmox.nodes.$(node).vzdump.$post()
 Create backup.
 
 Returns `string`.
+
+::: details 33 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -55,7 +57,11 @@ Returns `string`.
 | `vmid` | string |  | The ID of the guest system you want to backup. — format `pve-vmid-list` |
 | `zstd` | number |  | Zstd threads. N=0 uses half of the available cores, if N is set to a value bigger than 0, N is used as thread count. — default `1` |
 
-### `GET /nodes/{node}/vzdump/defaults`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/vzdump" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/vzdump/defaults`
 
 ```ts
 proxmox.nodes.$(node).vzdump.defaults.$get()
@@ -70,7 +76,9 @@ Returns `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `storage` | string |  | The storage identifier. — format `pve-storage-id` |
 
-### `GET /nodes/{node}/vzdump/extractconfig`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/vzdump/defaults" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/vzdump/extractconfig`
 
 ```ts
 proxmox.nodes.$(node).vzdump.extractconfig.$get()
@@ -84,3 +92,5 @@ Returns `string`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `volume` | string | yes | Volume identifier |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/vzdump/extractconfig" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

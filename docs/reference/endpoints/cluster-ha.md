@@ -9,7 +9,7 @@ editLink: false
 
 23 operations.
 
-### `GET /cluster/ha`
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/ha`
 
 ```ts
 proxmox.cluster.ha.$get()
@@ -19,7 +19,9 @@ Directory index.
 
 Returns an array of `object`.
 
-### `GET /cluster/ha/groups`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ha" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/ha/groups`
 
 ```ts
 proxmox.cluster.ha.groups.$get()
@@ -29,7 +31,9 @@ Get HA groups. (deprecated in favor of HA rules)
 
 Returns an array of `object`.
 
-### `POST /cluster/ha/groups`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ha/groups" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/ha/groups`
 
 ```ts
 proxmox.cluster.ha.groups.$post()
@@ -48,7 +52,9 @@ Returns nothing.
 | `restricted` | boolean |  | Resources bound to restricted groups may only run on nodes defined by the group. — default `0` |
 | `type` | `group` |  | Group type. |
 
-### `GET /cluster/ha/groups/{group}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ha/groups" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/ha/groups/{group}`
 
 ```ts
 proxmox.cluster.ha.groups.$(group).$get()
@@ -62,7 +68,9 @@ Returns `any`.
 | --- | --- | --- | --- |
 | `group` | string | yes | The HA group identifier. — format `pve-configid` |
 
-### `PUT /cluster/ha/groups/{group}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ha/groups/{group}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/ha/groups/{group}`
 
 ```ts
 proxmox.cluster.ha.groups.$(group).$put()
@@ -82,7 +90,9 @@ Returns nothing.
 | `nofailback` | boolean |  | The CRM tries to run services on the node with the highest priority. If a node with higher priority comes online, the CRM migrates the service to that node. Enabling nofailback prevents that behavior. — default `0` |
 | `restricted` | boolean |  | Resources bound to restricted groups may only run on nodes defined by the group. — default `0` |
 
-### `DELETE /cluster/ha/groups/{group}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ha/groups/{group}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/ha/groups/{group}`
 
 ```ts
 proxmox.cluster.ha.groups.$(group).$delete()
@@ -96,7 +106,9 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `group` | string | yes | The HA group identifier. — format `pve-configid` |
 
-### `GET /cluster/ha/resources`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ha/groups/{group}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/ha/resources`
 
 ```ts
 proxmox.cluster.ha.resources.$get()
@@ -110,7 +122,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `type` | `ct` \| `vm` |  | Only list resources of specific type |
 
-### `POST /cluster/ha/resources`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ha/resources" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/ha/resources`
 
 ```ts
 proxmox.cluster.ha.resources.$post()
@@ -122,17 +136,26 @@ Returns nothing.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
+| `sid` | string | yes | HA resource ID. This consists of a resource type followed by a resource specific name, separated with colon (example: vm:100 / ct:100). For virtual machines and containers, you can simply use the VM or CT id as a shortcut (example: 100). — format `pve-ha-resource-or-vm-id` |
+
+::: details 8 optional parameters
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
 | `auto-rebalance` | boolean |  | HA resource may be migrated during automatic rebalancing — default `1` |
 | `comment` | string |  | Description. — ≤ 4096 chars |
 | `failback` | boolean |  | Automatically migrate HA resource to the node with the highest priority according to their node affinity  rules, if a node with a higher priority than the current node comes online. — default `1` |
 | `group` | string |  | The HA group identifier. — format `pve-configid` |
 | `max_relocate` | number |  | Maximal number of resource relocate tries when a resource fails to start. — min 0, default `1` |
 | `max_restart` | number |  | Maximal number of tries to restart the resource on a node after its start failed. When reached, the HA manager will try to relocate the resource to an eligible node. — min 0, default `1` |
-| `sid` | string | yes | HA resource ID. This consists of a resource type followed by a resource specific name, separated with colon (example: vm:100 / ct:100). For virtual machines and containers, you can simply use the VM or CT id as a shortcut (example: 100). — format `pve-ha-resource-or-vm-id` |
 | `state` | `started` \| `stopped` \| `enabled` \| `disabled` \| `ignored` |  | Requested resource state. — default `"started"` |
 | `type` | `ct` \| `vm` |  | Resource type. |
 
-### `GET /cluster/ha/resources/{sid}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ha/resources" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/ha/resources/{sid}`
 
 ```ts
 proxmox.cluster.ha.resources.$(sid).$get()
@@ -146,7 +169,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `sid` | string | yes | HA resource ID. This consists of a resource type followed by a resource specific name, separated with colon (example: vm:100 / ct:100). For virtual machines and containers, you can simply use the VM or CT id as a shortcut (example: 100). — format `pve-ha-resource-or-vm-id` |
 
-### `PUT /cluster/ha/resources/{sid}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ha/resources/{sid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/ha/resources/{sid}`
 
 ```ts
 proxmox.cluster.ha.resources.$(sid).$put()
@@ -158,6 +183,12 @@ Returns nothing.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
+| `sid` | string | yes | HA resource ID. This consists of a resource type followed by a resource specific name, separated with colon (example: vm:100 / ct:100). For virtual machines and containers, you can simply use the VM or CT id as a shortcut (example: 100). — format `pve-ha-resource-or-vm-id` |
+
+::: details 9 optional parameters
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
 | `auto-rebalance` | boolean |  | HA resource may be migrated during automatic rebalancing — default `1` |
 | `comment` | string |  | Description. — ≤ 4096 chars |
 | `delete` | string |  | A list of settings you want to delete. — format `pve-configid-list`, ≤ 4096 chars |
@@ -166,10 +197,13 @@ Returns nothing.
 | `group` | string |  | The HA group identifier. — format `pve-configid` |
 | `max_relocate` | number |  | Maximal number of resource relocate tries when a resource fails to start. — min 0, default `1` |
 | `max_restart` | number |  | Maximal number of tries to restart the resource on a node after its start failed. When reached, the HA manager will try to relocate the resource to an eligible node. — min 0, default `1` |
-| `sid` | string | yes | HA resource ID. This consists of a resource type followed by a resource specific name, separated with colon (example: vm:100 / ct:100). For virtual machines and containers, you can simply use the VM or CT id as a shortcut (example: 100). — format `pve-ha-resource-or-vm-id` |
 | `state` | `started` \| `stopped` \| `enabled` \| `disabled` \| `ignored` |  | Requested resource state. — default `"started"` |
 
-### `DELETE /cluster/ha/resources/{sid}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ha/resources/{sid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/ha/resources/{sid}`
 
 ```ts
 proxmox.cluster.ha.resources.$(sid).$delete()
@@ -184,7 +218,9 @@ Returns nothing.
 | `purge` | boolean |  | Remove this resource from rules that reference it, deleting the rule if this resource is the only resource in the rule — default `1` |
 | `sid` | string | yes | HA resource ID. This consists of a resource type followed by a resource specific name, separated with colon (example: vm:100 / ct:100). For virtual machines and containers, you can simply use the VM or CT id as a shortcut (example: 100). — format `pve-ha-resource-or-vm-id` |
 
-### `POST /cluster/ha/resources/{sid}/migrate`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ha/resources/{sid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/ha/resources/{sid}/migrate`
 
 ```ts
 proxmox.cluster.ha.resources.$(sid).migrate.$post()
@@ -199,7 +235,9 @@ Returns `object`.
 | `node` | string | yes | Target node. — format `pve-node` |
 | `sid` | string | yes | HA resource ID. This consists of a resource type followed by a resource specific name, separated with colon (example: vm:100 / ct:100). For virtual machines and containers, you can simply use the VM or CT id as a shortcut (example: 100). — format `pve-ha-resource-or-vm-id` |
 
-### `POST /cluster/ha/resources/{sid}/relocate`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ha/resources/{sid}/migrate" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/ha/resources/{sid}/relocate`
 
 ```ts
 proxmox.cluster.ha.resources.$(sid).relocate.$post()
@@ -214,7 +252,9 @@ Returns `object`.
 | `node` | string | yes | Target node. — format `pve-node` |
 | `sid` | string | yes | HA resource ID. This consists of a resource type followed by a resource specific name, separated with colon (example: vm:100 / ct:100). For virtual machines and containers, you can simply use the VM or CT id as a shortcut (example: 100). — format `pve-ha-resource-or-vm-id` |
 
-### `GET /cluster/ha/rules`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ha/resources/{sid}/relocate" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/ha/rules`
 
 ```ts
 proxmox.cluster.ha.rules.$get()
@@ -229,7 +269,9 @@ Returns an array of `object`.
 | `resource` | string |  | Limit the returned list to rules affecting the specified resource. |
 | `type` | `node-affinity` \| `resource-affinity` |  | Limit the returned list to the specified rule type. |
 
-### `POST /cluster/ha/rules`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ha/rules" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/ha/rules`
 
 ```ts
 proxmox.cluster.ha.rules.$post()
@@ -239,7 +281,9 @@ Create HA rule.
 
 Returns nothing.
 
-### `GET /cluster/ha/rules/{rule}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ha/rules" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/ha/rules/{rule}`
 
 ```ts
 proxmox.cluster.ha.rules.$(rule).$get()
@@ -253,7 +297,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `rule` | string | yes | HA rule identifier. — format `pve-configid` |
 
-### `PUT /cluster/ha/rules/{rule}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ha/rules/{rule}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/ha/rules/{rule}`
 
 ```ts
 proxmox.cluster.ha.rules.$(rule).$put()
@@ -263,7 +309,9 @@ Update HA rule.
 
 Returns nothing.
 
-### `DELETE /cluster/ha/rules/{rule}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ha/rules/{rule}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/ha/rules/{rule}`
 
 ```ts
 proxmox.cluster.ha.rules.$(rule).$delete()
@@ -277,7 +325,9 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `rule` | string | yes | HA rule identifier. — format `pve-configid` |
 
-### `GET /cluster/ha/status`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ha/rules/{rule}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/ha/status`
 
 ```ts
 proxmox.cluster.ha.status.$get()
@@ -287,7 +337,9 @@ Directory index.
 
 Returns an array of `object`.
 
-### `POST /cluster/ha/status/arm-ha`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ha/status" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/ha/status/arm-ha`
 
 ```ts
 proxmox.cluster.ha.status["arm-ha"].$post()
@@ -297,7 +349,9 @@ Request re-arming the HA stack after it was disarmed.
 
 Returns nothing.
 
-### `GET /cluster/ha/status/current`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ha/status/arm-ha" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/ha/status/current`
 
 ```ts
 proxmox.cluster.ha.status.current.$get()
@@ -307,7 +361,9 @@ Get HA manager status.
 
 Returns an array of `object`.
 
-### `POST /cluster/ha/status/disarm-ha`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ha/status/current" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/ha/status/disarm-ha`
 
 ```ts
 proxmox.cluster.ha.status["disarm-ha"].$post()
@@ -321,7 +377,9 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `resource-mode` | `freeze` \| `ignore` | yes | Controls how HA managed resources are handled while disarmed. The current state of resources is not affected. 'freeze': new commands and state changes are not applied. 'ignore': resources are removed from HA tracking and can be managed as if they were not HA managed. |
 
-### `GET /cluster/ha/status/manager_status`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ha/status/disarm-ha" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/ha/status/manager_status`
 
 ```ts
 proxmox.cluster.ha.status.manager_status.$get()
@@ -330,3 +388,5 @@ proxmox.cluster.ha.status.manager_status.$get()
 Get full HA manager status, including LRM status.
 
 Returns `object`.
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ha/status/manager_status" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

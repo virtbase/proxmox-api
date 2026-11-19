@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `GET /nodes/{node}/rrd`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/rrd`
 
 ```ts
 proxmox.nodes.$(node).rrd.$get()
@@ -25,3 +25,5 @@ Returns `object`.
 | `ds` | string | yes | The list of datasources you want to display. — format `pve-configid-list` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `timeframe` | `hour` \| `day` \| `week` \| `month` \| `year` \| `decade` | yes | Specify the time frame you are interested in. |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/rrd" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

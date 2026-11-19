@@ -9,7 +9,7 @@ editLink: false
 
 2 operations.
 
-### `GET /nodes/{node}/config`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/config`
 
 ```ts
 proxmox.nodes.$(node).config.$get()
@@ -24,7 +24,9 @@ Returns `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `property` | `acme` \| `acmedomain0` \| `acmedomain1` \| `acmedomain2` \| `acmedomain3` \| `acmedomain4` \| `acmedomain5` \| `ballooning-target` \| … (4 more) |  | Return only a specific property from the node configuration. — default `"all"` |
 
-### `PUT /nodes/{node}/config`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/config" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/nodes/{node}/config`
 
 ```ts
 proxmox.nodes.$(node).config.$put()
@@ -36,6 +38,12 @@ Returns nothing.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
+| `node` | string | yes | The cluster node name. — format `pve-node` |
+
+::: details 9 optional parameters
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
 | `acme` | string |  | Node specific ACME settings. |
 | `acmedomain0`…`acmedomain5` | string |  | ACME domain and validation plugin |
 | `ballooning-target` | number |  | RAM usage target for ballooning (in percent of total memory) — min 0, max 100, default `80` |
@@ -43,6 +51,9 @@ Returns nothing.
 | `description` | string |  | Description for the Node. Shown in the web-interface node notes panel. This is saved as comment inside the configuration file. — ≤ 65536 chars |
 | `digest` | string |  | Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications. — ≤ 40 chars |
 | `location` | string |  | The location of the node. Overrides the default from the datacenter config. — format `pve-node-location` |
-| `node` | string | yes | The cluster node name. — format `pve-node` |
 | `startall-onboot-delay` | number |  | Initial delay in seconds, before starting all the Virtual Guests with on-boot enabled. — min 0, max 300, default `0` |
 | `wakeonlan` | string |  | Node specific wake on LAN settings. |
+
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/config" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

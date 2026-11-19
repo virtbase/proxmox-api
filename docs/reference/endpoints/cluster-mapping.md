@@ -9,7 +9,7 @@ editLink: false
 
 16 operations.
 
-### `GET /cluster/mapping`
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/mapping`
 
 ```ts
 proxmox.cluster.mapping.$get()
@@ -19,7 +19,9 @@ List resource types.
 
 Returns an array of `object`.
 
-### `GET /cluster/mapping/dir`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/mapping" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/mapping/dir`
 
 ```ts
 proxmox.cluster.mapping.dir.$get()
@@ -33,7 +35,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `check-node` | string |  | If given, checks the configurations on the given node for correctness, and adds relevant diagnostics for the directory to the response. — format `pve-node` |
 
-### `POST /cluster/mapping/dir`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/mapping/dir" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/mapping/dir`
 
 ```ts
 proxmox.cluster.mapping.dir.$post()
@@ -49,7 +53,9 @@ Returns nothing.
 | `id` | string | yes | The ID of the directory mapping — format `pve-configid` |
 | `map` | string[] | yes | A list of maps for the cluster nodes. |
 
-### `GET /cluster/mapping/dir/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/mapping/dir" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/mapping/dir/{id}`
 
 ```ts
 proxmox.cluster.mapping.dir.$(id).$get()
@@ -63,7 +69,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `id` | string | yes | format `pve-configid` |
 
-### `PUT /cluster/mapping/dir/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/mapping/dir/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/mapping/dir/{id}`
 
 ```ts
 proxmox.cluster.mapping.dir.$(id).$put()
@@ -81,7 +89,9 @@ Returns nothing.
 | `id` | string | yes | The ID of the directory mapping — format `pve-configid` |
 | `map` | string[] |  | A list of maps for the cluster nodes. |
 
-### `DELETE /cluster/mapping/dir/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/mapping/dir/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/mapping/dir/{id}`
 
 ```ts
 proxmox.cluster.mapping.dir.$(id).$delete()
@@ -95,7 +105,9 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `id` | string | yes | format `pve-configid` |
 
-### `GET /cluster/mapping/pci`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/mapping/dir/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/mapping/pci`
 
 ```ts
 proxmox.cluster.mapping.pci.$get()
@@ -109,7 +121,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `check-node` | string |  | If given, checks the configurations on the given node for correctness, and adds relevant diagnostics for the devices to the response. — format `pve-node` |
 
-### `POST /cluster/mapping/pci`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/mapping/pci" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/mapping/pci`
 
 ```ts
 proxmox.cluster.mapping.pci.$post()
@@ -127,7 +141,9 @@ Returns nothing.
 | `map` | string[] | yes | A list of maps for the cluster nodes. |
 | `mdev` | boolean |  | Marks the device(s) as being capable of providing mediated devices. — default `0` |
 
-### `GET /cluster/mapping/pci/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/mapping/pci" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/mapping/pci/{id}`
 
 ```ts
 proxmox.cluster.mapping.pci.$(id).$get()
@@ -141,7 +157,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `id` | string | yes | format `pve-configid` |
 
-### `PUT /cluster/mapping/pci/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/mapping/pci/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/mapping/pci/{id}`
 
 ```ts
 proxmox.cluster.mapping.pci.$(id).$put()
@@ -161,7 +179,9 @@ Returns nothing.
 | `map` | string[] |  | A list of maps for the cluster nodes. |
 | `mdev` | boolean |  | Marks the device(s) as being capable of providing mediated devices. — default `0` |
 
-### `DELETE /cluster/mapping/pci/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/mapping/pci/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/mapping/pci/{id}`
 
 ```ts
 proxmox.cluster.mapping.pci.$(id).$delete()
@@ -175,7 +195,9 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `id` | string | yes | format `pve-configid` |
 
-### `GET /cluster/mapping/usb`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/mapping/pci/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/mapping/usb`
 
 ```ts
 proxmox.cluster.mapping.usb.$get()
@@ -189,7 +211,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `check-node` | string |  | If given, checks the configurations on the given node for correctness, and adds relevant errors to the devices. — format `pve-node` |
 
-### `POST /cluster/mapping/usb`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/mapping/usb" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/mapping/usb`
 
 ```ts
 proxmox.cluster.mapping.usb.$post()
@@ -205,7 +229,9 @@ Returns nothing.
 | `id` | string | yes | The ID of the logical USB mapping. — format `pve-configid` |
 | `map` | string[] | yes | A list of maps for the cluster nodes. |
 
-### `GET /cluster/mapping/usb/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/mapping/usb" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/mapping/usb/{id}`
 
 ```ts
 proxmox.cluster.mapping.usb.$(id).$get()
@@ -219,7 +245,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `id` | string | yes | format `pve-configid` |
 
-### `PUT /cluster/mapping/usb/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/mapping/usb/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/mapping/usb/{id}`
 
 ```ts
 proxmox.cluster.mapping.usb.$(id).$put()
@@ -237,7 +265,9 @@ Returns nothing.
 | `id` | string | yes | The ID of the logical USB mapping. — format `pve-configid` |
 | `map` | string[] | yes | A list of maps for the cluster nodes. |
 
-### `DELETE /cluster/mapping/usb/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/mapping/usb/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/mapping/usb/{id}`
 
 ```ts
 proxmox.cluster.mapping.usb.$(id).$delete()
@@ -250,3 +280,5 @@ Returns nothing.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `id` | string | yes | format `pve-configid` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/mapping/usb/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

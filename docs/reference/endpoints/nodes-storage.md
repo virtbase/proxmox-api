@@ -9,7 +9,7 @@ editLink: false
 
 20 operations.
 
-### `GET /nodes/{node}/storage`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/storage`
 
 ```ts
 proxmox.nodes.$(node).storage.$get()
@@ -28,7 +28,9 @@ Returns an array of `object`.
 | `storage` | string |  | Only list status for  specified storage — format `pve-storage-id` |
 | `target` | string |  | If target is different to 'node', we only lists shared storages which content is accessible on this 'node' and the specified 'target' node. — format `pve-node` |
 
-### `GET /nodes/{node}/storage/{storage}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/storage" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/storage/{storage}`
 
 ```ts
 proxmox.nodes.$(node).storage.$(storage).$get()
@@ -41,7 +43,9 @@ Returns an array of `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `storage` | string | yes | The storage identifier. — format `pve-storage-id` |
 
-### `GET /nodes/{node}/storage/{storage}/content`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/storage/{storage}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/storage/{storage}/content`
 
 ```ts
 proxmox.nodes.$(node).storage.$(storage).content.$get()
@@ -58,7 +62,9 @@ Returns an array of `object`.
 | `storage` | string | yes | The storage identifier. — format `pve-storage-id` |
 | `vmid` | number |  | Only list images for this VM — format `pve-vmid`, min 100, max 999999999 |
 
-### `POST /nodes/{node}/storage/{storage}/content`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/storage/{storage}/content" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/storage/{storage}/content`
 
 ```ts
 proxmox.nodes.$(node).storage.$(storage).content.$post()
@@ -77,7 +83,9 @@ Returns `string`.
 | `storage` | string | yes | The storage identifier. — format `pve-storage-id` |
 | `vmid` | number | yes | Specify owner VM — format `pve-vmid`, min 100, max 999999999 |
 
-### `GET /nodes/{node}/storage/{storage}/content/{volume}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/storage/{storage}/content" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/storage/{storage}/content/{volume}`
 
 ```ts
 proxmox.nodes.$(node).storage.$(storage).content.$(volume).$get()
@@ -93,7 +101,9 @@ Returns `object`.
 | `storage` | string |  | The storage identifier. — format `pve-storage-id` |
 | `volume` | string | yes | Volume identifier |
 
-### `POST /nodes/{node}/storage/{storage}/content/{volume}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/storage/{storage}/content/{volume}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/storage/{storage}/content/{volume}`
 
 ```ts
 proxmox.nodes.$(node).storage.$(storage).content.$(volume).$post()
@@ -111,7 +121,9 @@ Returns `string`.
 | `target_node` | string |  | Target node. Default is local node. — format `pve-node` |
 | `volume` | string | yes | Source volume identifier |
 
-### `PUT /nodes/{node}/storage/{storage}/content/{volume}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/storage/{storage}/content/{volume}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/nodes/{node}/storage/{storage}/content/{volume}`
 
 ```ts
 proxmox.nodes.$(node).storage.$(storage).content.$(volume).$put()
@@ -129,7 +141,9 @@ Returns nothing.
 | `storage` | string |  | The storage identifier. — format `pve-storage-id` |
 | `volume` | string | yes | Volume identifier |
 
-### `DELETE /nodes/{node}/storage/{storage}/content/{volume}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/storage/{storage}/content/{volume}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/nodes/{node}/storage/{storage}/content/{volume}`
 
 ```ts
 proxmox.nodes.$(node).storage.$(storage).content.$(volume).$delete()
@@ -146,7 +160,9 @@ Returns `string`.
 | `storage` | string |  | The storage identifier. — format `pve-storage-id` |
 | `volume` | string | yes | Volume identifier |
 
-### `POST /nodes/{node}/storage/{storage}/download-url`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/storage/{storage}/content/{volume}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/storage/{storage}/download-url`
 
 ```ts
 proxmox.nodes.$(node).storage.$(storage)["download-url"].$post()
@@ -158,17 +174,26 @@ Returns `string`.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `checksum` | string |  | The expected checksum of the file. |
-| `checksum-algorithm` | `md5` \| `sha1` \| `sha224` \| `sha256` \| `sha384` \| `sha512` |  | The algorithm to calculate the checksum of the file. |
-| `compression` | string |  | Decompress the downloaded file using the specified compression algorithm. |
 | `content` | `iso` \| `vztmpl` \| `import` | yes | Content type. — format `pve-storage-content` |
 | `filename` | string | yes | The name of the file to create. Caution: This will be normalized! — ≤ 255 chars |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `storage` | string | yes | The storage identifier. — format `pve-storage-id` |
 | `url` | string | yes | The URL to download the file from. |
+
+::: details 4 optional parameters
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `checksum` | string |  | The expected checksum of the file. |
+| `checksum-algorithm` | `md5` \| `sha1` \| `sha224` \| `sha256` \| `sha384` \| `sha512` |  | The algorithm to calculate the checksum of the file. |
+| `compression` | string |  | Decompress the downloaded file using the specified compression algorithm. |
 | `verify-certificates` | boolean |  | If false, no SSL/TLS certificates will be verified. — default `1` |
 
-### `GET /nodes/{node}/storage/{storage}/file-restore/download`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/storage/{storage}/download-url" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/storage/{storage}/file-restore/download`
 
 ```ts
 proxmox.nodes.$(node).storage.$(storage)["file-restore"].download.$get()
@@ -186,7 +211,9 @@ Returns `any`.
 | `tar` | boolean |  | Download dirs as 'tar.zst' instead of 'zip'. — default `0` |
 | `volume` | string | yes | Backup volume ID or name. Currently only PBS snapshots are supported. |
 
-### `GET /nodes/{node}/storage/{storage}/file-restore/list`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/storage/{storage}/file-restore/download" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/storage/{storage}/file-restore/list`
 
 ```ts
 proxmox.nodes.$(node).storage.$(storage)["file-restore"].list.$get()
@@ -203,7 +230,9 @@ Returns an array of `object`.
 | `storage` | string | yes | The storage identifier. — format `pve-storage-id` |
 | `volume` | string | yes | Backup volume ID or name. Currently only PBS snapshots are supported. |
 
-### `GET /nodes/{node}/storage/{storage}/identity`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/storage/{storage}/file-restore/list" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/storage/{storage}/identity`
 
 ```ts
 proxmox.nodes.$(node).storage.$(storage).identity.$get()
@@ -218,7 +247,9 @@ Returns `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `storage` | string | yes | The storage identifier. — format `pve-storage-id` |
 
-### `GET /nodes/{node}/storage/{storage}/import-metadata`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/storage/{storage}/identity" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/storage/{storage}/import-metadata`
 
 ```ts
 proxmox.nodes.$(node).storage.$(storage)["import-metadata"].$get()
@@ -234,7 +265,9 @@ Returns `object`.
 | `storage` | string | yes | The storage identifier. — format `pve-storage-id` |
 | `volume` | string | yes | Volume identifier for the guest archive/entry. |
 
-### `POST /nodes/{node}/storage/{storage}/oci-registry-pull`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/storage/{storage}/import-metadata" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/storage/{storage}/oci-registry-pull`
 
 ```ts
 proxmox.nodes.$(node).storage.$(storage)["oci-registry-pull"].$post()
@@ -251,7 +284,9 @@ Returns `string`.
 | `reference` | string | yes | The reference to the OCI image to download. |
 | `storage` | string | yes | The storage identifier. — format `pve-storage-id` |
 
-### `GET /nodes/{node}/storage/{storage}/prunebackups`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/storage/{storage}/oci-registry-pull" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/storage/{storage}/prunebackups`
 
 ```ts
 proxmox.nodes.$(node).storage.$(storage).prunebackups.$get()
@@ -269,7 +304,9 @@ Returns an array of `object`.
 | `type` | `qemu` \| `lxc` |  | Either 'qemu' or 'lxc'. Only consider backups for guests of this type. |
 | `vmid` | number |  | Only consider backups for this guest. — format `pve-vmid`, min 100, max 999999999 |
 
-### `DELETE /nodes/{node}/storage/{storage}/prunebackups`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/storage/{storage}/prunebackups" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/nodes/{node}/storage/{storage}/prunebackups`
 
 ```ts
 proxmox.nodes.$(node).storage.$(storage).prunebackups.$delete()
@@ -287,7 +324,9 @@ Returns `string`.
 | `type` | `qemu` \| `lxc` |  | Either 'qemu' or 'lxc'. Only consider backups for guests of this type. |
 | `vmid` | number |  | Only prune backups for this VM. — format `pve-vmid`, min 100, max 999999999 |
 
-### `GET /nodes/{node}/storage/{storage}/rrd`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/storage/{storage}/prunebackups" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/storage/{storage}/rrd`
 
 ```ts
 proxmox.nodes.$(node).storage.$(storage).rrd.$get()
@@ -305,7 +344,9 @@ Returns `object`.
 | `storage` | string | yes | The storage identifier. — format `pve-storage-id` |
 | `timeframe` | `hour` \| `day` \| `week` \| `month` \| `year` | yes | Specify the time frame you are interested in. |
 
-### `GET /nodes/{node}/storage/{storage}/rrddata`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/storage/{storage}/rrd" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/storage/{storage}/rrddata`
 
 ```ts
 proxmox.nodes.$(node).storage.$(storage).rrddata.$get()
@@ -322,7 +363,9 @@ Returns an array of `object`.
 | `storage` | string | yes | The storage identifier. — format `pve-storage-id` |
 | `timeframe` | `hour` \| `day` \| `week` \| `month` \| `year` | yes | Specify the time frame you are interested in. |
 
-### `GET /nodes/{node}/storage/{storage}/status`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/storage/{storage}/rrddata" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/storage/{storage}/status`
 
 ```ts
 proxmox.nodes.$(node).storage.$(storage).status.$get()
@@ -337,7 +380,9 @@ Returns `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `storage` | string | yes | The storage identifier. — format `pve-storage-id` |
 
-### `POST /nodes/{node}/storage/{storage}/upload`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/storage/{storage}/status" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/storage/{storage}/upload`
 
 ```ts
 proxmox.nodes.$(node).storage.$(storage).upload.$post()
@@ -356,3 +401,5 @@ Returns `string`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `storage` | string | yes | The storage identifier. — format `pve-storage-id` |
 | `tmpfilename` | string |  | The source file name. This parameter is usually set by the REST handler. You can only overwrite it when connecting to the trusted port on localhost. |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/storage/{storage}/upload" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

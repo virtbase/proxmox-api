@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `GET /access/permissions`
+### <span class="method-badge" data-method="GET">GET</span> `/access/permissions`
 
 ```ts
 proxmox.access.permissions.$get()
@@ -23,3 +23,5 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `path` | string |  | Only dump this specific path, not the whole tree. |
 | `userid` | string |  | User ID or full API token ID |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/permissions" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

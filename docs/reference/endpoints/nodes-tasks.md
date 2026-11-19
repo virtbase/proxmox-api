@@ -9,7 +9,7 @@ editLink: false
 
 5 operations.
 
-### `GET /nodes/{node}/tasks`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/tasks`
 
 ```ts
 proxmox.nodes.$(node).tasks.$get()
@@ -21,9 +21,14 @@ Returns an array of `object`.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
+| `node` | string | yes | The cluster node name. — format `pve-node` |
+
+::: details 10 optional parameters
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
 | `errors` | boolean |  | Only list tasks with a status of ERROR. — default `0` |
 | `limit` | number |  | Only list this number of tasks. — min 0, default `50` |
-| `node` | string | yes | The cluster node name. — format `pve-node` |
 | `since` | number |  | Only list tasks since this UNIX epoch. |
 | `source` | `archive` \| `active` \| `all` |  | List archived, active or all tasks. — default `"archive"` |
 | `start` | number |  | List tasks beginning from this offset. — min 0, default `0` |
@@ -33,7 +38,11 @@ Returns an array of `object`.
 | `userfilter` | string |  | Only list tasks from this user. |
 | `vmid` | number |  | Only list tasks for this VM. — format `pve-vmid`, min 100, max 999999999 |
 
-### `GET /nodes/{node}/tasks/{upid}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/tasks" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/tasks/{upid}`
 
 ```ts
 proxmox.nodes.$(node).tasks.$(upid).$get()
@@ -46,7 +55,9 @@ Returns an array of `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `upid` | string | yes |  |
 
-### `DELETE /nodes/{node}/tasks/{upid}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/tasks/{upid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/nodes/{node}/tasks/{upid}`
 
 ```ts
 proxmox.nodes.$(node).tasks.$(upid).$delete()
@@ -61,7 +72,9 @@ Returns nothing.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `upid` | string | yes |  |
 
-### `GET /nodes/{node}/tasks/{upid}/log`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/tasks/{upid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/tasks/{upid}/log`
 
 ```ts
 proxmox.nodes.$(node).tasks.$(upid).log.$get()
@@ -79,7 +92,9 @@ Returns an array of `object`.
 | `start` | number |  | Start at this line when reading the tasklog — min 0, default `0` |
 | `upid` | string | yes | The task's unique ID. |
 
-### `GET /nodes/{node}/tasks/{upid}/status`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/tasks/{upid}/log" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/tasks/{upid}/status`
 
 ```ts
 proxmox.nodes.$(node).tasks.$(upid).status.$get()
@@ -93,3 +108,5 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `upid` | string | yes | The task's unique ID. |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/tasks/{upid}/status" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

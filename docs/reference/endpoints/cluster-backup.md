@@ -9,7 +9,7 @@ editLink: false
 
 6 operations.
 
-### `GET /cluster/backup`
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/backup`
 
 ```ts
 proxmox.cluster.backup.$get()
@@ -19,7 +19,9 @@ List vzdump backup schedule.
 
 Returns an array of `object`.
 
-### `POST /cluster/backup`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/backup" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/backup`
 
 ```ts
 proxmox.cluster.backup.$post()
@@ -28,6 +30,8 @@ proxmox.cluster.backup.$post()
 Create new vzdump backup job.
 
 Returns nothing.
+
+::: details 38 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -70,7 +74,11 @@ Returns nothing.
 | `vmid` | string |  | The ID of the guest system you want to backup. — format `pve-vmid-list` |
 | `zstd` | number |  | Zstd threads. N=0 uses half of the available cores, if N is set to a value bigger than 0, N is used as thread count. — default `1` |
 
-### `GET /cluster/backup/{id}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/backup" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/backup/{id}`
 
 ```ts
 proxmox.cluster.backup.$(id).$get()
@@ -84,7 +92,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `id` | string | yes | The job ID. — ≤ 50 chars |
 
-### `PUT /cluster/backup/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/backup/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/backup/{id}`
 
 ```ts
 proxmox.cluster.backup.$(id).$put()
@@ -93,6 +103,12 @@ proxmox.cluster.backup.$(id).$put()
 Update vzdump backup job definition.
 
 Returns nothing.
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `id` | string | yes | The job ID. — ≤ 50 chars |
+
+::: details 38 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -107,7 +123,6 @@ Returns nothing.
 | `exclude` | string |  | Exclude specified guest systems (assumes --all) — format `pve-vmid-list` |
 | `exclude-path` | string[] |  | Exclude certain files/directories (shell globs). Paths starting with '/' are anchored to the container's root, other paths match relative to each subdirectory. |
 | `fleecing` | string |  | Options for backup fleecing (VM only). — format `backup-fleecing` |
-| `id` | string | yes | The job ID. — ≤ 50 chars |
 | `ionice` | number |  | Set IO priority when using the BFQ scheduler. For snapshot and suspend mode backups of VMs, this only affects the compressor. A value of 8 means the idle priority is used, otherwise the best-effort priority is used with the specified value. — min 0, max 8, default `7` |
 | `lockwait` | number |  | Maximal time to wait for the global lock (minutes). — min 0, default `180` |
 | `mailnotification` | `always` \| `failure` |  | Deprecated: use notification targets/matchers instead. Specify when to send a notification mail — default `"always"` |
@@ -136,7 +151,11 @@ Returns nothing.
 | `vmid` | string |  | The ID of the guest system you want to backup. — format `pve-vmid-list` |
 | `zstd` | number |  | Zstd threads. N=0 uses half of the available cores, if N is set to a value bigger than 0, N is used as thread count. — default `1` |
 
-### `DELETE /cluster/backup/{id}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/backup/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/backup/{id}`
 
 ```ts
 proxmox.cluster.backup.$(id).$delete()
@@ -150,7 +169,9 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `id` | string | yes | The job ID. — ≤ 50 chars |
 
-### `GET /cluster/backup/{id}/included_volumes`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/backup/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/backup/{id}/included_volumes`
 
 ```ts
 proxmox.cluster.backup.$(id).included_volumes.$get()
@@ -163,3 +184,5 @@ Returns `object`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `id` | string | yes | The job ID. — ≤ 50 chars |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/backup/{id}/included_volumes" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

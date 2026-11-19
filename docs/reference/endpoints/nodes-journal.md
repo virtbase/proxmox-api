@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `GET /nodes/{node}/journal`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/journal`
 
 ```ts
 proxmox.nodes.$(node).journal.$get()
@@ -21,11 +21,16 @@ Returns an array of `string`.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
+| `node` | string | yes | The cluster node name. — format `pve-node` |
+
+::: details 12 optional parameters
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
 | `endcursor` | string |  | End before the given Cursor. Conflicts with 'until' |
 | `identifiers` | boolean |  | Also return a record listing the distinct syslog identifiers present, for filter completion. Only honored together with 'structured'. — default `0` |
 | `kernel` | boolean |  | Only print kernel messages. — default `0` |
 | `lastentries` | number |  | Limit to the last X lines. Conflicts with a range. — min 0 |
-| `node` | string | yes | The cluster node name. — format `pve-node` |
 | `priority` | string |  | Only print messages of this syslog priority: a single level from 0 (emerg) to 7 (debug), selecting that level and everything more severe, or a 'LOW..HIGH' range. Empty means no priority filter. |
 | `service` | string |  | Only print messages whose syslog identifier matches this glob, for example 'pve*' or 'postfix/*'. — ≤ 128 chars |
 | `since` | number |  | Display all log since this UNIX epoch. Conflicts with 'startcursor'. — min 0 |
@@ -34,3 +39,7 @@ Returns an array of `string`.
 | `unit` | string |  | Only print messages of this systemd unit (the .service suffix is implied). — ≤ 256 chars |
 | `units` | boolean |  | Also return a record listing the distinct systemd units present, for filter completion. Only honored together with 'structured'. — default `0` |
 | `until` | number |  | Display all log until this UNIX epoch. Conflicts with 'endcursor'. — min 0 |
+
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/journal" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `GET /nodes/{node}/query-oci-repo-tags`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/query-oci-repo-tags`
 
 ```ts
 proxmox.nodes.$(node)["query-oci-repo-tags"].$get()
@@ -23,3 +23,5 @@ Returns an array of `string`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `reference` | string | yes | The reference to the repository to query tags from. |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/query-oci-repo-tags" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

@@ -9,7 +9,7 @@ editLink: false
 
 18 operations.
 
-### `GET /nodes/{node}/disks`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/disks`
 
 ```ts
 proxmox.nodes.$(node).disks.$get()
@@ -23,7 +23,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/disks/directory`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/disks" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/disks/directory`
 
 ```ts
 proxmox.nodes.$(node).disks.directory.$get()
@@ -37,7 +39,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `POST /nodes/{node}/disks/directory`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/disks/directory" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/disks/directory`
 
 ```ts
 proxmox.nodes.$(node).disks.directory.$post()
@@ -55,7 +59,9 @@ Returns `string`.
 | `name` | string | yes | The storage identifier. — format `pve-storage-id` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `DELETE /nodes/{node}/disks/directory/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/disks/directory" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/nodes/{node}/disks/directory/{name}`
 
 ```ts
 proxmox.nodes.$(node).disks.directory.$(name).$delete()
@@ -72,7 +78,9 @@ Returns `string`.
 | `name` | string | yes | The storage identifier. — format `pve-storage-id` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `POST /nodes/{node}/disks/initgpt`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/disks/directory/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/disks/initgpt`
 
 ```ts
 proxmox.nodes.$(node).disks.initgpt.$post()
@@ -88,7 +96,9 @@ Returns `string`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `uuid` | string |  | UUID for the GPT table — ≤ 36 chars |
 
-### `GET /nodes/{node}/disks/list`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/disks/initgpt" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/disks/list`
 
 ```ts
 proxmox.nodes.$(node).disks.list.$get()
@@ -105,7 +115,9 @@ Returns an array of `object`.
 | `skipsmart` | boolean |  | Skip smart checks. — default `0` |
 | `type` | `unused` \| `journal_disks` |  | Only list specific types of disks. |
 
-### `GET /nodes/{node}/disks/lvm`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/disks/list" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/disks/lvm`
 
 ```ts
 proxmox.nodes.$(node).disks.lvm.$get()
@@ -119,7 +131,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `POST /nodes/{node}/disks/lvm`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/disks/lvm" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/disks/lvm`
 
 ```ts
 proxmox.nodes.$(node).disks.lvm.$post()
@@ -136,7 +150,9 @@ Returns `string`.
 | `name` | string | yes | The storage identifier. — format `pve-storage-id` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `DELETE /nodes/{node}/disks/lvm/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/disks/lvm" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/nodes/{node}/disks/lvm/{name}`
 
 ```ts
 proxmox.nodes.$(node).disks.lvm.$(name).$delete()
@@ -153,7 +169,9 @@ Returns `string`.
 | `name` | string | yes | The storage identifier. — format `pve-storage-id` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/disks/lvmthin`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/disks/lvm/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/disks/lvmthin`
 
 ```ts
 proxmox.nodes.$(node).disks.lvmthin.$get()
@@ -167,7 +185,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `POST /nodes/{node}/disks/lvmthin`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/disks/lvmthin" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/disks/lvmthin`
 
 ```ts
 proxmox.nodes.$(node).disks.lvmthin.$post()
@@ -184,7 +204,9 @@ Returns `string`.
 | `name` | string | yes | The storage identifier. — format `pve-storage-id` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `DELETE /nodes/{node}/disks/lvmthin/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/disks/lvmthin" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/nodes/{node}/disks/lvmthin/{name}`
 
 ```ts
 proxmox.nodes.$(node).disks.lvmthin.$(name).$delete()
@@ -202,7 +224,9 @@ Returns `string`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `volume-group` | string | yes | The storage identifier. — format `pve-storage-id` |
 
-### `GET /nodes/{node}/disks/smart`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/disks/lvmthin/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/disks/smart`
 
 ```ts
 proxmox.nodes.$(node).disks.smart.$get()
@@ -218,7 +242,9 @@ Returns `object`.
 | `healthonly` | boolean |  | If true returns only the health status |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `PUT /nodes/{node}/disks/wipedisk`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/disks/smart" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/nodes/{node}/disks/wipedisk`
 
 ```ts
 proxmox.nodes.$(node).disks.wipedisk.$put()
@@ -233,7 +259,9 @@ Returns `string`.
 | `disk` | string | yes | Block device name |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/disks/zfs`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/disks/wipedisk" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/disks/zfs`
 
 ```ts
 proxmox.nodes.$(node).disks.zfs.$get()
@@ -247,7 +275,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `POST /nodes/{node}/disks/zfs`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/disks/zfs" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/disks/zfs`
 
 ```ts
 proxmox.nodes.$(node).disks.zfs.$post()
@@ -268,7 +298,9 @@ Returns `string`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `raidlevel` | `single` \| `mirror` \| `raid10` \| `raidz` \| `raidz2` \| `raidz3` \| `draid` \| `draid2` \| … (1 more) | yes | The RAID level to use. |
 
-### `GET /nodes/{node}/disks/zfs/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/disks/zfs" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/disks/zfs/{name}`
 
 ```ts
 proxmox.nodes.$(node).disks.zfs.$(name).$get()
@@ -283,7 +315,9 @@ Returns `object`.
 | `name` | string | yes | The storage identifier. — format `pve-storage-id` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `DELETE /nodes/{node}/disks/zfs/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/disks/zfs/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/nodes/{node}/disks/zfs/{name}`
 
 ```ts
 proxmox.nodes.$(node).disks.zfs.$(name).$delete()
@@ -299,3 +333,5 @@ Returns `string`.
 | `cleanup-disks` | boolean |  | Also wipe disks so they can be repurposed afterwards. — default `0` |
 | `name` | string | yes | The storage identifier. — format `pve-storage-id` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/disks/zfs/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

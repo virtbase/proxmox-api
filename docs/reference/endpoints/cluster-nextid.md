@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `GET /cluster/nextid`
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/nextid`
 
 ```ts
 proxmox.cluster.nextid.$get()
@@ -22,3 +22,5 @@ Returns `integer`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `vmid` | number |  | The (unique) ID of the VM. — format `pve-vmid`, min 100, max 999999999 |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/nextid" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

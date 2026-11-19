@@ -9,7 +9,7 @@ editLink: false
 
 9 operations.
 
-### `GET /nodes/{node}/firewall`
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/firewall`
 
 ```ts
 proxmox.nodes.$(node).firewall.$get()
@@ -23,7 +23,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `GET /nodes/{node}/firewall/log`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/firewall" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/firewall/log`
 
 ```ts
 proxmox.nodes.$(node).firewall.log.$get()
@@ -41,7 +43,9 @@ Returns an array of `object`.
 | `start` | number |  | min 0 |
 | `until` | number |  | Display log until this UNIX epoch. — min 0 |
 
-### `GET /nodes/{node}/firewall/options`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/firewall/log" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/firewall/options`
 
 ```ts
 proxmox.nodes.$(node).firewall.options.$get()
@@ -55,7 +59,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `PUT /nodes/{node}/firewall/options`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/firewall/options" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/nodes/{node}/firewall/options`
 
 ```ts
 proxmox.nodes.$(node).firewall.options.$put()
@@ -64,6 +70,12 @@ proxmox.nodes.$(node).firewall.options.$put()
 Set Firewall options.
 
 Returns nothing.
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `node` | string | yes | The cluster node name. — format `pve-node` |
+
+::: details 21 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -81,7 +93,6 @@ Returns nothing.
 | `nf_conntrack_tcp_timeout_established` | number |  | Conntrack established timeout. — min 7875, default `432000` |
 | `nf_conntrack_tcp_timeout_syn_recv` | number |  | Conntrack syn recv timeout. — min 30, max 60, default `60` |
 | `nftables` | boolean |  | Enable nftables based firewall (tech preview) — default `0` |
-| `node` | string | yes | The cluster node name. — format `pve-node` |
 | `nosmurfs` | boolean |  | Enable SMURFS filter. |
 | `protection_synflood` | boolean |  | Enable synflood protection — default `0` |
 | `protection_synflood_burst` | number |  | Synflood protection rate burst by ip src. — default `1000` |
@@ -90,7 +101,11 @@ Returns nothing.
 | `tcp_flags_log_level` | `emerg` \| `alert` \| `crit` \| `err` \| `warning` \| `notice` \| `info` \| `debug` \| … (1 more) |  | Log level for illegal tcp flags filter. |
 | `tcpflags` | boolean |  | Filter illegal combinations of TCP flags. — default `0` |
 
-### `GET /nodes/{node}/firewall/rules`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/firewall/options" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/firewall/rules`
 
 ```ts
 proxmox.nodes.$(node).firewall.rules.$get()
@@ -104,7 +119,9 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
-### `POST /nodes/{node}/firewall/rules`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/firewall/rules" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/firewall/rules`
 
 ```ts
 proxmox.nodes.$(node).firewall.rules.$post()
@@ -117,6 +134,13 @@ Returns nothing.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `action` | string | yes | Rule action ('ACCEPT', 'DROP', 'REJECT') or security group name. — ≤ 20 chars |
+| `node` | string | yes | The cluster node name. — format `pve-node` |
+| `type` | `in` \| `out` \| `forward` \| `group` | yes | Rule type. |
+
+::: details 13 optional parameters
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
 | `comment` | string |  | Descriptive comment. — format `pve-fw-comment-spec` |
 | `dest` | string |  | Restrict packet destination address. This can refer to a single IP address, an IP set ('+ipsetname') or an IP alias definition. You can also specify an address range like '20.34.101.207-201.3.9.99', or a list of IP addresses and networks (entries are separated by comma). Please do not mix IPv4 and IPv6 addresses inside such lists. — format `pve-fw-addr-spec`, ≤ 512 chars |
 | `digest` | string |  | Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications. — ≤ 64 chars |
@@ -126,14 +150,16 @@ Returns nothing.
 | `iface` | string |  | Network interface name. You have to use network configuration key names for VMs and containers ('net\d+'). Host related rules can use arbitrary strings. — format `pve-iface`, ≤ 20 chars |
 | `log` | `emerg` \| `alert` \| `crit` \| `err` \| `warning` \| `notice` \| `info` \| `debug` \| … (1 more) |  | Log level for firewall rule. |
 | `macro` | string |  | Use predefined standard macro. — ≤ 128 chars |
-| `node` | string | yes | The cluster node name. — format `pve-node` |
 | `pos` | number |  | Update rule at position &lt;pos&gt;. — min 0 |
 | `proto` | string |  | IP protocol. You can use protocol names ('tcp'/'udp') or simple numbers, as defined in '/etc/protocols'. — format `pve-fw-protocol-spec` |
 | `source` | string |  | Restrict packet source address. This can refer to a single IP address, an IP set ('+ipsetname') or an IP alias definition. You can also specify an address range like '20.34.101.207-201.3.9.99', or a list of IP addresses and networks (entries are separated by comma). Please do not mix IPv4 and IPv6 addresses inside such lists. — format `pve-fw-addr-spec`, ≤ 512 chars |
 | `sport` | string |  | Restrict TCP/UDP source port. You can use service names or simple numbers (0-65535), as defined in '/etc/services'. Port ranges can be specified with '\d+:\d+', for example '80:85', and you can use comma separated list to match several ports or ranges. — format `pve-fw-sport-spec` |
-| `type` | `in` \| `out` \| `forward` \| `group` | yes | Rule type. |
 
-### `GET /nodes/{node}/firewall/rules/{pos}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/firewall/rules" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/nodes/{node}/firewall/rules/{pos}`
 
 ```ts
 proxmox.nodes.$(node).firewall.rules.$(pos).$get()
@@ -148,7 +174,9 @@ Returns `object`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `pos` | number |  | Update rule at position &lt;pos&gt;. — min 0 |
 
-### `PUT /nodes/{node}/firewall/rules/{pos}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/firewall/rules/{pos}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/nodes/{node}/firewall/rules/{pos}`
 
 ```ts
 proxmox.nodes.$(node).firewall.rules.$(pos).$put()
@@ -157,6 +185,12 @@ proxmox.nodes.$(node).firewall.rules.$(pos).$put()
 Modify rule data.
 
 Returns nothing.
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `node` | string | yes | The cluster node name. — format `pve-node` |
+
+::: details 17 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -172,14 +206,17 @@ Returns nothing.
 | `log` | `emerg` \| `alert` \| `crit` \| `err` \| `warning` \| `notice` \| `info` \| `debug` \| … (1 more) |  | Log level for firewall rule. |
 | `macro` | string |  | Use predefined standard macro. — ≤ 128 chars |
 | `moveto` | number |  | Move rule to new position &lt;moveto&gt;. Other arguments are ignored. — min 0 |
-| `node` | string | yes | The cluster node name. — format `pve-node` |
 | `pos` | number |  | Update rule at position &lt;pos&gt;. — min 0 |
 | `proto` | string |  | IP protocol. You can use protocol names ('tcp'/'udp') or simple numbers, as defined in '/etc/protocols'. — format `pve-fw-protocol-spec` |
 | `source` | string |  | Restrict packet source address. This can refer to a single IP address, an IP set ('+ipsetname') or an IP alias definition. You can also specify an address range like '20.34.101.207-201.3.9.99', or a list of IP addresses and networks (entries are separated by comma). Please do not mix IPv4 and IPv6 addresses inside such lists. — format `pve-fw-addr-spec`, ≤ 512 chars |
 | `sport` | string |  | Restrict TCP/UDP source port. You can use service names or simple numbers (0-65535), as defined in '/etc/services'. Port ranges can be specified with '\d+:\d+', for example '80:85', and you can use comma separated list to match several ports or ranges. — format `pve-fw-sport-spec` |
 | `type` | `in` \| `out` \| `forward` \| `group` |  | Rule type. |
 
-### `DELETE /nodes/{node}/firewall/rules/{pos}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/firewall/rules/{pos}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/nodes/{node}/firewall/rules/{pos}`
 
 ```ts
 proxmox.nodes.$(node).firewall.rules.$(pos).$delete()
@@ -194,3 +231,5 @@ Returns nothing.
 | `digest` | string |  | Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications. — ≤ 64 chars |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `pos` | number |  | Update rule at position &lt;pos&gt;. — min 0 |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/firewall/rules/{pos}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

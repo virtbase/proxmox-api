@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `GET /access`
+### <span class="method-badge" data-method="GET">GET</span> `/access`
 
 ```ts
 proxmox.access.$get()
@@ -18,3 +18,5 @@ proxmox.access.$get()
 Directory index.
 
 Returns an array of `object`.
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

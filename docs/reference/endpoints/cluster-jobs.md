@@ -9,7 +9,7 @@ editLink: false
 
 7 operations.
 
-### `GET /cluster/jobs`
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/jobs`
 
 ```ts
 proxmox.cluster.jobs.$get()
@@ -19,7 +19,9 @@ Index for jobs related endpoints.
 
 Returns an array of `object`.
 
-### `GET /cluster/jobs/realm-sync`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/jobs" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/jobs/realm-sync`
 
 ```ts
 proxmox.cluster.jobs["realm-sync"].$get()
@@ -29,7 +31,9 @@ List configured realm-sync-jobs.
 
 Returns an array of `object`.
 
-### `GET /cluster/jobs/realm-sync/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/jobs/realm-sync" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/jobs/realm-sync/{id}`
 
 ```ts
 proxmox.cluster.jobs["realm-sync"].$(id).$get()
@@ -43,7 +47,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `id` | string | yes | format `pve-configid` |
 
-### `POST /cluster/jobs/realm-sync/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/jobs/realm-sync/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/jobs/realm-sync/{id}`
 
 ```ts
 proxmox.cluster.jobs["realm-sync"].$(id).$post()
@@ -64,7 +70,9 @@ Returns nothing.
 | `schedule` | string | yes | Backup schedule. The format is a subset of `systemd` calendar events. — format `pve-calendar-event`, ≤ 128 chars |
 | `scope` | `users` \| `groups` \| `both` |  | Select what to sync. |
 
-### `PUT /cluster/jobs/realm-sync/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/jobs/realm-sync/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/jobs/realm-sync/{id}`
 
 ```ts
 proxmox.cluster.jobs["realm-sync"].$(id).$put()
@@ -85,7 +93,9 @@ Returns nothing.
 | `schedule` | string | yes | Backup schedule. The format is a subset of `systemd` calendar events. — format `pve-calendar-event`, ≤ 128 chars |
 | `scope` | `users` \| `groups` \| `both` |  | Select what to sync. |
 
-### `DELETE /cluster/jobs/realm-sync/{id}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/jobs/realm-sync/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/jobs/realm-sync/{id}`
 
 ```ts
 proxmox.cluster.jobs["realm-sync"].$(id).$delete()
@@ -99,7 +109,9 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `id` | string | yes | format `pve-configid` |
 
-### `GET /cluster/jobs/schedule-analyze`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/jobs/realm-sync/{id}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/jobs/schedule-analyze`
 
 ```ts
 proxmox.cluster.jobs["schedule-analyze"].$get()
@@ -114,3 +126,5 @@ Returns an array of `object`.
 | `iterations` | number |  | Number of event-iteration to simulate and return. — min 1, max 100, default `10` |
 | `schedule` | string | yes | Job schedule. The format is a subset of `systemd` calendar events. — format `pve-calendar-event`, ≤ 128 chars |
 | `starttime` | number |  | UNIX timestamp to start the calculation from. Defaults to the current time. |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/jobs/schedule-analyze" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

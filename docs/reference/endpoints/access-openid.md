@@ -9,7 +9,7 @@ editLink: false
 
 3 operations.
 
-### `GET /access/openid`
+### <span class="method-badge" data-method="GET">GET</span> `/access/openid`
 
 ```ts
 proxmox.access.openid.$get()
@@ -19,7 +19,9 @@ Directory index.
 
 Returns an array of `object`.
 
-### `POST /access/openid/auth-url`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/openid" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/access/openid/auth-url`
 
 ```ts
 proxmox.access.openid["auth-url"].$post()
@@ -34,7 +36,9 @@ Returns `string`.
 | `realm` | string | yes | Authentication domain ID — format `pve-realm`, ≤ 32 chars |
 | `redirect-url` | string | yes | Redirection Url. The client should set this to the used server url (location.origin). — ≤ 255 chars |
 
-### `POST /access/openid/login`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/openid/auth-url" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/access/openid/login`
 
 ```ts
 proxmox.access.openid.login.$post()
@@ -49,3 +53,5 @@ Returns `any`.
 | `code` | string | yes | OpenId authorization code. — ≤ 4096 chars |
 | `redirect-url` | string | yes | Redirection Url. The client should set this to the used server url (location.origin). — ≤ 255 chars |
 | `state` | string | yes | OpenId state. — ≤ 1024 chars |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/access/openid/login" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

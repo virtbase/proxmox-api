@@ -9,7 +9,7 @@ editLink: false
 
 31 operations.
 
-### `GET /cluster/notifications`
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/notifications`
 
 ```ts
 proxmox.cluster.notifications.$get()
@@ -19,7 +19,9 @@ Index for notification-related API endpoints.
 
 Returns an array of `object`.
 
-### `GET /cluster/notifications/endpoints`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/notifications/endpoints`
 
 ```ts
 proxmox.cluster.notifications.endpoints.$get()
@@ -29,7 +31,9 @@ Index for all available endpoint types.
 
 Returns an array of `object`.
 
-### `GET /cluster/notifications/endpoints/gotify`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/endpoints" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/notifications/endpoints/gotify`
 
 ```ts
 proxmox.cluster.notifications.endpoints.gotify.$get()
@@ -39,7 +43,9 @@ Returns a list of all gotify endpoints
 
 Returns an array of `object`.
 
-### `POST /cluster/notifications/endpoints/gotify`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/endpoints/gotify" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/notifications/endpoints/gotify`
 
 ```ts
 proxmox.cluster.notifications.endpoints.gotify.$post()
@@ -57,7 +63,9 @@ Returns nothing.
 | `server` | string | yes | Server URL |
 | `token` | string | yes | Secret token |
 
-### `GET /cluster/notifications/endpoints/gotify/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/endpoints/gotify" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/notifications/endpoints/gotify/{name}`
 
 ```ts
 proxmox.cluster.notifications.endpoints.gotify.$(name).$get()
@@ -71,7 +79,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `name` | string | yes | Name of the endpoint. — format `pve-configid` |
 
-### `PUT /cluster/notifications/endpoints/gotify/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/endpoints/gotify/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/notifications/endpoints/gotify/{name}`
 
 ```ts
 proxmox.cluster.notifications.endpoints.gotify.$(name).$put()
@@ -91,7 +101,9 @@ Returns nothing.
 | `server` | string |  | Server URL |
 | `token` | string |  | Secret token |
 
-### `DELETE /cluster/notifications/endpoints/gotify/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/endpoints/gotify/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/notifications/endpoints/gotify/{name}`
 
 ```ts
 proxmox.cluster.notifications.endpoints.gotify.$(name).$delete()
@@ -105,7 +117,9 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `name` | string | yes | format `pve-configid` |
 
-### `GET /cluster/notifications/endpoints/sendmail`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/endpoints/gotify/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/notifications/endpoints/sendmail`
 
 ```ts
 proxmox.cluster.notifications.endpoints.sendmail.$get()
@@ -115,7 +129,9 @@ Returns a list of all sendmail endpoints
 
 Returns an array of `object`.
 
-### `POST /cluster/notifications/endpoints/sendmail`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/endpoints/sendmail" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/notifications/endpoints/sendmail`
 
 ```ts
 proxmox.cluster.notifications.endpoints.sendmail.$post()
@@ -135,7 +151,9 @@ Returns nothing.
 | `mailto-user` | string[] |  | List of users |
 | `name` | string | yes | The name of the endpoint. — format `pve-configid` |
 
-### `GET /cluster/notifications/endpoints/sendmail/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/endpoints/sendmail" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/notifications/endpoints/sendmail/{name}`
 
 ```ts
 proxmox.cluster.notifications.endpoints.sendmail.$(name).$get()
@@ -149,7 +167,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `name` | string | yes | format `pve-configid` |
 
-### `PUT /cluster/notifications/endpoints/sendmail/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/endpoints/sendmail/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/notifications/endpoints/sendmail/{name}`
 
 ```ts
 proxmox.cluster.notifications.endpoints.sendmail.$(name).$put()
@@ -161,6 +181,12 @@ Returns nothing.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
+| `name` | string | yes | The name of the endpoint. — format `pve-configid` |
+
+::: details 8 optional parameters
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
 | `author` | string |  | Author of the mail |
 | `comment` | string |  | Comment |
 | `delete` | string[] |  | A list of settings you want to delete. |
@@ -169,9 +195,12 @@ Returns nothing.
 | `from-address` | string |  | `From` address for the mail |
 | `mailto` | string[] |  | List of email recipients |
 | `mailto-user` | string[] |  | List of users |
-| `name` | string | yes | The name of the endpoint. — format `pve-configid` |
 
-### `DELETE /cluster/notifications/endpoints/sendmail/{name}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/endpoints/sendmail/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/notifications/endpoints/sendmail/{name}`
 
 ```ts
 proxmox.cluster.notifications.endpoints.sendmail.$(name).$delete()
@@ -185,7 +214,9 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `name` | string | yes | format `pve-configid` |
 
-### `GET /cluster/notifications/endpoints/smtp`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/endpoints/sendmail/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/notifications/endpoints/smtp`
 
 ```ts
 proxmox.cluster.notifications.endpoints.smtp.$get()
@@ -195,7 +226,9 @@ Returns a list of all smtp endpoints
 
 Returns an array of `object`.
 
-### `POST /cluster/notifications/endpoints/smtp`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/endpoints/smtp" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/notifications/endpoints/smtp`
 
 ```ts
 proxmox.cluster.notifications.endpoints.smtp.$post()
@@ -207,20 +240,29 @@ Returns nothing.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
+| `from-address` | string | yes | `From` address for the mail |
+| `name` | string | yes | The name of the endpoint. — format `pve-configid` |
+| `server` | string | yes | The address of the SMTP server. |
+
+::: details 9 optional parameters
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
 | `author` | string |  | Author of the mail. Defaults to 'Proxmox VE'. |
 | `comment` | string |  | Comment |
 | `disable` | boolean |  | Disable this target — default `0` |
-| `from-address` | string | yes | `From` address for the mail |
 | `mailto` | string[] |  | List of email recipients |
 | `mailto-user` | string[] |  | List of users |
 | `mode` | `insecure` \| `starttls` \| `tls` |  | Determine which encryption method shall be used for the connection. — default `"tls"` |
-| `name` | string | yes | The name of the endpoint. — format `pve-configid` |
 | `password` | string |  | Password for SMTP authentication |
 | `port` | number |  | The port to be used. Defaults to 465 for TLS based connections, 587 for STARTTLS based connections and port 25 for insecure plain-text connections. |
-| `server` | string | yes | The address of the SMTP server. |
 | `username` | string |  | Username for SMTP authentication |
 
-### `GET /cluster/notifications/endpoints/smtp/{name}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/endpoints/smtp" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/notifications/endpoints/smtp/{name}`
 
 ```ts
 proxmox.cluster.notifications.endpoints.smtp.$(name).$get()
@@ -234,7 +276,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `name` | string | yes | format `pve-configid` |
 
-### `PUT /cluster/notifications/endpoints/smtp/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/endpoints/smtp/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/notifications/endpoints/smtp/{name}`
 
 ```ts
 proxmox.cluster.notifications.endpoints.smtp.$(name).$put()
@@ -243,6 +287,12 @@ proxmox.cluster.notifications.endpoints.smtp.$(name).$put()
 Update existing smtp endpoint
 
 Returns nothing.
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `name` | string | yes | The name of the endpoint. — format `pve-configid` |
+
+::: details 13 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -255,13 +305,16 @@ Returns nothing.
 | `mailto` | string[] |  | List of email recipients |
 | `mailto-user` | string[] |  | List of users |
 | `mode` | `insecure` \| `starttls` \| `tls` |  | Determine which encryption method shall be used for the connection. — default `"tls"` |
-| `name` | string | yes | The name of the endpoint. — format `pve-configid` |
 | `password` | string |  | Password for SMTP authentication |
 | `port` | number |  | The port to be used. Defaults to 465 for TLS based connections, 587 for STARTTLS based connections and port 25 for insecure plain-text connections. |
 | `server` | string |  | The address of the SMTP server. |
 | `username` | string |  | Username for SMTP authentication |
 
-### `DELETE /cluster/notifications/endpoints/smtp/{name}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/endpoints/smtp/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/notifications/endpoints/smtp/{name}`
 
 ```ts
 proxmox.cluster.notifications.endpoints.smtp.$(name).$delete()
@@ -275,7 +328,9 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `name` | string | yes | format `pve-configid` |
 
-### `GET /cluster/notifications/endpoints/webhook`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/endpoints/smtp/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/notifications/endpoints/webhook`
 
 ```ts
 proxmox.cluster.notifications.endpoints.webhook.$get()
@@ -285,7 +340,9 @@ Returns a list of all webhook endpoints
 
 Returns an array of `object`.
 
-### `POST /cluster/notifications/endpoints/webhook`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/endpoints/webhook" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/notifications/endpoints/webhook`
 
 ```ts
 proxmox.cluster.notifications.endpoints.webhook.$post()
@@ -306,7 +363,9 @@ Returns nothing.
 | `secret` | string[] |  | Secrets to set. These have to be formatted as a property string in the format name=&lt;name&gt;,value=&lt;base64 of value&gt; |
 | `url` | string | yes | Server URL |
 
-### `GET /cluster/notifications/endpoints/webhook/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/endpoints/webhook" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/notifications/endpoints/webhook/{name}`
 
 ```ts
 proxmox.cluster.notifications.endpoints.webhook.$(name).$get()
@@ -320,7 +379,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `name` | string | yes | Name of the endpoint. — format `pve-configid` |
 
-### `PUT /cluster/notifications/endpoints/webhook/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/endpoints/webhook/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/notifications/endpoints/webhook/{name}`
 
 ```ts
 proxmox.cluster.notifications.endpoints.webhook.$(name).$put()
@@ -332,6 +393,12 @@ Returns nothing.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
+| `name` | string | yes | The name of the endpoint. — format `pve-configid` |
+
+::: details 9 optional parameters
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
 | `body` | string |  | HTTP body, base64 encoded |
 | `comment` | string |  | Comment |
 | `delete` | string[] |  | A list of settings you want to delete. |
@@ -339,11 +406,14 @@ Returns nothing.
 | `disable` | boolean |  | Disable this target — default `0` |
 | `header` | string[] |  | HTTP headers to set. These have to be formatted as a property string in the format name=&lt;name&gt;,value=&lt;base64 of value&gt; |
 | `method` | `post` \| `put` \| `get` |  | HTTP method |
-| `name` | string | yes | The name of the endpoint. — format `pve-configid` |
 | `secret` | string[] |  | Secrets to set. These have to be formatted as a property string in the format name=&lt;name&gt;,value=&lt;base64 of value&gt; |
 | `url` | string |  | Server URL |
 
-### `DELETE /cluster/notifications/endpoints/webhook/{name}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/endpoints/webhook/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/notifications/endpoints/webhook/{name}`
 
 ```ts
 proxmox.cluster.notifications.endpoints.webhook.$(name).$delete()
@@ -357,7 +427,9 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `name` | string | yes | format `pve-configid` |
 
-### `GET /cluster/notifications/matcher-field-values`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/endpoints/webhook/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/notifications/matcher-field-values`
 
 ```ts
 proxmox.cluster.notifications["matcher-field-values"].$get()
@@ -367,7 +439,9 @@ Returns known notification metadata fields and their known values
 
 Returns an array of `object`.
 
-### `GET /cluster/notifications/matcher-fields`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/matcher-field-values" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/notifications/matcher-fields`
 
 ```ts
 proxmox.cluster.notifications["matcher-fields"].$get()
@@ -377,7 +451,9 @@ Returns known notification metadata fields
 
 Returns an array of `object`.
 
-### `GET /cluster/notifications/matchers`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/matcher-fields" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/notifications/matchers`
 
 ```ts
 proxmox.cluster.notifications.matchers.$get()
@@ -387,7 +463,9 @@ Returns a list of all matchers
 
 Returns an array of `object`.
 
-### `POST /cluster/notifications/matchers`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/matchers" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/notifications/matchers`
 
 ```ts
 proxmox.cluster.notifications.matchers.$post()
@@ -399,6 +477,12 @@ Returns nothing.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
+| `name` | string | yes | Name of the matcher. — format `pve-configid` |
+
+::: details 9 optional parameters
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
 | `comment` | string |  | Comment |
 | `disable` | boolean |  | Disable this matcher — default `0` |
 | `expression` | string |  | Match expression as inline JSON. This option is mutually exclusive with the following options: match-field, match-calendar, match-severity, invert-match and mode. All of these can be represented as (sub)-expressions of this expression |
@@ -407,10 +491,13 @@ Returns nothing.
 | `match-field` | string[] |  | Metadata fields to match (regex or exact match). Must be in the form (regex\|exact):&lt;field&gt;=&lt;value&gt; |
 | `match-severity` | string[] |  | Notification severities to match |
 | `mode` | `all` \| `any` |  | Choose between 'all' and 'any' for when multiple properties are specified — default `"all"` |
-| `name` | string | yes | Name of the matcher. — format `pve-configid` |
 | `target` | string[] |  | Targets to notify on match |
 
-### `GET /cluster/notifications/matchers/{name}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/matchers" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/notifications/matchers/{name}`
 
 ```ts
 proxmox.cluster.notifications.matchers.$(name).$get()
@@ -425,7 +512,9 @@ Returns `object`.
 | `migrate-to-expression` | boolean |  | Automatically translate existing 'match-*', 'invert-match' and 'mode' to an equivalent matching 'expression'. — default `0` |
 | `name` | string | yes | format `pve-configid` |
 
-### `PUT /cluster/notifications/matchers/{name}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/matchers/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/notifications/matchers/{name}`
 
 ```ts
 proxmox.cluster.notifications.matchers.$(name).$put()
@@ -434,6 +523,12 @@ proxmox.cluster.notifications.matchers.$(name).$put()
 Update existing matcher
 
 Returns nothing.
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `name` | string | yes | Name of the matcher. — format `pve-configid` |
+
+::: details 11 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -447,10 +542,13 @@ Returns nothing.
 | `match-field` | string[] |  | Metadata fields to match (regex or exact match). Must be in the form (regex\|exact):&lt;field&gt;=&lt;value&gt; |
 | `match-severity` | string[] |  | Notification severities to match |
 | `mode` | `all` \| `any` |  | Choose between 'all' and 'any' for when multiple properties are specified — default `"all"` |
-| `name` | string | yes | Name of the matcher. — format `pve-configid` |
 | `target` | string[] |  | Targets to notify on match |
 
-### `DELETE /cluster/notifications/matchers/{name}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/matchers/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/notifications/matchers/{name}`
 
 ```ts
 proxmox.cluster.notifications.matchers.$(name).$delete()
@@ -464,7 +562,9 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `name` | string | yes | format `pve-configid` |
 
-### `GET /cluster/notifications/targets`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/matchers/{name}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/notifications/targets`
 
 ```ts
 proxmox.cluster.notifications.targets.$get()
@@ -474,7 +574,9 @@ Returns a list of all entities that can be used as notification targets.
 
 Returns an array of `object`.
 
-### `POST /cluster/notifications/targets/{name}/test`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/targets" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/notifications/targets/{name}/test`
 
 ```ts
 proxmox.cluster.notifications.targets.$(name).test.$post()
@@ -487,3 +589,5 @@ Returns nothing.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `name` | string | yes | Name of the target. — format `pve-configid` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/notifications/targets/{name}/test" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

@@ -9,7 +9,7 @@ editLink: false
 
 7 operations.
 
-### `GET /cluster/qemu`
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/qemu`
 
 ```ts
 proxmox.cluster.qemu.$get()
@@ -19,7 +19,9 @@ Cluster-wide QEMU index
 
 Returns an array of `object`.
 
-### `GET /cluster/qemu/cpu-flags`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/qemu" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/qemu/cpu-flags`
 
 ```ts
 proxmox.cluster.qemu["cpu-flags"].$get()
@@ -34,7 +36,9 @@ Returns an array of `object`.
 | `accel` | `kvm` \| `tcg` |  | Acceleration type to check node compatibility for. — default `"kvm"` |
 | `arch` | `x86_64` \| `aarch64` |  | Virtual processor architecture. Defaults to the host architecture. |
 
-### `GET /cluster/qemu/custom-cpu-models`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/qemu/cpu-flags" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/qemu/custom-cpu-models`
 
 ```ts
 proxmox.cluster.qemu["custom-cpu-models"].$get()
@@ -44,7 +48,9 @@ List all custom CPU model definitions visible to the user.
 
 Returns an array of `object`.
 
-### `POST /cluster/qemu/custom-cpu-models`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/qemu/custom-cpu-models" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="POST">POST</span> `/cluster/qemu/custom-cpu-models`
 
 ```ts
 proxmox.cluster.qemu["custom-cpu-models"].$post()
@@ -65,7 +71,9 @@ Returns nothing.
 | `phys-bits` | string |  | The physical memory address bits that are reported to the guest OS. Should be smaller or equal to the host's. Set to 'host' to use value from host CPU, but note that doing so will break live migration to CPUs with other values. — format `pve-phys-bits` |
 | `reported-model` | `486` \| `a64fx` \| `athlon` \| `Broadwell` \| `Broadwell-IBRS` \| `Broadwell-noTSX` \| `Broadwell-noTSX-IBRS` \| `Cascadelake-Server` \| … (118 more) | yes | CPU model and vendor to report to the guest. Must be a QEMU/KVM supported model. Only valid for custom CPU model definitions, default models will always report themselves to the guest OS. — default `"kvm64"` |
 
-### `GET /cluster/qemu/custom-cpu-models/{cputype}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/qemu/custom-cpu-models" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/qemu/custom-cpu-models/{cputype}`
 
 ```ts
 proxmox.cluster.qemu["custom-cpu-models"].$(cputype).$get()
@@ -79,7 +87,9 @@ Returns `object`.
 | --- | --- | --- | --- |
 | `cputype` | string | yes | Name of the CPU model to query. The 'custom-' prefix is optional. |
 
-### `PUT /cluster/qemu/custom-cpu-models/{cputype}`
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/qemu/custom-cpu-models/{cputype}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="PUT">PUT</span> `/cluster/qemu/custom-cpu-models/{cputype}`
 
 ```ts
 proxmox.cluster.qemu["custom-cpu-models"].$(cputype).$put()
@@ -92,6 +102,11 @@ Returns nothing.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `cputype` | string | yes | Name for the custom CPU model. The 'custom-' prefix is optional. — format `pve-configid`, ≤ 40 chars |
+
+::: details 9 optional parameters
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
 | `delete` | string |  | A list of properties to delete. — format `pve-configid-list` |
 | `digest` | string |  | Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications. — ≤ 64 chars |
 | `flags` | string |  | List of additional CPU flags separated by ';'. Use '+FLAG' to enable, '-FLAG' to disable a flag. There is a special 'nested-virt' shorthand which controls nested virtualization for the current CPU ('svm' for AMD and 'vmx' for Intel). Custom CPU models can specify any flag supported by QEMU/KVM, VM-specific flags must be from the following set for security reasons: aes, amd-no-ssb, amd-ssbd, hv-evmcs, hv-tlbflush, ibpb, md-clear, nested-virt, pcid, pdpe1gb, spec-ctrl, ssbd, virt-ssbd |
@@ -102,7 +117,11 @@ Returns nothing.
 | `phys-bits` | string |  | The physical memory address bits that are reported to the guest OS. Should be smaller or equal to the host's. Set to 'host' to use value from host CPU, but note that doing so will break live migration to CPUs with other values. — format `pve-phys-bits` |
 | `reported-model` | `486` \| `a64fx` \| `athlon` \| `Broadwell` \| `Broadwell-IBRS` \| `Broadwell-noTSX` \| `Broadwell-noTSX-IBRS` \| `Cascadelake-Server` \| … (118 more) |  | CPU model and vendor to report to the guest. Must be a QEMU/KVM supported model. Only valid for custom CPU model definitions, default models will always report themselves to the guest OS. — default `"kvm64"` |
 
-### `DELETE /cluster/qemu/custom-cpu-models/{cputype}`
+:::
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/qemu/custom-cpu-models/{cputype}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
+
+### <span class="method-badge" data-method="DELETE">DELETE</span> `/cluster/qemu/custom-cpu-models/{cputype}`
 
 ```ts
 proxmox.cluster.qemu["custom-cpu-models"].$(cputype).$delete()
@@ -115,3 +134,5 @@ Returns nothing.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `cputype` | string | yes | The custom model to delete. The 'custom-' prefix is optional. |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/qemu/custom-cpu-models/{cputype}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

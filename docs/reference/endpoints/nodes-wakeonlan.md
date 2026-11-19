@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `POST /nodes/{node}/wakeonlan`
+### <span class="method-badge" data-method="POST">POST</span> `/nodes/{node}/wakeonlan`
 
 ```ts
 proxmox.nodes.$(node).wakeonlan.$post()
@@ -22,3 +22,5 @@ Returns `string`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `node` | string | yes | target node for wake on LAN packet — format `pve-node` |
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/wakeonlan" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

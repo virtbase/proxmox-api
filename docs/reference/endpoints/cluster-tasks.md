@@ -9,7 +9,7 @@ editLink: false
 
 1 operation.
 
-### `GET /cluster/tasks`
+### <span class="method-badge" data-method="GET">GET</span> `/cluster/tasks`
 
 ```ts
 proxmox.cluster.tasks.$get()
@@ -18,3 +18,5 @@ proxmox.cluster.tasks.$get()
 List recent tasks (cluster wide).
 
 Returns an array of `object`.
+
+<p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/tasks" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
