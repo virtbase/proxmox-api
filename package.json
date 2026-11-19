@@ -44,7 +44,7 @@
     "@commitlint/config-conventional": "21.2.4",
     "@types/bun": "1.4.4",
     "husky": "9.1.7",
-    "knip": "6.44.2",
+    "knip": "6.45.1",
     "lint-staged": "17.6.0",
     "sherif": "1.13.0",
     "turbo": "2.11.11",
