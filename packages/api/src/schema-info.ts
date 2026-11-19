@@ -8,9 +8,9 @@ export const PVE_VERSION = "9.2";
 /**
  * The exact `pve-docs` package version the API schema was taken from.
  */
-export const PVE_SCHEMA_VERSION = "9.2.14";
+export const PVE_SCHEMA_VERSION = "9.2.15";
 
 /**
  * Number of operations the model covers.
  */
-export const PVE_OPERATION_COUNT = 684;
+export const PVE_OPERATION_COUNT = 688;

@@ -1,0 +1,221 @@
+{
+  "version": "9.2.15",
+  "previous": "9.2.14",
+  "released": "2026-11-18",
+  "schemaSha256": "fe4205ebb777ccd1e894db4b0843b8238cb1d822c7dd5347304396f0343cf17a",
+  "operations": 688,
+  "level": "major",
+  "summary": {
+    "added": 4,
+    "removed": 0,
+    "changed": 15,
+    "breaking": 2,
+    "documentation": 22
+  },
+  "changes": [
+    {
+      "operation": "GET /cluster/acme/plugins",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].api` may be `arubabusiness`, `baidu`, `bh`, `bhosted`, `calrissia`, `cdmon`, `comlaude`, `cpanel_uapi`, `creoline`, `czechia`, `dnsmint`, `efficientip`, `eurodns`, `firestorm`, `glesys`, `gname`, `hestiacp`, `hostinger`, `hostup`, `hw`, `infoblox_uddi`, `ipprojects`, `laodc`, `level27`, `mgwm`, `muumuu`, `myloc`, `nexdns`, `opteamax`, `optidata`, `opusdns`, `poweradmin`, `qc`, `rltx`, `sitehost`, `sotoon`, `subreg`, `virakcloud`, `volcengine`, `wedos`",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].api` is no longer `hetzner`, `linode`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/acme/plugins",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `api` accepts `arubabusiness`, `baidu`, `bh`, `bhosted`, `calrissia`, `cdmon`, `comlaude`, `cpanel_uapi`, `creoline`, `czechia`, `dnsmint`, `efficientip`, `eurodns`, `firestorm`, `glesys`, `gname`, `hestiacp`, `hostinger`, `hostup`, `hw`, `infoblox_uddi`, `ipprojects`, `laodc`, `level27`, `mgwm`, `muumuu`, `myloc`, `nexdns`, `opteamax`, `optidata`, `opusdns`, `poweradmin`, `qc`, `rltx`, `sitehost`, `sotoon`, `subreg`, `virakcloud`, `volcengine`, `wedos`",
+          "breaking": false
+        },
+        {
+          "text": "parameter `api` no longer accepts `hetzner`, `linode`",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/acme/plugins/{id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `api` may be `arubabusiness`, `baidu`, `bh`, `bhosted`, `calrissia`, `cdmon`, `comlaude`, `cpanel_uapi`, `creoline`, `czechia`, `dnsmint`, `efficientip`, `eurodns`, `firestorm`, `glesys`, `gname`, `hestiacp`, `hostinger`, `hostup`, `hw`, `infoblox_uddi`, `ipprojects`, `laodc`, `level27`, `mgwm`, `muumuu`, `myloc`, `nexdns`, `opteamax`, `optidata`, `opusdns`, `poweradmin`, `qc`, `rltx`, `sitehost`, `sotoon`, `subreg`, `virakcloud`, `volcengine`, `wedos`",
+          "breaking": false
+        },
+        {
+          "text": "returned `api` is no longer `hetzner`, `linode`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/acme/plugins/{id}",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `api` accepts `arubabusiness`, `baidu`, `bh`, `bhosted`, `calrissia`, `cdmon`, `comlaude`, `cpanel_uapi`, `creoline`, `czechia`, `dnsmint`, `efficientip`, `eurodns`, `firestorm`, `glesys`, `gname`, `hestiacp`, `hostinger`, `hostup`, `hw`, `infoblox_uddi`, `ipprojects`, `laodc`, `level27`, `mgwm`, `muumuu`, `myloc`, `nexdns`, `opteamax`, `optidata`, `opusdns`, `poweradmin`, `qc`, `rltx`, `sitehost`, `sotoon`, `subreg`, `virakcloud`, `volcengine`, `wedos`",
+          "breaking": false
+        },
+        {
+          "text": "parameter `api` no longer accepts `hetzner`, `linode`",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/backup",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].notification-mode` may be `none`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/backup",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `notification-mode` accepts `none`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/backup/{id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `notification-mode` may be `none`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/backup/{id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `notification-mode` accepts `none`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/qemu",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `lock` accepts `import`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/qemu/{vmid}/config",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `lock` may be `import`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/qemu/{vmid}/config",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `lock` accepts `import`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /nodes/{node}/qemu/{vmid}/config",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `lock` accepts `import`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/storage/{storage}/content",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].vtype` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/vzdump",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `notification-mode` accepts `none`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/vzdump/defaults",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `notification-mode` may be `none`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /plugins",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /plugins/storage",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /plugins/storage/plugin",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /plugins/storage/plugin/{type}",
+      "change": "added",
+      "breaking": false
+    }
+  ],
+  "removedTypes": [
+    "Origin"
+  ]
+}

@@ -316,6 +316,14 @@
     "link": "/reference/endpoints/nodes-wakeonlan"
   },
   {
+    "text": "plugins",
+    "link": "/reference/endpoints/plugins"
+  },
+  {
+    "text": "plugins / storage",
+    "link": "/reference/endpoints/plugins-storage"
+  },
+  {
     "text": "pools",
     "link": "/reference/endpoints/pools"
   },

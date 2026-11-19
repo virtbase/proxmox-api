@@ -11,6 +11,63 @@ Differences between consecutive versions of the published API schema.
 Anything marked **breaking** removes or narrows something callers could
 rely on; everything else is additive.
 
+## 9.2.15
+
+Published 2026-11-18 · compared with 9.2.14 · 688 operations · breaking.
+
+### Renamed or removed types
+
+No longer exported from the `Proxmox` namespace — **breaking** for code
+that imports them by name:
+
+- `Origin`
+
+### Changed
+
+- `GET /cluster/acme/plugins`
+  - returned `[].api` may be `arubabusiness`, `baidu`, `bh`, `bhosted`, `calrissia`, `cdmon`, `comlaude`, `cpanel_uapi`, `creoline`, `czechia`, `dnsmint`, `efficientip`, `eurodns`, `firestorm`, `glesys`, `gname`, `hestiacp`, `hostinger`, `hostup`, `hw`, `infoblox_uddi`, `ipprojects`, `laodc`, `level27`, `mgwm`, `muumuu`, `myloc`, `nexdns`, `opteamax`, `optidata`, `opusdns`, `poweradmin`, `qc`, `rltx`, `sitehost`, `sotoon`, `subreg`, `virakcloud`, `volcengine`, `wedos`
+  - returned `[].api` is no longer `hetzner`, `linode`
+- `POST /cluster/acme/plugins` — **breaking**
+  - parameter `api` accepts `arubabusiness`, `baidu`, `bh`, `bhosted`, `calrissia`, `cdmon`, `comlaude`, `cpanel_uapi`, `creoline`, `czechia`, `dnsmint`, `efficientip`, `eurodns`, `firestorm`, `glesys`, `gname`, `hestiacp`, `hostinger`, `hostup`, `hw`, `infoblox_uddi`, `ipprojects`, `laodc`, `level27`, `mgwm`, `muumuu`, `myloc`, `nexdns`, `opteamax`, `optidata`, `opusdns`, `poweradmin`, `qc`, `rltx`, `sitehost`, `sotoon`, `subreg`, `virakcloud`, `volcengine`, `wedos`
+  - parameter `api` no longer accepts `hetzner`, `linode` **(breaking)**
+- `GET /cluster/acme/plugins/{id}`
+  - returned `api` may be `arubabusiness`, `baidu`, `bh`, `bhosted`, `calrissia`, `cdmon`, `comlaude`, `cpanel_uapi`, `creoline`, `czechia`, `dnsmint`, `efficientip`, `eurodns`, `firestorm`, `glesys`, `gname`, `hestiacp`, `hostinger`, `hostup`, `hw`, `infoblox_uddi`, `ipprojects`, `laodc`, `level27`, `mgwm`, `muumuu`, `myloc`, `nexdns`, `opteamax`, `optidata`, `opusdns`, `poweradmin`, `qc`, `rltx`, `sitehost`, `sotoon`, `subreg`, `virakcloud`, `volcengine`, `wedos`
+  - returned `api` is no longer `hetzner`, `linode`
+- `PUT /cluster/acme/plugins/{id}` — **breaking**
+  - parameter `api` accepts `arubabusiness`, `baidu`, `bh`, `bhosted`, `calrissia`, `cdmon`, `comlaude`, `cpanel_uapi`, `creoline`, `czechia`, `dnsmint`, `efficientip`, `eurodns`, `firestorm`, `glesys`, `gname`, `hestiacp`, `hostinger`, `hostup`, `hw`, `infoblox_uddi`, `ipprojects`, `laodc`, `level27`, `mgwm`, `muumuu`, `myloc`, `nexdns`, `opteamax`, `optidata`, `opusdns`, `poweradmin`, `qc`, `rltx`, `sitehost`, `sotoon`, `subreg`, `virakcloud`, `volcengine`, `wedos`
+  - parameter `api` no longer accepts `hetzner`, `linode` **(breaking)**
+- `GET /cluster/backup`
+  - returned `[].notification-mode` may be `none`
+- `POST /cluster/backup`
+  - parameter `notification-mode` accepts `none`
+- `GET /cluster/backup/{id}`
+  - returned `notification-mode` may be `none`
+- `PUT /cluster/backup/{id}`
+  - parameter `notification-mode` accepts `none`
+- `POST /nodes/{node}/qemu`
+  - parameter `lock` accepts `import`
+- `GET /nodes/{node}/qemu/{vmid}/config`
+  - returned `lock` may be `import`
+- `POST /nodes/{node}/qemu/{vmid}/config`
+  - parameter `lock` accepts `import`
+- `PUT /nodes/{node}/qemu/{vmid}/config`
+  - parameter `lock` accepts `import`
+- `GET /nodes/{node}/storage/{storage}/content`
+  - returned `[].vtype` added
+- `POST /nodes/{node}/vzdump`
+  - parameter `notification-mode` accepts `none`
+- `GET /nodes/{node}/vzdump/defaults`
+  - returned `notification-mode` may be `none`
+
+### Added
+
+- `GET /plugins`
+- `GET /plugins/storage`
+- `GET /plugins/storage/plugin`
+- `GET /plugins/storage/plugin/{type}`
+
+Descriptions or metadata changed on 22 other operations.
+
 ## 9.2.14
 
 Published 2026-11-06 · compared with 9.2.5 · 684 operations · additive.
