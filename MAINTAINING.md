@@ -222,10 +222,25 @@ npm deprecate @virtbase/proxmox-api@4.0.1 "Broken build, use 4.0.2"
 
 ## Dependencies
 
-Renovate opens pull requests on Monday mornings. Updates must be seven days
-old before they are proposed — the same cooling-off period `bunfig.toml`
-enforces on install — and merge once CI passes. Majors wait for approval in the
-dependency dashboard issue.
+Renovate proposes an update only once it is seven days old — the same
+cooling-off period `bunfig.toml` enforces on install — and merges it itself
+once CI passes. Majors wait for approval in the dependency dashboard issue.
+
+Two settings in `.github/renovate.json` make the cooling-off real, and both
+matter:
+
+- `prCreation: "not-pending"` keeps Renovate from opening a pull request for a
+  release that is still too young. Without it the pull request is opened
+  straight away, `bun install` refuses the young version, and the lockfile
+  update fails.
+- `platformAutomerge: false` makes Renovate do the merge, which it only does
+  when its own `renovate/stability-days` check is green. GitHub's auto-merge
+  looks at the required checks alone and would merge a young release as soon
+  as CI passed.
+
+A security fix is exempt from Renovate's waiting period but not from bun's. If
+its lockfile update fails for that reason, add the package to
+`minimumReleaseAgeExcludes` in `bunfig.toml` for that one update.
 
 The published package has no runtime dependencies, so these updates are tooling
 only and release nothing.

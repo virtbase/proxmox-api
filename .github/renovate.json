@@ -11,10 +11,11 @@
   "prConcurrentLimit": 10,
   "prHourlyLimit": 0,
   "internalChecksFilter": "strict",
+  "prCreation": "not-pending",
   "automerge": true,
   "automergeType": "pr",
   "automergeStrategy": "squash",
-  "platformAutomerge": true,
+  "platformAutomerge": false,
   "osvVulnerabilityAlerts": true,
   "vulnerabilityAlerts": {
     "enabled": true,
@@ -49,8 +50,9 @@
     },
     {
       "matchDatasources": ["npm", "github-tags", "github-releases"],
-      "matchUpdateTypes": ["major", "minor", "patch"],
-      "minimumReleaseAge": "7 days"
+      "matchUpdateTypes": ["major", "minor", "patch", "digest"],
+      "minimumReleaseAge": "7 days",
+      "internalChecksFilter": "strict"
     },
     {
       "matchUpdateTypes": ["major"],
