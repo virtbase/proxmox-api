@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { diffOperations } from "../diff.js";
 import { emitModel, emitSchemaInfo, exportedTypeNames } from "../emit.js";
-import { emitChangelog } from "../emit-changelog.js";
+import { emitChangelog, summarize } from "../emit-changelog.js";
 import { docsSidebar, emitDocs } from "../emit-docs.js";
 import { extractSchemaLiteral, parseSchema } from "../load-schema.js";
 import { collectOperations } from "../operations.js";
@@ -383,6 +383,27 @@ test("emitChangelog groups versions by Proxmox VE release, newest first", () => 
   expect(pages[0]?.markdown).toContain(
     "[9.2.9](./pve-9.2#_9-2-9) | 2026-08-01",
   );
+});
+
+test("summarize wraps long lines so the commit message passes commitlint", () => {
+  const changes = diff((nodes) => {
+    const parameters = parametersOf(nodes, CREATE);
+    for (const name of Object.keys(parameters)) {
+      if (name !== "node") delete parameters[name];
+    }
+  });
+  const summary = summarize({
+    ...changes,
+    version: "9.3.1",
+    previous: "9.2.15",
+    schemaSha256: "x",
+    operations: 4,
+    removedTypes: Array.from({ length: 30 }, (_, i) => `RemovedType${i}`),
+  });
+  const lines = summary.split("\n");
+  expect(lines.every((line) => line.length <= 100)).toBe(true);
+  expect(lines.some((line) => line.startsWith("  "))).toBe(true);
+  expect(summary.replace(/\n {2}/g, " ")).toContain(`- ${CREATE}: parameter`);
 });
 
 /**
