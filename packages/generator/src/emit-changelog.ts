@@ -208,7 +208,9 @@ export function changelogSidebar(
  * longer exported and the breaking operations follow when there are any,
  * each list cut off after 40 items with a note of how many were left out. A
  * breaking operation is followed by its breaking details, with backticks
- * removed, or by the kind of change when it has none.
+ * removed, or by the kind of change when it has none. Lines longer than 100
+ * characters are wrapped at spaces, continuations indented by two spaces, so
+ * the summary passes commitlint as a commit message body.
  *
  * @param entry - The version and its differences from the one before.
  * @returns The summary, lines joined by `\n`, without a trailing newline.
@@ -244,5 +246,42 @@ export function summarize(entry: HistoryEntry): string {
       lines.push(`- ...and ${breakingChanges.length - 40} more`);
     }
   }
-  return lines.join("\n");
+  return lines.flatMap((line) => wrap(line, SUMMARY_WIDTH)).join("\n");
+}
+
+/**
+ * Longest line {@link summarize} produces, the limit commitlint's
+ * conventional config puts on commit message body and footer lines.
+ */
+const SUMMARY_WIDTH = 100;
+
+/**
+ * Breaks one line of text at spaces so that no piece is longer than a given
+ * width.
+ *
+ * @remarks
+ * Continuation lines are indented by two spaces, so a wrapped list item stays
+ * visually attached to its bullet. A single word longer than the width is
+ * kept whole on a line of its own rather than split.
+ *
+ * @param line - The line to wrap, without newlines.
+ * @param width - The maximum length of each resulting line.
+ * @returns The pieces in order; the line itself when it already fits.
+ */
+function wrap(line: string, width: number): string[] {
+  if (line.length <= width) return [line];
+  const indent = "  ";
+  const pieces: string[] = [];
+  let current = "";
+  for (const word of line.split(" ")) {
+    const candidate = current ? `${current} ${word}` : word;
+    if (candidate.length <= width || current.trim() === "") {
+      current = candidate;
+    } else {
+      pieces.push(current);
+      current = `${indent}${word}`;
+    }
+  }
+  pieces.push(current);
+  return pieces;
 }
