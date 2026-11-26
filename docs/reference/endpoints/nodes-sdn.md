@@ -48,7 +48,7 @@ Returns an array of `object`.
 proxmox.nodes.$(node).sdn.fabrics.$(fabric).interfaces.$get()
 ```
 
-Get all interfaces for a fabric.
+Get all interfaces for a fabric, empty if this node is not part of it.
 
 Returns an array of `object`.
 
@@ -65,7 +65,7 @@ Returns an array of `object`.
 proxmox.nodes.$(node).sdn.fabrics.$(fabric).neighbors.$get()
 ```
 
-Get all neighbors for a fabric.
+Get all neighbors for a fabric, empty if this node is not part of it.
 
 Returns an array of `object`.
 
@@ -104,7 +104,7 @@ Returns an array of `object`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
-| `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
+| `vnet` | string | yes | The SDN vnet object identifier. — format `pve-sdn-vnet-id`, ≤ 8 chars |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/sdn/vnets/{vnet}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -121,7 +121,7 @@ Returns an array of `object`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
-| `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
+| `vnet` | string | yes | The SDN vnet object identifier. — format `pve-sdn-vnet-id`, ≤ 8 chars |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/sdn/vnets/{vnet}/mac-vrf" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -154,7 +154,7 @@ Returns an array of `object`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
-| `zone` | string | yes | The SDN zone object identifier. — ≤ 8 chars |
+| `zone` | string | yes | The SDN zone object identifier. — format `pve-sdn-zone-id`, ≤ 8 chars |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/sdn/zones/{zone}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -188,7 +188,7 @@ Returns an array of `object`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
-| `zone` | string | yes | The SDN zone object identifier. — ≤ 8 chars |
+| `zone` | string | yes | The SDN zone object identifier. — format `pve-sdn-zone-id`, ≤ 8 chars |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/sdn/zones/{zone}/content" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 

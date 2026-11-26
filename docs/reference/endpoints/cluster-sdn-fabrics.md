@@ -70,7 +70,7 @@ Returns nothing.
 | `id` | string | yes | Identifier for SDN fabrics — format `pve-sdn-fabric-id`, ≤ 8 chars |
 | `protocol` | `openfabric` \| `ospf` \| `wireguard` \| `bgp` | yes | Type of configuration entry in an SDN Fabric section config |
 
-::: details 10 optional parameters
+::: details 11 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -84,6 +84,7 @@ Returns nothing.
 | `persistent_keepalive` | number |  | A seconds interval, between 1 and 65535 inclusive, of how often to send an authenticated empty packet to the peer for the purpose of keeping a stateful firewall or NAT mapping valid persistently. For example, if the interface very rarely sends traffic, but it might at anytime receive traffic from another node, and it is behind NAT, the interface might benefit from having a persistent keepalive interval of 25 seconds. If unset or set to 0, it is turned off — min 0, max 65535 |
 | `redistribute` | any[] |  |  |
 | `route_filter` | string |  | A prefix list that should be used for filtering routes that are to be installed into the kernel routing table — format `pve-sdn-prefix-list-id` |
+| `zone` | string |  | Simple zone whose VRF contains this fabric. — format `pve-sdn-zone-id`, ≤ 8 chars |
 
 :::
 
@@ -120,7 +121,7 @@ Returns nothing.
 | `id` | string | yes | Identifier for SDN fabrics — format `pve-sdn-fabric-id`, ≤ 8 chars |
 | `protocol` | `openfabric` \| `ospf` \| `wireguard` \| `bgp` | yes | Type of configuration entry in an SDN Fabric section config |
 
-::: details 11 optional parameters
+::: details 12 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -135,6 +136,7 @@ Returns nothing.
 | `persistent_keepalive` | number |  | A seconds interval, between 1 and 65535 inclusive, of how often to send an authenticated empty packet to the peer for the purpose of keeping a stateful firewall or NAT mapping valid persistently. For example, if the interface very rarely sends traffic, but it might at anytime receive traffic from another node, and it is behind NAT, the interface might benefit from having a persistent keepalive interval of 25 seconds. If unset or set to 0, it is turned off — min 0, max 65535 |
 | `redistribute` | any[] |  |  |
 | `route_filter` | string |  | A prefix list that should be used for filtering routes that are to be installed into the kernel routing table — format `pve-sdn-prefix-list-id` |
+| `zone` | string |  | Simple zone whose VRF contains this fabric. — format `pve-sdn-zone-id`, ≤ 8 chars |
 
 :::
 

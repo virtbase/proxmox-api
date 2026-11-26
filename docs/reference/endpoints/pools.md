@@ -22,7 +22,7 @@ Returns an array of `object`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `poolid` | string |  | format `pve-poolid` |
-| `type` | `qemu` \| `lxc` \| `storage` |  |  |
+| `type` | `qemu` \| `lxc` \| `storage` \| `network` |  |  |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/pools" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -57,7 +57,8 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `allow-move` | boolean |  | Allow adding a guest even if already in another pool. The guest will be removed from its current pool and added to this one. — default `0` |
 | `comment` | string |  |  |
-| `delete` | boolean |  | Remove the passed VMIDs and/or storage IDs instead of adding them. — default `0` |
+| `delete` | boolean |  | Remove the passed VMIDs, storage IDs and/or network resources instead of adding them. — default `0` |
+| `network` | string |  | List of network resources to add or remove from this pool. 'vnet/&lt;zone&gt;/&lt;vnet&gt;' allows network devices on the VNet without VLAN tag or trunks, a trailing '/&lt;tag&gt;' allows that VLAN tag, and '/*' allows the VNet with or without any VLAN tag. This only controls the network device configuration, a device without VLAN tag can still carry tagged guest traffic on a VLAN-aware VNet. — format `pve-pool-network-list` |
 | `poolid` | string | yes | format `pve-poolid` |
 | `storage` | string |  | List of storage IDs to add or remove from this pool. — format `pve-storage-id-list` |
 | `vms` | string |  | List of guest VMIDs to add or remove from this pool. — format `pve-vmid-list` |
@@ -93,7 +94,7 @@ Returns `object`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `poolid` | string | yes | format `pve-poolid` |
-| `type` | `qemu` \| `lxc` \| `storage` |  |  |
+| `type` | `qemu` \| `lxc` \| `storage` \| `network` |  |  |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/pools/{poolid}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -111,7 +112,8 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `allow-move` | boolean |  | Allow adding a guest even if already in another pool. The guest will be removed from its current pool and added to this one. — default `0` |
 | `comment` | string |  |  |
-| `delete` | boolean |  | Remove the passed VMIDs and/or storage IDs instead of adding them. — default `0` |
+| `delete` | boolean |  | Remove the passed VMIDs, storage IDs and/or network resources instead of adding them. — default `0` |
+| `network` | string |  | List of network resources to add or remove from this pool. 'vnet/&lt;zone&gt;/&lt;vnet&gt;' allows network devices on the VNet without VLAN tag or trunks, a trailing '/&lt;tag&gt;' allows that VLAN tag, and '/*' allows the VNet with or without any VLAN tag. This only controls the network device configuration, a device without VLAN tag can still carry tagged guest traffic on a VLAN-aware VNet. — format `pve-pool-network-list` |
 | `poolid` | string | yes | format `pve-poolid` |
 | `storage` | string |  | List of storage IDs to add or remove from this pool. — format `pve-storage-id-list` |
 | `vms` | string |  | List of guest VMIDs to add or remove from this pool. — format `pve-vmid-list` |

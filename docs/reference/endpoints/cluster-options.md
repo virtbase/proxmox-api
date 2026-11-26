@@ -31,12 +31,12 @@ Set datacenter options.
 
 Returns nothing.
 
-::: details 25 optional parameters
+::: details 26 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `bwlimit` | string |  | Set I/O bandwidth limit for various operations (in KiB/s). |
-| `consent-text` | string |  | Consent text that is displayed before logging in. — ≤ 65536 chars |
+| `consent-text` | string |  | Consent text that is displayed before logging in. Needs to be base64 encoded. — ≤ 65536 chars |
 | `console` | `applet` \| `vv` \| `html5` \| `xtermjs` |  | Select the default Console viewer. You can either use the builtin java applet (VNC; deprecated and maps to html5), an external virt-viewer comtatible application (SPICE), an HTML5 based vnc viewer (noVNC), or an HTML5 based console client (xtermjs). If the selected viewer is not available (e.g. SPICE not activated for the VM), the fallback is noVNC. |
 | `crs` | string |  | Cluster resource scheduling settings. |
 | `delete` | string |  | A list of settings you want to delete. — format `pve-configid-list` |
@@ -57,6 +57,7 @@ Returns nothing.
 | `registered-tags` | string |  | A list of tags that require a `Sys.Modify` on '/' to set and delete. Tags set here that are also in 'user-tag-access' also require `Sys.Modify`. |
 | `replication` | string |  | For cluster wide replication settings. |
 | `tag-style` | string |  | Tag style options. |
+| `token-policy` | string |  | Cluster-wide policy for creating and updating API tokens, for example to enforce an expiration date or privilege separation. |
 | `u2f` | string |  | u2f |
 | `user-tag-access` | string |  | Privilege options for user-settable tags |
 | `webauthn` | string |  | webauthn configuration |

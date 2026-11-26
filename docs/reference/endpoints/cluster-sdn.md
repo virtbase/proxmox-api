@@ -643,9 +643,9 @@ Returns nothing.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `type` | `evpn` \| `faucet` \| `qinq` \| `simple` \| `vlan` \| `vxlan` | yes | Plugin type. — format `pve-configid` |
-| `zone` | string | yes | The SDN zone object identifier. — ≤ 8 chars |
+| `zone` | string | yes | The SDN zone object identifier. — format `pve-sdn-zone-id`, ≤ 8 chars |
 
-::: details 26 optional parameters
+::: details 29 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -653,6 +653,8 @@ Returns nothing.
 | `bridge` | string |  | The bridge for which VLANs should be managed. — format `pve-iface`, ≤ 15 chars |
 | `bridge-disable-mac-learning` | boolean |  | Disable auto mac learning. |
 | `controller` | string |  | Controller for this zone. |
+| `ct-zone` | number |  | Conntrack zone of the dedicated VRF, assigned automatically. — min 16384, max 17407 |
+| `dedicated-vrf` | boolean |  | Create a dedicated VRF for the zone. — default `0` |
 | `dhcp` | `dnsmasq` |  | Type of the DHCP backend for this zone |
 | `disable-arp-nd-suppression` | boolean |  | Suppress IPv4 ARP &amp;&amp; IPv6 Neighbour Discovery messages. |
 | `dns` | string |  | dns api server |
@@ -669,6 +671,7 @@ Returns nothing.
 | `nodes` | string |  | List of cluster node names. — format `pve-node-list` |
 | `peers` | string |  | Comma-separated list of peers, that are part of the VXLAN zone. Usually the IPs of the nodes. — format `ip-list` |
 | `reversedns` | string |  | reverse dns api server |
+| `route` | string[] |  | Static routes of a simple zone, installed in its dedicated VRF, which they require. |
 | `rt-import` | string |  | List of Route Targets that should be imported into the VRF of the zone. — format `pve-sdn-bgp-rt-list` |
 | `secondary-controllers` | string[] |  | Additional controllers. |
 | `tag` | number |  | Service-VLAN Tag (outer VLAN) — min 2, max 4094 |
@@ -694,7 +697,7 @@ Returns `any`.
 | --- | --- | --- | --- |
 | `pending` | boolean |  | Display pending config. |
 | `running` | boolean |  | Display running config. |
-| `zone` | string | yes | The SDN zone object identifier. — ≤ 8 chars |
+| `zone` | string | yes | The SDN zone object identifier. — format `pve-sdn-zone-id`, ≤ 8 chars |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/sdn/zones/{zone}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -710,9 +713,9 @@ Returns nothing.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `zone` | string | yes | The SDN zone object identifier. — ≤ 8 chars |
+| `zone` | string | yes | The SDN zone object identifier. — format `pve-sdn-zone-id`, ≤ 8 chars |
 
-::: details 28 optional parameters
+::: details 31 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -720,6 +723,8 @@ Returns nothing.
 | `bridge` | string |  | The bridge for which VLANs should be managed. — format `pve-iface`, ≤ 15 chars |
 | `bridge-disable-mac-learning` | boolean |  | Disable auto mac learning. |
 | `controller` | string |  | Controller for this zone. |
+| `ct-zone` | number |  | Conntrack zone of the dedicated VRF, assigned automatically. — min 16384, max 17407 |
+| `dedicated-vrf` | boolean |  | Create a dedicated VRF for the zone. — default `0` |
 | `delete` | string |  | A list of settings you want to delete. — format `pve-configid-list`, ≤ 4096 chars |
 | `dhcp` | `dnsmasq` |  | Type of the DHCP backend for this zone |
 | `digest` | string |  | Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications. — ≤ 64 chars |
@@ -738,6 +743,7 @@ Returns nothing.
 | `nodes` | string |  | List of cluster node names. — format `pve-node-list` |
 | `peers` | string |  | Comma-separated list of peers, that are part of the VXLAN zone. Usually the IPs of the nodes. — format `ip-list` |
 | `reversedns` | string |  | reverse dns api server |
+| `route` | string[] |  | Static routes of a simple zone, installed in its dedicated VRF, which they require. |
 | `rt-import` | string |  | List of Route Targets that should be imported into the VRF of the zone. — format `pve-sdn-bgp-rt-list` |
 | `secondary-controllers` | string[] |  | Additional controllers. |
 | `tag` | number |  | Service-VLAN Tag (outer VLAN) — min 2, max 4094 |
@@ -762,6 +768,6 @@ Returns nothing.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `lock-token` | string |  | the token for unlocking the global SDN configuration |
-| `zone` | string | yes | The SDN zone object identifier. — ≤ 8 chars |
+| `zone` | string | yes | The SDN zone object identifier. — format `pve-sdn-zone-id`, ≤ 8 chars |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/sdn/zones/{zone}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

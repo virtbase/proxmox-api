@@ -49,6 +49,6 @@ Returns `object`.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `type` | `btrfs` \| `cephfs` \| `cifs` \| `dir` \| `esxi` \| `iscsi` \| `iscsidirect` \| `lvm` \| … (6 more) | yes | The type of the storage plugin. |
+| `type` | `btrfs` \| `cephfs` \| `cifs` \| `dir` \| `esxi` \| `iscsi` \| `iscsidirect` \| `lvm` \| … (7 more) | yes | The type of the storage plugin. |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/plugins/storage/plugin/{type}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

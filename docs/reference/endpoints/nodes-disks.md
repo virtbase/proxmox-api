@@ -145,8 +145,8 @@ Returns `string`.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `add_storage` | boolean |  | Configure storage using the Volume Group — default `0` |
-| `device` | string | yes | The block device you want to create the volume group on |
+| `add_storage` | boolean |  | Configure storage using the Volume Group. On a SAN LUN, this adds a new shared storage for all nodes. On a local disk, the storage is for this node, or this node joins a matching storage of that ID. — default `0` |
+| `device` | string | yes | The block device you want to create the volume group on. Multipath mapped devices are supported. |
 | `name` | string | yes | The storage identifier. — format `pve-storage-id` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
@@ -158,7 +158,7 @@ Returns `string`.
 proxmox.nodes.$(node).disks.lvm.$(name).$delete()
 ```
 
-Remove an LVM Volume Group.
+Remove an LVM Volume Group. Refused if a shared storage is configured with a volume group of that name.
 
 Returns `string`.
 
@@ -256,7 +256,7 @@ Returns `string`.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `disk` | string | yes | Block device name |
+| `disk` | string | yes | Block device name. A SAN LUN can also be given by a by-id or mapper name. |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/disks/wipedisk" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

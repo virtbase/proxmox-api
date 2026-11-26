@@ -109,6 +109,10 @@
             "link": "/reference/endpoints/cluster-metrics"
           },
           {
+            "text": "multipath",
+            "link": "/reference/endpoints/cluster-multipath"
+          },
+          {
             "text": "nextid",
             "link": "/reference/endpoints/cluster-nextid"
           },
@@ -131,6 +135,10 @@
           {
             "text": "resources",
             "link": "/reference/endpoints/cluster-resources"
+          },
+          {
+            "text": "san",
+            "link": "/reference/endpoints/cluster-san"
           },
           {
             "text": "sdn",
@@ -166,6 +174,10 @@
       {
         "text": "nodes",
         "items": [
+          {
+            "text": "access-log",
+            "link": "/reference/endpoints/nodes-access-log"
+          },
           {
             "text": "aplinfo",
             "link": "/reference/endpoints/nodes-aplinfo"
@@ -230,6 +242,10 @@
             "collapsed": true
           },
           {
+            "text": "maintenance",
+            "link": "/reference/endpoints/nodes-maintenance"
+          },
+          {
             "text": "migrateall",
             "link": "/reference/endpoints/nodes-migrateall"
           },
@@ -279,6 +295,10 @@
           {
             "text": "rrddata",
             "link": "/reference/endpoints/nodes-rrddata"
+          },
+          {
+            "text": "san",
+            "link": "/reference/endpoints/nodes-san"
           },
           {
             "text": "scan",

@@ -21,7 +21,7 @@ Returns an array of `object`.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `type` | `btrfs` \| `cephfs` \| `cifs` \| `dir` \| `esxi` \| `iscsi` \| `iscsidirect` \| `lvm` \| … (6 more) |  | Only list storage of specific type |
+| `type` | `btrfs` \| `cephfs` \| `cifs` \| `dir` \| `esxi` \| `iscsi` \| `iscsidirect` \| `lvm` \| … (7 more) |  | Only list storage of specific type |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/storage" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -34,78 +34,6 @@ proxmox.storage.$post()
 Create a new storage.
 
 Returns `object`.
-
-| Parameter | Type | Required | Notes |
-| --- | --- | --- | --- |
-| `storage` | string | yes | The storage identifier. — format `pve-storage-id` |
-| `type` | `btrfs` \| `cephfs` \| `cifs` \| `dir` \| `esxi` \| `iscsi` \| `iscsidirect` \| `lvm` \| … (6 more) | yes | Storage type. |
-
-::: details 60 optional parameters
-
-| Parameter | Type | Required | Notes |
-| --- | --- | --- | --- |
-| `authsupported` | string |  | Authsupported. |
-| `base` | string |  | Volume ID of the base volume (automatically activated). — format `pve-volume-id` |
-| `blocksize` | string |  | ZFS block size. — format `pve-storage-zfs-blocksize` |
-| `bwlimit` | string |  | Set I/O bandwidth limit for various operations (in KiB/s). |
-| `comstar_hg` | string |  | Host group for COMSTAR views. |
-| `comstar_tg` | string |  | Target group for COMSTAR views. |
-| `content` | string |  | Allowed content types. NOTE: the value 'rootdir' is used for Containers, and value 'images' for VMs. A storage can instead be restricted to some of their volume types: 'vm-vol' for the disks of VMs, 'vm-state' for the saved states of VMs, and 'ct-vol' for the volumes of Containers. — format `pve-storage-content-list` |
-| `content-dirs` | string |  | Overrides for default content type directories. — format `pve-dir-override-list` |
-| `create-base-path` | boolean |  | Create the base directory if it doesn't exist. — default `"yes"` |
-| `create-subdirs` | boolean |  | Populate the base directory with the default structure. — default `"yes"` |
-| `data-pool` | string |  | Data pool name for erasure-coded images. |
-| `datastore` | string |  | Proxmox Backup Server datastore name. |
-| `disable` | boolean |  | Flag to disable the storage. |
-| `domain` | string |  | The name of the user domain (workgroup) to use. — ≤ 256 chars |
-| `encryption-key` | string |  | Encryption key. Use 'autogen' to generate one automatically without passphrase. |
-| `export` | string |  | Path exported by the NFS server (e.g., /srv/nfs). — format `pve-storage-path` |
-| `fingerprint` | string |  | Certificate SHA 256 fingerprint. |
-| `format` | `raw` \| `qcow2` \| `subvol` \| `vmdk` |  | Default image format. |
-| `fs-name` | string |  | The name or identifier of the filesystem. — format `pve-configid` |
-| `fuse` | boolean |  | Mount the filesystem through FUSE. |
-| `is_mountpoint` | string |  | Assume the given path is an externally managed mountpoint and consider the storage offline if it is not mounted. Using a boolean (yes/no) value serves as a shortcut to using the target path in this field. — default `"no"` |
-| `iscsiprovider` | string |  | The iSCSI target implementation used on the remote machine. |
-| `keyring` | string |  | Client keyring contents (for external clusters). |
-| `krbd` | boolean |  | Always access rbd through krbd kernel module. — default `0` |
-| `lio_tpg` | string |  | Target portal group for Linux LIO targets. |
-| `master-pubkey` | string |  | Base64-encoded, PEM-formatted public RSA key. Used to encrypt a copy of the encryption-key which will be added to each encrypted backup. |
-| `max-protected-backups` | number |  | Maximal number of protected backups per guest. Use '-1' for unlimited. — min -1, default `"Unlimited for users with Datastore.Allocate privilege, 5 for other users"` |
-| `mkdir` | boolean |  | Create the directory if it doesn't exist and populate it with default sub-dirs. NOTE: Deprecated, use the 'create-base-path' and 'create-subdirs' options instead. — default `"yes"` |
-| `monhost` | string |  | IP addresses of monitors (for external clusters). — format `pve-storage-portal-dns-list` |
-| `mountpoint` | string |  | Path to the directory where the storage is mounted. — format `pve-storage-path` |
-| `namespace` | string |  | The namespace used for grouping, isolation, or partitioning purposes. |
-| `nocow` | boolean |  | Set the NOCOW flag on files. Disables data checksumming and causes data errors to be unrecoverable from while allowing direct I/O. Only use this if data does not need to be any more safe than on a single ext4 formatted disk with no underlying raid system. — default `0` |
-| `nodes` | string |  | List of nodes for which the storage configuration applies. — format `pve-node-list` |
-| `nowritecache` | boolean |  | Disable write caching on the iSCSI target. |
-| `on-volume-remove` | string |  | Optional actions when removing LVs. — format `on-volume-remove` |
-| `options` | string |  | Comma-separated list of mount options. See 'man nfs', 'man mount.cifs', or 'man mount.ceph' for more information. — format `pve-storage-options` |
-| `password` | string |  | The password used for authentication. — ≤ 256 chars |
-| `path` | string |  | Path of the storage in the local file system, for example its base directory or mount point. — format `pve-storage-path` |
-| `pool` | string |  | Name of the pool that stores images. |
-| `port` | number |  | Use this port to connect to the storage instead of the default one (for example, with PBS or ESXi). For NFS and CIFS, use the 'options' option to configure the port via the mount options. — min 1, max 65535 |
-| `portal` | string |  | iSCSI portal (IP or hostname, optionally with port). — format `pve-storage-portal-dns` |
-| `preallocation` | `off` \| `metadata` \| `falloc` \| `full` |  | Preallocation mode for raw and qcow2 images. Using 'metadata' on raw images results in preallocation=off. — default `"metadata"` |
-| `prune-backups` | string |  | The retention options with shorter intervals are processed first with --keep-last being the very first one. Each option covers a specific period of time. We say that backups within this period are covered by this option. The next option does not take care of already covered backups and only considers older backups. — format `prune-backups` |
-| `saferemove` | boolean |  | Zero-out data when removing LVs. |
-| `saferemove-stepsize` | `1` \| `2` \| `4` \| `8` \| `16` \| `32` |  | Wipe step size in MiB. It will be capped to the maximum supported by the storage. — default `32` |
-| `saferemove_throughput` | string |  | Wipe throughput in bytes per second (optional suffix: k, m, or g). |
-| `server` | string |  | IP address or hostname of the server. — format `pve-storage-server` |
-| `share` | string |  | The name of the share to use. |
-| `shared` | boolean |  | Indicate that this is a single storage with the same contents on all nodes (or all listed in the 'nodes' option). It will not make the contents of a local storage automatically accessible to other nodes, it just marks an already shared storage as such! |
-| `skip-cert-verification` | boolean |  | Disable TLS certificate verification, only enable on fully trusted networks! — default `"false"` |
-| `smbversion` | `default` \| `2.0` \| `2.1` \| `3` \| `3.0` \| `3.11` |  | SMB protocol version. 'default' if not set, negotiates the highest SMB2+ version supported by both the client and server. — default `"default"` |
-| `snapshot-as-volume-chain` | boolean |  | Enable support for creating storage-vendor agnostic snapshot through volume backing-chains. — default `0` |
-| `sparse` | boolean |  | Use sparse (thin-provisioned) volumes. |
-| `subdir` | string |  | Subdir to mount. — format `pve-storage-path` |
-| `tagged_only` | boolean |  | Only list logical volumes tagged with 'pve-vm-ID'. |
-| `target` | string |  | iSCSI target name (an iSCSI Qualified Name - IQN). |
-| `thinpool` | string |  | Name of the LVM thin pool logical volume. — format `pve-storage-vgname` |
-| `username` | string |  | The username for authentication. For RBD and CephFS, the Ceph client ID without the 'client.' prefix. |
-| `vgname` | string |  | LVM volume group name. — format `pve-storage-vgname` |
-| `zfs-base-path` | string |  | Base path where to look for the created ZFS block devices. Set automatically during creation if not specified. Usually '/dev/zvol'. — format `pve-storage-path` |
-
-:::
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/storage" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -135,68 +63,6 @@ Update storage configuration.
 
 Returns `object`.
 
-| Parameter | Type | Required | Notes |
-| --- | --- | --- | --- |
-| `storage` | string | yes | The storage identifier. — format `pve-storage-id` |
-
-::: details 51 optional parameters
-
-| Parameter | Type | Required | Notes |
-| --- | --- | --- | --- |
-| `blocksize` | string |  | ZFS block size. — format `pve-storage-zfs-blocksize` |
-| `bwlimit` | string |  | Set I/O bandwidth limit for various operations (in KiB/s). |
-| `comstar_hg` | string |  | Host group for COMSTAR views. |
-| `comstar_tg` | string |  | Target group for COMSTAR views. |
-| `content` | string |  | Allowed content types. NOTE: the value 'rootdir' is used for Containers, and value 'images' for VMs. A storage can instead be restricted to some of their volume types: 'vm-vol' for the disks of VMs, 'vm-state' for the saved states of VMs, and 'ct-vol' for the volumes of Containers. — format `pve-storage-content-list` |
-| `content-dirs` | string |  | Overrides for default content type directories. — format `pve-dir-override-list` |
-| `create-base-path` | boolean |  | Create the base directory if it doesn't exist. — default `"yes"` |
-| `create-subdirs` | boolean |  | Populate the base directory with the default structure. — default `"yes"` |
-| `data-pool` | string |  | Data pool name for erasure-coded images. |
-| `delete` | string |  | A list of settings you want to delete. — format `pve-configid-list`, ≤ 4096 chars |
-| `digest` | string |  | Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications. — ≤ 64 chars |
-| `disable` | boolean |  | Flag to disable the storage. |
-| `domain` | string |  | The name of the user domain (workgroup) to use. — ≤ 256 chars |
-| `encryption-key` | string |  | Encryption key. Use 'autogen' to generate one automatically without passphrase. |
-| `fingerprint` | string |  | Certificate SHA 256 fingerprint. |
-| `format` | `raw` \| `qcow2` \| `subvol` \| `vmdk` |  | Default image format. |
-| `fs-name` | string |  | The name or identifier of the filesystem. — format `pve-configid` |
-| `fuse` | boolean |  | Mount the filesystem through FUSE. |
-| `is_mountpoint` | string |  | Assume the given path is an externally managed mountpoint and consider the storage offline if it is not mounted. Using a boolean (yes/no) value serves as a shortcut to using the target path in this field. — default `"no"` |
-| `keyring` | string |  | Client keyring contents (for external clusters). |
-| `krbd` | boolean |  | Always access rbd through krbd kernel module. — default `0` |
-| `lio_tpg` | string |  | Target portal group for Linux LIO targets. |
-| `master-pubkey` | string |  | Base64-encoded, PEM-formatted public RSA key. Used to encrypt a copy of the encryption-key which will be added to each encrypted backup. |
-| `max-protected-backups` | number |  | Maximal number of protected backups per guest. Use '-1' for unlimited. — min -1, default `"Unlimited for users with Datastore.Allocate privilege, 5 for other users"` |
-| `mkdir` | boolean |  | Create the directory if it doesn't exist and populate it with default sub-dirs. NOTE: Deprecated, use the 'create-base-path' and 'create-subdirs' options instead. — default `"yes"` |
-| `monhost` | string |  | IP addresses of monitors (for external clusters). — format `pve-storage-portal-dns-list` |
-| `mountpoint` | string |  | Path to the directory where the storage is mounted. — format `pve-storage-path` |
-| `namespace` | string |  | The namespace used for grouping, isolation, or partitioning purposes. |
-| `nocow` | boolean |  | Set the NOCOW flag on files. Disables data checksumming and causes data errors to be unrecoverable from while allowing direct I/O. Only use this if data does not need to be any more safe than on a single ext4 formatted disk with no underlying raid system. — default `0` |
-| `nodes` | string |  | List of nodes for which the storage configuration applies. — format `pve-node-list` |
-| `nowritecache` | boolean |  | Disable write caching on the iSCSI target. |
-| `on-volume-remove` | string |  | Optional actions when removing LVs. — format `on-volume-remove` |
-| `options` | string |  | Comma-separated list of mount options. See 'man nfs', 'man mount.cifs', or 'man mount.ceph' for more information. — format `pve-storage-options` |
-| `password` | string |  | The password used for authentication. — ≤ 256 chars |
-| `pool` | string |  | Name of the pool that stores images. |
-| `port` | number |  | Use this port to connect to the storage instead of the default one (for example, with PBS or ESXi). For NFS and CIFS, use the 'options' option to configure the port via the mount options. — min 1, max 65535 |
-| `preallocation` | `off` \| `metadata` \| `falloc` \| `full` |  | Preallocation mode for raw and qcow2 images. Using 'metadata' on raw images results in preallocation=off. — default `"metadata"` |
-| `prune-backups` | string |  | The retention options with shorter intervals are processed first with --keep-last being the very first one. Each option covers a specific period of time. We say that backups within this period are covered by this option. The next option does not take care of already covered backups and only considers older backups. — format `prune-backups` |
-| `saferemove` | boolean |  | Zero-out data when removing LVs. |
-| `saferemove-stepsize` | `1` \| `2` \| `4` \| `8` \| `16` \| `32` |  | Wipe step size in MiB. It will be capped to the maximum supported by the storage. — default `32` |
-| `saferemove_throughput` | string |  | Wipe throughput in bytes per second (optional suffix: k, m, or g). |
-| `server` | string |  | IP address or hostname of the server. — format `pve-storage-server` |
-| `shared` | boolean |  | Indicate that this is a single storage with the same contents on all nodes (or all listed in the 'nodes' option). It will not make the contents of a local storage automatically accessible to other nodes, it just marks an already shared storage as such! |
-| `skip-cert-verification` | boolean |  | Disable TLS certificate verification, only enable on fully trusted networks! — default `"false"` |
-| `smbversion` | `default` \| `2.0` \| `2.1` \| `3` \| `3.0` \| `3.11` |  | SMB protocol version. 'default' if not set, negotiates the highest SMB2+ version supported by both the client and server. — default `"default"` |
-| `snapshot-as-volume-chain` | boolean |  | Enable support for creating storage-vendor agnostic snapshot through volume backing-chains. — default `0` |
-| `sparse` | boolean |  | Use sparse (thin-provisioned) volumes. |
-| `subdir` | string |  | Subdir to mount. — format `pve-storage-path` |
-| `tagged_only` | boolean |  | Only list logical volumes tagged with 'pve-vm-ID'. |
-| `username` | string |  | The username for authentication. For RBD and CephFS, the Ceph client ID without the 'client.' prefix. |
-| `zfs-base-path` | string |  | Base path where to look for the created ZFS block devices. Set automatically during creation if not specified. Usually '/dev/zvol'. — format `pve-storage-path` |
-
-:::
-
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/storage/{storage}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
 ### <span class="method-badge" data-method="DELETE">DELETE</span> `/storage/{storage}`
@@ -211,6 +77,7 @@ Returns nothing.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
+| `digest` | string |  | Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications. — ≤ 64 chars |
 | `storage` | string | yes | The storage identifier. — format `pve-storage-id` |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/storage/{storage}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

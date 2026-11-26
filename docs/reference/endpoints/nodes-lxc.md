@@ -43,10 +43,11 @@ Returns `string`.
 | `ostemplate` | string | yes | The OS template or backup file. — ≤ 255 chars |
 | `vmid` | number | yes | The (unique) ID of the VM. — format `pve-vmid`, min 100, max 999999999 |
 
-::: details 43 optional parameters
+::: details 44 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
+| `allow-identity-mismatch` | boolean |  | Allow overwriting an existing guest with a backup of another guest, as detected by a different 'uid' in 'meta'. The guest then keeps its own uid. Not needed to restore a backup again over a guest that an unfinished restore of that backup left behind. A restore from standard input over a container that has a uid always needs this option, as the backup cannot be checked beforehand. — default `0` |
 | `arch` | `amd64` \| `i386` \| `arm64` \| `armhf` \| `riscv32` \| `riscv64` |  | OS architecture type. — default `"amd64"` |
 | `bwlimit` | number |  | Override I/O bandwidth limit (in KiB/s). — min 0, default `"restore limit from datacenter or storage config"` |
 | `cmode` | `shell` \| `console` \| `tty` |  | Console mode. By default, the console command tries to open a connection to one of the available tty devices. By setting cmode to 'console' it tries to attach to /dev/console instead. If you set cmode to 'shell', it simply invokes a shell inside the container (no login). — default `"tty"` |
@@ -87,7 +88,7 @@ Returns `string`.
 | `template` | boolean |  | Enable/disable Template. — default `0` |
 | `timezone` | string |  | Time zone to use in the container. If option isn't set, then nothing will be done. Can be set to 'host' to match the host time zone, or an arbitrary time zone option from /usr/share/zoneinfo/zone.tab — format `pve-ct-timezone` |
 | `tty` | number |  | Specify the number of tty available to the container — min 0, max 6, default `2` |
-| `unique` | boolean |  | Assign a unique random ethernet address. |
+| `unique` | boolean |  | Assign a unique random ethernet address and do not adopt the guest uid of the backup. |
 | `unprivileged` | boolean |  | Makes the container run as unprivileged user. For creation, the default is 1. For restore, the default is the value from the backup. (Should not be modified manually.) — default `0` |
 | `unused0`…`unused255` | string |  | Reference to unused volumes. This is used internally, and should not be modified manually. |
 
@@ -309,14 +310,22 @@ Returns `string`.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `bwlimit` | number |  | Override I/O bandwidth limit (in KiB/s). — min 0, default `"migrate limit from datacenter or storage config"` |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
+| `target` | string | yes | Target node. — format `pve-node` |
+| `vmid` | number | yes | The (unique) ID of the VM. — format `pve-vmid`, min 100, max 999999999 |
+
+::: details 6 optional parameters
+
+| Parameter | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `bwlimit` | number |  | Override I/O bandwidth limit (in KiB/s). — min 0, default `"migrate limit from datacenter or storage config"` |
 | `online` | boolean |  | Use online/live migration. |
 | `restart` | boolean |  | Use restart migration |
-| `target` | string | yes | Target node. — format `pve-node` |
+| `skip-config-check` | boolean |  | For intra-cluster migration. Skip checking if the configuration can be parsed successfully by the target. Using this flag can lead to dropped or ignored configuration options if the target is too old to parse them. — default `0` |
 | `target-storage` | string |  | Mapping from source to target storages. Providing only a single storage ID maps all source storages to that storage. Providing the special value '1' will map each source storage to itself. — format `storage-pair-list` |
 | `timeout` | number |  | Timeout in seconds for shutdown for restart migration — default `180` |
-| `vmid` | number | yes | The (unique) ID of the VM. — format `pve-vmid`, min 100, max 999999999 |
+
+:::
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/lxc/{vmid}/migrate" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -425,10 +434,11 @@ Returns `string`.
 | `target-storage` | string | yes | Mapping from source to target storages. Providing only a single storage ID maps all source storages to that storage. Providing the special value '1' will map each source storage to itself. — format `storage-pair-list` |
 | `vmid` | number | yes | The (unique) ID of the VM. — format `pve-vmid`, min 100, max 999999999 |
 
-::: details 6 optional parameters
+::: details 7 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
+| `allow-new-uid` | boolean |  | Allow the migration if another guest in the target cluster already has the uid of this guest. The migrated guest then gets a new uid. — default `0` |
 | `bwlimit` | number |  | Override I/O bandwidth limit (in KiB/s). — min 0, default `"migrate limit from datacenter or storage config"` |
 | `delete` | boolean |  | Delete the original CT and related data after successful migration. By default the original CT is kept on the source cluster in a stopped state. — default `0` |
 | `online` | boolean |  | Use online/live migration. |

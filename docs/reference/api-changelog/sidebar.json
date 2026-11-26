@@ -4,6 +4,10 @@
     "link": "/reference/api-changelog/"
   },
   {
+    "text": "Proxmox VE 9.3",
+    "link": "/reference/api-changelog/pve-9.3"
+  },
+  {
     "text": "Proxmox VE 9.2",
     "link": "/reference/api-changelog/pve-9.2"
   },

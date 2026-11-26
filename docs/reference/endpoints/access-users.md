@@ -185,7 +185,7 @@ Returns `object`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `comment` | string |  |  |
-| `expire` | number |  | API token expiration date (seconds since epoch). '0' means no expiration date. — min 0, default `"same as user"` |
+| `expire` | number |  | API token expiration date (seconds since epoch). '0' means no expiration date, or the maximum lifetime if the datacenter token policy sets 'default-to-max-lifetime'. — min 0, default `"same as user"` |
 | `privsep` | boolean |  | Restrict API token privileges with separate ACLs (default), or give full privileges of corresponding user. — default `1` |
 | `tokenid` | string | yes | User-specific token identifier. |
 | `userid` | string | yes | Full User ID, in the `name@realm` format. — format `pve-userid`, ≤ 64 chars |

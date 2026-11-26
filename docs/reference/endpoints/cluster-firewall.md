@@ -458,7 +458,7 @@ Returns nothing.
 | `digest` | string |  | Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications. — ≤ 64 chars |
 | `ebtables` | boolean |  | Enable ebtables rules cluster wide. — default `1` |
 | `enable` | number |  | Enable or disable the firewall cluster wide. — min 0, default `0` |
-| `log_ratelimit` | string |  | Log ratelimiting settings |
+| `log_ratelimit` | string |  | Log ratelimiting settings — format `pve-fw-log-ratelimit` |
 | `policy_forward` | `ACCEPT` \| `DROP` |  | Forward policy. |
 | `policy_in` | `ACCEPT` \| `REJECT` \| `DROP` |  | Input policy. |
 | `policy_out` | `ACCEPT` \| `REJECT` \| `DROP` |  | Output policy. |

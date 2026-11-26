@@ -43,13 +43,14 @@ Returns `string`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `vmid` | number | yes | The (unique) ID of the VM. — format `pve-vmid`, min 100, max 999999999 |
 
-::: details 91 optional parameters
+::: details 92 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `acpi` | boolean |  | Enable/disable ACPI. — default `1` |
 | `affinity` | string |  | List of host cores used to execute guest processes, for example: 0,5,8-11 — format `pve-cpuset` |
 | `agent` | string |  | Enable/disable communication with the QEMU Guest Agent and its properties. |
+| `allow-identity-mismatch` | boolean |  | Allow overwriting an existing guest with a backup of another guest, as detected by a different 'uid' in 'meta'. The guest then keeps its own uid. Not needed to restore a backup again over a guest that an unfinished restore of that backup left behind. — default `0` |
 | `allow-ksm` | boolean |  | Allow memory pages of this guest to be merged via KSM (Kernel Samepage Merging). — default `1` |
 | `amd-sev` | string |  | Secure Encrypted Virtualization (SEV) features by AMD CPUs — format `pve-qemu-sev-fmt` |
 | `arch` | `x86_64` \| `aarch64` |  | Virtual processor architecture. Defaults to the host architecture. |
@@ -128,7 +129,7 @@ Returns `string`.
 | `tdf` | boolean |  | Enable/disable time drift fix. — default `0` |
 | `template` | boolean |  | Enable/disable Template. — default `0` |
 | `tpmstate0` | string |  | Configure a Disk for storing TPM state. The format is fixed to 'raw'. Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. Note that SIZE_IN_GiB is ignored here and 4 MiB will be used instead. Use STORAGE_ID:0 and the 'import-from' parameter to import from an existing volume. |
-| `unique` | boolean |  | Assign a unique random ethernet address. |
+| `unique` | boolean |  | Assign a unique random ethernet address and do not adopt the guest uid of the backup. |
 | `unused0`…`unused255` | string |  | Reference to unused volumes. This is used internally, and should not be modified manually. |
 | `usb0`…`usb13` | string |  | Configure an USB device (n is 0 to 4, for machine version &gt;= 7.1 and ostype l26 or windows &gt; 7, n can be up to 14). |
 | `vcpus` | number |  | Number of hotplugged vcpus. — min 1, default `0` |
@@ -578,7 +579,7 @@ Returns `string`.
 | `target` | string | yes | Target node. — format `pve-node` |
 | `vmid` | number | yes | The (unique) ID of the VM. — format `pve-vmid`, min 100, max 999999999 |
 
-::: details 8 optional parameters
+::: details 9 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -587,6 +588,7 @@ Returns `string`.
 | `migration_network` | string |  | CIDR of the (sub) network that is used for migration. — format `CIDR` |
 | `migration_type` | `secure` \| `insecure` |  | Migration traffic is encrypted using an SSH tunnel by default. On secure, completely private networks this can be disabled to increase performance. |
 | `online` | boolean |  | Use online/live migration if VM is running. Ignored if VM is stopped. |
+| `skip-config-check` | boolean |  | For intra-cluster migration. Skip checking if the configuration can be parsed successfully by the target. Using this flag can lead to dropped configuration options if the target is too old to parse them. — default `0` |
 | `targetstorage` | string |  | Mapping from source to target storages. Providing only a single storage ID maps all source storages to that storage. Providing the special value '1' will map each source storage to itself. — format `storage-pair-list` |
 | `with-conntrack-state` | boolean |  | Whether to migrate conntrack entries for running VMs. — default `0` |
 | `with-local-disks` | boolean |  | Enable live storage migration for local disk |
@@ -719,10 +721,11 @@ Returns `string`.
 | `target-storage` | string | yes | Mapping from source to target storages. Providing only a single storage ID maps all source storages to that storage. Providing the special value '1' will map each source storage to itself. — format `storage-pair-list` |
 | `vmid` | number | yes | The (unique) ID of the VM. — format `pve-vmid`, min 100, max 999999999 |
 
-::: details 4 optional parameters
+::: details 5 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
+| `allow-new-uid` | boolean |  | Allow the migration if another guest in the target cluster already has the uid of this guest. The migrated guest then gets a new uid. — default `0` |
 | `bwlimit` | number |  | Override I/O bandwidth limit (in KiB/s). — min 0, default `"migrate limit from datacenter or storage config"` |
 | `delete` | boolean |  | Delete the original VM and related data after successful migration. By default the original VM is kept on the source cluster in a stopped state. — default `0` |
 | `online` | boolean |  | Use online/live migration if VM is running. Ignored if VM is stopped. |
@@ -935,6 +938,7 @@ Returns `string`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `snapname` | string | yes | The name of the snapshot. — format `pve-configid`, ≤ 40 chars |
 | `start` | boolean |  | Whether the VM should get started after rolling back successfully. (Note: VMs will be automatically started if the snapshot includes RAM.) — default `0` |
+| `sync-time-on-resume` | boolean |  | Override the 'sync-time-on-resume' setting from the VM's guest agent (QGA) config for this rollback only. Controls whether the guest's clock is synchronized after the RAM state is restored. |
 | `vmid` | number | yes | The (unique) ID of the VM. — format `pve-vmid`, min 100, max 999999999 |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/qemu/{vmid}/snapshot/{snapname}/rollback" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
@@ -1042,6 +1046,7 @@ Returns `string`.
 | `nocheck` | boolean |  | Do not check whether the VM is running, used internally during migration. Only root may use this option. |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `skiplock` | boolean |  | Ignore locks - only root is allowed to use this option. |
+| `sync-time-on-resume` | boolean |  | Override the 'sync-time-on-resume' setting from the VM's guest agent (QGA) config for this resume only. Controls whether the guest's clock is synchronized after resuming the VM. |
 | `vmid` | number | yes | The (unique) ID of the VM. — format `pve-vmid`, min 100, max 999999999 |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/qemu/{vmid}/status/resume" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
@@ -1082,7 +1087,7 @@ Returns `string`.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `vmid` | number | yes | The (unique) ID of the VM. — format `pve-vmid`, min 100, max 999999999 |
 
-::: details 11 optional parameters
+::: details 12 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -1094,6 +1099,7 @@ Returns `string`.
 | `nets-host-mtu` | string |  | Used for migration compat. List of VirtIO network devices and their effective host_mtu setting according to the QEMU object model on the source side of the migration. A value of 0 means that the host_mtu parameter is to be avoided for the corresponding device. |
 | `skiplock` | boolean |  | Ignore locks - only root is allowed to use this option. |
 | `stateuri` | string |  | Some command save/restore state from this location. — ≤ 128 chars |
+| `sync-time-on-resume` | boolean |  | Override the 'sync-time-on-resume' setting from the VM's guest agent (QGA) config for this start only. Controls whether the guest's clock is synchronized when starting a hibernated VM. No effect on a regular start. |
 | `targetstorage` | string |  | Mapping from source to target storages. Providing only a single storage ID maps all source storages to that storage. Providing the special value '1' will map each source storage to itself. — format `storage-pair-list` |
 | `timeout` | number |  | Wait maximal timeout seconds. — min 0, default `"max(30, vm memory in GiB)"` |
 | `with-conntrack-state` | boolean |  | Whether to migrate conntrack entries for running VMs. — default `0` |

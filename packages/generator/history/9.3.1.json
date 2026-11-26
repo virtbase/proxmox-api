@@ -1,0 +1,1942 @@
+{
+  "version": "9.3.1",
+  "previous": "9.2.15",
+  "released": "2026-11-25",
+  "schemaSha256": "aaaa480f10833dd2d1e7ccc3920ccde5e89386aa48b96dfee4b49aa9adfe19fd",
+  "operations": 716,
+  "level": "major",
+  "summary": {
+    "added": 28,
+    "removed": 0,
+    "changed": 58,
+    "breaking": 12,
+    "documentation": 69
+  },
+  "changes": [
+    {
+      "operation": "GET /cluster/config/join",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `pve-version` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/ha/resources/{sid}/migrate",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `skip-config-check` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `with-conntrack-state` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/ha/status/current",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].maintenance-request-queued` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].maintenance-requested` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/multipath",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/multipath/overrides",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "PUT /cluster/multipath/overrides",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/multipath/wwid",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "POST /cluster/multipath/wwid",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "DELETE /cluster/multipath/wwid/{wwid}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/multipath/wwid/{wwid}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "PUT /cluster/multipath/wwid/{wwid}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/options",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `token-policy` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/options",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `token-policy` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/resources",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].rtime` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].uid` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/san",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/san/status",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /cluster/sdn/fabrics/all",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "returned `fabrics[].id` is now optional",
+          "breaking": true
+        },
+        {
+          "text": "returned `fabrics[].pending` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `fabrics[].pending.area` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `fabrics[].pending.csnp_interval` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `fabrics[].pending.hello_interval` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `fabrics[].pending.id` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `fabrics[].pending.ip6_prefix` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `fabrics[].pending.ip_prefix` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `fabrics[].pending.persistent_keepalive` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `fabrics[].pending.protocol` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `fabrics[].pending.redistribute` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `fabrics[].pending.redistribute[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `fabrics[].pending.route_filter` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `fabrics[].pending.zone` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `fabrics[].protocol` is now optional",
+          "breaking": true
+        },
+        {
+          "text": "returned `fabrics[].state` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `fabrics[].zone` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].fabric_id` is now optional",
+          "breaking": true
+        },
+        {
+          "text": "returned `nodes[].node_id` is now optional",
+          "breaking": true
+        },
+        {
+          "text": "returned `nodes[].pending` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].pending.allowed_ips` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].pending.allowed_ips[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].pending.endpoint` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].pending.fabric_id` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].pending.interfaces` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].pending.interfaces[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].pending.ip` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].pending.ip6` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].pending.node_id` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].pending.peers` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].pending.peers[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].pending.protocol` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].pending.public_key` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].pending.role` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[].protocol` is now optional",
+          "breaking": true
+        },
+        {
+          "text": "returned `nodes[].state` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `fabrics[].lock-token` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `nodes[].lock-token` removed",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/fabrics/fabric",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "returned `[].id` is now optional",
+          "breaking": true
+        },
+        {
+          "text": "returned `[].pending` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.area` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.csnp_interval` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.hello_interval` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.id` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.ip6_prefix` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.ip_prefix` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.persistent_keepalive` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.protocol` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.redistribute` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.redistribute[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.route_filter` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.zone` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].protocol` is now optional",
+          "breaking": true
+        },
+        {
+          "text": "returned `[].state` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].zone` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].lock-token` removed",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/sdn/fabrics/fabric",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `zone` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/fabrics/fabric/{id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `zone` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/sdn/fabrics/fabric/{id}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `zone` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/fabrics/node",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "returned `[].fabric_id` is now optional",
+          "breaking": true
+        },
+        {
+          "text": "returned `[].node_id` is now optional",
+          "breaking": true
+        },
+        {
+          "text": "returned `[].pending` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.allowed_ips` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.allowed_ips[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.endpoint` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.fabric_id` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.interfaces` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.interfaces[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.ip` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.ip6` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.node_id` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.peers` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.peers[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.protocol` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.public_key` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.role` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].protocol` is now optional",
+          "breaking": true
+        },
+        {
+          "text": "returned `[].state` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].lock-token` removed",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/fabrics/node/{fabric_id}",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "returned `[].fabric_id` is now optional",
+          "breaking": true
+        },
+        {
+          "text": "returned `[].node_id` is now optional",
+          "breaking": true
+        },
+        {
+          "text": "returned `[].pending` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.allowed_ips` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.allowed_ips[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.endpoint` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.fabric_id` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.interfaces` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.interfaces[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.ip` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.ip6` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.node_id` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.peers` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.peers[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.protocol` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.public_key` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.role` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].protocol` is now optional",
+          "breaking": true
+        },
+        {
+          "text": "returned `[].state` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].lock-token` removed",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/zones",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].ct-zone` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].dedicated-vrf` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.ct-zone` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.dedicated-vrf` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.route` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].pending.route[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].route` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].route[]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /cluster/sdn/zones",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `ct-zone` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `dedicated-vrf` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `route` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `route[]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/sdn/zones/{zone}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `ct-zone` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `dedicated-vrf` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.ct-zone` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.dedicated-vrf` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.route` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `pending.route[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `route` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `route[]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /cluster/sdn/zones/{zone}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `ct-zone` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `dedicated-vrf` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `route` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `route[]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /cluster/status",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].cluster-id` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/access-log",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/access-log/stats",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/apt/history",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/apt/installed-changelog",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/apt/termlog",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/apt/transaction-changelogs",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/apt/update-changelogs",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/disks/list",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].transport` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/lxc",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `allow-identity-mismatch` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/lxc/{vmid}/config",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `meta` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/lxc/{vmid}/feature",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `nodes` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `nodes[]` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/lxc/{vmid}/migrate",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "returned `not-allowed-nodes.*` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not-allowed-nodes.*.blocking-ha-resources` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not-allowed-nodes.*.blocking-ha-resources[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not-allowed-nodes.*.blocking-ha-resources[].cause` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not-allowed-nodes.*.blocking-ha-resources[].sid` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not-allowed-nodes.*.guest-identity-unsupported` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not-allowed-nodes.*.guest-identity-unsupported.required-version` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not-allowed-nodes.*.guest-identity-unsupported.version` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not-allowed-nodes.blocking-ha-resources` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `not-allowed-nodes.blocking-ha-resources[]` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `not-allowed-nodes.blocking-ha-resources[].cause` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `not-allowed-nodes.blocking-ha-resources[].sid` removed",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/lxc/{vmid}/migrate",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `skip-config-check` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/lxc/{vmid}/remote_migrate",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `allow-new-uid` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/lxc/{vmid}/status/current",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `uid` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /nodes/{node}/maintenance",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/network",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].ip-forward` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].vrf` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/network",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `ip-forward` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `vrf` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/network/{iface}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `vrf-readonly` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /nodes/{node}/network/{iface}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `ip-forward` added",
+          "breaking": false
+        },
+        {
+          "text": "parameter `vrf` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/qemu",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `allow-identity-mismatch` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/qemu/{vmid}/migrate",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "returned `not_allowed_nodes.*` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not_allowed_nodes.*.blocking-ha-resources` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not_allowed_nodes.*.blocking-ha-resources[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not_allowed_nodes.*.blocking-ha-resources[].cause` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not_allowed_nodes.*.blocking-ha-resources[].sid` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not_allowed_nodes.*.guest-identity-unsupported` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not_allowed_nodes.*.guest-identity-unsupported.required-version` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not_allowed_nodes.*.guest-identity-unsupported.version` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not_allowed_nodes.*.unavailable-resources` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not_allowed_nodes.*.unavailable-resources[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not_allowed_nodes.*.unavailable_storages` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not_allowed_nodes.*.unavailable_storages[]` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `not_allowed_nodes.blocking-ha-resources` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `not_allowed_nodes.blocking-ha-resources[]` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `not_allowed_nodes.blocking-ha-resources[].cause` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `not_allowed_nodes.blocking-ha-resources[].sid` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `not_allowed_nodes.unavailable_storages` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `not_allowed_nodes.unavailable_storages[]` removed",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/qemu/{vmid}/migrate",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `skip-config-check` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/qemu/{vmid}/remote_migrate",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `allow-new-uid` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/qemu/{vmid}/snapshot/{snapname}/rollback",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `sync-time-on-resume` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/qemu/{vmid}/status/current",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `uid` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/qemu/{vmid}/status/resume",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `sync-time-on-resume` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/qemu/{vmid}/status/start",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `sync-time-on-resume` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/san",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/san/iscsi",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/san/iscsi/status",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/san/iscsi/target",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/san/luns",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/san/nvmeof",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/san/nvmeof/controller",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "DELETE /nodes/{node}/san/nvmeof/controller/{controller}",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/san/nvmeof/status",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/scan/nvmeof",
+      "change": "added",
+      "breaking": false
+    },
+    {
+      "operation": "GET /nodes/{node}/sdn/fabrics/{fabric}/interfaces",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "returned `[].listen-port` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].public-key` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].type` is now optional",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/sdn/fabrics/{fabric}/neighbors",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "returned `[].allowed-ips` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].bytes-rx` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].bytes-tx` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].interface` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].latest-handshake` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].name` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].neighbor` is now optional",
+          "breaking": true
+        },
+        {
+          "text": "returned `[].persistent-keepalive` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].public-key` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].uptime` is now optional",
+          "breaking": true
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/services/{service}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `service` accepts `pve-notify-worker`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/services/{service}/reload",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `service` accepts `pve-notify-worker`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/services/{service}/restart",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `service` accepts `pve-notify-worker`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/services/{service}/start",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `service` accepts `pve-notify-worker`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/services/{service}/state",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `service` accepts `pve-notify-worker`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /nodes/{node}/services/{service}/stop",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `service` accepts `pve-notify-worker`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/storage/{storage}/identity",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `type` may be `nvmeof`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /nodes/{node}/version",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `ui-version` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /plugins/storage/plugin",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "returned `[].type` may be `nvmeof`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /plugins/storage/plugin/{type}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `type` accepts `nvmeof`",
+          "breaking": false
+        },
+        {
+          "text": "returned `type` may be `nvmeof`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /pools",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `type` accepts `network`",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].members[].network` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].members[].network-type` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].members[].node` is now optional",
+          "breaking": true
+        },
+        {
+          "text": "returned `[].members[].text` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `[].members[].type` may be `network`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /pools",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `network` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /pools/{poolid}",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `type` accepts `network`",
+          "breaking": false
+        },
+        {
+          "text": "returned `members[].network` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `members[].network-type` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `members[].node` is now optional",
+          "breaking": true
+        },
+        {
+          "text": "returned `members[].text` added",
+          "breaking": false
+        },
+        {
+          "text": "returned `members[].type` may be `network`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /pools/{poolid}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `network` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "GET /storage",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `type` accepts `nvmeof`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "POST /storage",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `authsupported` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `base` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `blocksize` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `bwlimit` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `comstar_hg` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `comstar_tg` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `content` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `content-dirs` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `create-base-path` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `create-subdirs` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `data-pool` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `datastore` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `disable` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `domain` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `encryption-key` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `export` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `fingerprint` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `format` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `fs-name` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `fuse` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `is_mountpoint` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `iscsiprovider` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `keyring` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `krbd` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `lio_tpg` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `master-pubkey` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `max-protected-backups` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `mkdir` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `monhost` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `mountpoint` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `namespace` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `nocow` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `nodes` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `nowritecache` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `on-volume-remove` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `options` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `password` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `path` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `pool` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `port` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `portal` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `preallocation` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `prune-backups` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `saferemove` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `saferemove-stepsize` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `saferemove_throughput` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `server` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `share` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `shared` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `skip-cert-verification` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `smbversion` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `snapshot-as-volume-chain` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `sparse` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `storage` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `subdir` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `tagged_only` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `target` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `thinpool` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `type` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `username` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `vgname` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `zfs-base-path` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `type` may be `nvmeof`",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "DELETE /storage/{storage}",
+      "change": "changed",
+      "breaking": false,
+      "details": [
+        {
+          "text": "parameter `digest` added",
+          "breaking": false
+        }
+      ]
+    },
+    {
+      "operation": "PUT /storage/{storage}",
+      "change": "changed",
+      "breaking": true,
+      "details": [
+        {
+          "text": "parameter `blocksize` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `bwlimit` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `comstar_hg` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `comstar_tg` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `content` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `content-dirs` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `create-base-path` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `create-subdirs` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `data-pool` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `delete` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `digest` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `disable` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `domain` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `encryption-key` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `fingerprint` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `format` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `fs-name` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `fuse` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `is_mountpoint` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `keyring` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `krbd` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `lio_tpg` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `master-pubkey` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `max-protected-backups` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `mkdir` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `monhost` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `mountpoint` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `namespace` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `nocow` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `nodes` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `nowritecache` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `on-volume-remove` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `options` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `password` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `pool` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `port` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `preallocation` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `prune-backups` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `saferemove` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `saferemove-stepsize` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `saferemove_throughput` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `server` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `shared` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `skip-cert-verification` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `smbversion` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `snapshot-as-volume-chain` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `sparse` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `storage` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `subdir` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `tagged_only` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `username` removed",
+          "breaking": true
+        },
+        {
+          "text": "parameter `zfs-base-path` removed",
+          "breaking": true
+        },
+        {
+          "text": "returned `type` may be `nvmeof`",
+          "breaking": false
+        }
+      ]
+    }
+  ],
+  "removedTypes": [
+    "ClusterHaResourcesMigrateMigrateParams",
+    "NetworkType",
+    "OnVolumeRemove",
+    "Preallocation",
+    "PveDirOverrideList",
+    "PveStorageOptions",
+    "PveStoragePath",
+    "PveStoragePortalDnsList",
+    "PveStorageVgname",
+    "PveStorageZfsBlocksize",
+    "Smbversion",
+    "StorageCreateParams",
+    "StorageUpdateParams"
+  ]
+}
