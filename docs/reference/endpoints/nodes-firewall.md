@@ -92,11 +92,11 @@ Returns nothing.
 | `nf_conntrack_max` | number |  | Maximum number of tracked connections. — min 32768, default `262144` |
 | `nf_conntrack_tcp_timeout_established` | number |  | Conntrack established timeout. — min 7875, default `432000` |
 | `nf_conntrack_tcp_timeout_syn_recv` | number |  | Conntrack syn recv timeout. — min 30, max 60, default `60` |
-| `nftables` | boolean |  | Enable nftables based firewall (tech preview) — default `0` |
+| `nftables` | boolean |  | Enable nftables based firewall. — default `0` |
 | `nosmurfs` | boolean |  | Enable SMURFS filter. |
 | `protection_synflood` | boolean |  | Enable synflood protection — default `0` |
-| `protection_synflood_burst` | number |  | Synflood protection rate burst by ip src. — default `1000` |
-| `protection_synflood_rate` | number |  | Synflood protection rate syn/sec by ip src. — default `200` |
+| `protection_synflood_burst` | number |  | Synflood protection rate burst by ip src. — max 1000000, default `1000` |
+| `protection_synflood_rate` | number |  | Synflood protection rate syn/sec by ip src. — max 1000000, default `200` |
 | `smurf_log_level` | `emerg` \| `alert` \| `crit` \| `err` \| `warning` \| `notice` \| `info` \| `debug` \| … (1 more) |  | Log level for SMURFS filter. |
 | `tcp_flags_log_level` | `emerg` \| `alert` \| `crit` \| `err` \| `warning` \| `notice` \| `info` \| `debug` \| … (1 more) |  | Log level for illegal tcp flags filter. |
 | `tcpflags` | boolean |  | Filter illegal combinations of TCP flags. — default `0` |

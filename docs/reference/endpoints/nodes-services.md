@@ -38,7 +38,7 @@ Returns an array of `object`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
-| `service` | `chrony` \| `corosync` \| `cron` \| `ksmtuned` \| `lxcfs` \| `postfix` \| `proxmox-firewall` \| `pve-cluster` \| … (15 more) | yes | Service ID |
+| `service` | `chrony` \| `corosync` \| `cron` \| `ksmtuned` \| `lxcfs` \| `postfix` \| `proxmox-firewall` \| `pve-cluster` \| … (16 more) | yes | Service ID |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/services/{service}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -55,7 +55,7 @@ Returns `string`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
-| `service` | `chrony` \| `corosync` \| `cron` \| `ksmtuned` \| `lxcfs` \| `postfix` \| `proxmox-firewall` \| `pve-cluster` \| … (15 more) | yes | Service ID |
+| `service` | `chrony` \| `corosync` \| `cron` \| `ksmtuned` \| `lxcfs` \| `postfix` \| `proxmox-firewall` \| `pve-cluster` \| … (16 more) | yes | Service ID |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/services/{service}/reload" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -72,7 +72,7 @@ Returns `string`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
-| `service` | `chrony` \| `corosync` \| `cron` \| `ksmtuned` \| `lxcfs` \| `postfix` \| `proxmox-firewall` \| `pve-cluster` \| … (15 more) | yes | Service ID |
+| `service` | `chrony` \| `corosync` \| `cron` \| `ksmtuned` \| `lxcfs` \| `postfix` \| `proxmox-firewall` \| `pve-cluster` \| … (16 more) | yes | Service ID |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/services/{service}/restart" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -89,7 +89,7 @@ Returns `string`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
-| `service` | `chrony` \| `corosync` \| `cron` \| `ksmtuned` \| `lxcfs` \| `postfix` \| `proxmox-firewall` \| `pve-cluster` \| … (15 more) | yes | Service ID |
+| `service` | `chrony` \| `corosync` \| `cron` \| `ksmtuned` \| `lxcfs` \| `postfix` \| `proxmox-firewall` \| `pve-cluster` \| … (16 more) | yes | Service ID |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/services/{service}/start" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -106,7 +106,7 @@ Returns `object`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
-| `service` | `chrony` \| `corosync` \| `cron` \| `ksmtuned` \| `lxcfs` \| `postfix` \| `proxmox-firewall` \| `pve-cluster` \| … (15 more) | yes | Service ID |
+| `service` | `chrony` \| `corosync` \| `cron` \| `ksmtuned` \| `lxcfs` \| `postfix` \| `proxmox-firewall` \| `pve-cluster` \| … (16 more) | yes | Service ID |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/services/{service}/state" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -123,6 +123,6 @@ Returns `string`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `node` | string | yes | The cluster node name. — format `pve-node` |
-| `service` | `chrony` \| `corosync` \| `cron` \| `ksmtuned` \| `lxcfs` \| `postfix` \| `proxmox-firewall` \| `pve-cluster` \| … (15 more) | yes | Service ID |
+| `service` | `chrony` \| `corosync` \| `cron` \| `ksmtuned` \| `lxcfs` \| `postfix` \| `proxmox-firewall` \| `pve-cluster` \| … (16 more) | yes | Service ID |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/nodes/{node}/services/{service}/stop" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

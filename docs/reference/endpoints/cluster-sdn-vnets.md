@@ -44,7 +44,7 @@ Returns nothing.
 | `tag` | number |  | VLAN Tag (for VLAN or QinQ zones) or VXLAN VNI (for VXLAN or EVPN zones). — min 1, max 16777215 |
 | `type` | `vnet` |  | Type of the VNet. |
 | `vlanaware` | boolean |  | Allow VLANs to pass through this vnet. |
-| `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
+| `vnet` | string | yes | The SDN vnet object identifier. — format `pve-sdn-vnet-id`, ≤ 8 chars |
 | `zone` | string | yes | Name of the zone this VNet belongs to. |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/sdn/vnets" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
@@ -63,7 +63,7 @@ Returns `any`.
 | --- | --- | --- | --- |
 | `pending` | boolean |  | Display pending config. |
 | `running` | boolean |  | Display running config. |
-| `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
+| `vnet` | string | yes | The SDN vnet object identifier. — format `pve-sdn-vnet-id`, ≤ 8 chars |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/sdn/vnets/{vnet}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -79,7 +79,7 @@ Returns nothing.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
+| `vnet` | string | yes | The SDN vnet object identifier. — format `pve-sdn-vnet-id`, ≤ 8 chars |
 
 ::: details 8 optional parameters
 
@@ -111,7 +111,7 @@ Returns nothing.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `lock-token` | string |  | the token for unlocking the global SDN configuration |
-| `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
+| `vnet` | string | yes | The SDN vnet object identifier. — format `pve-sdn-vnet-id`, ≤ 8 chars |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/sdn/vnets/{vnet}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -127,7 +127,7 @@ Returns an array of `object`.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
+| `vnet` | string | yes | The SDN vnet object identifier. — format `pve-sdn-vnet-id`, ≤ 8 chars |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/sdn/vnets/{vnet}/firewall" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -143,7 +143,7 @@ Returns `object`.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
+| `vnet` | string | yes | The SDN vnet object identifier. — format `pve-sdn-vnet-id`, ≤ 8 chars |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/sdn/vnets/{vnet}/firewall/options" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -164,7 +164,7 @@ Returns nothing.
 | `enable` | boolean |  | Enable/disable firewall rules. — default `0` |
 | `log_level_forward` | `emerg` \| `alert` \| `crit` \| `err` \| `warning` \| `notice` \| `info` \| `debug` \| … (1 more) |  | Log level for forwarded traffic. |
 | `policy_forward` | `ACCEPT` \| `DROP` |  | Forward policy. |
-| `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
+| `vnet` | string | yes | The SDN vnet object identifier. — format `pve-sdn-vnet-id`, ≤ 8 chars |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/sdn/vnets/{vnet}/firewall/options" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -180,7 +180,7 @@ Returns an array of `object`.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
+| `vnet` | string | yes | The SDN vnet object identifier. — format `pve-sdn-vnet-id`, ≤ 8 chars |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/sdn/vnets/{vnet}/firewall/rules" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -198,7 +198,7 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `action` | string | yes | Rule action ('ACCEPT', 'DROP', 'REJECT') or security group name. — ≤ 20 chars |
 | `type` | `in` \| `out` \| `forward` \| `group` | yes | Rule type. |
-| `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
+| `vnet` | string | yes | The SDN vnet object identifier. — format `pve-sdn-vnet-id`, ≤ 8 chars |
 
 ::: details 13 optional parameters
 
@@ -235,7 +235,7 @@ Returns `object`.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `pos` | number |  | Update rule at position &lt;pos&gt;. — min 0 |
-| `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
+| `vnet` | string | yes | The SDN vnet object identifier. — format `pve-sdn-vnet-id`, ≤ 8 chars |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/sdn/vnets/{vnet}/firewall/rules/{pos}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -251,7 +251,7 @@ Returns nothing.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
+| `vnet` | string | yes | The SDN vnet object identifier. — format `pve-sdn-vnet-id`, ≤ 8 chars |
 
 ::: details 17 optional parameters
 
@@ -293,7 +293,7 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `digest` | string |  | Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications. — ≤ 64 chars |
 | `pos` | number |  | Update rule at position &lt;pos&gt;. — min 0 |
-| `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
+| `vnet` | string | yes | The SDN vnet object identifier. — format `pve-sdn-vnet-id`, ≤ 8 chars |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/sdn/vnets/{vnet}/firewall/rules/{pos}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -311,8 +311,8 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `ip` | string | yes | The IP address to associate with the given MAC address — format `ip` |
 | `mac` | string |  | Unicast MAC address. — format `mac-addr` |
-| `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
-| `zone` | string |  | DEPRECATED: value is ignored and parameter will be removed with PVE 10 — ≤ 8 chars |
+| `vnet` | string | yes | The SDN vnet object identifier. — format `pve-sdn-vnet-id`, ≤ 8 chars |
+| `zone` | string |  | DEPRECATED: value is ignored and parameter will be removed with PVE 10 — format `pve-sdn-zone-id`, ≤ 8 chars |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/sdn/vnets/{vnet}/ips" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -331,8 +331,8 @@ Returns nothing.
 | `ip` | string | yes | The IP address to associate with the given MAC address — format `ip` |
 | `mac` | string |  | Unicast MAC address. — format `mac-addr` |
 | `vmid` | number |  | The (unique) ID of the VM. — format `pve-vmid`, min 100, max 999999999 |
-| `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
-| `zone` | string |  | DEPRECATED: value is ignored and parameter will be removed with PVE 10 — ≤ 8 chars |
+| `vnet` | string | yes | The SDN vnet object identifier. — format `pve-sdn-vnet-id`, ≤ 8 chars |
+| `zone` | string |  | DEPRECATED: value is ignored and parameter will be removed with PVE 10 — format `pve-sdn-zone-id`, ≤ 8 chars |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/sdn/vnets/{vnet}/ips" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -350,8 +350,8 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `ip` | string | yes | The IP address to delete — format `ip` |
 | `mac` | string |  | Unicast MAC address. — format `mac-addr` |
-| `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
-| `zone` | string |  | DEPRECATED: value is ignored and parameter will be removed with PVE 10 — ≤ 8 chars |
+| `vnet` | string | yes | The SDN vnet object identifier. — format `pve-sdn-vnet-id`, ≤ 8 chars |
+| `zone` | string |  | DEPRECATED: value is ignored and parameter will be removed with PVE 10 — format `pve-sdn-zone-id`, ≤ 8 chars |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/sdn/vnets/{vnet}/ips" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -369,7 +369,7 @@ Returns an array of `object`.
 | --- | --- | --- | --- |
 | `pending` | boolean |  | Display pending config. |
 | `running` | boolean |  | Display running config. |
-| `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
+| `vnet` | string | yes | The SDN vnet object identifier. — format `pve-sdn-vnet-id`, ≤ 8 chars |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/sdn/vnets/{vnet}/subnets" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -393,7 +393,7 @@ Returns nothing.
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `dhcp-dns-server` | string |  | IP address for the DNS server — format `ip` |
+| `dhcp-dns-server` | string |  | DNS server IP address. Must use the same address family as the subnet. — format `ip` |
 | `dhcp-range` | string[] |  | A list of DHCP ranges for this subnet |
 | `dnszoneprefix` | string |  | dns domain zone prefix  ex: 'adm' -&gt; &lt;hostname&gt;.adm.mydomain.com — format `dns-name` |
 | `gateway` | string |  | Subnet Gateway: Will be assign on vnet for layer3 zones — format `ip` |
@@ -419,7 +419,7 @@ Returns `object`.
 | `pending` | boolean |  | Display pending config. |
 | `running` | boolean |  | Display running config. |
 | `subnet` | string | yes | The SDN subnet object identifier. — format `pve-sdn-subnet-id` |
-| `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
+| `vnet` | string | yes | The SDN vnet object identifier. — format `pve-sdn-vnet-id`, ≤ 8 chars |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/sdn/vnets/{vnet}/subnets/{subnet}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
@@ -442,7 +442,7 @@ Returns nothing.
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `delete` | string |  | A list of settings you want to delete. — format `pve-configid-list`, ≤ 4096 chars |
-| `dhcp-dns-server` | string |  | IP address for the DNS server — format `ip` |
+| `dhcp-dns-server` | string |  | DNS server IP address. Must use the same address family as the subnet. — format `ip` |
 | `dhcp-range` | string[] |  | A list of DHCP ranges for this subnet |
 | `digest` | string |  | Prevent changes if current configuration file has a different digest. This can be used to prevent concurrent modifications. — ≤ 64 chars |
 | `dnszoneprefix` | string |  | dns domain zone prefix  ex: 'adm' -&gt; &lt;hostname&gt;.adm.mydomain.com — format `dns-name` |
@@ -469,6 +469,6 @@ Returns nothing.
 | --- | --- | --- | --- |
 | `lock-token` | string |  | the token for unlocking the global SDN configuration |
 | `subnet` | string | yes | The SDN subnet object identifier. — format `pve-sdn-subnet-id` |
-| `vnet` | string | yes | The SDN vnet object identifier. — ≤ 8 chars |
+| `vnet` | string | yes | The SDN vnet object identifier. — format `pve-sdn-vnet-id`, ≤ 8 chars |
 
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/sdn/vnets/{vnet}/subnets/{subnet}" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>

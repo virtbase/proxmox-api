@@ -42,7 +42,7 @@ Returns nothing.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `type` | `bridge` \| `bond` \| `eth` \| `alias` \| `vlan` \| `fabric` \| `OVSBridge` \| `OVSBond` \| … (4 more) | yes | Network interface type |
 
-::: details 26 optional parameters
+::: details 28 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -61,6 +61,7 @@ Returns nothing.
 | `comments6` | string |  | Comments |
 | `gateway` | string |  | Default gateway address. — format `ipv4` |
 | `gateway6` | string |  | Default ipv6 gateway address. — format `ipv6` |
+| `ip-forward` | boolean |  | Enable IPv4 forwarding on the interface, which is needed for interfaces that receive routed traffic, for example the uplinks of an SDN zone with a dedicated VRF. If not set, forwarding follows the defaults of the interface. |
 | `mtu` | number |  | MTU. — min 1280, max 65520 |
 | `netmask` | string |  | Network mask. — format `ipv4mask` |
 | `netmask6` | number |  | Network mask. — min 0, max 128 |
@@ -72,6 +73,7 @@ Returns nothing.
 | `slaves` | string |  | Specify the interfaces used by the bonding device. — format `pve-iface-list` |
 | `vlan-id` | number |  | vlan-id for a custom named vlan interface (ifupdown2 only). — min 1, max 4094 |
 | `vlan-raw-device` | string |  | Specify the raw interface for the vlan interface. — format `pve-iface` |
+| `vrf` | string |  | VRF master interface. — ≤ 15 chars |
 
 :::
 
@@ -143,7 +145,7 @@ Returns nothing.
 | `node` | string | yes | The cluster node name. — format `pve-node` |
 | `type` | `bridge` \| `bond` \| `eth` \| `alias` \| `vlan` \| `fabric` \| `OVSBridge` \| `OVSBond` \| … (4 more) | yes | Network interface type |
 
-::: details 27 optional parameters
+::: details 29 optional parameters
 
 | Parameter | Type | Required | Notes |
 | --- | --- | --- | --- |
@@ -163,6 +165,7 @@ Returns nothing.
 | `delete` | string |  | A list of settings you want to delete. — format `pve-configid-list` |
 | `gateway` | string |  | Default gateway address. — format `ipv4` |
 | `gateway6` | string |  | Default ipv6 gateway address. — format `ipv6` |
+| `ip-forward` | boolean |  | Enable IPv4 forwarding on the interface, which is needed for interfaces that receive routed traffic, for example the uplinks of an SDN zone with a dedicated VRF. If not set, forwarding follows the defaults of the interface. |
 | `mtu` | number |  | MTU. — min 1280, max 65520 |
 | `netmask` | string |  | Network mask. — format `ipv4mask` |
 | `netmask6` | number |  | Network mask. — min 0, max 128 |
@@ -174,6 +177,7 @@ Returns nothing.
 | `slaves` | string |  | Specify the interfaces used by the bonding device. — format `pve-iface-list` |
 | `vlan-id` | number |  | vlan-id for a custom named vlan interface (ifupdown2 only). — min 1, max 4094 |
 | `vlan-raw-device` | string |  | Specify the raw interface for the vlan interface. — format `pve-iface` |
+| `vrf` | string |  | VRF master interface. — ≤ 15 chars |
 
 :::
 

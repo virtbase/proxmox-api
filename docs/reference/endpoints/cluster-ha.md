@@ -230,11 +230,6 @@ Request resource migration (online) to another node.
 
 Returns `object`.
 
-| Parameter | Type | Required | Notes |
-| --- | --- | --- | --- |
-| `node` | string | yes | Target node. — format `pve-node` |
-| `sid` | string | yes | HA resource ID. This consists of a resource type followed by a resource specific name, separated with colon (example: vm:100 / ct:100). For virtual machines and containers, you can simply use the VM or CT id as a shortcut (example: 100). — format `pve-ha-resource-or-vm-id` |
-
 <p class="api-viewer-link"><a href="https://pve.proxmox.com/pve-docs/api-viewer/index.html#/cluster/ha/resources/{sid}/migrate" target="_blank" rel="noreferrer">Open in the Proxmox API viewer</a></p>
 
 ### <span class="method-badge" data-method="POST">POST</span> `/cluster/ha/resources/{sid}/relocate`

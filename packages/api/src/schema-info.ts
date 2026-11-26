@@ -3,14 +3,14 @@
 /**
  * The Proxmox VE release the bundled API model describes, e.g. `9.2`.
  */
-export const PVE_VERSION = "9.2";
+export const PVE_VERSION = "9.3";
 
 /**
  * The exact `pve-docs` package version the API schema was taken from.
  */
-export const PVE_SCHEMA_VERSION = "9.2.15";
+export const PVE_SCHEMA_VERSION = "9.3.1";
 
 /**
  * Number of operations the model covers.
  */
-export const PVE_OPERATION_COUNT = 688;
+export const PVE_OPERATION_COUNT = 716;
